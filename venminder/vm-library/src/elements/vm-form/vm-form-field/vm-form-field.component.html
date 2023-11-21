@@ -1,0 +1,5 @@
+<template ref="field" class="${ class }">
+    <require from="./vm-form-field.component.css"></require>
+    <slot></slot>
+    <div class="vm-form-field--error" repeat.for="error of errors">${ error }</div>
+</template>

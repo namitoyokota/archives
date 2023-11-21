@@ -1,0 +1,49 @@
+<div class="header-pane" [class.has-header-text]="headerTitle" [class.selected]="isSelected"
+    (click)="cardClicked.emit()">
+    
+    <div *ngIf="headerTitle" class="header-text-pane">
+        <span class="header-text">
+            {{headerTitle}}
+        </span>
+    </div>
+
+    <div class="icon-pane ">
+        <ng-content select="hxgn-common-card-icon"></ng-content>
+    </div>
+
+    <div class="content-pane">
+        <div class="title">
+            <ng-content select="hxgn-common-card-title"></ng-content>
+        </div>
+        <ng-content select="hxgn-common-card-info-content"></ng-content>
+    </div>
+    
+    <div class="action-pane">
+        <div class="tool-bar">
+            <!-- Is Editable Icon -->
+            <img [title]="tTokens.editable" class="is-editable" *ngIf="isEditable" src="assets/common-libraries/images/editable-icon.svg" />
+
+            <!-- Action Pane -->
+            <ng-content select="hxgn-common-card-action-pane"></ng-content>
+        </div>
+
+        <!-- Show the expand and collapse button -->
+        <div *ngIf="expansionState === cardExpansionState.expanded || expansionState === cardExpansionState.collapsed" 
+            class="expand-btn" (click)="toggleExpanded($event)"
+            [class.expanded]="expansionState === cardExpansionState.expanded"></div>
+
+        <!-- Show the expand lock icon -->
+        <div *ngIf="expansionState === cardExpansionState.locked" class="lock-icon">
+            <img src="assets/common-libraries/images/lock-icon-lg.png" />
+        </div>
+
+        
+    </div>
+</div>
+
+<div [@expansionState] *ngIf="expansionState === cardExpansionState.expanded" class="expanded-pane" (click)="$event.stopPropagation()">
+    <ng-container *ngTemplateOutlet="expandedPane"></ng-container>
+</div>
+
+<div *ngIf="isSelected || expansionState === cardExpansionState.expanded || wasExpanded" class="select-pane"></div>
+

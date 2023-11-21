@@ -1,0 +1,67 @@
+<div class="step">
+    <div class="step-number">
+        <span>1</span>
+    </div>
+    <div class="step-content">
+        <div class="step-title">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.presetOptions" skeletonWidth="135px">
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+        <div class="step-description">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.presetOptionsDescription" skeletonWidth="535px">
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+        <div class="preset-options">
+            <div class="preset-option">
+                <div class="preset-option-selector" (click)="selectedPreset.emit(0)">
+                    <img src="assets/commonnotifications-core/images/choose-system-template-icon.svg" height="91"
+                        width="150" />
+                    <span class="header">
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.chooseSystemTemplate"
+                            skeletonWidth="175px">
+                        </hxgn-commonlocalization-translate-v1>
+                    </span>
+                </div>
+                <div class="preset-option-description">
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.chooseSystemTemplateDescription">
+                    </hxgn-commonlocalization-translate-v1>
+                </div>
+            </div>
+            <div class="preset-option">
+                <div class="preset-option-selector" (click)="selectedPreset.emit(1)">
+                    <img src="assets/commonnotifications-core/images/clone-existing-preset-icon.svg" height="102"
+                        width="107" />
+                    <span class="header">
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.cloneExistingPreset"
+                            skeletonWidth="145px">
+                        </hxgn-commonlocalization-translate-v1>
+                    </span>
+                </div>
+                <div class="preset-option-description">
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.cloneExistingPresetDescription">
+                    </hxgn-commonlocalization-translate-v1>
+                </div>
+            </div>
+            <div class="preset-option">
+                <div class="preset-option-selector" (click)="selectedPreset.emit(2)">
+                    <img src="assets/commonnotifications-core/images/create-blank-preset-icon.svg" height="87"
+                        width="123" />
+                    <span class="header">
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.createBlankPreset" skeletonWidth="135px">
+                        </hxgn-commonlocalization-translate-v1>
+                    </span>
+                </div>
+                <div class="preset-option-description">
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.createBlankPresetDescription">
+                    </hxgn-commonlocalization-translate-v1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="buttons-row">
+    <button class="hxgn-btn-secondary" (click)="cancel.emit()">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.cancel" [ignoreSkeleton]="true">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+</div>

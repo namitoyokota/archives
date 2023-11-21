@@ -1,0 +1,32 @@
+<div class="title" mat-dialog-title>
+    <img *ngIf="data.showWarningIcon" class="warning-icon" src="assets/common-libraries/images/warning-icon.svg" />
+    <hxgn-commonlocalization-translate-v1 [token]="data.titleToken" [interpolateParams]="data.titleInterpolateParams"
+        ignoreSkeleton="true" *ngIf="data.titleToken">
+    </hxgn-commonlocalization-translate-v1>
+    <span *ngIf="data.titleToken && data.title">{{data.title}}</span>
+    <span *ngIf="!data.titleToken">{{data.title}}</span>
+
+    <div (click)="onAction(false)" class="close-button"></div>
+</div>
+<mat-dialog-content>
+    <hxgn-commonlocalization-translate-v1 [token]="data.msgToken" [interpolateParams]="data.msgInterpolateParams"
+        ignoreSkeleton="true" *ngIf="data.msgToken">
+    </hxgn-commonlocalization-translate-v1>
+    <span *ngIf="data.msgToken && data.msg">{{data.msg}}</span>
+    <p *ngIf="!data.msgToken">{{data.msg}}</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button (click)="onAction(false)" class="hxgn-btn-secondary">
+        
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.cancel" ignoreSkeleton="true">
+        </hxgn-commonlocalization-translate-v1>
+       
+    </button>
+    <button (click)="onAction(true)" class="hxgn-btn-primary">
+        <span *ngIf="data.confirmBtnText; else default_text">{{data.confirmBtnText}}</span>
+        <ng-template #default_text>
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.confirm" ignoreSkeleton="true">
+            </hxgn-commonlocalization-translate-v1>
+        </ng-template>
+    </button>
+</mat-dialog-actions>

@@ -1,0 +1,188 @@
+<div *ngIf="showConnectionProps">
+    <div class="layer-property">
+        <hxgn-commonmap-admin-url-control
+            [url]="mapLayer.url"
+            (isValid)="urlIsValid($event)"
+            (urlChanged)="setURL($event)">
+        </hxgn-commonmap-admin-url-control>
+    </div>
+    <div class="layer-property ">
+        <hxgn-commonmap-admin-local-access-only
+            [mapLayer]="mapLayer"
+            [isNew]="isNew"
+            (changed)="localAccessOnlyChanged($event)">
+        </hxgn-commonmap-admin-local-access-only>
+    </div>
+    <div class="layer-property">
+        <hxgn-commonmap-admin-url-subdomains
+            [url]="mapLayer.url"
+            [subdomains]="mapLayer.subdomains"
+            (isValid)="subdomainsIsValid($event)"
+            (subdomainsChanged)="subdomainsChanged($event)">
+        </hxgn-commonmap-admin-url-subdomains>
+    </div>
+    <div class="url-params-section">
+        <hxgn-commonmap-admin-url-params 
+            [mapLayer]="mapLayer"
+            [localAccessOnly]="localAccessOnly"
+            (isValid)="urlParamsIsValid($event)"
+            (urlParamChanged)="urlParamChanged($event)">
+        </hxgn-commonmap-admin-url-params>
+    </div>
+</div>
+<div *ngIf="showLayerOptions" class="wmts-layer-options" >
+    <div *ngIf="!isNew" class="section-header layer-options-section-header"> 
+        <hxgn-commonlocalization-translate-v1  
+            [token]="tokens.sectionHeaderLayerOptions"
+            skeletonWidth="'60px'">
+        </hxgn-commonlocalization-translate-v1>
+        <button *ngIf="needToFetchLayers" class="refresh-options-button"
+            [class.disabled]="!canFetchLayers"
+            (click)="getAvailableWMTSLayers()">
+            <div class="icon"></div>
+            <span>
+                <hxgn-commonlocalization-translate-v1 
+                    [token]="tokens.refreshLayerOptionsBtnLabel"
+                    skeletonWidth="'60px'">
+                </hxgn-commonlocalization-translate-v1>
+            </span>
+        </button>
+    </div>
+   
+    <div *ngIf="isNew && needToFetchLayers"class="refresh-options-button-section" >
+        <button class="refresh-options-button"
+            [class.disabled]="!canFetchLayers"
+            (click)="getAvailableWMTSLayers()">
+            <div class="icon"></div>
+            <span>
+                <hxgn-commonlocalization-translate-v1 
+                    [token]="tokens.refreshLayerOptionsBtnLabel"
+                    skeletonWidth="'60px'">
+                </hxgn-commonlocalization-translate-v1>
+            </span>
+        </button>
+    </div> 
+    <div class="fetch-error-msg" *ngIf="fetchError">
+        <span class="msg">
+            <hxgn-commonlocalization-translate-v1 
+                [token]="tokens.errorGettingWMTSInfo"
+                skeletonWidth="'60px'">
+            </hxgn-commonlocalization-translate-v1>     
+        </span>
+        <span class="response">
+            {{fetchErrorMsg}}
+        </span>
+    </div>
+    <div [class.obsecure]="needToFetchLayers">
+        <div class="layer-property">
+            <div class="label">
+                <hxgn-commonlocalization-translate-v1 
+                    [token]="tokens.wmtsLayerLabel"
+                    skeletonWidth="'60px'">
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+            <hxgn-common-dropdown-v2 
+                placeholder="{{transStrings[wmtsLayerPlaceholder]}}"
+                [value]="selectedWMTSLayer" [disabled]="availLayers?.length === 0"
+                (selectionChange)="setWMTSLayer($event)">
+                <hxgn-common-dropdown-trigger-v2>
+                    <span title="{{selectedWMTSLayer?.title}}">
+                        {{selectedWMTSLayer?.title}}
+                    </span>
+                </hxgn-common-dropdown-trigger-v2>
+                <hxgn-common-dropdown-item-v2 *ngFor="let wmtsLayer of availLayers"
+                    [value]="wmtsLayer">
+                    <span title="{{wmtsLayer?.tooltip}}">
+                        {{wmtsLayer?.title}}
+                    </span>
+                </hxgn-common-dropdown-item-v2>
+            </hxgn-common-dropdown-v2>
+            <span class="error-msg" *ngIf="layerErrorToken">
+                <hxgn-commonlocalization-translate-v1 
+                    [token]="layerErrorToken"
+                    [skeletonWidth]="'60px'">
+                </hxgn-commonlocalization-translate-v1>
+            </span>
+        </div>
+        <div [class.obsecure]="!selectedWMTSLayer">
+            <div class="layer-property">
+                <div class="layer-option-name ellipsis">
+                    <hxgn-commonlocalization-translate-v1
+                        [token]="tokens.optionAttribution"
+                        [skeletonWidth]="'60px'">
+                    </hxgn-commonlocalization-translate-v1>
+                </div>
+                <div class="layer-option-value">
+                    <hxgn-common-input-v2 style="width:100%">
+                        <input type="text" (change)="setAttribution($event)"
+                        placeholder="{{ transStrings[tokens.optionAttributionPlaceholder] }}"
+                        [value]="attribution" />
+                    </hxgn-common-input-v2>
+                </div>
+            </div>
+            <div class="layer-property">
+                <div class="label">
+                    <hxgn-commonlocalization-translate-v1
+                        [token]="tokens.optionImageFormat"
+                        [skeletonWidth]="'60px'">
+                    </hxgn-commonlocalization-translate-v1>
+                </div>
+                <div class="layer-option-value">
+                    <hxgn-common-dropdown-v2 #wmtsFormats (selectionChange)="setFormat($event)"
+                        [value]="selectedFormat"
+                        placeholder="{{ transStrings[tokens.optionImageFormatPlaceholder]}}">
+                        <hxgn-common-dropdown-item-v2 *ngFor="let format of imageFormats; let i = index;"
+                            [value]="format">
+                            {{format}}
+                        </hxgn-common-dropdown-item-v2>
+                    </hxgn-common-dropdown-v2>
+                </div>
+                <span class="error-msg" *ngIf="imageFormatErrorToken">
+                    <hxgn-commonlocalization-translate-v1 
+                        [token]="imageFormatErrorToken"
+                        [skeletonWidth]="'60px'">
+                    </hxgn-commonlocalization-translate-v1>
+                </span>
+            </div>
+            <div class="layer-property">
+                <div class="label">
+                    <hxgn-commonlocalization-translate-v1
+                        [token]="tokens.wmtsTileMatrixSetLabel"
+                        [skeletonWidth]="'60px'">
+                    </hxgn-commonlocalization-translate-v1>
+                </div>
+                <hxgn-common-dropdown-v2 
+                    placeholder="{{transStrings[tokens.wmtsTileMatrixSetPlaceholder]}}"
+                    [value]="selectedTileMatrixSet"
+                    (selectionChange)="setTileMatrixSet($event)">
+                    <hxgn-common-dropdown-trigger-v2>
+                        <span title="{{selectedTileMatrixSet?.title}}">
+                            {{selectedTileMatrixSet?.title}}
+                        </span>
+                    </hxgn-common-dropdown-trigger-v2>
+                    <hxgn-common-dropdown-item-v2 *ngFor="let tileMatrixSet of tileMatrixSets"
+                        [value]="tileMatrixSet">
+                        <span title="{{tileMatrixSet?.tooltip}}">
+                            {{tileMatrixSet?.title}}
+                        </span>
+                    </hxgn-common-dropdown-item-v2>
+                    <span class="error-msg" *ngIf="tileMatrixSetErrorToken">
+                        <hxgn-commonlocalization-translate-v1 
+                            [token]="tileMatrixSetErrorToken"
+                            [skeletonWidth]="'60px'">
+                        </hxgn-commonlocalization-translate-v1>
+                    </span>
+                </hxgn-common-dropdown-v2>
+            </div>
+            <div class="layer-property">
+                <hxgn-commonmap-admin-auto-refresh
+                    [autoRefresh]="autoRefresh"
+                    [autoRefreshInterval]="autoRefreshInterval"
+                    (autoRefreshChanged)="setAutoRefresh($event)"
+                    (autoRefreshIntervalChanged)="setAutoRefresh($event)">
+                </hxgn-commonmap-admin-auto-refresh>
+            </div>
+        </div>
+    </div>
+</div>
+   

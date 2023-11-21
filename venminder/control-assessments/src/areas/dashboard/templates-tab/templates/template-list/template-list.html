@@ -1,0 +1,32 @@
+﻿<template>
+  <require
+    from="shared-from-dcdev/shared/components/loader/loader.component"
+  ></require>
+  <require from="./template-list.scss"></require>
+
+  <div class="template-list">
+    <div if.bind="!templateListLoaded">
+      <loader></loader>
+    </div>
+
+    <div if.bind="templateListLoaded" class="template-layout">
+      <!-- Header -->
+      <div class="header">
+        <vm-button primary click.call="navigateToCreateTemplate()">
+          <i class="fa fa-plus"></i>
+          <span>Create a new assessment template</span>
+        </vm-button>
+      </div>
+
+      <!-- Template List -->
+      <div class="list">
+        <vm-grid-v2
+          config.bind="gridConfig"
+          grid-data.bind="gridData"
+          max-height="1000px"
+        >
+        </vm-grid-v2>
+      </div>
+    </div>
+  </div>
+</template>

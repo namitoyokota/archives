@@ -1,0 +1,26 @@
+:host {
+    display: grid;
+    grid-template-rows: min-content 1fr;
+    row-gap: 4px;
+}
+
+.address {
+    display: grid;
+    grid-template-columns: 22px 1fr;
+    column-gap: 7px;
+
+    img {
+        width: 100%;
+        height: auto;
+        align-self: center;
+    }
+
+    span {
+        font-size: 14px;
+    }
+}
+
+.title {
+    font-size: 15px;
+    line-height: 18px;
+}

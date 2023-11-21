@@ -1,0 +1,83 @@
+:host {
+    display:flex;
+    width: 100%;
+    height: 100%;
+}
+
+hxgn-commontenant-wizard-step-layout-content {
+    display: grid;
+    grid-template-rows: min-content auto min-content;
+    row-gap: 10px;
+    height: 100%;
+    overflow: hidden;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+
+hxgn-commontenant-wizard-step-layout-description {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 0 15px 0 0;
+
+    hxgn-commontenant-info-popover {
+        position: absolute;
+        bottom: 0;
+        left: calc(50% - 11px);
+    }
+}
+
+.msg {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+
+.filter-level-pane {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-level {
+    display: flex;
+    margin-bottom: 15px;
+    font-weight: 500;
+    font-size: 14px;
+
+    .color-share-everything,
+    .color-basic,
+    .color-advanced {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        margin-right: 10px;
+        margin-top: 4px;
+    }
+
+
+    .color-share-everything {
+        background-color: #8CC63F;
+    }
+
+    .color-basic {
+        background-color: #EAD630;
+    }
+
+    .color-advanced {
+        background-color: #C1272D;
+    }
+
+    .important {
+        font-weight: 700;
+    }
+}
+
+.info-graphic {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('assets/commontenant-core/sharing-presets-graphic.svg');
+}
+

@@ -1,0 +1,73 @@
+<hxgn-commontenant-wizard-step-layout [stepTitle]="tTokens.applyPresets" [actionPaneRef]="actionPaneRef"
+    [descriptionHeaderPaneRef]="descriptionHeaderPaneRef">
+
+    <hxgn-commontenant-wizard-step-layout-content>
+        <ng-container *ngIf="filterByGroups">
+            <div class="option">
+                <div class="option-pane">
+                    <mat-checkbox [checked]="applyToGroups" (change)="toggleApplyToGroups($event.checked)">
+                        <hxgn-commonlocalization-translate-v1 [token]='tokens.applyPresetsToGroups'>
+                        </hxgn-commonlocalization-translate-v1>
+                    </mat-checkbox>
+                    <span class="description">
+                        <hxgn-commonlocalization-translate-v1
+                            [token]='applyToNewlySelected ? tokens.applyPResetsToNewGroupsDescription : tokens.applyPresetsToGroupsDescription'>
+                        </hxgn-commonlocalization-translate-v1>
+                    </span>
+                </div>
+
+                <span class="note">
+                    <hxgn-commonlocalization-translate-v1
+                        [token]='applyToNewlySelected ? tokens.applyPresetsToNewGroupsNote  : tokens.applyPresetsToGroupsNote'>
+                    </hxgn-commonlocalization-translate-v1>
+                </span>
+            </div>
+
+            <div class="option">
+                <div class="option-pane">
+                    <mat-checkbox [checked]="applyToOther" (change)="toggleApplyToOtherGroup($event.checked)">
+                        <hxgn-commonlocalization-translate-v1 [token]='tokens.applyPresetsToOther'>
+                        </hxgn-commonlocalization-translate-v1>
+                    </mat-checkbox>
+                    <span class="description">
+                        <hxgn-commonlocalization-translate-v1 [token]='tokens.applyPresetsToOtherDescription'>
+                        </hxgn-commonlocalization-translate-v1>
+                    </span>
+                </div>
+
+                <span class="note">
+                    <hxgn-commonlocalization-translate-v1 [token]='tokens.applyPresetsToOtherNote'>
+                    </hxgn-commonlocalization-translate-v1>
+                </span>
+            </div>
+        </ng-container>
+
+        <div *ngIf="!filterByGroups" class="option">
+            <div class="option-pane">
+                <mat-checkbox [checked]="applyToOther" (change)="toggleApplyToOtherGroup($event.checked)">
+                    <hxgn-commonlocalization-translate-v1 [token]='tokens.applyPresetsToAllUsers'>
+                    </hxgn-commonlocalization-translate-v1>
+                </mat-checkbox>
+                <span class="description">
+                    <hxgn-commonlocalization-translate-v1 [token]='tokens.applyPresetsToAllUsersDescription'>
+                    </hxgn-commonlocalization-translate-v1>
+                </span>
+            </div>
+
+            <span class="note">
+                <hxgn-commonlocalization-translate-v1 [token]='tokens.applyPresetsToAllUsersNote'>
+                </hxgn-commonlocalization-translate-v1>
+            </span>
+        </div>
+    </hxgn-commontenant-wizard-step-layout-content>
+
+    <hxgn-commontenant-wizard-step-layout-description>
+        <hxgn-commontenant-step-description [stepTitle]="tTokens.chooseToApplyPresets"
+            [description]="tTokens.chooseToApplyPresetsDescription"
+            imageUrl="assets/commontenant-core/receive-data.svg">
+        </hxgn-commontenant-step-description>
+
+        <hxgn-commontenant-info-popover [msg]="tTokens.infoButtonMessage">
+        </hxgn-commontenant-info-popover>
+    </hxgn-commontenant-wizard-step-layout-description>
+</hxgn-commontenant-wizard-step-layout>

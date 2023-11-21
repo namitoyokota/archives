@@ -1,0 +1,224 @@
+<nb-layout>
+    <nb-layout-header fixed>
+        <div class="header">
+            <!-- Back Icon -->
+            <div class="icon-pane" (click)="goToPreviousPage()">
+                <nb-icon class="icon" icon="arrow-back-outline"></nb-icon>
+            </div>
+
+            <!-- Header Text -->
+            <span class="header--title">Target Press Production Form</span>
+
+            <!-- Id -->
+            <span class="header--text">{{ batch.id }}</span>
+        </div>
+    </nb-layout-header>
+
+    <nb-layout-column class="content">
+        <nb-card>
+            <nb-card-body class="row-1">
+                <!-- Date -->
+                <div class="field">
+                    <label>Date</label>
+                    <input disabled nbInput fullWidth placeholder="Date" [nbDatepicker]="datePicker" [(ngModel)]="batch.createddate" />
+                    <nb-datepicker #datePicker></nb-datepicker>
+                </div>
+
+                <!-- Run By -->
+                <div class="field">
+                    <label>Run By</label>
+                    <input nbInput fullWidth placeholder="Date" [nbDatepicker]="runByPicker" [(ngModel)]="batch.runbydate" />
+                    <nb-datepicker #runByPicker></nb-datepicker>
+                </div>
+
+                <!-- Ship Date -->
+                <div class="field">
+                    <label>Ship Date</label>
+                    <input nbInput fullWidth placeholder="Date" [nbDatepicker]="shipDatePicker" [(ngModel)]="batch.shipdate" />
+                    <nb-datepicker #shipDatePicker></nb-datepicker>
+                </div>
+
+                <!-- Urgency -->
+                <div class="field">
+                    <label>Urgency</label>
+                    <nb-select placeholder="Urgency" [(selected)]="batch.urgency" (selectedChange)="batch.urgency = $event">
+                        <nb-option value="Low">Low</nb-option>
+                        <nb-option value="Medium">Medium</nb-option>
+                        <nb-option value="High">High</nb-option>
+                    </nb-select>
+                </div>
+
+                <!-- Type -->
+                <div class="field">
+                    <label>Type</label>
+                    <nb-select placeholder="Type" [(selected)]="batch.type" (selectedChange)="batch.type = $event">
+                        <nb-option *ngFor="let type of Types" [value]="type">{{ type }}</nb-option>
+                    </nb-select>
+                </div>
+            </nb-card-body>
+        </nb-card>
+
+        <nb-card>
+            <nb-card-body class="row-2">
+                <!-- Item -->
+                <div class="field">
+                    <label>Item ID</label>
+                    <input nbInput fullWidth placeholder="00000" [(ngModel)]="batch.itemid" (ngModelChange)="loadItem($event)" />
+                </div>
+
+                <!-- Description -->
+                <div class="field">
+                    <label>Description</label>
+                    <input nbInput fullWidth placeholder="Description" [(ngModel)]="batch.description" />
+                </div>
+
+                <!-- Quantity Requested -->
+                <div class="field">
+                    <label>Quantity Requested</label>
+                    <input nbInput fullWidth type="number" placeholder="Quantity" [(ngModel)]="batch.quantityrequested" />
+                </div>
+
+                <!-- Quantity Printed -->
+                <div class="field">
+                    <label>Quantity Printed</label>
+                    <input nbInput fullWidth type="number" placeholder="Quantity" [(ngModel)]="batch.quantityprinted" />
+                </div>
+            </nb-card-body>
+        </nb-card>
+
+        <nb-card>
+            <nb-card-body class="row-3">
+                <!-- Parent Sheet -->
+                <div class="field">
+                    <label>Parent Sheet</label>
+                    <nb-radio-group name="paper-sheet" [(ngModel)]="batch.parentsheet">
+                        <nb-radio *ngFor="let option of ParentSheets" [value]="option">
+                            {{ option }}
+                        </nb-radio>
+                    </nb-radio-group>
+                    <input nbInput fieldSize="small" placeholder="Other" [(ngModel)]="batch.parentsheet" />
+                </div>
+
+                <div class="row-3--column-2">
+                    <!-- Finished Sheet Size -->
+                    <div class="field">
+                        <label>Finished Sheet Size</label>
+                        <nb-radio-group name="finished-paper-size" class="two-column-radio" [(ngModel)]="batch.finishedsheetsize">
+                            <nb-radio *ngFor="let option of FinishedSheetSizes" [value]="option">
+                                {{ option }}
+                            </nb-radio>
+                        </nb-radio-group>
+                        <input nbInput fieldSize="small" placeholder="Other" [(ngModel)]="batch.finishedsheetsize" />
+                    </div>
+
+                    <!-- Press Operator -->
+                    <div class="field">
+                        <label>Press Operator</label>
+                        <nb-select
+                            placeholder="Operator"
+                            [(selected)]="batch.pressoperator"
+                            (selectedChange)="batch.pressoperator = $event"
+                        >
+                            <nb-option *ngFor="let operator of operatorList" [value]="operator.name">{{ operator.name }}</nb-option>
+                        </nb-select>
+                    </div>
+                </div>
+
+                <div class="row-3--column-3">
+                    <!-- Paper Packaging -->
+                    <div class="field">
+                        <nb-radio-group name="paper-packaging" class="horizontal-radio" [(ngModel)]="batch.paperpackaging">
+                            <nb-radio *ngFor="let option of PaperPackagings" [value]="option">
+                                {{ option }}
+                            </nb-radio>
+                        </nb-radio-group>
+                        <input nbInput fieldSize="small" placeholder="Other" [(ngModel)]="batch.paperpackaging" />
+                    </div>
+
+                    <!-- Numbers Per Sheet -->
+                    <div class="field">
+                        <label>Number Per Sheet</label>
+                        <nb-radio-group name="number-per-sheet" class="horizontal-radio" [(ngModel)]="batch.numberpersheet">
+                            <nb-radio *ngFor="let option of NumberPerSheets" [value]="option">
+                                {{ option }}
+                            </nb-radio>
+                        </nb-radio-group>
+                        <input nbInput fieldSize="small" placeholder="Other" [(ngModel)]="batch.numberpersheet" />
+                    </div>
+
+                    <!-- Paper Weight -->
+                    <div class="field">
+                        <label>Paper Weight</label>
+                        <nb-radio-group name="paper-weight" class="horizontal-radio" [(ngModel)]="batch.paperweight">
+                            <nb-radio *ngFor="let option of PaperWeights" [value]="option">
+                                {{ option }}
+                            </nb-radio>
+                        </nb-radio-group>
+                        <input nbInput fieldSize="small" placeholder="Other" [(ngModel)]="batch.paperweight" />
+                    </div>
+                </div>
+            </nb-card-body>
+        </nb-card>
+
+        <nb-card>
+            <nb-card-body class="row-4">
+                <!-- Used Inks -->
+                <div class="ink-list">
+                    <!-- Header -->
+                    <div class="ink-item">
+                        <label>Ink Color</label>
+                        <label>Qty Used (lbs)</label>
+                    </div>
+
+                    <!-- Color 1 -->
+                    <div class="ink-item">
+                        <nb-select fullWidth placeholder="C" [(selected)]="batch.ink1name" (selectedChange)="batch.ink1name = $event">
+                            <nb-option *ngFor="let ink of inkList" [value]="ink.name">{{ ink.name }}</nb-option>
+                        </nb-select>
+                        <input nbInput fullWidth type="number" placeholder="0" [(ngModel)]="batch.ink1quantity" />
+                    </div>
+
+                    <!-- Color 2 -->
+                    <div class="ink-item">
+                        <nb-select fullWidth placeholder="M" [(selected)]="batch.ink2name" (selectedChange)="batch.ink2name = $event">
+                            <nb-option *ngFor="let ink of inkList" [value]="ink.name">{{ ink.name }}</nb-option>
+                        </nb-select>
+                        <input nbInput fullWidth type="number" placeholder="0" [(ngModel)]="batch.ink2quantity" />
+                    </div>
+
+                    <!-- Color 3 -->
+                    <div class="ink-item">
+                        <nb-select fullWidth placeholder="Y" [(selected)]="batch.ink3name" (selectedChange)="batch.ink3name = $event">
+                            <nb-option *ngFor="let ink of inkList" [value]="ink.name">{{ ink.name }}</nb-option>
+                        </nb-select>
+                        <input nbInput fullWidth type="number" placeholder="0" [(ngModel)]="batch.ink3quantity" />
+                    </div>
+
+                    <!-- Color 4 -->
+                    <div class="ink-item">
+                        <nb-select fullWidth placeholder="K" [(selected)]="batch.ink4name" (selectedChange)="batch.ink4name = $event">
+                            <nb-option *ngFor="let ink of inkList" [value]="ink.name">{{ ink.name }}</nb-option>
+                        </nb-select>
+                        <input nbInput fullWidth type="number" placeholder="0" [(ngModel)]="batch.ink4quantity" />
+                    </div>
+                </div>
+
+                <!-- Additional Comments -->
+                <div class="field">
+                    <label>Additional Comments</label>
+                    <textarea class="full-height" nbInput fullWidth placeholder="Comments" [(ngModel)]="batch.comments"></textarea>
+                </div>
+            </nb-card-body>
+        </nb-card>
+
+        <div class="action-pane">
+            <button nbButton status="danger" (click)="delete()">Delete</button>
+
+            <div class="complete-pane">
+                <button *ngIf="!addMode && !batch.iscompleted" nbButton status="success" (click)="complete()">Complete</button>
+                <button *ngIf="addMode" nbButton status="primary" (click)="create()">Create</button>
+                <button *ngIf="!addMode" nbButton status="primary" (click)="update()">Update</button>
+            </div>
+        </div>
+    </nb-layout-column>
+</nb-layout>

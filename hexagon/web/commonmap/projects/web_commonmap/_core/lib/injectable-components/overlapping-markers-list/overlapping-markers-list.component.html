@@ -1,0 +1,96 @@
+<div class="overlapping-markers">
+    <div class="base-marker">
+        <hxgn-commonmap-overlapping-marker 
+            [marker]="baseMarker"
+            [contextId]="contextId">
+        </hxgn-commonmap-overlapping-marker>
+    </div>
+    <div class="flip-button" 
+        [style.top.px]="flipBtnTop"
+        [style.left.px]="flipBtnLeft"
+        [class.left]="showLeft"
+        (click)="toggleSide($event)">
+    </div>
+    <div class="overlapping-markers-list"
+        [class.left]="showLeft"
+        [style.top.px]="markersListTopOffset">
+        <div class="markers-list-container" [class.left]="showLeft"> 
+            <div class="connect-line-main" *ngIf="!showLeft"
+                [style.height.px]="baseConnectLineDivHeight"
+                [style.width.px]="baseConnectLineDivWidth">
+            </div>
+            <div class="markers-list-pane"
+                [style.width.px]="markersListPaneWidth"
+                [class.left]="showLeft">
+                <div class="markers-list"
+                    [class.left]="showLeft"
+                    [style.height.px] = "markersListHeight">
+                    <div class="markers-list-item" *ngFor="let marker of curPageMarkers; let idx=index;"
+                        [class.left]="showLeft"
+                        [style.height.px]="markerListItemHeight">
+                        <div class="connect-line-top"
+                            [style.height.px]="topConnectLineHeight"
+                            [style.width.px]="listItemConnectLineWidth" 
+                            [ngClass]="[idx === 0  ? 'first' : '']"
+                            [class.left]="showLeft">
+                        </div>
+                        <div class="marker-main"
+                            [class.left]="showLeft"
+                            [style.margin-left.px]="showLeft ? 0 : listItemMargin"
+                            [style.margin-right.px]="showLeft ? listItemMargin : 0"
+                            [style.height.px]="markerListItemHeight"
+                            [style.width.px]="markerListItemWidth">
+                            <div class="marker-container">
+                                <hxgn-commonmap-overlapping-marker 
+                                    [marker]="marker"
+                                    [contextId]="contextId"
+                                    (markerClicked)="markerClicked($event, marker)">
+                                </hxgn-commonmap-overlapping-marker>
+                            </div>
+                        </div>
+                        <div class="connect-line-bottom" 
+                            [ngClass]="getLastLineClass(idx)"
+                            [style.height.px]="getLastLineHeight(idx)"
+                            [style.width.px]="listItemConnectLineWidth"
+                            [class.left]="showLeft">
+                        </div>
+                    </div>
+                    <div class="connect-line-filler"
+                        [class.show]="showConnectLineFiller"
+                        [style.height.px]="connectLineFillerHeight"
+                        [class.left]="showLeft">
+                    </div>
+                </div>
+                <div class="marker-list-footer-pane" *ngIf="markersMaxPage > 1">
+                    <div class="page-button" (click)="stopPropagation($event)">
+                        <div class="page-up" 
+                            [class.disabled]="markersCurrentPage === 1"
+                            (click)="scrollUp()">
+                        </div>
+                        <div class="page-button-text" *ngIf="markersPerPage > 1">
+                                <span>
+                                    {{markersStartItem}}
+                                      -  
+                                    {{markersEndItem}}
+                                </span>
+                            </div>
+                            <div class="page-button-text" *ngIf="markersPerPage === 1">
+                                <span>
+                                    {{markersCurrentPage}}
+                                </span>
+                            </div>
+                        <div class="page-down" 
+                            [class.disabled]="markersCurrentPage === markersMaxPage"
+                            (click)="scrollDown()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="connect-line-main" *ngIf="showLeft"
+                [style.height.px]="baseConnectLineDivHeight"
+                [style.width.px]="baseConnectLineDivWidth">
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,58 @@
+<h1>Money Habits - track your money spending habits</h1>
+
+<div>
+    <button type="button" mat-raised-button color="accent" (click)="fileInput.click()">Choose File</button>
+    <input hidden (change)="onFileInput(fileInput.files)" #fileInput type="file" id="file" />
+    <!-- <input #fileInput matInput type="file" accept=".csv" maxSize="1024" capturePaste="1" (change)="onFileInput(fileInput.files)" /> -->
+</div>
+
+<div class="groups">
+    <div class="group" *ngFor="let group of transactionGroups">
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{ group.transactions.length }} transaction<span *ngIf="group.transactions.length > 1">s</span>
+                </mat-panel-title>
+                <mat-panel-description> {{ group.name }} </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <table mat-table [dataSource]="group.transactions" class="mat-elevation-z8">
+                <!-- Date Column -->
+                <ng-container matColumnDef="Date">
+                    <th mat-header-cell *matHeaderCellDef>Date</th>
+                    <td mat-cell *matCellDef="let element">{{ element.Date }}</td>
+                    <td mat-footer-cell *matFooterCellDef><b>Average</b></td>
+                </ng-container>
+
+                <!-- Amount Column -->
+                <ng-container matColumnDef="Amount">
+                    <th mat-header-cell *matHeaderCellDef>Amount</th>
+                    <td mat-cell *matCellDef="let element">{{ element.Amount | currency }}</td>
+                    <td mat-footer-cell *matFooterCellDef>
+                        <b>{{ calculateAverage(group.transactions) | currency }}</b>
+                    </td>
+                </ng-container>
+
+                <!-- Type Column -->
+                <ng-container matColumnDef="Type">
+                    <th mat-header-cell *matHeaderCellDef>Type</th>
+                    <td mat-cell *matCellDef="let element">{{ element.Type }}</td>
+                    <td mat-footer-cell *matFooterCellDef><b>Total</b></td>
+                </ng-container>
+
+                <!-- Description Column -->
+                <ng-container matColumnDef="Description">
+                    <th mat-header-cell *matHeaderCellDef>Description</th>
+                    <td mat-cell *matCellDef="let element">{{ element.Description }}</td>
+                    <td mat-footer-cell *matFooterCellDef>
+                        <b>{{ calculateTotal(group.transactions) | currency }}</b>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+            </table>
+        </mat-expansion-panel>
+    </div>
+</div>

@@ -1,0 +1,6 @@
+<#@ include file="..\..\..\..\..\CreateTypeScript.ttinclude" #>
+<#@ template debug="true" hostSpecific="true" language="C#" #>
+<#@ output extension="ts" #>
+
+
+<#= GetClass<ControlAssessments.Business.Models.DTO.Assessment.Responses.DoesAssessmentExistResponse>(generateCreateFunction:true) #>

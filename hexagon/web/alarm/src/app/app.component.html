@@ -1,0 +1,57 @@
+<div class="header">
+    <span style="font-weight: bold;">Capability Name: </span> alarms
+    <span style="font-weight: bold;">Capability Id: </span> @hxgn/alarms
+
+    <div class="width: 50px; height: 50px; display:flex;">
+        <!-- <hxgn-commonnotifications-btn-v1></hxgn-commonnotifications-btn-v1> -->
+    </div>
+</div>
+
+<div class="content">
+    <hxgn-alarms-panel-v1 style="width: 350px; height: 300px;overflow-y: auto;display: inline-grid;" [alarmIds]="alarmIds$ | async">
+    </hxgn-alarms-panel-v1>
+
+    <!-- <hxgn-alarms-card-v1 style="width: 320px; height: 80px;" alarmId="6dabfcad-b8d1-4c89-a4e2-f08150bcbc49"></hxgn-alarms-card-v1> -->
+    
+    <div style="width: 400px;height: 100%;" id="list">Loading...</div>
+
+    <div style="width: 800px;height: 700px;background-color: #ccc;" id="map">Loading...</div>
+    <!-- <div style="width: 428px;height: 100%;" id="settings">Loading...</div> -->
+    
+    <!-- <hxgn-alarms-priority-v1 priority="0"></hxgn-alarms-priority-v1> -->
+
+    <!-- <hxgn-alarms-media-v1 [alarmIds]="alarmIds$ | async"></hxgn-alarms-media-v1> -->
+    <!-- <hxgn-alarms-title-v1 [alarmIds]="alarmIds$ | async"></hxgn-alarms-title-v1> -->
+
+    <!-- <hxgn-alarms-status-v1 style="width: 15px;height: 15px;border-radius: 50%; overflow:hidden;" [alarmIds]="['0fdd21f8-dcb5-4a72-bb51-b1672342a3e5']"></hxgn-alarms-status-v1> -->
+
+    <!-- <hxgn-alarms-clear-icon-v1 [alarmIds]="['ed7e572c-f790-4508-87eb-82c1abe85791', '2c5edbfa-2e35-4639-8a6f-52c5ec635134', '298c0e3d-8de0-4c83-9019-aecdf1d37ac7']"></hxgn-alarms-clear-icon-v1> -->
+    <!-- <hxgn-alarms-clear-icon-v1 [alarmIds]="alarmIds$ | async">
+    </hxgn-alarms-clear-icon-v1> -->
+
+    <!-- <hxgn-alarms-filter-v1 [alarmIds]="alarmIds$ | async" (filteredAlarmsIds)="logAlarmIds($event)"
+        (filteredStatus)="logStatus($event)" style="width: 300px;"></hxgn-alarms-filter-v1> -->
+
+    <!-- <div style="width: 300px; height: 75px; border: 1px solid #ccc;">
+        <hxgn-alarms-status-v1 style="width: 6px;height: 100%;" [alarmIds]="alarmIds$ | async"></hxgn-alarms-status-v1>
+    </div> -->
+
+    <!-- <div>
+        <button class="hxgn-btn-secondary" (click)="setFilterLevel(RestrictionLevels.low)">Low</button>
+        <button class="hxgn-btn-secondary" (click)="setFilterLevel(RestrictionLevels.medium)">Med</button>
+        <button class="hxgn-btn-secondary" (click)="setFilterLevel(RestrictionLevels.high)">High</button>
+        <div id="data-sharing">Loading...</div>
+    </div> -->
+
+    <!-- <div id="history-item"></div> -->
+
+    <!-- <div id="alarm-card-list" style="width: 428px;"></div> -->
+    <!-- <div *ngIf="(customOverlays$ | async) as customOverlays" class="overlay-pane">
+        <div *ngFor="let overlayId of customOverlays" class="overlay" [attr.id]="overlayId"></div>
+    </div> -->
+
+    <div>
+        <div id="mini-card"></div>
+        <div id="empty-mini-card"></div>
+    </div>
+</div>

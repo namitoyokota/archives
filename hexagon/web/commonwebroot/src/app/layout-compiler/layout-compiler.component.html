@@ -1,0 +1,61 @@
+﻿<hxgn-main-menu [user]="user" (logOut)="logOut()">
+
+    <!-- User profile button -->
+    <hxgn-common-open-user-profile (click)="navToUserProfile()">
+    </hxgn-common-open-user-profile>
+
+    <!-- Administrator button -->
+    <hxgn-main-menu-section [hideSectionHeader]="true">
+        <hxgn-main-menu-item *ngIf="user | claimGuard$v1: layoutManagerCapabilityId:layoutManagerClaims.adminAccess"
+            imageSrc="assets/icons/administrator-icon.svg" (click)="navToAdminView()">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.administrator" [ignoreSkeleton]="true">
+            </hxgn-commonlocalization-translate-v1>
+        </hxgn-main-menu-item>
+    </hxgn-main-menu-section>
+
+    <!-- Workspace settings -->
+    <hxgn-main-menu-section>
+        <span>
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.workspaceSettings" [ignoreSkeleton]="true">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+
+        <hxgn-main-menu-section-content>
+            <hxgn-commonwebroot-workspace-settings [defaultPhysicalWorkspace]="defaultPhysicalWorkspace">
+            </hxgn-commonwebroot-workspace-settings>
+        </hxgn-main-menu-section-content>
+    </hxgn-main-menu-section>
+
+    <!-- Resources section -->
+    <hxgn-main-menu-section>
+        <span>
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.resources" [ignoreSkeleton]="true">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+
+        <hxgn-main-menu-item imageSrc="assets/icons/about-icon.svg" (click)="openAboutDialog()">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.about" [ignoreSkeleton]="true">
+            </hxgn-commonlocalization-translate-v1>
+        </hxgn-main-menu-item>
+
+        <hxgn-main-menu-item imageSrc="assets/icons/help-icon.svg" (click)="openHelp()">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.help" [ignoreSkeleton]="true">
+            </hxgn-commonlocalization-translate-v1>
+        </hxgn-main-menu-item>
+    </hxgn-main-menu-section>
+</hxgn-main-menu>
+
+<hxgn-layout-compiler-screen *ngIf="getMasterScreen() && loaded" [screen]="getMasterScreen()" [user]="user"
+    [workspaceId]="selectedWorkspaceId" [customTabs]="customTabs$ | async" [customOverlays]="customOverlays$ | async">
+</hxgn-layout-compiler-screen>
+
+<!-- UI that is shown while layout manager is getting it -->
+<div class="loading-pane" *ngIf="!loaded">
+    <div class="header"></div>
+    <div class="loader">
+        <mat-spinner></mat-spinner>
+    </div>
+</div>
+
+<hxgn-commonwebroot-pop-up-blocker-notification [@fade] *ngIf="screensBlocked">
+</hxgn-commonwebroot-pop-up-blocker-notification>

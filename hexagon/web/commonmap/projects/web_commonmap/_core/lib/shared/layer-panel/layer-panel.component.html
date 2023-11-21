@@ -1,0 +1,18 @@
+﻿<div class="layer-panel-container">
+    <div class="layer-panel-icon" *ngIf="showIcon"
+        [class.top-right]="position === LayerPanelControlPositions.TopRight"
+        [class.top-left]="position === LayerPanelControlPositions.TopLeft"
+        title="{{ transStrings[tokens.layerPanelOpenTooltip] }}"
+        (click)="toggleShowLayerPanel()">
+    </div>
+    <div class="layer-panel" *ngIf="expandLayerPanel">
+        <hxgn-commonmap-layer-panel-layers
+            [mapPreset]="mapPreset"
+            [layerCollections]="layerCollections"
+            [position]="position"
+            [notification]="notification"
+            [allowLayerReorder]="allowLayerReorder"
+            [isPresetOverridden]="isPresetOverridden">
+        </hxgn-commonmap-layer-panel-layers>
+    </div>
+</div>

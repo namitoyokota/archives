@@ -1,0 +1,165 @@
+<div class="title">
+    <span class="title" *ngIf="isNew">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.defineMapPresetHeader">
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+    <span class="title" *ngIf="!isNew">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.editMapPresetHeader">
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+    <div (click)="close()" class="close-btn"></div>
+</div>
+<div class="content">
+    <div class="left-side">
+        <div class="step">
+            <div class="step-count">
+                <div>1</div>
+            </div>
+            <span class="step-title">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.addingPresetNameStep">
+                </hxgn-commonlocalization-translate-v1>
+            </span>
+            <div class="step-content name">
+                <div class="label">
+                    <span>
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.addingPresetNameLabel">
+                        </hxgn-commonlocalization-translate-v1>
+                    </span>
+                </div>
+                <hxgn-common-input-v2 [isValid]="!nameErrorMsg ? null : false" style="width:100%">
+                    <input class="input-name" (input)="nameChanged()" [(ngModel)]="mapPreset.name"
+                        placeholder="{{ transStrings[tokens.presetNamePlaceholder] }}"
+                        type="text" />
+                </hxgn-common-input-v2>
+                <span class="error-msg" *ngIf="nameErrorMsg">
+                    <hxgn-commonlocalization-translate-v1 
+                        [token]="nameErrorMsg">
+                    </hxgn-commonlocalization-translate-v1>
+            </span>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-count">
+                <div>2</div>
+            </div>
+            <span class="step-title">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.chooseMapLayersStep">
+                </hxgn-commonlocalization-translate-v1>
+            </span>
+            <div class="step-content">
+                <div class="label">
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.chooseMapLayersExplanation">
+                    </hxgn-commonlocalization-translate-v1>
+                </div>
+                <div class="layer-explanation">
+                    <div class="layer-type">
+                        <span class="layer-type-text">
+                            <span class="layer-type-bullet"></span>
+                            <span>
+                                <hxgn-commonlocalization-translate-v1 [token]="tokens.addingLayerTypeDataLabel">
+                                </hxgn-commonlocalization-translate-v1>
+                            </span>
+                        </span>
+                        <span class="layer-type-text">
+                            <span class="layer-type-bullet"></span>
+                            <span>
+                                <hxgn-commonlocalization-translate-v1 [token]="tokens.addingLayerTypeOverlayLabel">
+                                </hxgn-commonlocalization-translate-v1>
+                            </span>
+                        </span>
+                        <span class="layer-type-text">
+                            <span class="layer-type-bullet"></span>
+                            <span>
+                                <hxgn-commonlocalization-translate-v1 [token]="tokens.addingLayerTypeBaseMapLabel">
+                                </hxgn-commonlocalization-translate-v1>
+                            </span>
+                        </span>
+                    </div>
+                    <div class="layer-explanation-icon">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="right-side">
+        <div class="layers">
+            <div class="search-box">
+                <hxgn-common-input-v2 [isSearchBox]="true" [showClearBtn]="searchString" (clearText)="clearText()"
+                    style="width:100%">
+                    <input class="search-input" (input)="searchList()" [(ngModel)]="searchString"
+                        placeholder="{{ transStrings[tokens.searchPlaceholder] }}"
+                        type="text" />
+                </hxgn-common-input-v2>
+            </div>
+            <div class="layers-list">
+                <hxgn-common-expansion-panel panelState="expanded">
+                    <hxgn-common-expansion-panel-title>
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.dataLayersHeader">
+                            ({{dataLayers.length}})
+                        </hxgn-commonlocalization-translate-v1>
+                    </hxgn-common-expansion-panel-title>
+                    <hxgn-common-expansion-panel-content *ngFor="let mapLayer of dataLayers">
+                        <div class="list-item">
+                            <mat-checkbox [checked]="isLayerSelected(mapLayer)" disableRipple="true"
+                                (change)="toggleLayerSelected(mapLayer)">
+                                <span class="ellipsis">{{mapLayer.name}}</span>
+                            </mat-checkbox>
+                        </div>
+                    </hxgn-common-expansion-panel-content>
+                </hxgn-common-expansion-panel>
+                <hxgn-common-expansion-panel panelState="expanded">
+                    <hxgn-common-expansion-panel-title>
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.overlaysHeader">
+                            ({{overlays.length}})
+                        </hxgn-commonlocalization-translate-v1>
+                    </hxgn-common-expansion-panel-title>
+                    <hxgn-common-expansion-panel-content *ngFor="let mapLayer of overlays">
+                        <div class="list-item">
+                            <mat-checkbox [checked]="isLayerSelected(mapLayer)" disableRipple="true"
+                                (change)="toggleLayerSelected(mapLayer)">
+                                <span class="ellipsis">{{mapLayer.name}}</span>
+                            </mat-checkbox>
+                        </div>
+                    </hxgn-common-expansion-panel-content>
+                </hxgn-common-expansion-panel>
+                <hxgn-common-expansion-panel panelState="expanded">
+                    <hxgn-common-expansion-panel-title>
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.baseMapsHeader">
+                            ({{baseMaps.length}})
+                        </hxgn-commonlocalization-translate-v1>
+                    </hxgn-common-expansion-panel-title>
+                    <hxgn-common-expansion-panel-content *ngFor="let mapLayer of baseMaps">
+                        <div class="list-item">
+                            <mat-checkbox [checked]="isLayerSelected(mapLayer)" disableRipple="true"
+                                (change)="toggleLayerSelected(mapLayer)">
+                                <span class="ellipsis">{{mapLayer.name}}</span>
+                            </mat-checkbox>
+                        </div>
+                    </hxgn-common-expansion-panel-content>
+                </hxgn-common-expansion-panel>
+            </div>
+        </div>
+        <span class="error-msg" *ngIf="baseMapErrorMsg">
+            <hxgn-commonlocalization-translate-v1 
+                [token]="baseMapErrorMsg">
+            </hxgn-commonlocalization-translate-v1>
+</span>
+    </div>
+</div>
+<div class="actions">
+    <button [disabled]="isDiscardDisabled()" (click)="close()" class="hxgn-btn-secondary" style="margin-right: 10px;">
+        <hxgn-commonlocalization-translate-v1 *ngIf="isNew" [token]="tokens.cancelBtnLabel">
+        </hxgn-commonlocalization-translate-v1>
+        <hxgn-commonlocalization-translate-v1 *ngIf="!isNew" [token]="tokens.discardButtonLabel">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+    <button [disabled]="isSaveDisabled()" (click)="save()" class="hxgn-btn-primary">
+        <hxgn-commonlocalization-translate-v1 *ngIf="isNew" [token]="tokens.createMapPresetBtnLabel">
+        </hxgn-commonlocalization-translate-v1>
+        <hxgn-commonlocalization-translate-v1 *ngIf="!isNew" [token]="tokens.saveButtonLabel">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+</div>
+<hxgn-commonmap-admin-processing-pane *ngIf="isProcessing" 
+    [token]="processingToken">
+</hxgn-commonmap-admin-processing-pane>

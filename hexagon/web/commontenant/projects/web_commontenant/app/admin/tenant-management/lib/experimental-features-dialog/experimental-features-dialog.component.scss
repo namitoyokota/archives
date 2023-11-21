@@ -1,0 +1,22 @@
+:host {
+    display: grid;
+    grid-template-rows: min-content auto;
+    overflow: hidden;
+    row-gap: 15px;
+    height: 100%;
+}
+
+.dialog-title {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500; 
+    font-size: 20px;
+
+    img {
+        cursor: pointer;
+    }
+}
+
+hxgn-commonfeatureflags-editor, hxgn-commonfeatureflags-tenant-editor {
+    overflow: hidden;
+}

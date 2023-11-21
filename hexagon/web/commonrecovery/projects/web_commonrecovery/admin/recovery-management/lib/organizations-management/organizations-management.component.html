@@ -1,0 +1,81 @@
+<div class="organizations-list-container">
+    <div class="title">
+        <span>
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.organizations" skeletonWidth="150px">
+                ({{organizations?.length}})
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+        <mat-slide-toggle [checked]="showDeleted" (change)="toggleDeleted()"></mat-slide-toggle>
+        <div class="show-text">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.showDeleted" skeletonWidth="50px">
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+    </div>
+    <div class="search-box">
+        <hxgn-common-input-v2 [isSearchBox]="true" [showClearBtn]="(searchString$ | async)" (clearText)="clearText()">
+            <input #search type="text" (input)="setSearchString($event)" [placeholder]="tTokens.search" />
+        </hxgn-common-input-v2>
+    </div>
+    <div class="organizations-list">
+        <hxgn-commontenant-organization-list-v1 [organizations]="organizations"
+            [selectedOrganization]="selectedTenant" [showSystem]="true"
+            [searchString]="searchString$ | async" [showDeleted]="showDeleted"
+            (selection)="changeSelect($event)" >
+        </hxgn-commontenant-organization-list-v1>
+    </div>
+</div>
+
+<div *ngIf="!isLoading" class="selected-organization-info-container">
+    <div class="header">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.backupFiles">
+        </hxgn-commonlocalization-translate-v1>
+    </div>
+
+    <div class="backups">
+        <hxgn-commonrecovery-pipeline-card-list [pipelines]="backups"
+            [tenantId]="selectedTenantId" [running]="!canRun" [isDeleted]="isDeleted" >
+        </hxgn-commonrecovery-pipeline-card-list>
+    </div>
+
+    <div class="header">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.recoveryJobs">
+        </hxgn-commonlocalization-translate-v1>
+    </div>
+
+    <div class="recoveries">
+        <div class="table-container">
+            <hxgn-commonrecovery-pipeline-table [hiddenColumns]="[pipelineColumn.organization]" [pipelines]="history">
+            </hxgn-commonrecovery-pipeline-table>
+        </div>
+    </div>
+
+    <div class="buttons-pane">
+        <button class="hxgn-btn-secondary" (click)="openSettings()">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.settings" ignoreSkeleton="true">
+            </hxgn-commonlocalization-translate-v1>
+        </button>
+
+        <div class="operations">
+            <button class="hxgn-btn-secondary" [disabled]="!canRun || !backups?.length || isDeleted" (click)="restoreLatest()">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.restoreLatest" ignoreSkeleton="true">
+                </hxgn-commonlocalization-translate-v1>
+            </button>
+            <ng-container *ngIf="selectedTenantId === scope.system; else organization">
+                <button class="hxgn-btn-primary" [disabled]="!canRun" (click)="backupTenant()">
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.backupSystem" ignoreSkeleton="true">
+                    </hxgn-commonlocalization-translate-v1>
+                </button>
+            </ng-container>
+            <ng-template #organization>
+                <button class="hxgn-btn-primary wide-btn" [disabled]="!canRun || isDeleted" (click)="backupTenant()">
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.backupOrganization" ignoreSkeleton="true">
+                    </hxgn-commonlocalization-translate-v1>
+                </button>
+            </ng-template>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="isLoading" class="loading-pane">
+    <mat-spinner></mat-spinner>
+</div>

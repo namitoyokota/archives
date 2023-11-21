@@ -1,0 +1,64 @@
+<template>
+    <require from="./vm-date-picker-view.component.css"></require>
+
+    <div class="date-picker-container actionable-item" click.delegate="deactivateMonthYearPopups()">
+        <div class.bind="getDateRangeOptionClasses" if.bind="showPredefined">
+            <div class="date-picker-container__rangetitle">${datePickerRangeTitle}</div>
+            <div repeat.for="option of rangeOptions">
+                <vm-button click.call="selectDateRangeOption(option)">
+                    <span innerhtml.bind="getRangeOptionLabel(option) | sanitizeHTML"></span>
+                </vm-button>
+            </div>
+        </div>
+        <div class.bind="getDayViewClasses" if.bind="showDateView">
+            <div class="date-picker-container__navigation">
+                <vm-button secondary click.call="previousMonth()">
+                    <span class="actionable-item">
+                        <i class="fas fa-chevron-left"></i>
+                    </span>
+                </vm-button>
+                <vm-button secondary click.call="toggleMonthPopup($event)">
+                    <span class="actionable-item"> ${month} </span>
+                    <div class="date-picker-container__year-month-items" if.bind="monthPopupActive">
+                        <div repeat.for="month of months">
+                            <vm-button click.call="selectMonth(month.index)">
+                                <span>${month.month}</span>
+                            </vm-button>
+                        </div>
+                    </div>
+                </vm-button>
+                <vm-button secondary click.call="nextMonth()">
+                    <span class="actionable-item">
+                        <i class="fas fa-chevron-right"></i>
+                    </span>
+                </vm-button>
+                <vm-button secondary click.call="toggleYearPopup($event)">
+                    <span class="actionable-item"> ${year} </span>
+                    <div class="date-picker-container__year-month-items" if.bind="yearPopupActive">
+                        <div repeat.for="year of years">
+                            <vm-button click.call="selectYear(year)">
+                                <span>${year}</span>
+                            </vm-button>
+                        </div>
+                    </div>
+                </vm-button>
+            </div>
+            <div class="date-picker-container__days-of-week">
+                <div repeat.for="day of daysOfWeek">${day}</div>
+            </div>
+            <div class="date-picker-container__week-of-weeks" repeat.for="week of weeks">
+                <button class="${dayColor(day)}" repeat.for="day of week" click.delegate="selectDateRangeOption(null, day)">
+                    ${formatDay(day)}
+                </button>
+            </div>
+            <div class="date-picker-container__footer" if.bind="showPredefined || allowDateRange">
+                <vm-button secondary click.call="resetDates()">
+                    <span>Reset</span>
+                </vm-button>
+                <vm-button primary click.call="apply()" is-disabled.bind="!toDate">
+                    <span>Apply</span>
+                </vm-button>
+            </div>
+        </div>
+    </div>
+</template>

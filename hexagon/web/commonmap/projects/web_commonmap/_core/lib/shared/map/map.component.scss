@@ -1,0 +1,157 @@
+:host {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.full-size {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.map-controls-container {
+    position: absolute;
+    top: 0px;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    .draw-container {
+
+
+        .draw-control {
+            display: grid;
+            grid-template-columns: 1fr min-content;
+            align-items: center;
+            visibility: visible;
+            pointer-events: none;
+    
+            .draw-btn {
+                height: 41px;
+                width: 41px;
+                align-self: flex-end;
+                cursor: pointer;
+                grid-column: 2;
+                margin: 10px 10px 0 10px;
+                pointer-events: auto;
+            }
+    
+            .filter-mask {
+                height: 38px;
+                width: 100%;
+                max-width: 640px;
+                display: grid;
+                grid-template-columns: 1fr repeat(3, min-content);
+                column-gap: 20px;
+                align-items: center;
+                align-self: flex-end;
+                justify-self: center;
+                background-color: rgba(51, 92, 165, 0.8);
+                box-sizing: border-box;
+                color: #ffffff;
+                padding: 0 15px;
+                pointer-events: auto;
+    
+                .filter-mask-action {
+                    font-size: 13px;
+                    white-space: nowrap;
+    
+                    &:hover {
+                        cursor: pointer;
+                        text-decoration: underline;
+                    }
+                }
+    
+                .filter-mask-divider {
+                    height: 100%;
+                    width: 1px;
+                    background-color: #e0e0e0;
+                }
+    
+                .filter-mask-intro {
+                    display: grid;
+                    grid-template-columns: min-content 1fr;
+                    column-gap: 10px;
+                    align-items: center;
+    
+                    .bold {
+                        font-weight: 700;
+                    }
+                }
+            }
+        }
+    }
+
+
+    .map-layer-panel {
+        height: 100%;
+        width: 100%;
+        position: relative;
+    }
+
+    .map-layer-panel.draw-control-shown {
+        height: calc(100% - 51px);
+    }
+}
+
+.map-controls-container.top-right {
+    right: 0px;
+}
+
+.map-controls-container.top-left {
+    left: 0px;
+}
+
+.btn-pane {
+    position:absolute;
+    display: grid;
+    grid-template-columns: 36px;
+    bottom:100px;
+    justify-items: center;
+    right: 9px;
+    width: 36px;
+    z-index: 1000;
+    .home-btn {
+        cursor: pointer;
+    
+        img {
+            display: flex;
+            width: 34px;
+            height: 34px;
+        }
+    }    
+}
+
+hxgn-commonmap-layer-props-cmd {
+    position: absolute;
+    top: 55px;
+    width: 400px;
+    height: 500px;
+    left: 20px;
+    z-index: 10001;
+}
+
+:host ::ng-deep .component-marker {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+:host ::ng-deep .geojson-marker {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+:host ::ng-deep .cluster-icon-default {
+    background-color: #2f7ff4;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 14px;
+}

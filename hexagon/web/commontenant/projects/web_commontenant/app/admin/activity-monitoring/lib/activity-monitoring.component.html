@@ -1,0 +1,142 @@
+<div class="organizations-list-container">
+    <div class="title">
+        <span>
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.organizations" skeletonWidth="135px">
+                ({{organizations.length}})
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+    </div>
+    <div class="search-box">
+        <hxgn-common-input-v2 [isSearchBox]="true" [showClearBtn]="(searchString$ | async)" (clearText)="clearText()">
+            <input #search type="text" (input)="setSearchString($event)" [placeholder]="tTokens.searchOrganizations" />
+        </hxgn-common-input-v2>
+    </div>
+    <div class="organizations-list">
+        <hxgn-commontenant-organization-list [organizations]="organizations"
+            [selectedOrganization]="selectedOrganization" [searchString$]="searchString$"
+            [showOverview]="true" (selection)="setSelectedOrganizationAsync($event)">
+        </hxgn-commontenant-organization-list>
+    </div>
+</div>
+<div class="selected-organization-info-container" [class.organization-selected]="selectedOrganization">
+    <div class="loading-container" *ngIf="organizationsLoading || organizationLoading; else loadingComplete">
+        <mat-spinner></mat-spinner>
+    </div>
+    <ng-template #loadingComplete>
+        <div class="overview-container" *ngIf="selectedOrganization.id === overviewTenantId; else selectedOrg">
+            <div class="table-container">
+                <table class="overview-table" mat-table [dataSource]="dataSource" matSort matSortActive="tenantName"
+                    matSortDirection="asc">
+                    <ng-container matColumnDef="tenantName">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            <hxgn-commonlocalization-translate-v1 [token]="tokens.organizationName"
+                                skeletonWidth="140px">
+                            </hxgn-commonlocalization-translate-v1>
+                        </th>
+                        <td mat-cell *matCellDef="let element">{{element.tenantName}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="activeUsers">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            <hxgn-commonlocalization-translate-v1 [token]="tokens.activeUsers" skeletonWidth="85px">
+                            </hxgn-commonlocalization-translate-v1>
+                        </th>
+                        <td mat-cell *matCellDef="let element">{{element.activeUsers}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="totalUsers">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            <hxgn-commonlocalization-translate-v1 [token]="tokens.totalUsers" skeletonWidth="75px">
+                            </hxgn-commonlocalization-translate-v1>
+                        </th>
+                        <td mat-cell *matCellDef="let element">{{element.totalUsers}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="lastAccessed">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            <hxgn-commonlocalization-translate-v1 [token]="tokens.lastAccessed" skeletonWidth="95px">
+                            </hxgn-commonlocalization-translate-v1>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <ng-container *ngIf="element.lastAccessed; else noDate">
+                                {{element.lastAccessed | date: 'short'}}
+                            </ng-container>
+                            <ng-template #noDate>
+                                <hxgn-commonlocalization-translate-v1 [token]="tokens.never" skeletonWidth="35px">
+                                </hxgn-commonlocalization-translate-v1>
+                            </ng-template>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </div>
+            <div class="buttons-row">
+                <button class="hxgn-btn-secondary" (click)="openSystemActivityNotificationsDialog()">
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.manageActivityEmails" [ignoreSkeleton]="true">
+                    </hxgn-commonlocalization-translate-v1>
+                </button>
+            </div>
+        </div>
+        <ng-template #selectedOrg>
+            <div class="selected-organization-info">
+                <div class="top-content">
+                    <div class="top-item">
+                        <div class="top-item-title">
+                            <span>{{selectedOrganization?.name}}</span>
+                            <hxgn-commonlocalization-translate-v1 [token]="tokens.overview" skeletonWidth="80px">
+                            </hxgn-commonlocalization-translate-v1>
+                        </div>
+                        <div class="top-item-content">
+                            <div class="number-display-container">
+                                <div class="number-title">
+                                    <hxgn-commonlocalization-translate-v1 [token]="tokens.activeUsers"
+                                        skeletonWidth="100px">
+                                    </hxgn-commonlocalization-translate-v1>
+                                </div>
+                                <div class="number">
+                                    {{getActiveUsers(selectedOrganization?.id)}}
+                                </div>
+                            </div>
+                            <div class="number-display-container">
+                                <div class="number-title">
+                                    <hxgn-commonlocalization-translate-v1 [token]="tokens.totalUsers"
+                                        skeletonWidth="90px">
+                                    </hxgn-commonlocalization-translate-v1>
+                                </div>
+                                <div class="number">
+                                    {{getTotalUsers(selectedOrganization?.id)}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="top-item">
+                        <div class="top-item-title">
+                            <hxgn-commonlocalization-translate-v1 [token]="tokens.apiDataTypes" skeletonWidth="120px">
+                            </hxgn-commonlocalization-translate-v1>
+                        </div>
+                        <div class="top-item-content">
+                            <div class="data-type-container" *ngFor="let def of definitions">
+                                <div class="data-type-title">
+                                    <hxgn-commonlocalization-translate-v1 [token]="def.nameToken" skeletonWidth="">
+                                    </hxgn-commonlocalization-translate-v1>
+                                </div>
+                                <div class="data-type">
+                                    <hxgn-commonidentity-pat-progress-bar-v1
+                                        [inUse]="selectedOrganizationLicensesInUse.get(def.licenseFeatureId)"
+                                        [total]="selectedOrganizationTotalLicenses.get(def.licenseFeatureId)">
+                                    </hxgn-commonidentity-pat-progress-bar-v1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="data-usage">
+                    <hxgn-commonlicensing-data-usage-v1 [monitoring]="selectedOrganizationMonitoring">
+                    </hxgn-commonlicensing-data-usage-v1>
+                </div>
+            </div>
+        </ng-template>
+    </ng-template>
+</div>

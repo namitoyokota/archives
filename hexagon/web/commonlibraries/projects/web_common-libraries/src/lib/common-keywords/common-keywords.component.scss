@@ -1,0 +1,19 @@
+.keywords-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px 10px 0 10px;
+}
+
+.keyword {
+    height: 28px;
+    display: flex;
+    align-items: center;
+    background-color: #e3e2e7;
+    border: solid 1px #bcbec0;
+    border-radius: 3px;
+    font-size: 12px;
+    line-height: 14px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    padding: 0 10px;
+}

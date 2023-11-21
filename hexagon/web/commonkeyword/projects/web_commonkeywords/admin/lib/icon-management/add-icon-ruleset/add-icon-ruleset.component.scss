@@ -1,0 +1,113 @@
+$common-border: 1px solid #a0a0a0;
+$small-screen: "(max-width: 1600px)";
+
+:host {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    padding: 20px;
+    box-sizing: border-box;
+    grid-template-rows: min-content auto;
+    grid-row-gap: 15px;
+    grid-template-columns: auto;
+    // grid-template-columns: auto 350px; // This is for when we do the related entries
+}
+
+.header {
+    display: grid;
+    grid-template-columns: 86px auto;
+    grid-column-gap: 20px;
+    grid-column: 1 / span 2;
+
+    h2 {
+        padding: 0;
+        margin: 0;
+        margin-top: 10px;
+        font-weight: bold !important;
+        font-size: 18px !important;
+        grid-column: 1 / span 2;
+        text-transform: capitalize;
+    }
+
+    .msg {
+        padding: 0;
+        margin: 0;
+        font-size: 16px !important;
+        line-height: 1.4;
+        max-width: calc(100% - 350px);
+
+        @media #{$small-screen} {
+            max-width: 100%;
+        }
+    }
+
+    .base-icon-pane {
+        position: relative;
+        border: 3px solid #73c1ff;
+        box-sizing: border-box;
+        border-radius: 1px;
+        cursor: pointer;
+        height: 86px;
+        width: 86px;
+        text-transform: capitalize;
+
+        &:hover {
+            border-color: #70cdf2;
+        }
+
+        &:hover .edit-icon {
+            background-image: url("assets/commonkeywords-core/images/edit-icon-hover.png");
+        }
+
+        .edit-icon {
+            position: absolute;
+            right: -10px;
+            bottom: -10px;
+            width: 28px;
+            height: 28px;
+            background-image: url("assets/commonkeywords-core/images/edit-icon.png");
+        }
+    }
+
+    hxgn-commonkeywords-composite-icon {
+        height: 80px;
+        width: 80px;
+    }
+
+    .btn-edit-default {
+        color: #fff;
+        background-color: #60a0cc;
+        font-size: 13px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.related-entries-pane {
+    box-sizing: border-box;
+    border: $common-border;
+    background-color: #f2f2f2;
+}
+
+.rule-pane {
+    box-sizing: border-box;
+    border: $common-border;
+    grid-column: 1 / span 2;
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: auto min-content;
+}
+
+.add-new-pane {
+    padding: 20px;
+    border-top: $common-border;
+
+    button {
+        display: grid;
+        grid-template-columns: repeat(2, min-content);
+        column-gap: 8px;
+        align-items: center;
+    }
+}

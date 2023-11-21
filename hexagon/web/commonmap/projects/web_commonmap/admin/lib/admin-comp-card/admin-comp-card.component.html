@@ -1,0 +1,21 @@
+<div class="card" 
+    [class.loading]="!registered"
+    [class.selected]="selected"
+    (click)="fireCardClicked()">
+    <div class="icon" *ngIf="registered"  [style.backgroundImage]="'url('+ adminComp?.adminCompData.icon +')'"></div>
+    <span class="name" *ngIf="registered">
+        <hxgn-commonlocalization-translate-v1
+            [token]="adminComp.adminCompData.nameToken">
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+    <div class="spinner" *ngIf="!registered">
+        <mat-spinner 
+            [diameter]="40">
+        </mat-spinner>
+    </div>
+    <span class="name" *ngIf="!registered">
+        <hxgn-commonlocalization-translate-v1
+            [token]="tokens.adminCompLoading">
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+</div>

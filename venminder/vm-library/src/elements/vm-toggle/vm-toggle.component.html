@@ -1,0 +1,8 @@
+<template>
+    <require from="./vm-toggle.component.css"></require>
+
+    <label class="vm-toggle ${vmToggleClasses}">
+        <input type="checkbox" checked.bind="value" disabled.bind="isDisabled" change.delegate="onChanged($event)" />
+        <span class="vm-toggle--slider"></span>
+    </label>
+</template>

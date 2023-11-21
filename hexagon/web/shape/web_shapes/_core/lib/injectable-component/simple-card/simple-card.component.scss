@@ -1,0 +1,21 @@
+:host {
+    display: grid;
+    grid-template-rows: repeat(2, min-content);
+    grid-template-columns: min-content auto;
+    column-gap: 10px;
+    position: relative;
+    font-size: 12px;
+}
+
+.icon-pane {
+  display: flex;
+  grid-row: 1 / span 2;
+}
+
+.title-pane {
+    font-weight: 700;
+    align-self: flex-end;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

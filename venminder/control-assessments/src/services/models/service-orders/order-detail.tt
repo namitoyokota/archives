@@ -1,0 +1,7 @@
+<#@ include file="..\..\..\..\..\CreateTypeScript.ttinclude" #>
+<#@ template debug="true" hostSpecific="true" language="C#" #>
+<#@ output extension="ts" #>
+
+import { OrderDetailAssessment } from "./order-detail-assessment"
+
+<#= GetClass<ControlAssessments.Business.Models.DTO.Sales.OrderDetail>(generateCreateFunction:true) #>

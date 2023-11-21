@@ -1,0 +1,200 @@
+.layers-tab {
+    display:grid;
+    grid-template-columns:.75fr 1fr;
+    grid-template-rows:auto;
+    height:100%;
+
+}
+.layers-pane {
+    display:flex;
+    flex-direction:column;
+    width: 100%;
+    border-right: 1px solid #afb0b2;
+    overflow:hidden;
+    box-sizing: border-box;
+}
+
+.layers-list {
+    height:100%;
+    overflow:auto;
+}
+
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.list-btn {
+    display: grid;
+    grid-template-columns: 50px auto;
+    grid-template-rows: 45px;
+    align-items: center;
+    border-bottom: 1px solid #d1d3d4;
+    cursor:pointer;
+}
+
+.list-btn:hover, .list-btn.selected {
+    background-color: #eceeee;
+}
+.list-btn-icon {
+    width: 30px;
+    height: 30px;
+    justify-self:center; 
+}
+
+.list-item {
+    display: grid;
+    grid-template-columns: auto 50px;
+    align-items: center;
+    border-bottom: 1px solid #d1d3d4;
+    cursor: pointer;
+    height:44px;
+
+    .name {
+        padding-left:16px;
+    }    
+}
+
+.list-item:hover {
+    background-color: #eceeee;
+}
+
+.list-item.selected {
+    background-color: #bed6ee
+}
+
+.list-item.selected .action-icon {
+    background-image: url('assets/commonmap-core/images/admin/action_menu_row_selected.png');
+}
+
+
+.list-item:hover .action-icon {
+    background-image: url('assets/commonmap-core/images/admin/action_menu_row_selected.png');
+}
+
+.action-icon {
+    background-image: url('assets/commonmap-core/images/admin/action_menu_icon.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 44px;
+    width: 44px;
+    cursor: pointer;
+}
+
+.action-icon:hover {
+    background-image: url('assets/commonmap-core/images/admin/action_menu_icon_selected.png') !important;
+}
+
+.no-edit-icon {
+    background-image: url('assets/commonmap-core/images/admin/no-edit-icon.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 44px;
+    width: 44px;
+    cursor: pointer;
+}
+
+.edit-pane {
+    display:flex;
+    flex-direction:column;
+    padding: 20px 20px 0 20px;
+    overflow:hidden;
+
+    .layer-properties-header {
+        height: 45px;
+    }
+    
+    .title {
+        font-size: 20px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+.menu-btn-icon {
+    width: 35px;
+    height: 35px;
+}
+
+.menu-item {
+    display:grid;
+    grid-template-columns:35px 75px; 
+    align-items:center;
+}
+
+.system-defined-pane {
+    background-color: #ebeced;
+    height: 100%;
+    width: 100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    .system-defined {
+        width:300px;
+
+        .system-defined-icon {
+            height: 140px;
+            width: 100%;
+            background-image: url('assets/commonmap-core/images/admin/map-system-default.png') !important;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    
+        .system-defined-title {
+            padding-top: 30px;
+            color: #5e5e5e;
+            width: 300px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 28px;
+        }
+        .system-defined-text {
+            color: #5e5e5e;
+            width: 300px;
+            text-align: center;
+            font-style: italic;
+            font-size: 22px;
+        }
+    }
+}
+.no-layer-selected-pane {
+    background-color: #f7f7f7;
+    height: 100%;
+    width: 100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    .no-layer-selected {
+        width:300px;
+
+        .no-layer-selected-icon {
+            height: 160px;
+            width: 100%;
+            background-image: url('assets/commonmap-core/images/admin/no-layer-selected.png') !important;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    
+        .no-layer-selected-title {
+            padding-top: 30px;
+            color: #5e5e5e;
+            width: 300px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 28px;
+        }
+        .no-layer-selected-text {
+            color: #5e5e5e;
+            width: 300px;
+            text-align: center;
+            font-style: italic;
+            font-size: 22px;
+        }
+    }
+}
+  

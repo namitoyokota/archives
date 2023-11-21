@@ -1,0 +1,81 @@
+﻿<template>
+  <require from="../controls.scss"></require>
+  <require from="./dropdown-control.scss"></require>
+
+  <div
+    class="shared-control-container dropdown-control-component"
+    class.bind="isFirst ? 'show-bar' : ''"
+  >
+    <!-- Gray Bar -->
+    <div if.bind="isFirst" class="gray-bar"></div>
+
+    <!-- Select Mode: selecting an answer -->
+    <div if.bind="model.isEditable" class="control-pane">
+      <!-- Dropdown Control -->
+      <div class="control dropdown-control-pane">
+        <!-- Title -->
+        <span>${model.name}</span>
+
+        <!-- Dropdown -->
+        <vm-dropdown
+          display-text.to-view="selectedAnswer.name"
+          value.bind="selectedAnswer.name"
+          placeholder-text="Select"
+        >
+          <vm-dropdown-item
+            repeat.for="option of model.answerOptions"
+            value.one-time="option"
+            on-selection.call="selectedAnswer = $event"
+          >
+            ${option.name}
+          </vm-dropdown-item>
+        </vm-dropdown>
+
+        <!-- Error Message -->
+        <span if.bind="model.errorMsg" class="danger">${model.errorMsg}</span>
+      </div>
+
+      <!-- Arrow Button -->
+      <div if.bind="!model.isSingleControlEdit" class="expand-pane">
+        <button class="expand-button" click.delegate="caretButtonClicked()">
+          <i class="fa fa-angle-right fa-lg"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Edit Mode: editing answer options -->
+    <div if.bind="!model.isEditable" class="dropdown-edit-pane">
+      <!-- Question Name -->
+      <div class="left-pane">
+        <span class="question-text">${model.question}</span>
+      </div>
+
+      <div class="right-pane">
+        <!-- List of Answer Options -->
+        <div class="option-list">
+          <div repeat.for="answer of model.answerOptions" class="option">
+            <!-- Option Name -->
+            <input
+              type="text"
+              class="vm-input"
+              value.bind="answer.name"
+              change.delegate="answerOptionsChanged()"
+            />
+
+            <!-- Delete Option Button -->
+            <vm-button secondary click.delegate="deleteOption(answer.id)">
+              <i class="fa fa-trash"></i>
+            </vm-button>
+          </div>
+        </div>
+
+        <!-- Add Option Button  -->
+        <div class="add-option">
+          <vm-button small primary click.delegate="addOption()">
+            Add an option
+          </vm-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

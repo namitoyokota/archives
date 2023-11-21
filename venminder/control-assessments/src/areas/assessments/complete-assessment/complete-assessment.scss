@@ -1,0 +1,84 @@
+﻿@import "shared-from-dcdev/core-styles/stylesheets/_variables.scss";
+
+.complete-assessment {
+  .assessment-header {
+    display: grid;
+    grid-template-columns: auto min-content;
+    column-gap: 10px;
+    align-items: center;
+
+    .button-pane {
+      display: flex;
+      column-gap: 10px;
+      align-items: center;
+
+      .saved-text {
+        white-space: nowrap;
+      }
+    }
+  }
+
+  .review-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+
+    .left-content {
+      background-color: $N10;
+      padding: 50px;
+
+      .form-layout {
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+      }
+    }
+
+    .right-content {
+      display: flex;
+      flex-direction: column;
+      row-gap: 20px;
+      border-left: 3px solid $N30;
+      padding: 50px;
+
+      .order-pane {
+        display: grid;
+        grid-template-rows: min-content auto;
+        row-gap: 20px;
+
+        .order-header {
+          display: grid;
+          grid-template-columns: min-content auto;
+          column-gap: 10px;
+          align-items: center;
+
+          .header-text {
+            font-size: 15px;
+            font-weight: 700;
+          }
+        }
+
+        .order-info {
+          display: flex;
+          flex-direction: column;
+          row-gap: 10px;
+          padding-left: 21px;
+
+          .order-info-row {
+            display: flex;
+            justify-content: space-between;
+            column-gap: 10px;
+
+            .order-info-title {
+              text-align: left;
+              white-space: nowrap;
+            }
+
+            .order-info-value {
+              text-align: right;
+            }
+          }
+        }
+      }
+    }
+  }
+}

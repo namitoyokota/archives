@@ -1,0 +1,30 @@
+<span class="title" ellipsisTooltip>
+    <hxgn-commonlocalization-translate-v1 [token]="tokens.notificationPanelSettings" skeletonWidth="64px">
+    </hxgn-commonlocalization-translate-v1>
+</span>
+
+<div class="option-pane">
+    <hxgn-commonlocalization-translate-v1 [token]="tokens.enableNotificationSounds" skeletonWidth="64px"
+        ellipsisTooltip></hxgn-commonlocalization-translate-v1>
+    <mat-slide-toggle (change)="toggleSoundSetting($event)" [checked]="enableSound"></mat-slide-toggle>
+</div>
+
+<span class="subtitle" ellipsisTooltip>
+    <hxgn-commonlocalization-translate-v1 [token]="tokens.categoryOrder" skeletonWidth="64px">
+    </hxgn-commonlocalization-translate-v1>
+</span>
+<span class="msg" ellipsisTooltip>
+    <hxgn-commonlocalization-translate-v1 [token]="tokens.categoryOrderMsg" skeletonWidth="64px">
+    </hxgn-commonlocalization-translate-v1>
+</span>
+<div cdkDropList class="order-pane" (cdkDropListDropped)="drop($event)">
+    <ng-container *ngIf="(capabilityOrder$ | async) as capabilityOrder">
+        <div *ngFor="let option of capabilityOrder" cdkDrag class="item">
+            <img cdkDragHandle class="icon" src="assets/commonnotifications-core/images/reorder_icon.png" />
+            <span hxgn-ellipsis>
+                <hxgn-commonlocalization-translate-v1 [token]="option.token" skeletonWidth="64px">
+                </hxgn-commonlocalization-translate-v1>
+            </span>
+        </div>
+    </ng-container>
+</div>

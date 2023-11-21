@@ -1,0 +1,10 @@
+<div class="cmd-btn" cdkOverlayOrigin #origin="cdkOverlayOrigin" (click)="popover.open()">
+</div>
+<hxgn-common-popover #popover [origin]="origin" [menuMode]="true" [position]="popoverPosition">
+    <hxgn-common-menu-item imgSrc="assets/commonkeywords-core/images/clone-icon.png" [token]="tokens.clone"
+        (click)="clone.emit()">
+    </hxgn-common-menu-item>
+    <hxgn-common-menu-item imgSrc="assets/commonkeywords-core/images/trash-icon.png" [token]="tokens.delete"
+        (click)="delete.emit()">
+    </hxgn-common-menu-item>
+</hxgn-common-popover>

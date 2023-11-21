@@ -1,0 +1,44 @@
+<div class="tenant-pane" [class.no-sync]="!showMapSync">
+  <ng-content select="hxgn-commontenant-selection"></ng-content>
+</div>
+
+<div *ngIf="showMapSync" class="sync-btn-pane" [class.selected]="filterSyncEnabled">
+  <div class="sync-btn" (click)="setEnableFilterSync()"></div>
+</div>
+
+<div class="search-btn" [class.selected]="showSearchPane" (click)="showSearchPane = !showSearchPane">
+  <div *ngIf="showMapSync" class="divider"></div>
+  <img *ngIf="!showSearchPane" src="assets/common-libraries/images/search-grey.svg" />
+  <img *ngIf="showSearchPane" src="assets/common-libraries/images/search-blue.svg" />
+</div>
+
+<div [@expansionState] *ngIf="showSearchPane" class="search-pane">
+  <hxgn-common-input-v2 [showClearBtn]="searchStr" (clearText)="clearSearch()">
+    <input [(ngModel)]="searchStr" [attr.placeholder]="searchText" type="text" (input)="search.emit(searchStr)" />
+  </hxgn-common-input-v2>
+</div>
+
+<!-- Pane that shows active filters -->
+<div class="filter-pane" [class.has-filters]="activeFilter?.operations?.length || activeFilter?.searchString">
+
+  <!-- Tag for applied filters -->
+  <div class="tag" *ngIf="filterOperationCount() as count">
+    <img src="assets/common-libraries/images/filtering-feedback.svg" />
+    <span>
+      {{count}}
+      <hxgn-commonlocalization-translate-v1 [token]="(count === 1) ? tokens.filterApplied : tokens.filtersApplied"
+        skeletonWidth="75px">
+      </hxgn-commonlocalization-translate-v1>
+    </span>
+    <img class="delete-btn" (click)="clearFilters()"
+      src="assets/common-libraries/images/filtering-feedback-x_feedback-x.svg" />
+  </div>
+
+  <!-- Tag for applied search strings -->
+  <div class="tag" *ngIf="activeFilter?.searchString as searchStr">
+    <img src="assets/common-libraries/images/search-feedback.svg" />
+    <span>{{searchStr}}</span>
+    <img class="delete-btn" (click)="clearSearch()"
+      src="assets/common-libraries/images/filtering-feedback-x_feedback-x.svg" />
+  </div>
+</div>

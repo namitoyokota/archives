@@ -1,0 +1,19 @@
+:host {
+    overflow-y: auto;
+	border: 1px solid #c3c4c7;
+}
+
+.disabled {
+    background: #F7F7F7 0% 0% no-repeat padding-box;
+}
+
+.no-features {
+    font-size: 18px;
+    color: #666;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}

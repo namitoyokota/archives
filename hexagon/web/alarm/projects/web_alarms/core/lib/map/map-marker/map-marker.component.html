@@ -1,0 +1,18 @@
+<div class="map-marker" [class.focused]="isFocused">
+    <hxgn-alarms-icon 
+        (mouseenter)="mouseEnter()"
+        (mouseleave)="mouseLeave()"
+        [showSharedIndicator]="true"
+        [showShadow]="true"
+        [showPriority]="true"
+        [alarm]="alarm">
+    </hxgn-alarms-icon>
+</div>
+
+<div class="tool-tip" *ngIf="alarm?.title && showToolTip"
+    [@fadeout] [class.tool-tip-selection]="isSelected">
+    {{alarm.title}}
+</div>
+
+<img *ngIf="isSelected" [@fadeout]
+    class="selected" src="assets/alarms-core/images/main-selection-cross-hairs.png" />

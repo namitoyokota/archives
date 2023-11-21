@@ -1,0 +1,27 @@
+<hxgn-common-expansion-panel panelState="expanded">
+    <hxgn-common-expansion-panel-title>
+        <ng-content select="hxgn-common-expansion-panel-title"></ng-content>
+    </hxgn-common-expansion-panel-title>
+    
+    <hxgn-common-expansion-panel-header>
+        <ng-container [ngSwitch]="buttonType">
+            <img *ngSwitchCase="ActiveFilterButtonType.delete"
+                (click)="onDelete()"
+                src="assets/commontenant-core/x_grey_in_circle.png"/>
+
+            <span *ngSwitchCase="ActiveFilterButtonType.edit"
+                (click)="onEdit()"
+                class="btn--edit">
+                <hxgn-commonlocalization-translate-v1 skeletonWidth="30" [token]='tokens.edit'></hxgn-commonlocalization-translate-v1>
+            </span>
+            
+            <mat-slide-toggle *ngSwitchCase="ActiveFilterButtonType.toggle"
+                [(checked)]="toggleEnabled"
+                (click)="onToggleClick()"
+                (change)="onToggle($event.checked)"></mat-slide-toggle>
+        </ng-container>
+    </hxgn-common-expansion-panel-header>  
+    <hxgn-common-expansion-panel-content>
+        <ng-content select="hxgn-common-chip"></ng-content>
+    </hxgn-common-expansion-panel-content>
+</hxgn-common-expansion-panel>

@@ -1,0 +1,69 @@
+<div *ngIf="!settings?.enablePortalFormatting" class="header-pane">
+  <span>{{settings.headerTitle}}</span>
+  <span class="count" [attr.id]="settings?.customHeaderId"></span>
+
+  <div *ngIf='(paneState$ | async); else notSelected' (click)="closePane()" class="option-pane-btn selected"></div>
+
+  <ng-template #notSelected>
+    <div (click)="openPane()" class="option-pane-btn"></div>
+  </ng-template>
+</div>
+
+<hxgn-common-filter-pane [activeFilter]="activeFilter$ | async" [filterSyncEnabled]="filterSyncEnabled"
+    [searchText]="tTokens.search" [showMapSync]="(linkedViews$ | async)?.length"
+    (search)="searchShapes($event)" (enableFilterSync)="enableFilterSync($event)" (filterCleared)="clearFilters()">
+
+    <!-- Tenant selection -->
+    <hxgn-commontenant-selection *ngIf="shareTenantIds.length" (selectionChange)="setSelectedTenants($event)"
+        [tenantIds]="shareTenantIds"></hxgn-commontenant-selection>
+
+</hxgn-common-filter-pane>
+
+<div class="list-pane">
+  <cdk-virtual-scroll-viewport variableHeightVirtualScrollStrategy [itemHeights]='itemHeights$ | async'>
+    <ng-container *cdkVirtualFor="let shape of filteredShapes$ | async; trackBy: trackByFn;templateCacheSize: 0; let i = index">
+      <hxgn-shapes-card
+        [shape]="shape"
+        [contextId]="settings.contextId"
+        [showTenantInfo]="showTenantInfo"
+        [isExpanded]="expandedCardId === shape.id"
+        [wasExpanded]="lastExpandedCardId === shape.id"
+        [currentTenantId]="tenantId"
+        [isShapeFilter]="(shapeFilterId$ | async) === shape.id"
+        [isSelected]="(selectedShapeIds$ | async)?.includes(shape.id)"
+        [enableCardExpansion]="settings.enableCardExpansion"
+        [enableKeywords]="settings.enableKeywords"
+        [showActionPanel]="true"
+        (click)="setSelections(shape.id, $event)"
+        (startEdit)="startEditShape($event)"
+        (startDelete)="startDeleteShape($event)"
+        (sizeChange)="setSize($event)"
+        (expandedDestroy)="detailsDestroy()"
+        (expansionChange)="setExpansionCardState($event, shape.id, i)"
+      ></hxgn-shapes-card>
+    </ng-container>
+  </cdk-virtual-scroll-viewport>
+</div>
+
+<!-- Create New -->
+<div class="create-pane">
+  <button (click)="startCreateShape()" [disabled]="(isLicensed$ | async) === false"  class="hxgn-btn-secondary">
+    <img src="assets/shapes/images/add.svg" />
+    <span>
+      <hxgn-commonlocalization-translate-v1 [token]="tokens.createNew" [ignoreSkeleton]="true">
+      </hxgn-commonlocalization-translate-v1>
+    </span>
+  </button>
+</div>
+
+<!-- Option pane -->
+<div [@expansionState] *ngIf='(paneState$ | async)' class="option-pane">
+
+  <hxgn-shapes-option-pane [activeFilter]="activeFilter$ | async" [enabledMapSyncing]="filterSyncEnabled"
+      [showMapSync]="(linkedViews$ | async)?.length" [sortBy]="activeSort$ | async"
+      [showResetToDefault]="hasFilterChanged() || hasSortChanged()" (filterChange)="setActiveFilter($event)"
+      (mapSync)="enableFilterSync($event)" (sortByChange)="setSort($event)"
+      (resetToDefault)="resetFiltersSettingsAsync()">
+  </hxgn-shapes-option-pane>
+
+</div>

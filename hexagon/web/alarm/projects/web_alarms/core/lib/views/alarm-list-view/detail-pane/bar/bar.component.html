@@ -1,0 +1,21 @@
+<div class="property-pane" *ngIf="alarm.type && !alarm.isRedacted(restrictIds.type)">
+    <span>
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.typeAlt">
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+    <span class="val">{{alarm.type}}</span>
+</div>
+<div class="property-pane" *ngIf="!alarm.isRedacted(restrictIds.priority)">
+    <span>
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.priorityAlt">
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+    <span class="val">{{alarm.priority}}</span>
+</div>
+<div class="property-pane" *ngIf="!alarm.isRedacted(restrictIds.lastUpdateTime)">
+    <span>
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.lastUpdateAlt">
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+    <span class="val">{{alarm.lastUpdateTime | commonTimeSince: refreshToggle | async}}</span>
+</div>

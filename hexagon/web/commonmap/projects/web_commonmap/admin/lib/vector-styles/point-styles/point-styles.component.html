@@ -1,0 +1,58 @@
+<div class="section-header">
+    <hxgn-commonlocalization-translate-v1 
+        [token]="tokens.stylesForPointFeatures">
+    </hxgn-commonlocalization-translate-v1>
+</div>
+<div class="vector-styles">
+    <div class="item">
+        <span class="label">
+            <hxgn-commonlocalization-translate-v1
+                [token]="tokens.stylePointSymbolColor"
+                [skeletonWidth]="'75px'">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+        <hxgn-common-color-selector-v1
+            [activeColor]="vectorStyleProps?.pointSymbolColor"
+            (colorChange)="setSymbolColor($event)"
+            [colorType]="colorType.fill">
+        </hxgn-common-color-selector-v1>
+    </div>
+    <div class="symbol-style-section">
+        <div class="label">
+            <hxgn-commonlocalization-translate-v1
+                [token]="tokens.stylePointSymbolSize"
+                [skeletonWidth]="'75px'">
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+        <div class="label">
+            <hxgn-commonlocalization-translate-v1
+                [token]="tokens.stylePointSymbol"
+                [skeletonWidth]="'75px'">
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+        <hxgn-common-input-v2 style="width:75px">
+            <input class="no-edit" type="number" name="symbolSize" [value]="symbolSize"
+                onkeydown="return false" min="10" max="36" step="1"
+                (change)="setSymbolSize($event)" />
+        </hxgn-common-input-v2>
+        <hxgn-common-dropdown-v2  #symbols class="symbol-selector"
+            [value]="symbolDef"
+            (selectionChange)="setSymbolDef($event)">
+            <hxgn-common-dropdown-trigger-v2>
+                <div class="symbol-item" 
+                    [style.font-family]="symbolDef.font"
+                    [style.color]="vectorStyleProps.pointSymbolColor">
+                    {{symbolDef.charCode}}
+                </div>
+            </hxgn-common-dropdown-trigger-v2>
+            <hxgn-common-dropdown-item-v2 *ngFor="let symDef of defaultPointSyms; let i = index;"
+                [value]="symDef">
+                <div class="symbol-item" 
+                    [style.font-family]="symDef.font"
+                    [style.color]="vectorStyleProps.pointSymbolColor">
+                    {{symDef.charCode}}
+                </div>
+            </hxgn-common-dropdown-item-v2>
+        </hxgn-common-dropdown-v2>
+    </div>
+</div>

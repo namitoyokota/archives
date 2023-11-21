@@ -1,0 +1,16 @@
+<div class="dialog-title">
+    <hxgn-commonlocalization-translate-v1 [token]="tokens.features" skeletonWidth="220px">
+    </hxgn-commonlocalization-translate-v1>
+    <img (click)="close()" src="assets/commontenant-core/x_dialog.png" height="18" width="18" />
+</div>
+<div class="description">
+    <div>
+        <hxgn-commonlocalization-translate-v1 [token]='tokens.description' skeletonWidth="200px"></hxgn-commonlocalization-translate-v1>
+    </div>
+    <span>
+        <hxgn-commonlocalization-translate-v1 [token]='tokens.subtitle' skeletonWidth="300px"></hxgn-commonlocalization-translate-v1>
+    </span>
+</div>
+
+<hxgn-commonfeatureflags-global-editor (completed)="dialogRef.close()">
+</hxgn-commonfeatureflags-global-editor>

@@ -1,0 +1,33 @@
+<template>
+    <require from="./vm-dialog-duotone.component.css"></require>
+    <require from="../../../resources/trap-keys-dialog"></require>
+
+    <button class="sr-only tabstop top" data-id="vm-dialog-duotone" tabnav.bind="tabNavigate">skip to modal</button>
+    <div class="vm-dialog vm-dialog-duotone">
+        <div class="vm-dialog-duotone--header ${ headerClass }">
+            <div class="vm-dialog-duotone--title">
+                <i class="vm-dialog-duotone--icon ${ iconClass }"></i>
+                <slot name="title"></slot>
+            </div>
+            <vm-button icon click.call="cancel()">
+                <i aria-hidden="true" class="fas fa-times"></i>
+                <span class="sr-only">close</span>
+            </vm-button>
+        </div>
+
+        <div class="vm-dialog--body">
+            <slot></slot>
+        </div>
+
+        <div class="vm-dialog--footer">
+            <vm-button if.bind="cancelShown" secondary click.call="cancel()">
+                <span>${cancelLabel}</span>
+            </vm-button>
+            
+            <vm-button if.bind="okShown" type.bind="buttonType" click.call="okClick()" is-disabled.to-view="okDisabled">
+                <span>${okLabel}</span>
+            </vm-button>
+        </div>
+    </div>
+    <button class="sr-only tabstop bottom" data-id="vm-dialog-duotone" tabnav.bind="tabNavigate">skip to modal</button>
+</template>

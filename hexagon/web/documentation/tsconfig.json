@@ -1,0 +1,43 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "baseUrl": "./",
+        "outDir": "./dist/out-tsc",
+        "paths": {
+            "@galileo/web_documentation/_core": [
+                "dist/web_documentation/_core",
+            ],
+            "@galileo/web_documentation/adapter": [
+                "dist/web_documentation/adapter",
+            ],
+            "@galileo/web_documentation/_common": [
+                "dist/web_documentation/_common",
+            ],
+            "@galileo/web_documentation/admin": [
+                "dist/web_documentation/admin",
+            ]
+        },
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "sourceMap": true,
+        "declaration": false,
+        "downlevelIteration": true,
+        "experimentalDecorators": true,
+        "moduleResolution": "node",
+        "importHelpers": true,
+        "target": "es2015",
+        "module": "es2020",
+        "lib": [
+            "es2018",
+            "dom"
+        ]
+    },
+    "angularCompilerOptions": {
+        "enableI18nLegacyMessageIdFormat": false,
+        "strictInjectionParameters": true,
+        "strictInputAccessModifiers": true,
+        "strictTemplates": true
+    }
+}

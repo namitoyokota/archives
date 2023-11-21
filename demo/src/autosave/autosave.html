@@ -1,0 +1,13 @@
+<template>
+    <require from="./autosave.css"></require>
+    <require from="../shared/ellipsis-context-menu"></require>
+
+    <h2>Auto Save</h2>
+
+    <div class="save-page">
+        <button class="save-button" click.delegate="saveNow()">Save Now</button>
+
+        <textarea rows="10" keyup.delegate="requestSave()"></textarea>
+        <p>${currentStatus}</p>
+    </div>
+</template>

@@ -1,0 +1,15 @@
+<hxgn-alarms-low-active-data-filter *ngIf="settings.currentLevel === RestrictionLevels.low">
+</hxgn-alarms-low-active-data-filter>
+
+<!-- Medium Active Data Filters -->
+<hxgn-alarms-medium-active-data-filter *ngIf="settings.currentLevel === RestrictionLevels.medium ||
+    settings.currentLevel === RestrictionLevels.high"
+    [global]="filterLevel(settings.globalRedaction, RestrictionLevels.medium)"
+    [showLowFilters]="settings.currentLevel === RestrictionLevels.medium"
+    [overridden]="filterLevel(settings.overriddenRedaction, RestrictionLevels.medium)">
+</hxgn-alarms-medium-active-data-filter>
+
+<hxgn-alarms-high-active-data-filter *ngIf="settings.currentLevel === RestrictionLevels.high"
+    [global]="filterLevel(settings.globalFilters, RestrictionLevels.high)"
+    [overrides]="filterLevel(settings.overriddenFilters, RestrictionLevels.high)">
+</hxgn-alarms-high-active-data-filter>

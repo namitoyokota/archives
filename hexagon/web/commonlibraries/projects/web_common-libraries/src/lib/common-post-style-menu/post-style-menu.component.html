@@ -1,0 +1,61 @@
+<!-- Used when dynamic position is false. Does not move the menu to the body. -->
+<ng-container *ngIf="!dynamicPosition else dynamic">
+
+    <img class="btn" (click)="toggleMenu($event)"
+        src="assets/common-libraries/images/post-style/post-style-button.png" />
+
+    <div [@fade] *ngIf="isMenuOpen" class="menu">
+        <ng-container *ngTemplateOutlet="options"></ng-container>
+    </div>
+</ng-container>
+
+<!-- Use Mat menu -->
+<ng-template #dynamic>
+    <img class="btn" [matMenuTriggerFor]="menu" #clickMenuTrigger="matMenuTrigger"
+        src="assets/common-libraries/images/post-style/post-style-button.png" />
+
+    <mat-menu #menu="matMenu">
+        <div class="dynamic-menu">
+            <ng-container *ngTemplateOutlet="options"></ng-container>
+        </div>
+    </mat-menu>
+</ng-template>
+
+<!-- Main content for the menu -->
+<ng-template #options>
+    <span class="title">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.postStyle" skeletonWidth="50px">
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+    <mat-radio-group (click)="$event.stopPropagation()" [(ngModel)]="postStyle" (change)="postStyleChange($event)">
+        <mat-radio-button [value]="style.normal">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.normal" skeletonWidth="50px">
+            </hxgn-commonlocalization-translate-v1>
+        </mat-radio-button>
+
+        <mat-radio-button [value]="style.important">
+            <div class="post-style-option">
+                <img class="style-icon" src="assets/common-libraries/images/post-style/important.png" />
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.important" skeletonWidth="50px">
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+
+        </mat-radio-button>
+
+        <mat-radio-button [value]="style.highPriority">
+            <div class="post-style-option">
+                <img class="style-icon" src="assets/common-libraries/images/post-style/high-priority.png" />
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.highPriority" skeletonWidth="50px">
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+        </mat-radio-button>
+
+        <mat-radio-button [value]="style.critical">
+            <div class="post-style-option">
+                <img class="style-icon" src="assets/common-libraries/images/post-style/critical.png" />
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.critical" skeletonWidth="50px">
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+        </mat-radio-button>
+    </mat-radio-group>
+</ng-template>

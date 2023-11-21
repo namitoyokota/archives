@@ -1,0 +1,69 @@
+<div class="layer-panel-config" *ngIf="mapPreset && selectedLayer === null">
+    <div class="layers-list">
+        <hxgn-common-expansion-panel panelState="expanded" *ngIf="(filteredDataLayers$ | async)?.length > 0">
+            <hxgn-common-expansion-panel-title>
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.dataLayersHeader" skeletonWidth="60px">
+                </hxgn-commonlocalization-translate-v1>
+            </hxgn-common-expansion-panel-title>
+            <hxgn-common-expansion-panel-content>
+                <div cdkDropList (cdkDropListDropped)="dropDataLayer($event)">
+                    <div cdkDrag class="layer-item" [class.no-edit]="!showEditLayerIcon"
+                        *ngFor="let mapLayer of filteredDataLayers$ | async">
+                        <div class="reorder-icon" cdkDragHandle
+                            [class.no-reorder]="!allowLayerReorder || searchString || (filteredDataLayers$ | async)?.length === 0">
+                        </div>
+                        <div class="layer-name">{{mapLayer.name}}</div>
+                        <mat-slide-toggle [disabled]="readOnly" class="layer-toggle" [checked]="mapLayer.shownOnStartup"
+                            [(ngModel)]="mapLayer.shownOnStartup" (click)="$event.stopPropagation()"
+                            (change)="setShownOnStartup(mapLayer)"></mat-slide-toggle>
+                        <div class="edit-layer-icon" *ngIf="showEditLayerIcon" (click)="editLayerProperties(mapLayer)">
+                        </div>
+                    </div>
+                </div>
+            </hxgn-common-expansion-panel-content>
+        </hxgn-common-expansion-panel>
+        <div class="layer-coll" *ngFor="let userColl of userColls">
+                <hxgn-common-expansion-panel panelState="expanded" *ngIf="(userColl.filteredLayers$ | async)?.length > 0">
+                    <hxgn-common-expansion-panel-title>
+                        <span>{{userColl.coll.name}}</span>
+                    </hxgn-common-expansion-panel-title>
+                    <hxgn-common-expansion-panel-content>
+                        <div cdkDropList (cdkDropListDropped)="dropOverlayLayer({userColl: userColl, event: $event})">
+                            <div cdkDrag class="layer-item" [class.no-edit]="!showEditLayerIcon"
+                                *ngFor="let mapLayer of userColl.filteredLayers$ | async">
+                                <div class="reorder-icon" cdkDragHandle
+                                    [class.no-reorder]="!allowLayerReorder || searchString || (userColl.filteredLayers$ | async)?.length === 1"></div>
+                                <div class="layer-name">{{mapLayer.name}}</div>
+                                <mat-slide-toggle [disabled]="readOnly" class="layer-toggle" [checked]="mapLayer.shownOnStartup"
+                                    [(ngModel)]="mapLayer.shownOnStartup" (click)="$event.stopPropagation()"
+                                    (change)="setShownOnStartup(mapLayer)"></mat-slide-toggle>
+                                <div class="edit-layer-icon" *ngIf="showEditLayerIcon" (click)="editLayerProperties(mapLayer)">
+                                </div>
+                                <div class="opacity-property" *ngIf="canEditOpacity(mapLayer)"
+                                    (click)="$event.stopPropagation()">
+                                    <hxgn-commonmap-layer-opacity [opacity]="mapLayer.opacity"
+                                        (opacityChanged)="setOpacity({opacity:$event, mapLayer:mapLayer})">
+                                    </hxgn-commonmap-layer-opacity>
+                                </div>
+                            </div>
+                        </div>
+                    </hxgn-common-expansion-panel-content>
+                </hxgn-common-expansion-panel>
+            </div>
+            <hxgn-common-expansion-panel panelState="expanded" *ngIf="(filteredBaseMaps$ | async)?.length > 0">
+                <hxgn-common-expansion-panel-title>
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.baseMapsHeader" skeletonWidth="60px">
+                    </hxgn-commonlocalization-translate-v1>
+                </hxgn-common-expansion-panel-title>
+                <hxgn-common-expansion-panel-content>
+                    <mat-radio-group class="base-layer-radio-group" (change)="setBaseMap($event)">
+                        <mat-radio-button class="base-layer-radio-btn" (click)="setBaseMapByLayer(mapLayer)"
+                            *ngFor="let mapLayer of filteredBaseMaps$ | async;" [value]="mapLayer"
+                            [checked]="mapLayer.shownOnStartup">
+                            <span class="layer-name"> {{mapLayer.name}} </span>
+                        </mat-radio-button>
+                    </mat-radio-group>
+                </hxgn-common-expansion-panel-content>
+            </hxgn-common-expansion-panel>
+    </div>
+</div>

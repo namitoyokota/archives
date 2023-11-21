@@ -1,0 +1,60 @@
+<div class="header">
+    <span *ngIf="featureFlags.length === 1">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.disable" skeletonWidth="65px">
+        </hxgn-commonlocalization-translate-v1>
+        <hxgn-commonlocalization-translate-v1 [token]="featureFlags[0].friendlyName" skeletonWidth="50px">
+        </hxgn-commonlocalization-translate-v1>
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.feature" skeletonWidth="80px">
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+    <span *ngIf="featureFlags.length > 1">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.disableMultipleFeatures" skeletonWidth="235px">
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+    <img (click)="close()" src="assets/commonfeatureflags-core/x_dialog.png" width="21" height="21" />
+</div>
+<div class="features-list" *ngIf="featureFlags.length > 1">
+    <ng-container *ngFor="let featureFlag of featureFlags; let i = index">
+        <span>
+            <hxgn-commonlocalization-translate-v1 [token]="featureFlag.friendlyName" skeletonWidth="50px">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+        <span *ngIf="i !== featureFlags.length - 1">, </span>
+    </ng-container>
+</div>
+<div class="feedback-container">
+    <div class="feedback-title">
+        <span *ngIf="featureFlags.length === 1">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.howCanWeMakeThisFeatureBetter" skeletonWidth="265px">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+        <span *ngIf="featureFlags.length > 1">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.howCanWeMakeTheseFeaturesBetter" skeletonWidth="285px">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+    </div>
+    <textarea class="feedback" [(ngModel)]="feedbackMessage.message" [placeholder]="tTokens.enterAnyCommentsHere">
+    </textarea>
+</div>
+<div class="checkbox-container">
+    <mat-checkbox (change)="toggleContactAsync()">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.okayToContact" skeletonWidth="330px">
+        </hxgn-commonlocalization-translate-v1>
+    </mat-checkbox>
+</div>
+<!-- <div class="privacy-link-container">
+    <a>
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.weRespectYourPrivacy" skeletonWidth="135px">
+        </hxgn-commonlocalization-translate-v1>
+    </a>
+</div> -->
+<div class="buttons-row">
+    <button class="hxgn-btn-secondary" (click)="close()">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.cancel" [ignoreSkeleton]="true">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+    <button class="hxgn-btn-primary" (click)="disableAsync()">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.disable" [ignoreSkeleton]="true">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+</div>

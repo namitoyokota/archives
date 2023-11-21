@@ -1,0 +1,234 @@
+:host {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 20px;
+
+  hxgn-common-tabs {
+    height: 42px;
+
+    .mat-tab-group {
+      display: grid;
+      grid-template-rows: min-content 1fr;
+    }
+
+    ::ng-deep .mat-tab-header {
+      border-bottom: solid 1px #afb0b2;
+
+      .mat-tab-label {
+        border-right: solid 1px #afb0b2 !important;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 19px;
+        padding: 0 44px !important;
+      }
+    }
+  }
+}
+
+.content-container {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(557px, 33%) 1fr;
+  column-gap: 20px;
+  overflow: hidden;
+
+  &.no-panes {
+    grid-template-columns: 100%;
+  }
+}
+
+.loading-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.priority-indicator {
+  height: 12px;
+  width: 15px;
+  border: solid 2px #fff;
+  border-radius: 50%;
+  margin-right: 5px;
+
+  &.high {
+    background-color: #fb8f3e;
+  }
+
+  &.medium {
+    background-color: #5588f2;
+  }
+
+  &.low {
+    background-color: #4dcaab;
+  }
+}
+
+.quick-links {
+  display: grid;
+  grid-template-rows: min-content 1fr;
+  overflow: hidden;
+
+  .quick-links-container {
+    padding: 20px 20px 0 20px;
+    display: grid;
+    grid-auto-rows: 120px;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 20px;
+    overflow-y: auto;
+
+    &::after {
+      content: "";
+      height: 0.01em;
+      display: block;
+      grid-column: span 3;
+    }
+
+    .quick-link {
+      height: 100px;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr min-content;
+      justify-content: center;
+      background-color: #ebeded;
+      border: solid 1px #afafaf;
+      box-shadow: 0px 2px 2px #00000033;
+      box-sizing: border-box;
+      margin-bottom: 20px;
+      padding: 10px 5px;
+      text-align: center;
+
+      .provisioner-icon-container {
+        height: 0;
+        display: flex;
+        justify-content: flex-end;
+        bottom: 5px;
+        position: relative;
+      }
+
+      .quick-link-img {
+        align-self: center;
+        justify-self: center;
+      }
+
+      .quick-link-text {
+        font-size: 15px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+
+    .quick-link-provisioner {
+      grid-template-rows: min-content 1fr;
+      row-gap: 0;
+    }
+
+    .quick-link-container {
+      display: grid;
+      grid-template-rows: auto min-content;
+    }
+
+    .quick-link:hover {
+      background-color: #dbdbdb;
+      cursor: pointer;
+    }
+  }
+}
+
+.tabs-pane {
+  width: 100%;
+
+  .table-container {
+    height: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: 15px;
+  }
+}
+
+.tabs-pane,
+.user-info-pane {
+  height: 100%;
+  border: solid 1px #a7a7a7;
+  box-sizing: border-box;
+  min-height: 0;
+}
+
+.tenant-overview {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  column-gap: 20px;
+
+  .tenant-info-container {
+    display: grid;
+    grid-template-columns: min-content auto;
+    column-gap: 10px;
+
+    .tenant-info {
+      white-space: nowrap;
+      display: grid;
+
+      .tenant-info-number {
+        font-size: 43px;
+        line-height: 43px;
+        color: #a9a9a9;
+      }
+
+      .tenant-info-title {
+        font-size: 19px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+  }
+}
+
+.title {
+  height: 36px;
+  display: flex;
+  align-items: center;
+  background-color: #ebebeb;
+  border-bottom: solid 1px #acaeb1;
+  border-top: solid 1px #acaeb1;
+  box-sizing: border-box;
+  padding: 0 20px;
+  font-size: 18px;
+}
+
+.user-info-pane {
+  width: 100%;
+  display: grid;
+  grid-template-rows: min-content min-content 1fr;
+  overflow: hidden;
+
+  .user-info-container {
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    padding: 20px;
+    column-gap: 10px;
+
+    .account-user-name {
+      font-size: 15px !important;
+      line-height: 18px;
+      color: #355ca4 !important;
+    }
+
+    .user-info-text {
+      display: flex;
+      font-size: 22px;
+      font-weight: 500;
+      margin-bottom: 5px;
+
+      .user-name {
+        white-space: nowrap;
+      }
+    }
+  }
+}

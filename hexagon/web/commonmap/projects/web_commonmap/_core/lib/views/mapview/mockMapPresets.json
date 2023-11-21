@@ -1,0 +1,128 @@
+﻿[
+	{
+		"mapLayers": [
+			{
+                "opacity": 1,
+                "defineMinZoom":false,
+                "defineMaxZoom":false,
+				"minZoomLevel": 0,
+				"maxZoomLevel": 19,
+				"id": "6bdea583-d567-4a74-85be-053f9775ee71",
+				"shownOnStartup": true
+			}
+		],
+		"zoomLevel": 9,
+		"mapCenter": {
+			"latitude": 34.70549341022547,
+			"longitude": -86.34361267089845,
+			"altitude": 0
+		},
+		"id": "1c0a9ed7-33a8-42c8-b6c1-290144c867bb",
+		"name": "Default Map"
+	},
+	{
+		"mapLayers": [
+			{
+				"opacity": 1,
+                "defineMinZoom":false,
+                "defineMaxZoom":false,
+				"minZoomLevel": 0,
+				"maxZoomLevel": 19,
+				"id": "4f359208-0546-4269-81f8-2d92bbf56c57",
+				"shownOnStartup": true
+			},
+			{
+				"opacity": 1,
+                "defineMinZoom":false,
+                "defineMaxZoom":false,
+				"minZoomLevel": 0,
+				"maxZoomLevel": 19,
+				"id": "24b5d10e-41ef-4fa7-a767-67de6415c4f2",
+				"shownOnStartup": false
+			},
+			{
+				"opacity": 0.44,
+                "defineMinZoom":false,
+                "defineMaxZoom":false,
+				"minZoomLevel": 0,
+				"maxZoomLevel": 19,
+				"id": "8b9aa547-aa3c-442d-93d6-614899cdc4cb",
+				"shownOnStartup": true
+			},
+			{
+				"opacity": 1,
+                "defineMinZoom":false,
+                "defineMaxZoom":false,
+				"minZoomLevel": 11,
+				"maxZoomLevel": 18,
+				"id": "0ce112b3-b765-497d-a7b6-f7f6991aecdc",
+				"shownOnStartup": true
+			},
+			{
+				"opacity": 1,
+                "defineMinZoom":false,
+                "defineMaxZoom":false,
+				"minZoomLevel": 0,
+				"maxZoomLevel": 19,
+				"id": "3e86823f-52fe-4882-8f31-6c8194101ee4",
+				"shownOnStartup": true
+			}
+		],
+		"zoomLevel": 6,
+		"mapCenter": {
+			"latitude": 33,
+			"longitude": -83,
+			"altitude": 0
+		},
+		"id": "7c0fe783-6477-49ce-96bb-a8a8a1cc21bd",
+		"name": "New Map"
+	},
+	{
+		"mapLayers": [
+			{
+				"opacity": 1,
+                "defineMinZoom":false,
+                "defineMaxZoom":false,
+				"minZoomLevel": 0,
+				"maxZoomLevel": 19,
+				"id": "4f359208-0546-4269-81f8-2d92bbf56c57",
+				"shownOnStartup": true
+			},
+			{
+				"opacity": 0.44,
+                "defineMinZoom":false,
+                "defineMaxZoom":false,
+				"minZoomLevel": 0,
+				"maxZoomLevel": 19,
+				"id": "8b9aa547-aa3c-442d-93d6-614899cdc4cb",
+				"shownOnStartup": true
+			},
+			{
+				"opacity": 0.77,
+                "defineMinZoom":false,
+                "defineMaxZoom":false,
+				"minZoomLevel": 0,
+				"maxZoomLevel": 19,
+				"id": "0ce112b3-b765-497d-a7b6-f7f6991aecdc",
+				"shownOnStartup": true
+			},
+			{
+				"opacity": 1,
+                "defineMinZoom":false,
+                "defineMaxZoom":false,
+				"minZoomLevel": 0,
+				"maxZoomLevel": 19,
+				"id": "015800b2-2491-4812-8808-f8c9222529df",
+				"shownOnStartup": true
+			}
+		],
+		"zoomLevel": 17,
+		"mapCenter": {
+			"latitude": 34.67298068264256,
+			"longitude": -86.74758553504944,
+			"altitude": 0
+		},
+		"id": "a0aca62f-2e28-43dc-aa17-9496fc3d7ddd",
+		"name": "Azure Map"
+	}
+]

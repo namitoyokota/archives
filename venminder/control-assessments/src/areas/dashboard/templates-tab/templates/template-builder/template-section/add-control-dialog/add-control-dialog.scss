@@ -1,0 +1,21 @@
+﻿@import "shared-from-dcdev/core-styles/stylesheets/_variables.scss";
+
+.add-control-dialog {
+  .graybar {
+    background-color: $light-gray-blue;
+  }
+
+  .control-list-section {
+    max-height: 175px;
+    overflow-y: auto;
+  }
+
+  .control-list-checkbox {
+    padding-top: 2.5px;
+    padding-bottom: 2.5px;
+  }
+
+  .control-list-row {
+    height: auto;
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/web_common-libraries",
+  "lib": {
+    "entryFile": "src/public_api.ts"
+  },
+  "assets": [
+    "assets"
+  ],
+  "allowedNonPeerDependencies": [
+    "ngx-infinite-scroll",
+    "ngx-color-picker",
+    "@galileo/platform_common-libraries"
+  ]
+}

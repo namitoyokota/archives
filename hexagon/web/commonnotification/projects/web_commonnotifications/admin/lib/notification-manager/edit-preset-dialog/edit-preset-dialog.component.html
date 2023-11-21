@@ -1,0 +1,46 @@
+<div class="dialog-title">
+    <hxgn-commonlocalization-translate-v1 [token]="tokens.editNotificationPreset" skeletonWidth="240px">
+    </hxgn-commonlocalization-translate-v1>
+    <img (click)="close()" src="assets/commonnotifications-core/images/x_dialog.png" height="18" width="18" />
+</div>
+<div class="content">
+    <div class="step">
+        <div class="step-number">
+            <span>1</span>
+        </div>
+        <div class="step-content">
+            <div class="step-title">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.presetName" skeletonWidth="115px">
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+            <hxgn-common-input-v2 [isValid]="isValidName && preset.presetName">
+                <input [(ngModel)]="preset.presetName" type="text" maxlength="1000"
+                    [placeholder]="tTokens.presetNamePlaceholder" />
+            </hxgn-common-input-v2>
+        </div>
+    </div>
+    <div class="step">
+        <div class="step-number">
+            <span>2</span>
+        </div>
+        <div class="step-content">
+            <div class="step-title">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.notificationDescription" skeletonWidth="315px">
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+            <textarea [(ngModel)]="preset.description" maxlength="1000"
+                [placeholder]="tTokens.notificationDescriptionPlaceholder">
+            </textarea>
+        </div>
+    </div>
+</div>
+<div class="buttons-row">
+    <button class="hxgn-btn-secondary" (click)="close()">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.cancel" [ignoreSkeleton]="true">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+    <button class="hxgn-btn-primary" (click)="saveChanges()" [disabled]="!preset.presetName || !isValidName">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.saveChanges" [ignoreSkeleton]="true">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+</div>

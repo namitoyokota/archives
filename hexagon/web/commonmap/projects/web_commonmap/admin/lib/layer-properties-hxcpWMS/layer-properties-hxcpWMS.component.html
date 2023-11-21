@@ -1,0 +1,193 @@
+<div *ngIf="showConnectionProps">
+    <div class="layer-property">
+        <hxgn-commonmap-admin-url-control
+            [url]="mapLayer.url"
+            (isValid)="urlIsValid($event)"
+            (urlChanged)="setURL($event)">
+        </hxgn-commonmap-admin-url-control>
+    </div>
+    <div class="auth-params-section">
+        <hxgn-commonmap-admin-auth-params-hxcp 
+            [mapLayer]="mapLayer"
+            (isValid)="authParamsIsValid($event)"
+            (authParamChanged)="authParamChanged($event)">
+        </hxgn-commonmap-admin-auth-params-hxcp>
+    </div>
+</div>
+<div *ngIf="showLayerOptions" class="wms-layer-options" >
+    <div *ngIf="!isNew" class="section-header layer-options-section-header"> 
+        <hxgn-commonlocalization-translate-v1  
+            [token]="tokens.sectionHeaderLayerOptions"
+            skeletonWidth="'60px'">
+        </hxgn-commonlocalization-translate-v1>
+        <button *ngIf="needToFetchLayers" class="refresh-options-button"
+            [class.disabled]="!canFetchLayers"
+            (click)="getAvailableWMSLayers()">
+            <div class="icon"></div>
+            <span>
+                <hxgn-commonlocalization-translate-v1 
+                    [token]="tokens.refreshLayerOptionsBtnLabel"
+                    skeletonWidth="'60px'">
+                </hxgn-commonlocalization-translate-v1>
+            </span>
+        </button>
+    </div>
+   
+    <div *ngIf="isNew && needToFetchLayers"class="refresh-options-button-section" >
+        <button class="refresh-options-button"
+            [class.disabled]="!canFetchLayers"
+            (click)="getAvailableWMSLayers()">
+            <div class="icon"></div>
+            <span>
+                <hxgn-commonlocalization-translate-v1 
+                    [token]="tokens.refreshLayerOptionsBtnLabel"
+                    skeletonWidth="'60px'">
+                </hxgn-commonlocalization-translate-v1>
+            </span>
+        </button>
+    </div> 
+    <div class="fetch-error-msg" *ngIf="fetchError">
+        <span class="msg">
+            <hxgn-commonlocalization-translate-v1 
+                [token]="tokens.errorGettingWMSInfo"
+                skeletonWidth="'60px'">
+            </hxgn-commonlocalization-translate-v1>     
+        </span>
+        <span class="response">
+            {{fetchErrorMsg}}
+        </span>
+    </div>
+    <div [class.obsecure]="needToFetchLayers">
+        <div class="layer-property">
+            <div class="label">
+                <hxgn-commonlocalization-translate-v1 
+                    [token]="tokens.wmsLayersLabel"
+                    skeletonWidth="'60px'">
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+            <hxgn-commonmap-dropdown-tree
+                [source]="availLayers"
+                [value]="selectedWMSLayers"
+                [multiSelect]="true"
+                [placeholder]="transStrings[wmsLayersPlaceholder]"
+                (selectionChanged)="setWmsLayer($event)">
+            </hxgn-commonmap-dropdown-tree>
+            <span class="error-msg" *ngIf="layersErrorToken">
+                <hxgn-commonlocalization-translate-v1 
+                    [token]="layersErrorToken"
+                    [skeletonWidth]="'60px'">
+                </hxgn-commonlocalization-translate-v1>
+            </span>
+        </div>
+        <div class="layer-property">
+            <div class="layer-option-name ellipsis">
+                <hxgn-commonlocalization-translate-v1
+                    [token]="tokens.optionAttribution"
+                    [skeletonWidth]="'60px'">
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+            <div class="layer-option-value">
+                <hxgn-common-input-v2 style="width:100%">
+                    <input type="text" (change)="setAttribution($event)"
+                    [placeholder]="transStrings[tokens.optionAttributionPlaceholder]"
+                    [value]="attribution" />
+                </hxgn-common-input-v2>
+            </div>
+        </div>
+        <div class="layer-property">
+            <hxgn-commonmap-admin-coord-systems-control
+                [coordSystems]="crsList"
+                [selectedCoordSystem]="selectedCRS"
+                (coordSystemChanged)="setCRS($event)">
+            </hxgn-commonmap-admin-coord-systems-control>
+        </div>
+        <div class="layer-property">
+            <div class="label">
+                <hxgn-commonlocalization-translate-v1
+                    [token]="tokens.optionImageFormat"
+                    [skeletonWidth]="'60px'">
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+            <div class="layer-option-value">
+                <hxgn-common-dropdown-v2 #wmsFormats (selectionChange)="setFormat($event)"
+                    [value]="selectedFormat"
+                    placeholder="{{ transStrings[tokens.optionImageFormatPlaceholder]}}">
+                    <hxgn-common-dropdown-item-v2 *ngFor="let format of wmsImageFormats; let i = index;"
+                        [value]="format">
+                        {{format}}
+                    </hxgn-common-dropdown-item-v2>
+                </hxgn-common-dropdown-v2>
+            </div>
+            <span class="error-msg" *ngIf="wmsImageFormatErrorToken">
+                <hxgn-commonlocalization-translate-v1 
+                    [token]="wmsImageFormatErrorToken"
+                    [skeletonWidth]="'60px'">
+                </hxgn-commonlocalization-translate-v1>
+            </span>
+        </div>
+        <ng-container *featureFlag="FeatureFlags.LayerInfoCmds">
+            <div class="layer-property small-checkbox-font">
+                <div class='feat-info-help-info-section'>
+                    <div class="info-icon" #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="featInfoHelpInfo"></div>
+                    <mat-menu #featInfoHelpInfo="matMenu" style="width:275px" xPosition="before">
+                        <div class="info-text" >
+                            <hxgn-commonlocalization-translate-v1 [token]="tokens.getFeatInfoHelpInfoText"></hxgn-commonlocalization-translate-v1>
+                        </div>
+                    </mat-menu>
+                </div>
+                <div class="feat-info-checkbox" [class.disabled]="disableFeatInfoOption">
+                    <mat-checkbox [checked]="enableFeatInfo" disableRipple="true"
+                    (change)="setEnableFeatInfo($event)">
+                        <hxgn-commonlocalization-translate-v1
+                            [token]="tokens.optionEnableFeatInfo"
+                            [skeletonWidth]="'60px'">
+                        </hxgn-commonlocalization-translate-v1>
+                    </mat-checkbox>
+                </div>
+            </div>
+            <div class="layer-property" *ngIf="enableFeatInfo">
+                <div class="label">
+                    <hxgn-commonlocalization-translate-v1
+                        [token]="tokens.optionFeatInfoFormat"
+                        [skeletonWidth]="'60px'">
+                    </hxgn-commonlocalization-translate-v1>
+                </div>
+                <div class="layer-option-value">
+                    <hxgn-common-dropdown-v2 #featInfoormats (selectionChange)="setFeatInfoFormat($event)"
+                        [value]="selectedFeatInfoFormat"
+                        [placeholder]="transStrings[tokens.optionFeatInfoFormatPlaceholder]">
+                        <hxgn-common-dropdown-item-v2 *ngFor="let infoFormat of featInfoFormats; let i = index;"
+                            [value]="infoFormat">
+                            {{infoFormat}}
+                        </hxgn-common-dropdown-item-v2>
+                    </hxgn-common-dropdown-v2>
+                </div>
+                <span class="error-msg" *ngIf="featInfoFormatErrorToken">
+                    <hxgn-commonlocalization-translate-v1 
+                        [token]="featInfoFormatErrorToken"
+                        [skeletonWidth]="'60px'">
+                    </hxgn-commonlocalization-translate-v1>
+                </span>
+            </div>
+        </ng-container>
+        <div class="layer-property small-checkbox-font">
+            <mat-checkbox [checked]="transparent" disableRipple="true"
+            (change)="setTransparent($event)">
+                <hxgn-commonlocalization-translate-v1
+                    [token]="tokens.optionWMSTransparent"
+                    [skeletonWidth]="'60px'">
+                </hxgn-commonlocalization-translate-v1>
+            </mat-checkbox>
+        </div>
+        <div class="layer-property">
+            <hxgn-commonmap-admin-auto-refresh
+                [autoRefresh]="autoRefresh"
+                [autoRefreshInterval]="autoRefreshInterval"
+                (autoRefreshChanged)="setAutoRefresh($event)"
+                (autoRefreshIntervalChanged)="setAutoRefresh($event)">
+            </hxgn-commonmap-admin-auto-refresh>
+        </div>
+    
+    </div>
+</div>
+   

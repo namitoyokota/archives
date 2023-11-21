@@ -1,0 +1,37 @@
+<div class="category-list">
+    <mat-radio-group [(ngModel)]="selectedCategory" (change)="categoryChange()">
+        <mat-radio-button class='option' value='all'>
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.manageAllUsers" skeletonWidth="150px">
+            </hxgn-commonlocalization-translate-v1>
+        </mat-radio-button>
+        <div class="all-users" [class.disabled]="selectedCategory !== 'all'">
+            <hxgn-commonidentity-all-users-item></hxgn-commonidentity-all-users-item>
+        </div>
+        <mat-radio-button class='option' value='groups'>
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.manageGroups" skeletonWidth="150px">
+            </hxgn-commonlocalization-translate-v1>
+        </mat-radio-button>
+        <div [class.disabled]="selectedCategory !== 'groups'">
+            <div class="menu-button" (click)="addGroups()">
+                <img src="assets/commonfeatureflags-core/add-icon.png" class="icon" />
+                <span>
+                    <hxgn-commonlocalization-translate-v1 [token]='tokens.selectGroups' skeletonWidth="120px">
+                    </hxgn-commonlocalization-translate-v1>
+                </span>
+            </div>
+            <hxgn-commonidentity-group-list-v1 (selection)="groupChange($event)" [selectedGroup]="selectedGroupId"
+                [groups]="groupIds" [searchable]="false" [showOtherUsers]="true" [showHeaders]="false">
+            </hxgn-commonidentity-group-list-v1>
+        </div>
+    </mat-radio-group>
+</div>
+
+<hxgn-commonfeatureflags-groups-editor [featureFlags]="featureFlags" [groupStates]="selectedGroupStates"
+    [editedFlags]="selectedEditedFlags" (flagChange)="flagsChange($event)" (overrideChange)="overridesChange($event)"
+    (allChanges)="allChange($event)" (flagDisabled)="handleFlagDisabled($event)"
+    (flagEnabled)="handleFlagEnabled($event)">
+</hxgn-commonfeatureflags-groups-editor>
+
+<div *ngIf="saving" class="spinner">
+    <mat-spinner></mat-spinner>
+</div>

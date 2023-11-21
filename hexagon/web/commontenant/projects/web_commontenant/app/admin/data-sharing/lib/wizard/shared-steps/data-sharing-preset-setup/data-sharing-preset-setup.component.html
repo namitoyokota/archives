@@ -1,0 +1,30 @@
+<hxgn-commontenant-wizard-step-layout
+    [stepTitle]="tTokens.dataSharingPresetsAlt + ' ' + capabilityTokens.get((activeCapability$ | async)?.nameToken)"
+    [actionPaneRef]="actionPaneRef" [descriptionHeaderPaneRef]="descriptionHeaderPaneRef">
+
+    <hxgn-commontenant-wizard-step-layout-description>
+        <span class="title">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.dataSharingPresets" skeletonWidth="250px">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+        <span class="msg">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.dataSharingPresetsMsg" skeletonWidth="250px">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+        <div class="capability-pane">
+            <hxgn-common-list-steps [selectedIndex]="activeCapabilityStep" [listSteps]="capabilitySteps"
+                (indexChanged)="setCapabilityByIndex($event)">
+            </hxgn-common-list-steps>
+        </div>
+
+        <hxgn-commontenant-info-popover [msg]="tTokens.infoButtonMessage">
+        </hxgn-commontenant-info-popover>
+    </hxgn-commontenant-wizard-step-layout-description>
+
+    <hxgn-commontenant-wizard-step-layout-content>
+        <hxgn-commontenant-sharing-preset [capability]="activeCapability$ | async"
+            [sharingCriteria]="activeSharingCriteria$ | async" [readOnlyCriteria]="null"
+            (sharingCriteriaChange)="setCriteria($event)">
+        </hxgn-commontenant-sharing-preset>
+    </hxgn-commontenant-wizard-step-layout-content>
+</hxgn-commontenant-wizard-step-layout>

@@ -1,0 +1,42 @@
+@import '../../../../../core-styles/stylesheets/_variables.scss';
+
+$border-color: $N40;
+$filter-bg-hover: $light-gray;
+$filter-bg-active: darken($filter-bg-hover, 5%);
+
+.dropdown-filters {
+  display: flex;
+  vm-dropdown {
+    min-width: 150px;
+    margin-right: 8px;
+  }
+  vm-dropdown:last-child {
+    margin-right: 0;
+  }
+  .vm-dropdown.vm-dropdown--is-open {
+    width: 280px;
+  }
+  vm-button button {
+    width: 100%;
+    justify-content: center;
+  }
+  .no-results {
+    background-color: $N20;
+    text-align: center;
+    padding: 2px;
+  }
+}
+.dropdown-filters__controls {
+  display: grid;
+  padding: 0 4px 4px 4px;
+  column-gap: 4px;
+  row-gap: 4px;
+
+  .vm-input {
+    height: 25px;
+    min-height: 25px;
+    font-size: 12px;
+    padding: 12px;
+    grid-column: span 2;
+  }
+}

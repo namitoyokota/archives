@@ -1,0 +1,14 @@
+<template>
+    <require from="./vm-alert-demo.component.css"></require>
+
+    <div class="vm-alert-demo">
+        <div class="vm-alert-demo--item" repeat.for="alertType of alertTypes">
+            <h4 class="vm-alert-demo--item-title">${alertType}</h4>
+            <vm-alert type.one-time="alertType">${text}</vm-alert>
+            <vm-alert type.one-time="alertType" show-dismiss.one-time="true">${text}</vm-alert>
+            <vm-alert type.one-time="alertType" show-icon.one-time="false">${text}</vm-alert>
+            <vm-alert type.one-time="alertType" show-dismiss.one-time="true" show-icon.one-time="false">${text}</vm-alert>
+            <vm-alert type.one-time="alertType" is-large.one-time="true" show-dismiss.one-time="true">${text}</vm-alert>
+        </div>
+    </div>
+</template>

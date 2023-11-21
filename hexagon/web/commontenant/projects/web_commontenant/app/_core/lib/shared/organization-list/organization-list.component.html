@@ -1,0 +1,50 @@
+<div *ngIf="showOverview" class="organization overview"
+    [class.selected]="selectedOrganization.id === selectOptions.overview"
+    (click)="selectOverview()">
+    <span>
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.overview" skeletonWidth="65px">
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+</div>
+<div *ngIf="showSystem" class="organization system"
+    [class.selected]="selectedOrganization.id === selectOptions.system"
+    (click)="selectSystem()">
+    <img src="assets/commontenant-core/provider-icon.svg" class="provider-icon" />
+    <span>
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.system" skeletonWidth="65px">
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+</div>
+<div *ngFor="let organization of (organizations$ | async)" class="organization" [class.delete]="showDelete"
+    [class.selected]="selectedOrganization && selectedOrganization.id === organization.id"
+    [class.onboarding-complete]="onboardingMap.get(organization.id) && showOnboarding"
+    [class.onboarding-incomplete]="!onboardingMap.get(organization.id) && showOnboarding"
+    (click)="selectionChange(organization)">
+
+    <hxgn-commontenant-tenant-icon size="28px" [tenant]="organization">
+    </hxgn-commontenant-tenant-icon>
+
+    <div class="organization-info">
+        <div class="organization-name ellipsis">
+            {{organization.name}}
+        </div>
+        <div class="organization-location ellipsis">
+            <ng-container *ngIf="organization.name !== tTokens.deletedOrganization; else deletedOrg">
+                <span *ngIf="organization.city && organization.state">{{organization.city}}, {{organization.state}}</span>
+            </ng-container>
+            <ng-template #deletedOrg>
+                {{organization.id}}
+            </ng-template>
+        </div>
+    </div>
+
+    <ng-container *ngIf="showDelete">
+        <div class="action-icon" cdkOverlayOrigin #origin="cdkOverlayOrigin" (click)="popover.open($event)">
+        </div>
+        <hxgn-common-popover #popover [origin]="origin" [menuMode]="true" [position]="popoverPosition">
+            <hxgn-common-menu-item imgSrc="assets/commontenant-core/delete-icon.png" [token]="tokens.delete"
+                (click)="deleteOrganization(organization)">
+            </hxgn-common-menu-item>
+        </hxgn-common-popover>
+    </ng-container>
+</div>

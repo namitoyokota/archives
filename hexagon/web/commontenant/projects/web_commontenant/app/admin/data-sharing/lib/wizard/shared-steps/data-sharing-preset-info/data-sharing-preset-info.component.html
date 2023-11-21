@@ -1,0 +1,62 @@
+<hxgn-commontenant-wizard-step-layout [stepTitle]="tTokens.dataSharingPresets" [actionPaneRef]="actionPaneRef"
+    [descriptionHeaderPaneRef]="descriptionHeaderPaneRef">
+
+    <hxgn-commontenant-wizard-step-layout-content>
+        <span class="msg">
+            <hxgn-commonlocalization-translate-v1
+                [token]="internalSharing ? tokens.dataSharingPresetsInfoMsgInternal : tokens.dataSharingPresetsInfoMsg"
+                skeletonWidth="250px">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+        <div class="info-graphic"></div>
+        <div class="filter-level-pane">
+
+            <div class="filter-level">
+                <div class="color-share-everything"></div>
+                <hxgn-commonlocalization-translate-v1
+                    [token]="internalSharing ? tokens.shareAllDataMsgInternalAlt : tokens.shareAllDataMsgAlt"
+                    skeletonWidth="200px" [customInterpolation]="true">
+                    <ng-template let-token="token">
+                        <hxgn-commonlocalization-translate-v1 *ngIf="token === 'title'" class="important"
+                            [token]="tokens.shareEverything" skeletonWidth="115px">
+                        </hxgn-commonlocalization-translate-v1>
+                    </ng-template>
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+
+            <div class="filter-level">
+                <div class="color-basic"></div>
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.allowsYouToOmitMsgAlt" skeletonWidth="200px"
+                    [customInterpolation]="true">
+                    <ng-template let-token="token">
+                        <hxgn-commonlocalization-translate-v1 *ngIf="token === 'title'" class="important"
+                            [token]="tokens.basicFiltering" skeletonWidth="115px">
+                        </hxgn-commonlocalization-translate-v1>
+                    </ng-template>
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+
+            <div class="filter-level">
+                <div class="color-advanced"></div>
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.allowsYouToOmitCertainMsgAlt"
+                    skeletonWidth="200px" [customInterpolation]="true">
+                    <ng-template let-token="token">
+                        <hxgn-commonlocalization-translate-v1 *ngIf="token === 'title'" class="important"
+                            [token]="tokens.advancedFiltering" skeletonWidth="115px">
+                        </hxgn-commonlocalization-translate-v1>
+                    </ng-template>
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+        </div>
+    </hxgn-commontenant-wizard-step-layout-content>
+
+    <hxgn-commontenant-wizard-step-layout-description>
+        <hxgn-commontenant-step-description [stepTitle]="tTokens.reviewSharingPresets"
+            [description]="tTokens.reviewSharingLevelsMsg"
+            imageUrl="assets/commontenant-core/global-filter-icon.svg">
+        </hxgn-commontenant-step-description>
+
+        <hxgn-commontenant-info-popover [msg]="tTokens.infoButtonMessage">
+        </hxgn-commontenant-info-popover>
+    </hxgn-commontenant-wizard-step-layout-description>
+</hxgn-commontenant-wizard-step-layout>

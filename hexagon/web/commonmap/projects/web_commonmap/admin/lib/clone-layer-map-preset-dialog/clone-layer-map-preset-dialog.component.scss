@@ -1,0 +1,25 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 90px;
+}
+
+.input-name {
+    display: flex;
+}
+
+.prompt {
+    padding-bottom: 5px;
+}
+  
+.error-msg {
+    display: flex;
+	width: 100%;
+	font-size: 12px;
+	color: #F29E25;
+}
+
+.mat-dialog-actions {
+    justify-content: flex-end;
+}

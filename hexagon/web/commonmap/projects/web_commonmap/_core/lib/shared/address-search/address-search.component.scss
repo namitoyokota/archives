@@ -1,0 +1,42 @@
+:host {
+    height: 100%;
+    width: 100%;
+}
+
+.search-pane {
+    display: grid;
+    grid-template-columns: auto min-content;
+    column-gap: 5px;
+
+    .loading-pane {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+::ng-deep .hxgn-common-map-dropdown-items {
+    .mat-menu-content {
+        padding: 0 !important;
+    }
+
+    .items-container {
+        max-height: 170px;
+        overflow-y: auto;
+    }
+
+    .item {
+        height: 25px;
+        padding: 5px 0 3px 10px;
+        border-bottom: 1px solid #e6e7e8;
+
+        display: grid;
+        grid-template-columns: min-content auto;
+        column-gap: 8px;
+        align-content: center;
+
+        &:hover {
+            background-color: #eceeee;
+            cursor: pointer;
+        }
+    }
+}

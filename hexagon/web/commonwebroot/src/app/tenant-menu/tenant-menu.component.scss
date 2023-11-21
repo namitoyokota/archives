@@ -1,0 +1,177 @@
+.active-tenant-container {
+    height: 56px;
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    column-gap: 10px;
+    align-items: center;
+    border-bottom: solid 1px #afafaf;
+    padding: 0 10px;
+
+    .active-tenant-name {
+        color: #323133;
+        font-size: 16px;
+        font-weight: 500;
+    }
+}
+
+.heading {
+    height: 25px;
+    display: flex;
+    align-items: center;
+    border-bottom: solid 1px #afafaf;
+    box-sizing: border-box;
+    color: #323133;
+    font-size: 12px;
+    line-height: 17px;
+    padding: 0 10px;
+}
+
+.linked-item {
+    height: 35px;
+    display: grid;
+    grid-template-columns: 22px 1fr;
+    column-gap: 5px;
+    align-items: center;
+    border-bottom: solid 1px #afafaf;
+    box-sizing: border-box;
+    color: #323133;
+    padding: 0 10px;
+
+    &:hover {
+        background-color: #eceeee;
+        cursor: pointer;
+    }
+
+    img {
+        justify-self: center;
+    }
+}
+
+.loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.6);
+    z-index: 15;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.other-organizations {
+    max-height: 300px;
+    overflow-y: auto;
+
+    .other-organization {
+        height: 50px;
+        display: grid;
+        grid-template-columns: min-content 1fr;
+        column-gap: 8px;
+        align-items: center;
+        background-color: #f2f2f2;
+        border-bottom: solid 1px #afafaf;
+        box-sizing: border-box;
+        color: #323133;
+        cursor: pointer;
+        font-size: 13px;
+        padding: 0 10px;
+    }
+}
+
+.sign-out-container {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 10px;
+    column-gap: 15px;
+
+    .sign-out-btn {
+        height: 28px;
+        width: 100px;
+        background-color: #f0f0f0;
+        border: solid 1px #afafaf;
+        box-shadow: 0px 2px 2px #00000033;
+        box-sizing: border-box;
+        font-family: "Segoe UI", SegoeUI, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+        font-size: 13px;
+        font-weight: 300;
+
+        &:hover {
+            background-color: #eceeee;
+        }
+    }
+}
+
+.tenant-info-container {
+    height: 46px;
+    display: grid;
+    grid-template-columns: min-content;
+    align-items: center;
+    cursor: pointer;
+    padding: 0 10px;
+
+    &.menu-open {
+        background-color: #4d4d4d;
+    }
+
+    &.tenant-info-container-admin {
+        grid-template-columns: min-content 1fr;
+        column-gap: 10px;
+
+        .tenant-info {
+            color: #fff;
+
+            .tenant-name {
+                font-size: 13px;
+                font-weight: 500;
+                line-height: 16px;
+            }
+
+            .user-name {
+                font-size: 12px;
+                line-height: 16px;
+            }
+        }
+    }
+}
+
+.user-info-container {
+    min-height: 72px;
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    column-gap: 8px;
+    border-bottom: solid 1px #afafaf;
+    box-sizing: border-box;
+    padding: 10px;
+
+    .open-user-profile {
+        display: grid;
+        grid-template-columns: min-content 1fr;
+        column-gap: 5px;
+        cursor: pointer;
+        margin-top: 3px;
+
+        .open-user-profile-text {
+            color: #666666;
+            font-size: 13px;
+            line-height: 17px;
+            text-decoration: underline;
+        }
+    }
+
+    .account-user-name {
+        color: #323133;
+        font-size: 13px;
+        line-height: 19px;
+    }
+
+    .user-name {
+        color: #323133;
+        font-size: 15px;
+        line-height: 19px;
+        font-weight: 500;
+    }
+}

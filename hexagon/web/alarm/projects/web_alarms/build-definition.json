@@ -1,0 +1,10 @@
+{
+    "featureModules": [
+        {
+            "entryPointId": "@galileo/web_alarms/core",
+            "chunkId": "@hxgn/alarms",
+            "module": "AlarmsCoreModule"
+        }
+    ],
+    "adminFeatureRouting": []
+}

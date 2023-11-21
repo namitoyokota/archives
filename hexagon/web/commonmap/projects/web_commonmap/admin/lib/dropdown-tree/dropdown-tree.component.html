@@ -1,0 +1,79 @@
+<div class="dropdown-tree-control" #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="dropdownTree">
+    <div class="dropdown-tree-container">
+        <input class='dropdown-tree-input' type="text" spellcheck="false" 
+        autofocus onkeydown="return false"
+        [placeholder]="placeholder"
+        [value]="selectedNodesStr" />
+        <div class="dropdown-tree-button-pane">
+            <div class="dropdown-tree-button">
+                <div class="dropdown-tree-button-icon"></div>
+                <mat-menu class="dropdown-menu" #dropdownTree="matMenu" xPosition="before">
+                    <div *ngIf="isLoading" class="progress-bar-pane">
+                        <div class="progress-bar-container">
+                            <span class="progress-bar-text">
+                                <hxgn-commonlocalization-translate-v1  
+                                    [token]="tokens.hxdrRetrievingInfo">
+                                </hxgn-commonlocalization-translate-v1>
+                            </span>
+                            <div class="progress-bar">
+                                <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dropdown-tree" [class.loading]="isLoading">
+                        <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+                            <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle
+                                [class.parent-selectable]=node.parent?.selectable
+                                [class.empty-node]="node.empty">
+                                <div class="dropdown-tree-leaf-node small-checkbox-font">
+                                    <mat-checkbox *ngIf="node.selectable && !node.empty"
+                                        [checked]="node.selected" disableRipple="true"
+                                        (change)="leafTreeNodeChanged($event, node, menuTrigger)">
+                                        <div class="dropdown-tree-leaf-node-text ellipsis" [title]="node?.item?.label">
+                                            {{node.item.label}}
+                                        </div>
+                                    </mat-checkbox>
+                                    <span *ngIf="!node.selectable && !node.empty" class="dropdown-tree-leaf-node-text ellipsis"
+                                        [class.empty-node-text]
+                                        [title]="node.item.label">
+                                        {{node.item.label}}
+                                    </span>
+                                    <div class="empty-node-text" *ngIf="node.empty">
+                                        <hxgn-commonlocalization-translate-v1  
+                                            [token]="tokens.hxdrNoAvailableItems">
+                                        </hxgn-commonlocalization-translate-v1>
+                                    </div>
+                                </div>
+                            </mat-tree-node>
+                            <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
+                                <div class="mat-tree-node dropdown-tree-parent-node small-checkbox-font">
+                                    <div class="dropdown-tree-node-button" matTreeNodeToggle>
+                                        <img class="node-button-icon" src="assets/commonmap-core/images/admin/dropdown-arrow.png"
+                                            [class.expanded]="treeControl.isExpanded(node)" />
+                                    </div>
+                                    <mat-checkbox *ngIf="node.selectable && multiSelect" disableRipple="true"
+                                        [checked]="descendantsAllSelected(node)"
+                                        [indeterminate]="descendantsPartiallySelected(node)"
+                                        (click)="stopPropagation($event)"
+                                        (change)="parentTreeNodeChanged($event, node)">
+                                        <div class="dropdown-tree-parent-node-text ellipsis"
+                                            (click)="stopPropagation($event)">
+                                            {{node.item.label}}
+                                        </div>
+                                    </mat-checkbox>
+                                    <div *ngIf="!node.selectable || !multiSelect" class= "dropdown-tree-parent-node-text ellipsis" matTreeNodeToggle>
+                                        {{node.item.label}}
+                                    </div>
+                                </div>
+                                <div role="group"
+                                    [class.dropdown-tree-invisible]="!treeControl.isExpanded(node)">
+                                    <ng-container matTreeNodeOutlet></ng-container>
+                                </div>
+                            </mat-nested-tree-node>
+                        </mat-tree>
+                    </div>
+                </mat-menu>
+            </div>
+        </div>
+    </div>
+</div>

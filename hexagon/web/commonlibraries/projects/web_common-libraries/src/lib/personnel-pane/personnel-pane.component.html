@@ -1,0 +1,19 @@
+<div class="header">
+    <span>
+        <hxgn-commonlocalization-translate-v1 skeletonWidth="75" [token]="tokens.additionalContacts"></hxgn-commonlocalization-translate-v1>
+        ({{(personnel?.length) ? personnel?.length : 0}})
+    </span>
+    <div class="btn list" (click)="setSelectedDisplayType(displayType.list)"
+        [class.selected]="selectedDisplayType === displayType.list"></div>
+    <div class="btn grid" (click)="setSelectedDisplayType(displayType.grid)"
+        [class.selected]="selectedDisplayType === displayType.grid"></div>
+</div>
+<div class="list-pane" [class.grid]="selectedDisplayType === displayType.grid">
+    <div class="item" *ngFor="let person of personnel">
+        <hxgn-common-initials [firstName]="person?.firstName" [lastName]="person?.lastName"></hxgn-common-initials>
+        <div class="name">
+            <span>{{person.firstName}} {{person.lastName}}</span>
+            <span *ngIf="person.title" class="title">({{person.title}})</span>
+        </div>
+    </div>
+</div>

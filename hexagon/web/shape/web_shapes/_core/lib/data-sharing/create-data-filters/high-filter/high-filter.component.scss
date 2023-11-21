@@ -1,0 +1,51 @@
+:host {
+    height: 100%;
+    display: grid;
+    grid-template-columns: auto 276px;
+}
+
+.add-pane {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    box-sizing: border-box;
+
+    .direction-text, .share-type {
+        padding-bottom: 10px;
+    }
+
+    .share-type-pane {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 10px;
+    }
+
+    .input-pane {
+        display: flex;
+        width: 100%;
+        margin-top: 10px;
+
+        input {
+            width: 100%;
+        }
+    }
+
+    .btn-pane {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 10px;
+    }
+}
+
+.filter-pane {
+    border-left: 1px solid #adafb2;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+
+    h2 {
+        padding-left: 10px;
+        font-size: 1em !important;
+    }
+}

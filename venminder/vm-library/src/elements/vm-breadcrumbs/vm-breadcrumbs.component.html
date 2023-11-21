@@ -1,0 +1,12 @@
+<template>
+    <require from="./vm-breadcrumbs.component.css"></require>
+
+    <template repeat.for="breadcrumb of breadcrumbs">
+        <template if.bind="!$last">
+            <a if.bind="breadcrumb.name" class="vm-breadcrumbs--breadcrumb" route-href="route.bind: breadcrumb.name">${breadcrumb.title}</a>
+            <a if.bind="breadcrumb.href" class="vm-breadcrumbs--breadcrumb" href.bind="breadcrumb.href">${breadcrumb.title}</a>
+            <span class="vm-breadcrumbs--breadcrumb-divider"></span>
+        </template>
+        <span else>${breadcrumb.title}</span>
+    </template>
+</template>

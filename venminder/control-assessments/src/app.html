@@ -1,0 +1,22 @@
+<template>
+    <require from="shared-from-dcdev/core-styles/stylesheets/bootstrap.scss"></require>
+    <require from="eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css"></require>
+    <require from="shared-from-dcdev/core-styles/stylesheets/core.scss"></require>
+    <require from="shared-from-dcdev/stylesheets/app.scss"></require>
+    <require from="shared-from-dcdev/stylesheets/developer.scss"></require>
+    <require from="shared-from-dcdev/stylesheets/toastr.css"></require>
+    <require from="shared-from-dcdev/shared/components/overlay-manager/overlay-manager"></require>
+    <require from="shared-from-dcdev/shared/components/layouts/master-layout"></require>
+
+    <vm-script is-async="true" url="${settings.distFolder}/dfp.min.js" on-load.call="onDfpLoaded()" if.bind="includePendoJavascript"></vm-script>
+    <vm-script is-async="true" url="${settings.distFolder}/pendo-install.js" on-load.call="onPendoLoaded()" if.bind="includePendoJavascript"></vm-script>
+
+    <master-layout user.bind="user">
+        <div slot="contentslot">
+            <router-view></router-view>
+        </div>
+    </master-layout>
+
+    <!--<overlay-manager></overlay-manager>-->
+    <vm-context-menu></vm-context-menu>
+</template>

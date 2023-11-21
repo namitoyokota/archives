@@ -1,0 +1,36 @@
+<div class="add-keywords-pane">
+    <span class="title">
+        <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]='tokens.keywords'>
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+    <span class="description">
+        <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]='tokens.enterKeywordMsg'>
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+    <span>
+        <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]='tokens.keywordInputMsg'>
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+    <div class="keyword-pane">
+        <div>
+            <hxgn-common-input-v2>
+                <input [(ngModel)]="keywordInput" (keyup.enter)="addKeyword()"
+                    [placeholder]="tTokens.enterKeywordsHere" type="text" />
+            </hxgn-common-input-v2>
+        </div>
+
+        <hxgn-common-chip *ngFor="let keyword of node.keywords; let i = index" backgroundColor='#ccc' [removable]="true"
+            (removed)="removeKeyword(i)">{{keyword}}</hxgn-common-chip>
+    </div>
+</div>
+<div class="similar-pane">
+    <img *ngIf="getSimilarMatches().length === 0; else hasMatches"
+        src="assets/commonkeywords-core/images/zero_similar.png" />
+    <ng-template #hasMatches>
+        <img src="assets/commonkeywords-core/images/one_or_more_similar.png" />
+    </ng-template>
+    <span style="margin-top: 10px;">{{getSimilarMatches().length}}
+        <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]='tokens.similar'>
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+</div>

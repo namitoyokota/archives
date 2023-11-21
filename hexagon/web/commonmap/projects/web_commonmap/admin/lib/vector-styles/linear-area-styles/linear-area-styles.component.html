@@ -1,0 +1,64 @@
+<div class="section-header">
+    <hxgn-commonlocalization-translate-v1 
+        [token]="tokens.stylesForLinearAreaFeatures">
+    </hxgn-commonlocalization-translate-v1>
+</div>
+<div class="vector-styles">
+    <!-- Line Type -->
+    <div class="item">
+        <span class="label">
+            <hxgn-commonlocalization-translate-v1
+                [token]="tokens.styleLineType"
+                [skeletonWidth]="'100px'">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+        <hxgn-common-line-type-v1 
+            [activeLineType]="lineType"
+            (lineTypeChange)="setLineType($event)">
+        </hxgn-common-line-type-v1>
+    </div>
+    
+    <!-- Line weight selection -->
+    <div class="item">
+        <span class="label">
+            <hxgn-commonlocalization-translate-v1
+                [token]="tokens.styleLineWidth"
+                [skeletonWidth]="'100px'">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+        <hxgn-common-line-weight-v1
+            [activeLineWeight]="lineWidth"
+            (lineWeightChange)="setLineWidth($event)">
+        </hxgn-common-line-weight-v1>
+    </div>
+    
+    <!-- Line Color -->
+    <div class="item">
+        <span class="label">
+            <hxgn-commonlocalization-translate-v1
+                [token]="tokens.styleLineColor"
+                [skeletonWidth]="'100px'">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+        <hxgn-common-color-selector-v1
+            [activeColor]="vectorStyleProps?.lineColor"
+            (colorChange)="setLineColor($event)"
+            [colorType]="colorType.line">
+        </hxgn-common-color-selector-v1>
+    </div>
+    
+    <!-- Fill Color -->
+    <div class="item">
+        <span class="label">
+            <hxgn-commonlocalization-translate-v1
+                [token]="tokens.styleFillColor"
+                [skeletonWidth]="'100px'">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+        <hxgn-common-color-selector-v1
+            [activeColor]="vectorStyleProps?.fillColor"
+            (colorChange)="setFillColor($event)"
+            [colorType]="colorType.fill">
+        </hxgn-common-color-selector-v1>
+    </div>
+</div>

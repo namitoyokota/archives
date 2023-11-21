@@ -1,0 +1,25 @@
+@use "./variables" as v;
+
+$date-picker-font-size: 16px;
+
+@mixin datePickerDefaultButton {
+  @include datePickerButtonOverrideBorder;
+  background-color: v.$white;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+@mixin datePickerButtonOverrideBorder {
+  border: 1px transparent !important;
+}
+
+@mixin datePickerButtonOverrideStyle {
+  @include datePickerButtonOverrideBorder;
+  border-radius: 5px !important;
+  height: 35px !important;
+  line-height: 35px !important;
+  width: 100% !important;
+}

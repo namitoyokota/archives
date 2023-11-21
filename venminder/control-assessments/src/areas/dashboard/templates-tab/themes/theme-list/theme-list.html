@@ -1,0 +1,52 @@
+﻿<template>
+  <require
+    from="shared-from-dcdev/shared/components/loader/loader.component"
+  ></require>
+  <require from="./theme-list.scss"></require>
+
+  <div class="theme-list">
+    <div if.bind="loading">
+      <loader></loader>
+    </div>
+
+    <div if.bind="!loading" class="theme-layout">
+      <!-- Header -->
+      <div class="header">
+        <!-- Search Bar -->
+        <div class="search-pane">
+          <vm-search search.call="search($event)"></vm-search>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="btn-pane">
+          <vm-button
+            secondary
+            class="pull-right m-l-sm"
+            click.call="loadTemplateIDsFile()"
+          >
+            <i class="fa fa-download"></i>
+            <span>Template IDs</span>
+          </vm-button>
+          <vm-button
+            primary
+            class="pull-right m-l-sm"
+            click.delegate="addTheme()"
+          >
+            <i class="fa fa-plus"></i>
+            <span>Add a new theme</span>
+          </vm-button>
+        </div>
+      </div>
+
+      <!-- Theme List -->
+      <div class="theme-list">
+        <vm-grid-v2
+          config.bind="gridConfig"
+          grid-data.bind="gridData"
+          max-height="1000px"
+        >
+        </vm-grid-v2>
+      </div>
+    </div>
+  </div>
+</template>

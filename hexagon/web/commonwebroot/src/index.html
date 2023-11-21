@@ -1,0 +1,57 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>HxGN Connect</title>
+
+    <script>
+        var commonLocalizationTokens = {};
+        commonLocalizationTokens["commonwebroot-main.loader.copyright"] = "&#xA9; 2021-2022 Hexagon AB and/or its subsidiaries and affiliates. All rights reserved.";
+        commonLocalizationTokens["commonwebroot-main.loader.initializing"] = "Initializing...";
+        commonLocalizationTokens["commonwebroot-main.loader.legal"] = "This program is protected by U.S. and international copyrights as described in the About Box.";
+
+        var activeFeatureFlags = ["FF_CommonIdentity_6", "FF_CommonMap_1", "FF_Shapes_1", "FF_CommonIdentity_3", "FF_Luciad_1", "FF_OnCallCloudGateway_1", "FF_CommonLayoutManager_1", "FF_Documentation_1", "FF_CommonConversations_2", "FF_BackupScheduling_1"];
+
+        var productVersion = '0000.00.000';
+
+        var activeLanguages = [
+            {
+                "culture": "de",
+                "direction": "ltr",
+                "decimalType": "comma",
+                "country": "de",
+                "isActive": true,
+                "token": "commonLocalization.language.german.de"
+            },
+            {
+                "culture": "en",
+                "direction": "ltr",
+                "decimalType": "period",
+                "country": "us",
+                "isActive": true,
+                "token": "commonLocalization.language.english.en"
+            },
+            {
+                "culture": "ja",
+                "direction": "ltr",
+                "decimalType": "period",
+                "country": "jp",
+                "isActive": true,
+                "token": "commonLocalization.language.japanese.ja"
+            }
+        ];
+    </script>
+
+    <base href="/">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link id="appFavicon" rel="icon" type="image/x-icon" href="assets/branding/favicon.ico">
+</head>
+
+<body>
+    <app-root>
+    </app-root>
+</body>
+
+</html>

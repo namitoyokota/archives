@@ -1,0 +1,25 @@
+:host {
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.note-container {
+    font-size: 16px;
+    margin: 10px;
+
+    .note {
+        font-weight: bold;
+    }
+
+    .msg {
+        font-style: italic;
+    }
+}
+
+hxgn-commontenant-tenant-config {
+    height: calc(100% - 40px);
+    border-top: 1px solid #a0a0a0;
+}

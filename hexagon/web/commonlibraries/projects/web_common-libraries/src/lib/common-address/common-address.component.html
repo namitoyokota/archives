@@ -1,0 +1,11 @@
+<div class="title">
+    <hxgn-commonlocalization-translate-v1 *ngIf="titleToken" [token]="titleToken">
+    </hxgn-commonlocalization-translate-v1>
+    <hxgn-commonlocalization-translate-v1 *ngIf="!titleToken" [token]="tokens.address">
+    </hxgn-commonlocalization-translate-v1>
+</div>
+<div class="address">
+    <img *ngIf="iconURL" [src]="iconURL" />
+    <img *ngIf="!iconURL" src="assets/common-libraries/images/address-icon.png" />
+    <span>{{address}}</span>
+</div>

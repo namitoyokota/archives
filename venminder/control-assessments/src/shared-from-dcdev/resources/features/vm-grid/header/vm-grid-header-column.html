@@ -1,0 +1,17 @@
+﻿<template>
+    <div  click.trigger="changeOrder()" class="vm-grid-header-column-container ${column.AllowSorting?'vm-grid-header-column-hover':''}">
+        <div class="vm-grid-header-column-inner vm-grid-row-column-overflow ${!isLast ? 'vm-grid-header-column-inner-border' : ''} ${column.ColumnFieldType=='select'?'vm-grid-header-column-select':''}">
+            <div class="vm-grid-column-overflow">
+                <div if.bind="column.ColumnFieldType!='select'">
+                    ${column.ColumnHeaderText}<span show.bind="!column.ColumnHeaderText"></span>
+                    <i show.bind="!direction" class="fad fa-sort not-sorted"></i>
+                    <i show.bind="column.AllowSorting && direction === 'asc'" class="fad fa-sort-up"></i>
+                    <i show.bind="column.AllowSorting && direction === 'desc'" class="fad fa-sort-down"></i>
+                </div>
+                <div if.bind="column.ColumnFieldType=='select'">
+                    <input checked.bind="toggleSelectAllRows" type="checkbox" />
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

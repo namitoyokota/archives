@@ -1,0 +1,14 @@
+<video #videoplayer (click)="togglePlay()"></video>
+<div *ngIf="!hideFullscreenBtn" class="full-screen-btn" (click)="openFullscreen()">
+    <img src="assets/common-libraries/images/full-screen.png" height="14" width="14" />
+</div>
+<div class="video-status-container" [ngClass]="showSpinner || showError ? 'background-spinner' : 'background-play'">
+    <img *ngIf="!isPlaying && !showSpinner && !showError" (click)="togglePlay()"
+        src="assets/common-libraries/images/play.svg" />
+    <img *ngIf="isPlaying" (click)="togglePlay()" src="assets/common-libraries/images/pause.svg" />
+
+    <mat-progress-spinner *ngIf="showSpinner" color="primary" mode="indeterminate" diameter="30">
+    </mat-progress-spinner>
+
+    <img *ngIf="showError" src="assets/common-libraries/images/warning-icon.svg" [title]="tTokens.failedToLoadVideo" />
+</div>

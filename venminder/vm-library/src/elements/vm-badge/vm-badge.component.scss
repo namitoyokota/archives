@@ -1,0 +1,71 @@
+@use "../../styles/variables" as v;
+
+vm-badge {
+    height: 20px;
+    width: min-content;
+    display: flex;
+    align-items: center;
+    border-radius: 50px;
+    color: v.$white;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 14px;
+    padding: 0 7px 0 6px;
+    white-space: nowrap;
+}
+
+vm-badge[danger],
+.vm-badge__danger {
+    background-color: v.$danger;
+}
+
+vm-badge[high],
+.vm-badge__high {
+    background-color: v.$high;
+}
+
+vm-badge[info],
+.vm-badge__info {
+    background-color: v.$info;
+}
+
+vm-badge[low],
+.vm-badge__low {
+    background-color: v.$low;
+}
+
+vm-badge[lowModerate],
+.vm-badge__low-moderate {
+    background-color: v.$low-moderate;
+}
+
+vm-badge[medium],
+.vm-badge__medium {
+    background-color: v.$medium;
+}
+
+vm-badge[primary],
+.vm-badge__primary {
+    background-color: v.$purple;
+}
+
+vm-badge[secondary],
+.vm-badge__secondary {
+    background-color: v.$N30;
+    color: v.$navy;
+}
+
+vm-badge[severe],
+.vm-badge__severe {
+    background-color: v.$severe;
+}
+
+vm-badge[success],
+.vm-badge__success {
+    background-color: v.$success;
+}
+
+vm-badge[warning],
+.vm-badge__warning {
+    background-color: v.$warning;
+}

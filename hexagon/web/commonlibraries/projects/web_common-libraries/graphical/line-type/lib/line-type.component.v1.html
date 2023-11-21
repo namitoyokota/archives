@@ -1,0 +1,13 @@
+<hxgn-common-dropdown-v2 [disabled]="disabled" [value]="activeLineType" (selectionChange)="selectedTypeChange($event)">
+    <hxgn-common-dropdown-trigger-v2>
+        <ng-container *ngTemplateOutlet="type_item;context: {line: activeLineType}"></ng-container>
+    </hxgn-common-dropdown-trigger-v2>
+    <hxgn-common-dropdown-item-v2 *ngFor="let lineType of lineTypes" [value]="lineType">
+        <ng-container *ngTemplateOutlet="type_item; context: {line: lineType}"></ng-container>
+    </hxgn-common-dropdown-item-v2>
+</hxgn-common-dropdown-v2>
+
+<!-- Template for item -->
+<ng-template let-line="line" #type_item>
+    <div [ngClass]="line?.toLowerCase()"></div>
+</ng-template>

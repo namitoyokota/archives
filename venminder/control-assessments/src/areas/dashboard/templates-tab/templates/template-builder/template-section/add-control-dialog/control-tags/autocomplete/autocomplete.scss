@@ -1,0 +1,47 @@
+﻿@import "shared-from-dcdev/core-styles/stylesheets/_variables.scss";
+
+autocomplete {
+  display: inline-block;
+
+  .text-input {
+    border: none;
+    border-radius: 3px;
+    font-size: 16px;
+    line-height: 19px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .suggestions {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid $N40;
+    border-radius: 5px;
+    background: #fff;
+    box-shadow: -1px 1px 3px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    z-index: 9999;
+
+    .suggestion {
+      font-size: 15px;
+      padding: 10px 20px;
+      line-height: 1.5rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: #333;
+
+      &:not(:last-of-type) {
+        border-bottom: 1px solid $N40;
+      }
+
+      &:hover,
+      &.selected {
+        cursor: pointer;
+        background: #f0f0f0;
+      }
+    }
+  }
+}

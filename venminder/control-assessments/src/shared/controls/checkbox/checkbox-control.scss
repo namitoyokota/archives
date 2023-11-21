@@ -1,0 +1,39 @@
+﻿.checkbox-control-component {
+  .checkbox-control-pane {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+
+    .left-pane,
+    .right-pane {
+      padding: 20px;
+    }
+
+    .left-pane {
+      display: flex;
+      flex-direction: column;
+      row-gap: 5px;
+    }
+
+    .right-pane {
+      display: flex;
+      flex-direction: column;
+      row-gap: 10px;
+      border-left: thin solid lightGray;
+
+      .checkbox-item {
+        display: grid;
+        grid-template-columns: auto min-content;
+        align-items: center;
+        column-gap: 10px;
+
+        &.checkbox-with-input {
+          grid-template-columns: min-content auto min-content;
+        }
+      }
+
+      .add-option-button {
+        align-self: end;
+      }
+    }
+  }
+}

@@ -1,0 +1,53 @@
+<div class="selection-pane">
+    <span style="margin-bottom: 5px;">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.changeWorkspace" skeletonWidth="75px">
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+
+    <hxgn-common-dropdown-v2 [value]="selectedPhysicalWorkspace?.id"
+        (selectionChange)="physicalWorkspaceSelectionChange($event)">
+        <hxgn-common-dropdown-trigger-v2>
+            <img *ngIf="selectedPhysicalWorkspace?.id === defaultPhysicalWorkspaceId" width="15" height="15"
+                src="assets/star_for_button.png">
+            <span>
+                {{selectedPhysicalWorkspace?.screenSettings.length}} <hxgn-commonlocalization-translate-v1
+                    [token]="tokens.screenDash">
+                </hxgn-commonlocalization-translate-v1> {{selectedPhysicalWorkspace?.name}}
+            </span>
+        </hxgn-common-dropdown-trigger-v2>
+        <hxgn-common-dropdown-item-v2 *ngFor="let workspace of physicalWorkspaces" [value]="workspace.id">
+            <img *ngIf="workspace?.id === defaultPhysicalWorkspaceId" width="15" height="15"
+                src="assets/star_for_button.png">
+            <span>
+                {{workspace?.screenSettings.length}} <hxgn-commonlocalization-translate-v1 [token]="tokens.screenDash">
+                </hxgn-commonlocalization-translate-v1> {{workspace.name}}
+            </span>
+        </hxgn-common-dropdown-item-v2>
+    </hxgn-common-dropdown-v2>
+</div>
+
+<div class="selection-pane">
+    <span style="margin-bottom: 5px;">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.changePreset" skeletonWidth="75px">
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+
+    <hxgn-common-dropdown-v2 #workspaceselection [value]="selectedWorkspace?.id"
+        (selectionChange)="workspaceSelectionChange($event)">
+        <hxgn-common-dropdown-trigger-v2>
+            <img *ngIf="selectedWorkspace?.id === defaultWorkspaceId" width="15" height="15"
+                src="assets/star_for_button.png">
+            {{selectedWorkspace?.name}}
+        </hxgn-common-dropdown-trigger-v2>
+        <hxgn-common-dropdown-item-v2 *ngFor="let workspace of getWorkspacePresetList()" [value]="workspace.id">
+            <img *ngIf="workspace?.id === defaultWorkspaceId" width="15" height="15" src="assets/star_for_button.png">
+            {{workspace.name}}
+        </hxgn-common-dropdown-item-v2>
+    </hxgn-common-dropdown-v2>
+</div>
+
+<span style="margin-top: 10px;margin-bottom: 5px;">
+    <hxgn-commonlocalization-translate-v1 [token]="tokens.openWorkspaceScreensMsg" skeletonWidth="75px" ellipsisTooltip>
+    </hxgn-commonlocalization-translate-v1>
+</span>
+<mat-slide-toggle [checked]="layoutSrv.openWorkspaceScreens" (change)="onChange($event)"></mat-slide-toggle>

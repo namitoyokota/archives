@@ -1,0 +1,27 @@
+:host {
+    display: grid;
+    grid-template-rows: repeat(2, min-content) 1fr;
+    overflow: hidden;
+    row-gap: 15px;
+    height: 100%;
+}
+
+.dialog-title {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500; 
+    font-size: 20px;
+
+    img {
+        cursor: pointer;
+    }
+}
+
+.description {
+    font-style: italic;
+    font-size: 14px;
+}
+
+hxgn-commonfeatureflags-global-editor {
+    overflow: hidden;
+}

@@ -1,0 +1,21 @@
+<!-- Notification item will be refactor into it's own component later -->
+<ng-container *ngFor="let appNotifications of appNotificationGroups; trackBy: trackByFn; let i = index">
+    <!-- The logic to mark a toast notification as expired is part of the item.
+         Make the item hidden so that logic can still be processed and not have to be duplicated
+         in other places. -->
+
+    <hxgn-commonnotifications-toast-notification-item [@slideOut] [animationEnabled]="appNotifications[0]?.uiSettings.animation" [class.is-hidden]="i >= maxItemCount">
+        <hxgn-commonnotifications-item  [contextId]="contextId"
+        [appNotifications]="appNotifications" [isToast]="true" (click)="showFullPane.emit()"
+        (toastExpired)="expire(appNotifications)" (clear)="clearNotification($event)"></hxgn-commonnotifications-item>
+    </hxgn-commonnotifications-toast-notification-item>
+
+</ng-container>
+
+<div class="see-all-pane" *ngIf="appNotificationGroups?.length > maxItemCount"
+    (click)="showFullPane.emit()">
+    <div>
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.seeAll" skeletonWidth="50px"></hxgn-commonlocalization-translate-v1>
+    </div>
+    <span>(+{{appNotificationGroups.length - maxItemCount}})</span>
+</div>

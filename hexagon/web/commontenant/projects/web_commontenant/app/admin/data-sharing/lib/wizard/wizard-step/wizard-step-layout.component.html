@@ -1,0 +1,24 @@
+<div *ngIf="layoutType === wizardStepType.split" class="description-pane">
+    <div>
+        <ng-container [ngTemplateOutlet]="descriptionHeaderPaneRef"></ng-container>
+    </div>
+    <ng-content select="hxgn-commontenant-wizard-step-layout-description"></ng-content>
+</div>
+
+<div class="content-pane">
+    <!-- Show title and close button -->
+    <div class="title-pane">
+        <span class="title" ellipsisTooltip>{{stepTitle}}</span>
+        <div (click)="close()" class="close-btn"></div>
+    </div>
+
+    <!-- Main content for the step dis displayed -->
+    <div class="main-content-pane">
+        <ng-content select="hxgn-commontenant-wizard-step-layout-content"></ng-content>
+    </div>
+
+    <!-- Action pain. Most of the time will be different buttons -->
+    <div>
+        <ng-container [ngTemplateOutlet]="actionPaneRef"></ng-container>
+    </div>
+</div>

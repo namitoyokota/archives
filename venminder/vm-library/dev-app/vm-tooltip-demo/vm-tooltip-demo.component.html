@@ -1,0 +1,41 @@
+<template>
+    <require from="./vm-tooltip-demo.component.css"></require>
+
+    <div class="vm-tooltip-demo">
+        <span>
+            <vm-tooltip text.one-time="tooltipText">
+                <span>Pin Left/Position Bottom (Default)</span>
+            </vm-tooltip>
+        </span>
+
+        <span>
+            <vm-tooltip pin.one-time="vmTooltipPins.Right" text.one-time="tooltipText">
+                <span>Pin Right/Position Bottom</span>
+            </vm-tooltip>
+        </span>
+
+        <span>
+            <vm-tooltip position.one-time="vmTooltipPositions.Top" text.one-time="tooltipText">
+                <span>Pin Left/Position Top</span>
+            </vm-tooltip>
+        </span>
+
+        <span>
+            <vm-tooltip pin.one-time="vmTooltipPins.Right" position.one-time="vmTooltipPositions.Top" text.one-time="tooltipText">
+                <span>Pin Right/Position Top</span>
+            </vm-tooltip>
+        </span>
+
+        <span>
+            <vm-tooltip position.one-time="vmTooltipPositions.Right" text.one-time="tooltipText">
+                <span>Position Right</span>
+            </vm-tooltip>
+        </span>
+
+        <span>
+            <vm-tooltip position.one-time="vmTooltipPositions.Left" text.one-time="tooltipText">
+                <span>Position Left</span>
+            </vm-tooltip>
+        </span>
+    </div>
+</template>

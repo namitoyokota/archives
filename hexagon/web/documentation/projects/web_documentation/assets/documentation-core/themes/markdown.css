@@ -1,0 +1,87 @@
+.markdown {
+    color: #323232;
+    padding: 0 20px;
+}
+
+.markdown a {
+    text-decoration: none;
+}
+
+.markdown a:not(.in-system) {
+    font-weight: 400 !important;
+}
+
+.markdown a:visited:not(.in-system) {
+    color: #335ca5 !important;
+}
+
+.markdown blockquote {
+    border-left: 2px solid rgba(234, 234, 234, 1);
+    color: rgba(0, 0, 0, .7);
+    padding-left: 16px;
+}
+
+.markdown blockquote,
+.markdown ol,
+.markdown p,
+.markdown pre,
+.markdown table,
+.markdown ul {
+    margin: 0 0 16px 0;
+}
+
+.markdown code {
+    background-color: #0000000F;
+    border-radius: 4px;
+    font-family: Menlo, Monaco, Consolas, "Andale Mono", "Ubuntu Mono", "Courier New", monospace;
+    padding: 2px 4px;
+}
+
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+    font-weight: 500 !important;
+    margin: 24px 0 8px 0;
+}
+
+.markdown h1 {
+    font-size: 24px !important;
+}
+
+.markdown h1:first-child {
+    margin-top: 0;
+}
+
+.markdown li {
+    margin-top: 4px;
+}
+
+.markdown ol,
+.markdown ul {
+    padding-left: 32px;
+}
+
+.markdown ol ul,
+.markdown ol ol,
+.markdown ul ol,
+.markdown ul ul {
+    margin-bottom: 0;
+}
+
+.markdown p {
+    line-height: 22px;
+}
+
+.markdown table {
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.markdown td,
+.markdown th {
+    border: solid 1px rgba(234, 234, 234, 1);
+    padding: 10px;
+}

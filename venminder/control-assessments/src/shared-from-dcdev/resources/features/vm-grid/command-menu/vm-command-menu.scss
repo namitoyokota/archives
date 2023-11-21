@@ -1,0 +1,24 @@
+@import "shared-from-dcdev/core-styles/stylesheets/variables";
+
+$border-color: $N40;
+$command-item-hover-color: #EFF2F7;
+$command-item-active-color: #DEE4EF;
+
+.vm-grid-command-item {
+    cursor: pointer;
+    padding: 4px 10px 4px 10px;
+    display: flex;
+    align-items: center;
+}
+
+.vm-grid-command-item i {
+    margin-right: 8px;
+}
+
+.vm-grid-command-item:hover {
+    background-color: $command-item-hover-color;
+}
+
+.vm-grid-command-item:active {
+    background-color: $command-item-active-color;
+}

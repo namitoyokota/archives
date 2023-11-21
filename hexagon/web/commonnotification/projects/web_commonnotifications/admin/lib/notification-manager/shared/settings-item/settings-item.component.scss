@@ -1,0 +1,43 @@
+:host {
+    display: grid;
+    grid-template-columns: 15px 1fr;
+    column-gap: 8px;
+    border-bottom: 1px solid #e6e7e8;
+    padding: 8px;
+    padding-right: 31px;
+
+    .dropdown-item-info {
+        overflow: hidden;
+
+        .preset-description {
+            color: #414042;
+            font-size: 12px;
+            line-height: 16px;
+            margin-top: 8px;
+            word-wrap: break-word;
+
+            &.no-description {
+                color: #adadad;
+                font-style: italic;
+            }
+        }
+
+        .preset-title {
+            color: #414042;
+            font-size: 13px;
+            font-weight: 500;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+
+    &.selected {
+        background-color: #cadff2 !important;
+    }
+
+    &:hover {
+        background-color: #eceeee;
+        cursor: pointer;
+    }
+}

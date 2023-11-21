@@ -1,0 +1,192 @@
+<table #mattable mat-table [dataSource]="configuration" [trackBy]="trackByTask" multiTemplateDataRows>
+
+    <!-- Organizations -->
+    <ng-container matColumnDef="organizations">
+        <th mat-header-cell *matHeaderCellDef>
+            <ng-container *ngTemplateOutlet="rollUpSelection;">
+            </ng-container>
+
+            <!-- Show if all rows or some rows are selected -->
+            <ng-template #rollUpSelection>
+                <div class="header-cell-pane">
+                    <mat-checkbox [checked]="isAllSelected()" (change)="toggleSelectAll($event)" #selectallcheckbox>
+                        <span class="checkbox-label">
+                            <hxgn-commonlocalization-translate-v1 skeletonWidth="50px"
+                                [token]='tokens.organizationName'></hxgn-commonlocalization-translate-v1>
+                        </span>
+                    </mat-checkbox>
+                </div>
+            </ng-template>
+        </th>
+
+        <td mat-cell *matCellDef="let element;">
+            <mat-checkbox [checked]="isSelected(element.ownerId)" (change)="toggleSelection($event, element.ownerId)">
+                <div class="organization-container">
+                    <div *ngIf="element.ownerIcon" class="owner-icon">
+                        <img [src]="element.ownerIcon" />
+                    </div>
+
+                    <span class="organization-name">
+                        {{element.ownerName}}
+                    </span>
+                </div>
+            </mat-checkbox>
+        </td>
+    </ng-container>
+
+    <!-- Can Access -->
+    <ng-container matColumnDef="canAccess">
+        <th mat-header-cell *matHeaderCellDef>
+            <div class="header-cell-pane">
+                <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]='tokens.canAccess'>
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+        </th>
+        <td mat-cell *matCellDef="let element; let i = dataIndex">
+            <ng-container *ngTemplateOutlet="rollUpAccess">
+            </ng-container>
+
+            <ng-template #rollUpAccess>
+                <div class="access-container">
+                    <ng-container *ngIf="i === 0 && !checkRollUpAccess(element.ownerId); else toggleOnly">
+                        <mat-slide-toggle cdkOverlayOrigin #origin="cdkOverlayOrigin"
+                            [checked]="checkRollUpAccess(element.ownerId)"
+                            (change)="toggleAllAccess($event.checked, element.ownerId)">
+                            <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]='tokens.yes'>
+                            </hxgn-commonlocalization-translate-v1>
+                        </mat-slide-toggle>
+                        <hxgn-common-popover #popover
+                            *ngIf="((isExternal && showExternalTour) || (!isExternal && showInternalTour)) && showPopover"
+                            [origin]="origin" [showDismiss]="true" [showCheckbox]="true"
+                            [isShown]="true" (closed)="handlePopoverClose($event)">
+                            <div class="popover-container">
+                                <ng-container *ngIf="isExternal; else internal">
+                                    <div class="popover-title">
+                                        <hxgn-commonlocalization-translate-v1 [token]="tokens.startSharing"
+                                            skeletonWidth="335px">
+                                        </hxgn-commonlocalization-translate-v1>
+                                    </div>
+                                    <div class="popover-intro">
+                                        <span>
+                                            <hxgn-commonlocalization-translate-v1 [token]="tokens.youAreNotSharing"
+                                                skeletonWidth="320px">
+                                            </hxgn-commonlocalization-translate-v1>
+                                        </span>
+                                        <span class="bold">
+                                            <hxgn-commonlocalization-translate-v1 [token]="tokens.enableExpandModify">
+                                            </hxgn-commonlocalization-translate-v1>
+                                        </span>
+                                    </div>
+                                    <img class="popover-img" src="assets/commontenant-core/Unfinished-Network-icon.svg"
+                                        width="396" height="173" />
+                                </ng-container>
+                                <ng-template #internal>
+                                    <div class="popover-title">
+                                        <hxgn-commonlocalization-translate-v1 [token]="tokens.startFiltering"
+                                            skeletonWidth="320px">
+                                        </hxgn-commonlocalization-translate-v1>
+                                    </div>
+                                    <div class="popover-intro">
+                                        <span>
+                                            <hxgn-commonlocalization-translate-v1 [token]="tokens.youAreNotFiltering"
+                                                skeletonWidth="380px">
+                                            </hxgn-commonlocalization-translate-v1>
+                                        </span>
+                                        <span class="bold">
+                                            <hxgn-commonlocalization-translate-v1 [token]="tokens.expandModify">
+                                            </hxgn-commonlocalization-translate-v1>
+                                        </span>
+                                    </div>
+                                    <img class="popover-img" src="assets/commontenant-core/Setup-Req-Groups-graphic.svg"
+                                        width="377" height="170" />
+                                </ng-template>
+                            </div>
+                        </hxgn-common-popover>
+                    </ng-container>
+                    <ng-template #toggleOnly>
+                        <mat-slide-toggle [checked]="checkRollUpAccess(element.ownerId)"
+                            (change)="toggleAllAccess($event.checked, element.ownerId)">
+                            <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]='tokens.yes'>
+                            </hxgn-commonlocalization-translate-v1>
+                        </mat-slide-toggle>
+                    </ng-template>
+                </div>
+            </ng-template>
+        </td>
+    </ng-container>
+
+    <!-- Data Shared -->
+    <ng-container matColumnDef="dataShared">
+        <th mat-header-cell *matHeaderCellDef>
+            <div class="header-cell-pane no-border">
+                <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]='tokens.dataShared'>
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+        </th>
+        <td mat-cell *matCellDef="let element;">
+            <div class="data-shared-container">
+
+                <hxgn-common-chip *ngFor="let criteria of globalCriteria"
+                    [endCapColor]="getChipColor(getCurrentRestrictionLevel(element.ownerId, criteria))">
+                    <mat-checkbox [checked]="getCapabilityAccess(element.ownerId, criteria.capabilityId)"
+                        (change)="toggleAccess($event.checked, criteria.capabilityId, element.ownerId)">
+                        <hxgn-commonlocalization-translate-v1 *ngIf="getCapability(criteria.capabilityId)?.nameToken"
+                            skeletonWidth="120px" [token]='getCapability(criteria.capabilityId)?.nameToken'>
+                        </hxgn-commonlocalization-translate-v1>
+                    </mat-checkbox>
+                </hxgn-common-chip>
+
+            </div>
+        </td>
+    </ng-container>
+
+    <!-- Use commands -->
+    <ng-container matColumnDef="useGlobalPermissions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element;">
+            <div class="actions-container">
+                <div class="action-icon" cdkOverlayOrigin #origin="cdkOverlayOrigin" (click)="popover.open($event)">
+                </div>
+                <hxgn-common-popover #popover [origin]="origin" [menuMode]="true" [position]="popoverPosition">
+                    <hxgn-common-menu-item imgSrc="assets/commontenant-core/allow-access.png"
+                        [token]="tokens.allowAccess" (click)="setBulkHasAccess(true, element.ownerId)">
+                    </hxgn-common-menu-item>
+                    <hxgn-common-menu-item imgSrc="assets/commontenant-core/deny-access.png" [token]="tokens.denyAccess"
+                        (click)="setBulkHasAccess(false, element.ownerId)">
+                    </hxgn-common-menu-item>
+                    <hxgn-common-menu-item imgSrc="assets/commontenant-core/remove.png" [token]="tokens.remove"
+                        (click)="delete(element.ownerId)">
+                    </hxgn-common-menu-item>
+                </hxgn-common-popover>
+                <div class="detail-btn"
+                    (click)="expandedRowId = expandedRowId === element.ownerId ? null : element.ownerId"
+                    [class.expanded]="expandedRowId === element.ownerId"></div>
+            </div>
+        </td>
+    </ng-container>
+
+    <!-- Expanded Content -->
+    <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let element;" [attr.colspan]="displayedColumns.length">
+            <div class="element-detail" [@detailExpand]="element?.ownerId === expandedRowId ? 'expanded' : 'collapsed'">
+
+                <hxgn-commontenant-admin-active-data-filters
+                    *ngIf="element?.ownerId === expandedRowId && globalCriteria.length"
+                    (updateCriteria)="criteriaUpdate.emit($event)" [globalSharingCriteria]="globalCriteria"
+                    [sharingConfiguration]="filterActiveCriteria(element)">
+                </hxgn-commontenant-admin-active-data-filters>
+            </div>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="element-row"
+        [class.expanded-row]="expandedRowId === element.ownerId">
+    </tr>
+    <ng-container *ngIf="isInternal">
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row detail-row-internal"></tr>
+    </ng-container>
+    <ng-container *ngIf="!isInternal">
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+    </ng-container>
+</table>

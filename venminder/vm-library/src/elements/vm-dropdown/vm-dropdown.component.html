@@ -1,0 +1,30 @@
+<template class="${ isOpen ? 'vm-dropdown__open' : '' }">
+    <require from="./vm-dropdown.component.css"></require>
+
+    <button
+        show.bind="!(isOpen && allowSearch)"
+        class="vm-dropdown--selector ${isOpen ? 'vm-dropdown__open' : ''}"
+        type="button"
+        disabled.bind="isDisabled"
+        click.delegate="toggleDropdown()"
+    >
+        <span if.bind="displayText" class="vm-dropdown--selector-text" innerhtml.bind="displayText | sanitizeHTML"></span>
+        <span else class="vm-dropdown--selector-text vm-dropdown--placeholder">${placeholderText}</span>
+        <i class="fas fa-caret-down"></i>
+    </button>
+    <button show.bind="isOpen && allowSearch" class="vm-dropdown--search" type="button" click.delegate="toggleDropdown($event)">
+        <vm-search
+            placeholder-text.to-view="searchPlaceholderText"
+            show-icon.one-time="false"
+            value.two-way="searchText"
+            search-on-keypress.one-time="true"
+            search.call="onSearch(searchText)"
+            click.delegate="$event.stopPropagation()"
+        ></vm-search>
+        <i class="fas fa-caret-down"></i>
+    </button>
+
+    <div class="vm-dropdown--items ${allowSearch ? 'vm-dropdown--items__searchable' : ''}">
+        <slot></slot>
+    </div>
+</template>

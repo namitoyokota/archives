@@ -1,0 +1,94 @@
+@use "sass:math";
+@use "../../styles/variables" as v;
+
+$vm-toggle-transition: 0.2s;
+$vm-toggle-size: 48px;
+$vm-toggle-button-size: 18px;
+$vm-toggle-size-small: 32px;
+$vm-toggle-button-size-small: 12px;
+
+.vm-toggle {
+    height: math.div($vm-toggle-size, 2);
+    width: $vm-toggle-size;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 0;
+
+    input {
+        height: 0;
+        width: 0;
+        display: none;
+
+        &:checked + .vm-toggle--slider:before {
+            transform: translateX(math.div($vm-toggle-size, 2));
+        }
+    }
+
+    .vm-toggle--slider {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+        background-color: v.$N40;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: $vm-toggle-transition;
+
+        &:before {
+            height: $vm-toggle-button-size;
+            width: $vm-toggle-button-size;
+            position: absolute;
+            bottom: math.div($vm-toggle-button-size, 6);
+            left: math.div($vm-toggle-button-size, 6);
+            background-color: v.$white;
+            border-radius: 50%;
+            content: "";
+            transition: $vm-toggle-transition;
+        }
+    }
+
+    &.vm-toggle__disabled {
+        .vm-toggle--slider {
+            cursor: not-allowed;
+        }
+
+        &:not(.vm-toggle__toggled) .vm-toggle--slider {
+            background-color: v.$N30;
+
+            &:before {
+                background-color: v.$N40;
+            }
+        }
+    }
+
+    &.vm-toggle__small {
+        height: math.div($vm-toggle-size-small, 2);
+        width: $vm-toggle-size-small;
+
+        input:checked + .vm-toggle--slider:before {
+            transform: translateX(math.div($vm-toggle-size-small, 2));
+        }
+
+        .vm-toggle--slider {
+            border-radius: 10px;
+
+            &:before {
+                height: $vm-toggle-button-size-small;
+                width: $vm-toggle-button-size-small;
+                bottom: math.div($vm-toggle-button-size-small, 6);
+                left: math.div($vm-toggle-button-size-small, 6);
+            }
+        }
+    }
+
+    &.vm-toggle__toggled {
+        .vm-toggle--slider {
+            background-color: v.$brand-primary;
+        }
+
+        &.vm-toggle__disabled .vm-toggle--slider {
+            opacity: 0.65;
+        }
+    }
+}

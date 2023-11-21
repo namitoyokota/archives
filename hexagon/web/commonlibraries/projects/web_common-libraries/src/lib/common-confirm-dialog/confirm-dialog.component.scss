@@ -1,0 +1,44 @@
+:host {
+    ::ng-deep .mat-dialog-title {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 15px;
+    }
+
+    ::ng-deep .mat-dialog-actions {
+        display: grid;
+        grid-template-columns: repeat(2, min-content);
+        column-gap: 10px;
+    }
+}
+
+.warning-icon {
+    height: 30px;
+    width: 33px;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    position: relative;
+}
+
+.close-button {
+    position: absolute;
+    top: -20px;
+    right: -10px;
+    width: 16px;
+    height: 16px;
+    color: #AFAFAF;
+    font-weight: 100;
+    cursor: pointer;
+
+    &:hover {
+        color: #4272b4;
+    }
+
+    &::before {
+        content: "✖";
+    }
+}

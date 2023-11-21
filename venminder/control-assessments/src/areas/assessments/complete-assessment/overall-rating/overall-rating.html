@@ -1,0 +1,99 @@
+﻿<template>
+  <require from="./overall-rating.scss"></require>
+
+  <!-- Rating Header -->
+  <div class="rating-header-pane">
+    <span class="rating-header">Rating</span>
+  </div>
+
+  <!-- Rating Section -->
+  <div class="rating-section-pane">
+    <!-- Left Side -->
+    <div class="left-pane">
+      <!-- Overall Rating Type -->
+      <div class="rating-type">
+        <!-- Title -->
+        <div class="required-input-label">
+          <span class="input-title">Overall Rating Type</span>
+          <span class="required-star">*</span>
+        </div>
+
+        <!-- Dropdown -->
+        <!-- TODO: bind values -->
+        <vm-dropdown
+          display-text.to-view="selectedRatingType.name"
+          value.bind="selectedRatingType"
+          placeholder-text="Select"
+        >
+          <vm-dropdown-item
+            repeat.for="ratingType of overallRatingTypes"
+            is-selected.to-view="ratingType.isSelected"
+            value.one-time="ratingType.id"
+            on-selection.call="setOverallRatingType($event)"
+          >
+            ${ratingType.name}
+          </vm-dropdown-item>
+        </vm-dropdown>
+      </div>
+
+      <!-- Rating Explanation-->
+      <div class="rating-explanation">
+        <!-- Title -->
+        <span class="input-title">Rating Explanation</span>
+
+        <!-- Text Area -->
+        <!-- TODO: bind value -->
+        <textarea class="vm-input" rows="6"></textarea>
+      </div>
+    </div>
+
+    <!-- Right Side -->
+    <div class="right-pane">
+      <!-- Title -->
+      <span class="input-title">Section Ratings</span>
+
+      <!-- Section Ratings -->
+      <div class="rating-list">
+        <div
+          class="section-rating"
+          repeat.for="[title, value] of selectedSectionRatings"
+        >
+          <!-- Section Title -->
+          <span>${title}</span>
+
+          <!-- Section Rating -->
+          <div class="rating-card">
+            <span innerHtml.bind="value"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Overall Rating -->
+  <div class="overall-rating-pane">
+    <!-- Title -->
+    <span class="rating-header">Overall Rating</span>
+
+    <div class="dropdown-pane">
+      <!-- Dropdown -->
+      <vm-dropdown
+        display-text.to-view="selectedRating.displayText"
+        value.bind="selectedRating"
+        placeholder-text="Select Rating"
+      >
+        <vm-dropdown-item
+          repeat.for="item of overallRatings"
+          is-selected.to-view="item.isSelected"
+          value.one-time="item.id"
+          on-selection.call="overallRatingSelected($event)"
+        >
+          <div innerHtml.bind="item.displayText"></div>
+        </vm-dropdown-item>
+      </vm-dropdown>
+
+      <!-- Error Message -->
+      <span if.bind="errorMsg" class="danger">${errorMsg}</span>
+    </div>
+  </div>
+</template>

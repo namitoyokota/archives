@@ -1,0 +1,169 @@
+﻿:host {
+	width:100%;
+	height:100%;
+    display: flex;
+}
+
+.layer-panel-layers {
+	position: relative;
+	width: 360px;
+	background-color: white;
+	visibility:visible;
+	display:flex;
+	flex-direction:column;
+	box-sizing:border-box;
+}
+
+.layer-panel-layers.dialog {
+	position:relative !important;
+	border:none !important;
+	max-height:unset;
+    height: 100%;
+}
+
+.layer-panel-layers.top-right {
+    position: absolute;
+    right: 65px;
+	top: 10px;
+	max-height: calc(100% - 30px);
+	border: 2px solid #a8a8a7;
+	border-radius: 4px;
+}
+
+.layer-panel-layers.top-right:before {
+	top: 8px;
+	bottom: auto;
+	left: auto;
+	right: -16px;
+	border-width: 12px 0 10px 14px;
+	border-color: transparent #a8a8a7;
+	content: "";
+	position: absolute;
+	border-style: solid;
+	display: block;
+	width: 0;
+}
+
+.layer-panel-layers.top-right:after {
+	top: 9px;
+	bottom: auto;
+	left: auto;
+	right: -13px;
+	border-width: 11px 0 9px 14px;
+	border-color: transparent #fff;
+	content: "";
+	position: absolute;
+	border-style: solid;
+	display: block;
+	width: 0;
+}
+
+.layer-panel-layers.top-left {
+    position: absolute;
+	left: 65px;
+	top:10px;
+	max-height: calc(100% - 30px);
+	border: 2px solid #a8a8a7;
+	border-radius: 4px;
+}
+.layer-panel-layers.top-left:before {
+	top: 8px;
+	bottom: auto;
+	left: auto;
+	left: -16px;
+	border-width: 12px 14px 10px 0;
+	border-color: transparent #a8a8a7;
+	content: "";
+	position: absolute;
+	border-style: solid;
+	display: block;
+	width: 0;
+}
+
+.layer-panel-layers.top-left:after {
+	top: 9px;
+	bottom: auto;
+	left: -13px;
+	border-width: 11px 14px 9px 0;
+	border-color: transparent #fff;
+	content: "";
+	position: absolute;
+	border-style: solid;
+	display: block;
+	width: 0;
+}
+
+.panel-header {
+	display: grid;
+	grid-template-columns: auto 125px;
+	grid-template-rows: 40px;
+	border-bottom: 1px solid #d1d3d4;
+}
+
+.title {
+	padding-left: 20px;
+	padding-top: 6px;
+	font-size: 20px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.reset-to-default {
+    padding-top:13px;
+    justify-self:left;
+    font-size: 14px;
+    text-decoration: underline;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.reset-to-default:hover {
+    cursor: pointer;
+}
+
+
+.close-btn {
+	height: 40px;
+	width: 45px;
+	background-image: url('assets/commonmap-core/images/admin/cancel.png');
+	cursor: pointer;
+	transition: all 0.5s ease;
+}
+
+.close-btn:hover {
+	background-image: url('assets/commonmap-core/images/admin/cancel-hover.png');
+}
+
+.ellipsis {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.layer-panel-config {
+	height: calc(100% - 50px);
+	overflow:auto;
+    display: flex;
+}
+
+.layer-panel-config.draw {
+	height: calc(100% - 92px);
+	overflow:auto;
+    display: flex;
+}
+
+.search-box {
+	display: flex;
+	padding: 10px;
+	border-bottom: 1px solid #d1d3d4;
+	box-sizing:border-box;
+}
+
+.search-input {
+	display: flex;
+	width: 100%;
+}
+
+

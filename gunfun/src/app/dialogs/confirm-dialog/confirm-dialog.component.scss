@@ -1,0 +1,16 @@
+.body-pane {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+
+    .input-field {
+        display: grid;
+        grid-template-rows: min-content auto;
+        row-gap: 5px;
+    }
+}
+
+.button-pane {
+    display: flex;
+    justify-content: space-between;
+}

@@ -1,0 +1,73 @@
+<!-- header Pane -->
+<h2 mat-dialog-title class="header">
+    <!-- Access Manager Changelog Title -->
+    <hxgn-commonlocalization-translate-v1 [token]="tokens.organizationChangelogTitle" skeletonWidth="120px">
+    </hxgn-commonlocalization-translate-v1>
+
+    <!-- Filter Pane -->
+    <div class="filter-btn" [class.selected]="(paneState$ | async)">
+        <div (click)="triggerPane()" class="filter-img"></div>
+    </div>
+
+    <!-- Close Button -->
+    <div class="close-btn" [mat-dialog-close]="true"></div>
+</h2>
+
+<!-- Current Filters -->
+<hxgn-commonidentity-changelog-filter-chips-v1
+    [dataFilterEnabled]="selectedType || selectedUser"
+    [timeFilterEnabled]="startDate || endDate"
+    (clearDataFilters)="clearDataFilters()"
+    (clearTimeFilters)="clearTimeFilters()" >
+</hxgn-commonidentity-changelog-filter-chips-v1>
+
+<!-- Filter Pane -->
+<div [@expansionState] *ngIf='(paneState$ | async)' class="filter-pane">
+    <hxgn-commonidentity-changelog-settings-pane-v1
+        [class.disabled]="loadingData"
+        [types]="types"
+        [selectedType]="selectedTypeKey"
+        [users]="users"
+        [selectedUser]="selectedUser"
+        [startDate]="startDate"
+        [endDate]="endDate"
+        [selectedSort]="selectedSort$ | async"
+        [enableSort]="startDate && endDate"
+        [isDirty]="isDirty"
+        (typeChanged)="updateType($event)"
+        (userChanged)="updateUser($event)"
+        (startDateChanged)="updateStartDate($event)"
+        (endDateChanged)="updateEndDate($event)"
+        (sortChanged)="updateSort($event)"
+        (resetFilters)="clearFilters()" >
+    </hxgn-commonidentity-changelog-settings-pane-v1>
+</div>
+
+<!-- Timeline -->
+<div class="dialog-content">
+    <!-- Display Results -->
+    <ng-container *ngIf="(allLogsLoaded$ | async) === false || (logs$ | async).length; else noResults">
+        <hxgn-commontenant-organization-changelog-list
+            [allLogsLoaded]="allLogsLoaded$ | async"
+            [logs]="logs$ | async"
+            (requestData)="requestLogs()" >
+        </hxgn-commontenant-organization-changelog-list>
+    </ng-container>
+
+    <!-- No Results Returned -->
+    <ng-template #noResults>
+        <div class="no-results-pane">
+            <img src="assets/commonidentity-core/images/changelog/no-results-found-graphic.svg"/>
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.noResults" skeletonWidth="120px">
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+    </ng-template>
+</div>
+
+<!-- Close Button -->
+<div class="btn-pane">
+    <button class="hxgn-btn-secondary" [mat-dialog-close]="true">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.close" ignoreSkeleton="true">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+</div>

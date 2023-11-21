@@ -1,0 +1,10 @@
+<svg id="polygon_disabled" xmlns="http://www.w3.org/2000/svg" width="30" height="29.133" viewBox="0 0 30 29.133">
+  <g id="Group_5184" data-name="Group 5184" opacity="0.35">
+    <path id="Path_7024" data-name="Path 7024" d="M1302.526,709.031,1297.8,694.5l12.363-8.982,12.364,8.982-4.723,14.533Z" transform="translate(-1294.895 -682.807)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    <circle id="Ellipse_230" data-name="Ellipse 230" cx="2.909" cy="2.909" r="2.909" transform="translate(12.076)" fill="#fff"/>
+    <ellipse id="Ellipse_232" data-name="Ellipse 232" cx="2.909" cy="2.909" rx="2.909" ry="2.909" transform="translate(20.22 23.315)" fill="#fff"/>
+    <circle id="Ellipse_1940" data-name="Ellipse 1940" cx="2.909" cy="2.909" r="2.909" transform="translate(0 8.706)" fill="#fff"/>
+    <circle id="Ellipse_1941" data-name="Ellipse 1941" cx="2.909" cy="2.909" r="2.909" transform="translate(24.183 8.706)" fill="#fff"/>
+    <circle id="Ellipse_1942" data-name="Ellipse 1942" cx="2.909" cy="2.909" r="2.909" transform="translate(4.837 23.315)" fill="#fff"/>
+  </g>
+</svg>

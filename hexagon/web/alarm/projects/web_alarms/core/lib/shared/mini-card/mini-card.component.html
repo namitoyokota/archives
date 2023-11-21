@@ -1,0 +1,58 @@
+<!-- Priority -->
+<hxgn-alarms-priority [priority]="alarm?.priority">
+</hxgn-alarms-priority>
+
+<!-- Icon -->
+<hxgn-alarms-icon [alarm]="alarm" [showBorder]="false">
+</hxgn-alarms-icon>
+
+<!-- Content -->
+<div style="overflow: hidden;">
+
+    <!-- Alarm Available -->
+    <ng-container *ngIf="alarm; else not_available">
+        <div class="overflow-pane">
+            <div class="title-pane">
+                <span class="title ellipsis">{{alarm?.title}}</span>
+                <span class="time-since">&nbsp;- {{alarm?.reportedTime | commonTimeSince: refreshToggle | async}}</span>
+            </div>
+        </div>
+        <div class="info-pane">
+            <img src="assets/alarms-core/images/card-icon.png" height="14" width="12" />
+            <span class="alarm-text">
+                <hxgn-commonlocalization-translate-v1 skeletonWidth="25px" [token]="tokens.alarm">
+                </hxgn-commonlocalization-translate-v1>
+            </span>
+            <span class="text-break">|</span>
+
+            <!-- Alarm Location -->
+            <span *ngIf="!alarm?.isRedacted(restrictIds.location); else locationRedacted" class="ellipsis">
+                <ng-container *ngIf="alarm?.location?.formattedAddress as location">
+                    {{location}}
+                </ng-container>
+            </span>
+
+            <!-- Location Redacted -->
+            <ng-template #locationRedacted>
+                <div class="redacted">
+                    <img src="assets/alarms-core/images/lock-icon-lg.png" height="15" width="12" />
+                    <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]="tokens.location">
+                    </hxgn-commonlocalization-translate-v1>
+                </div>
+            </ng-template>
+        </div>
+    </ng-container>
+
+    <!-- Alarm Not Available -->
+    <ng-template #not_available>
+        <span class="not-available">
+            <hxgn-commonlocalization-translate-v1 skeletonWidth="75px" [token]="tokens.alarmNotAvailable">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+    </ng-template>
+
+</div>
+
+<!-- Properties -->
+<hxgn-common-properties *ngIf="alarm?.properties?.size" [properties]="alarm.properties">
+</hxgn-common-properties>

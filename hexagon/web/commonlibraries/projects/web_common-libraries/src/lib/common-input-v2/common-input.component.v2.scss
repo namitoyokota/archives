@@ -1,0 +1,93 @@
+:host {
+    height: 30px;
+    width: 100%;
+    display: inline-grid;
+    grid-template-columns: auto min-content;
+    align-items: center;
+    border: 1px solid #adafb2;
+    box-sizing: border-box;
+    padding: 0 10px;
+
+    &:focus-within,
+    &:hover {
+        border: 1px solid #62b4ff;
+    }
+
+    &.lock-button {
+        padding: 0 0 0 10px;
+        grid-column-gap: 5px; 
+    }
+
+    &.read-only-icon {
+        padding: 0 0 0 10px;
+        grid-column-gap: 5px; 
+    }
+
+    .tool-bar-pane {
+        display: grid;
+        grid-auto-flow: column;
+        column-gap: 5px;
+        align-items: center;
+        padding-left: 10px;
+
+        .clear-button {
+            cursor: pointer;
+        }
+
+        .lock-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .lock-button.locked {
+            background: #adafb2;
+        }
+
+        .lock-button.unlocked {
+            background: #ececec;
+        }
+
+        .read-only-icon {
+            display:flex;
+            align-items:center;
+            justify-content: center;
+            width: 32px;
+            height: 100%;
+            background: #adafb2;
+        }
+    }
+
+    .tool-bar-pane.lock-button {
+        padding-left: unset;
+        height: 100%;
+    }
+
+    .tool-bar-pane.read-only-icon {
+        padding-left: unset;
+        height: 100%;
+    }
+
+    ::ng-deep input {
+        border: none !important;
+        color: #333;
+        font-size: 13px;
+        line-height: 17px;
+        padding: 0 !important;
+    }
+}
+
+:host.disabled {
+    background-color: #eeeeee;
+    border: none;
+    cursor: not-allowed;
+    pointer-events: none;
+
+    ::ng-deep input {
+        background-color: #eeeeee;
+    }
+}
+

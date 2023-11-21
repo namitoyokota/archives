@@ -1,0 +1,139 @@
+<div class="presets-tab">
+    <div class="presets-pane">
+        <div class="list-btn" (click)="addNewPreset()">
+            <div class="list-btn-icon">
+                <img src="assets/commonmap-core/images/admin/add-icon.png" />
+            </div>
+            <div class="ellipsis">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.createNewPresetBtnLabel" skeletonWidth="60px">
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div class="presets-list">
+            <div class="list-item" *ngFor="let mapPreset of mapPresets" [class.selected]="isSelected(mapPreset)"
+                (click)="setSelectedPreset(mapPreset)" title="{{mapPreset.name}}">
+                <div class="ellipsis" style="padding-left:20px">
+                    {{mapPreset.name}}
+                </div>
+                <div class="action-icon" #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="presetCmds"
+                    (click)="clearSelectedPresetFromActionIcon($event,mapPreset, menuTrigger)"></div>
+                <mat-menu #presetCmds="matMenu" style="width:200px;" xPosition="before">
+                    <div *ngIf="!mapPreset.isSystemDefined" class="menu-item" mat-menu-item [role]="'menuItem'"
+                        (click)="editPreset(mapPreset)">
+                        <div class="menu-btn-icon">
+                            <img src="assets/commonmap-core/images/admin/edit_icon_large_grey.png" />
+                        </div>
+                        <div class="ellipsis">
+                            <hxgn-commonlocalization-translate-v1 [token]="tokens.editMapPresetMenuItemLabel">
+                            </hxgn-commonlocalization-translate-v1>
+                        </div>
+                    </div>
+                    <div *ngIf="!mapPreset.isSystemDefined" class="menu-item" mat-menu-item [role]="'menuItem'"
+                        (click)="deletePreset(mapPreset)">
+                        <div class="menu-btn-icon">
+                            <img src="assets/commonmap-core/images/admin/delete-icon.png" />
+                        </div>
+                        <div class="ellipsis">
+                            <hxgn-commonlocalization-translate-v1 [token]="tokens.deleteMapPresetMenuItemLabel">
+                            </hxgn-commonlocalization-translate-v1>
+                        </div>
+                    </div>
+                    <div class="menu-item" mat-menu-item [role]="'menuItem'" (click)="clonePreset(mapPreset)">
+                        <div class="menu-btn-icon">
+                            <img src="assets/commonmap-core/images/admin/clone-icon.png" />
+                        </div>
+                        <div class="ellipsis">
+                            <hxgn-commonlocalization-translate-v1 [token]="tokens.cloneMapPresetMenuItemLabel">
+                            </hxgn-commonlocalization-translate-v1>
+                        </div>
+                    </div>
+                </mat-menu>
+            </div>
+        </div>
+    </div>
+    <div class="edit-pane-container" *ngIf="selectedMapPreset">
+        <div class="edit-pane" *ngIf="!selectedLayer && !showMapDisplayProps">
+            <div *ngIf="selectedMapPreset && selectedMapPreset.isSystemDefined" class="layer-panel-config-readonly">
+            </div>
+            <div class="title page-header">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.layerPanelSetupHeader" skeletonWidth="60px">
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+            <div class="list-btn" (click)="setZoomCenter()">
+                <div class="list-btn-icon">
+                    <img src="assets/commonmap-core/images/admin/change_zoom.png" />
+                </div>
+                <div>
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.changeZoomForPresetBtnLabel"
+                        skeletonWidth="'100px'">
+                    </hxgn-commonlocalization-translate-v1>
+                </div>
+            </div>
+            <ng-container *featureFlag="FeatureFlags.Selection">
+                <div class="list-btn" (click)="setMapDisplayProperties()">
+                    <div class="list-btn-icon">
+                        <img src="assets/commonmap-core/images/admin/map-configuration-icon.svg" />
+                    </div>
+                    <div>
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.setMapDisplayPropertiesBtnLabel"
+                            skeletonWidth="'100px'">
+                        </hxgn-commonlocalization-translate-v1>
+                    </div>
+                </div>
+            </ng-container>
+            <div class="layer-panel-config">
+                <hxgn-commonmap-layer-panel-config *ngIf="selectedMapPreset" 
+                    [mapPreset]="selectedMapPreset"
+                    [readOnly]="selectedMapPreset?.isSystemDefined"
+                    (layerPropertyChanged)="layerPropertyChanged($event)"
+                    (baseMapChanged)="baseMapChanged($event)"
+                    (layersReordered)="layersReordered($event)"
+                    (editLayerIconSelected)="setSelectedLayer($event)">
+                </hxgn-commonmap-layer-panel-config>
+            </div>
+        </div>
+        <div *ngIf="selectedLayer" class="layer-controls">
+            <div class="layer-controls-header">
+                <span class="return-icon" (click)="returnToPanel()"></span>
+                <span class="title" style="padding-left:10px">
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.layerPanelLayerControlsHeader"
+                        skeletonWidth="60px">
+                    </hxgn-commonlocalization-translate-v1>
+                </span>
+            </div>
+            <div class="layer-properties">
+                <div class="layer-property">
+                    <hxgn-commonmap-layer-zoom-control [minZoomLevel]="selectedLayer.minZoomLevel"
+                        [maxZoomLevel]="selectedLayer.maxZoomLevel" [defineMinZoom]="selectedLayer.defineMinZoom"
+                        [defineMaxZoom]="selectedLayer.defineMaxZoom" [useMap]="true" [map]="getMap()"
+                        (defineMinZoomChanged)="setDefineMinZoom($event)"
+                        (defineMaxZoomChanged)="setDefineMaxZoom($event)" (minZoomLevelChanged)="setMinZoom($event)"
+                        (maxZoomLevelChanged)="setMaxZoom($event)">
+                    </hxgn-commonmap-layer-zoom-control>
+                </div>
+            </div>
+        </div>
+        <ng-container *featureFlag="FeatureFlags.Selection">
+            <div *ngIf="showMapDisplayProps" class="map-display-properties-controls">
+                <div class="map-display-properties-header">
+                    <span class="return-icon" (click)="returnToPanel()"></span>
+                    <span class="title" style="padding-left:10px">
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.mapDisplayPropertiesHeader"
+                            [skeletonWidth]="'60px'">
+                        </hxgn-commonlocalization-translate-v1>
+                    </span>
+                </div>
+                <div class="map-display-properties">
+                    <div class="map-display-property">
+                        <hxgn-commonmap-map-display-properties 
+                            [mapPreset]="selectedMapPreset"
+                            (mapDisplayPropertyChanged)="mapDisplayPropertiesChanged($event)"
+                            (isValid)="setMapDisplayPropsValid($event)">
+                        </hxgn-commonmap-map-display-properties>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+{
+    "featureModules": [
+        {
+            "entryPointId": "@galileo/web_commonmap/_core",
+            "chunkId": "@hxgn/commonmap",
+            "module": "CommonmapCoreModule"
+        },
+        {
+            "entryPointId": "@galileo/web_commonmap/admin",
+            "chunkId": "@hxgn/commonmap/admin",
+            "module": "CommonmapAdminModule"
+        }
+    ],
+    "adminFeatureRouting": [
+        {
+            "path": "mapSetup",
+            "data": {
+                "adminComponent": "@hxgn/commonmap/map-configuration/v1",
+                "adminId": "@hxgn/commonmap/admin",
+                "adminTitle": "commonmap-admin.component.mapSetup",
+                "claim": "uiMapConfigurationAccess",
+                "capabilityId": "@hxgn/commonmap"
+            },
+            "canActivate": [
+                "ClaimGuard$v1",
+                "OnboardingGuard$v1"
+            ],
+            "canDeactivate": [
+                "DirtyGuard$v1"
+            ]
+        }
+    ]
+}

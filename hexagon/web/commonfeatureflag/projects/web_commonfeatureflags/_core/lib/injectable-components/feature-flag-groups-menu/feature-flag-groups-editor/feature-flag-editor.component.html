@@ -1,0 +1,29 @@
+<ng-container *ngIf="featureFlags && groupStates; else loading" >
+    <hxgn-commonfeatureflags-list-v2 [featureFlags]="featureFlags" [flagStates]="groupStates" [editedFlags]="editedFlags"
+        (overridesChange)="overridesChange($event)" (allChanges)="allChange($event)"
+        (flagsChange)="flagsChange($event)" [provisionerMode]="false"
+        (flagDisabled)="flagDisabled.emit($event)" (flagEnabled)="flagEnabled.emit($event)">
+    </hxgn-commonfeatureflags-list-v2>
+</ng-container>
+
+<ng-template #loading>
+    <div class="loading-pane">
+        <div class="item">
+            <div class="loading first"></div>
+            <div class="loading"></div>
+            <div class="loading last"></div>
+        </div>
+    
+        <div class="item">
+            <div class="loading first"></div>
+            <div class="loading"></div>
+            <div class="loading last"></div>
+        </div>
+    
+        <div class="item">
+            <div class="loading first"></div>
+            <div class="loading"></div>
+            <div class="loading last"></div>
+        </div>
+    </div>
+</ng-template>

@@ -1,0 +1,11 @@
+.container {
+    height: 100%;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid #e0e0e0;
+    border-left: 1px solid #e0e0e0;
+    box-sizing: border-box;
+    cursor: pointer;
+}

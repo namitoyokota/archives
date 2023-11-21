@@ -1,0 +1,24 @@
+<div class="title-container">
+    <span class="title">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.alarmHistory" skeletonWidth="95px">
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+    <img src="assets/alarms-core/images/x_dialog.png" (click)="close()" height="14" width="14" />
+</div>
+<hxgn-common-infinite-scroll-pane [itemMinHeight]="itemMinHeight" [itemCount]="alarmHistory.length"
+    [disableLoad]="disableLoad" (loadPage)="getAlarmHistoryPageAsync($event)">
+    <ng-container  *ngIf="!alarmsLoading && !assetAssociationsLoading && !deviceAssociationsLoading; else loading">
+        <ng-container *ngFor="let history of alarmHistory">
+            <div class="history-item" *ngIf="history.operations.length">
+                <hxgn-alarms-history-item [operations]="history.operations" [concise]="true" [alarm]="alarm">
+                </hxgn-alarms-history-item>
+                <div class="time-since">{{history.timestampDate | commonTimeSince: refreshToggle | async}}</div>
+            </div>
+        </ng-container>
+    </ng-container>
+    <ng-template #loading>
+        <div class="loading-pane">
+            <mat-spinner></mat-spinner>
+        </div>
+    </ng-template>
+</hxgn-common-infinite-scroll-pane>

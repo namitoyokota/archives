@@ -1,0 +1,86 @@
+<div class="note-pane">
+    <label>
+        <hxgn-commonlocalization-translate-v1 [token]='tokens.note'>
+        </hxgn-commonlocalization-translate-v1>
+    </label>
+    <span>
+        <hxgn-commonlocalization-translate-v1 [token]='tokens.uncheckingASubsectionMsg'>
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+</div>
+
+<label>
+    <hxgn-commonlocalization-translate-v1 [token]='tokens.details'>
+    </hxgn-commonlocalization-translate-v1>
+</label>
+<div class="item-pane">
+    <mat-checkbox class="double-line" [checked]="!isRedacted(RestrictIds.location)"
+        [class.override]="isOverridden(RestrictIds.location)" (change)="toggleRedaction($event, RestrictIds.location)">
+        <div class="select-element">
+            <span>
+                <hxgn-commonlocalization-translate-v1 [token]='tokens.alarmCurrentLocation'>
+                </hxgn-commonlocalization-translate-v1>
+            </span>
+            <span class="sub-text">
+                <hxgn-commonlocalization-translate-v1 [token]='tokens.alarmLocation'>
+                </hxgn-commonlocalization-translate-v1>
+            </span>
+        </div>
+    </mat-checkbox>
+
+    <mat-checkbox [checked]="!isRedacted(RestrictIds.keywords)" [class.override]="isOverridden(RestrictIds.keywords)"
+        (change)="toggleRedaction($event, RestrictIds.keywords)">
+        <hxgn-commonlocalization-translate-v1 [token]='tokens.keywords'>
+        </hxgn-commonlocalization-translate-v1>
+    </mat-checkbox>
+
+    <mat-checkbox [checked]="!isRedacted(RestrictIds.lastUpdateTime)"
+        [class.override]="isOverridden(RestrictIds.lastUpdateTime)"
+        (change)="toggleRedaction($event, RestrictIds.lastUpdateTime)">
+        <hxgn-commonlocalization-translate-v1 [token]='tokens.lastUpdatedTime'>
+        </hxgn-commonlocalization-translate-v1>
+    </mat-checkbox>
+
+    <mat-checkbox [checked]="!isRedacted(RestrictIds.priority)" [class.override]="isOverridden(RestrictIds.priority)"
+        (change)="toggleRedaction($event, RestrictIds.priority)">
+        <hxgn-commonlocalization-translate-v1 [token]='tokens.priority'>
+        </hxgn-commonlocalization-translate-v1>
+    </mat-checkbox>
+
+    <mat-checkbox [checked]="!isRedacted(RestrictIds.remarks)" [class.override]="isOverridden(RestrictIds.remarks)"
+        (change)="toggleRedaction($event, RestrictIds.remarks)">
+        <hxgn-commonlocalization-translate-v1 [token]='tokens.remarks'>
+        </hxgn-commonlocalization-translate-v1>
+    </mat-checkbox>
+
+    <mat-checkbox [checked]="!isRedacted(RestrictIds.type)" [class.override]="isOverridden(RestrictIds.type)"
+        (change)="toggleRedaction($event, RestrictIds.type)">
+        <hxgn-commonlocalization-translate-v1 [token]='tokens.type'>
+        </hxgn-commonlocalization-translate-v1>
+    </mat-checkbox>
+</div>
+
+<label>
+    <hxgn-commonlocalization-translate-v1 [token]='tokens.contactInformation'>
+    </hxgn-commonlocalization-translate-v1>
+</label>
+<div class="item-pane contact-pane">
+    <mat-checkbox [checked]="!isRedacted(RestrictIds.primaryContact)"
+        [class.override]="isOverridden(RestrictIds.primaryContact)"
+        (change)="toggleRedaction($event, RestrictIds.primaryContact)">
+        <hxgn-commonlocalization-translate-v1 [token]='tokens.primaryContact'>
+        </hxgn-commonlocalization-translate-v1>
+    </mat-checkbox>
+</div>
+
+<label>
+    <hxgn-commonlocalization-translate-v1 [token]='tokens.media'>
+    </hxgn-commonlocalization-translate-v1>
+</label>
+<div class="item-pane media">
+    <mat-checkbox [class.override]="isOverridden(RestrictIds.attachments)"
+        [checked]="!isRedacted(RestrictIds.attachments)" (change)="toggleRedaction($event, RestrictIds.attachments)">
+        <hxgn-commonlocalization-translate-v1 [token]='tokens.imagesAndVideoClips'>
+        </hxgn-commonlocalization-translate-v1>
+    </mat-checkbox>
+</div>

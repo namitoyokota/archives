@@ -1,0 +1,24 @@
+:host {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color:#666768;
+    min-height: 30px;
+    font-size: 14px;
+    padding: 3px 10px;
+    box-sizing: border-box;
+}
+
+.property-pane {
+    display: flex;
+    color: #fff;
+    margin-right: 20px;
+    margin-bottom: 4px;
+    margin-top: 4px;
+    white-space: nowrap;
+    
+    .val {
+        margin-left: 5px;
+        font-weight: 500;
+    }
+}

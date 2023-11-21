@@ -1,0 +1,35 @@
+<div class="icon">
+    <img src="assets/common-libraries/images/error-icon.svg" />
+</div>
+
+<div class="content">
+    <!-- Title -->
+    <div class="title">
+        <ng-container *ngIf="title">
+            {{title}}
+        </ng-container>
+        <ng-container *ngIf="!title">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.errorDialogTitle" skeletonWidth="150px">
+            </hxgn-commonlocalization-translate-v1>
+        </ng-container>
+    </div>
+
+    <!-- Message -->
+    <div class="message">
+        <ng-container *ngIf="message">
+            {{message}}
+        </ng-container>
+        <ng-container *ngIf="!message">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.errorDialogMessage" skeletonWidth="150px">
+            </hxgn-commonlocalization-translate-v1>
+        </ng-container>
+    </div>
+
+    <!-- Dismiss Button -->
+    <div class="btn-pane">
+        <button class="hxgn-btn-secondary" (click)="close()">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.dismiss" [ignoreSkeleton]="true">
+            </hxgn-commonlocalization-translate-v1>
+        </button>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+<div class="connect-pane">
+  <div class="bar"></div>
+</div>
+
+<!-- Property List -->
+<hxgn-common-dropdown-v2 (selectionChange)="propertyChange($event)" [value]="operation.property"
+  [placeholder]="tTokens.chooseOne" class="property-pane">
+
+  <hxgn-common-dropdown-item-v2 *ngFor="let item of propertyList" [value]="item.property">
+    <hxgn-commonlocalization-translate-v1 [token]="item.propertyToken" skeletonWidth="75px">
+    </hxgn-commonlocalization-translate-v1>
+  </hxgn-common-dropdown-item-v2>
+
+</hxgn-common-dropdown-v2>
+
+<!-- Filter Type List -->
+<hxgn-common-dropdown-v2 (selectionChange)="typeChange($event)" [disabled]="!operation.property"
+  [placeholder]="tTokens.chooseOne" [value]="operation.type" class="operation-pane">
+
+  <hxgn-common-dropdown-item-v2 *ngFor="let operation of filterOperations" [value]="operation.type">
+    <hxgn-commonlocalization-translate-v1 [token]="operation.nameToken" skeletonWidth="75px">
+    </hxgn-commonlocalization-translate-v1>
+  </hxgn-common-dropdown-item-v2>
+
+</hxgn-common-dropdown-v2>
+
+<!-- Input Filter -->
+<hxgn-common-input-v2 *ngIf="activeFilterProperty?.operation?.inputType === filterInputType.input" class="value-pane"
+  [isValid]="isTextValid()"
+  [class.disabled]="!(activeFilterProperty.operation.property && activeFilterProperty.operation.type)">
+
+  <input [attr.disabled]="!(activeFilterProperty.operation.property && activeFilterProperty.operation.type) ? '' : null"
+    [attr.placeholder]="getPlaceHolderToken(activeFilterProperty.operation.property)" [(ngModel)]="filterString"
+    (input)="valueChange()" type="text" />
+
+</hxgn-common-input-v2>
+
+<!-- Dropdown Filter -->
+<hxgn-common-dropdown-v2 *ngIf="activeFilterProperty?.operation?.inputType === filterInputType.dropdown"
+  [value]="filterString" (selectionChange)="dropdownChange($event)">
+
+  <hxgn-common-dropdown-item-v2 *ngFor="let inputVal of activeFilterProperty.operation.inputValues"
+    [value]="inputVal.val">
+    {{inputVal.display}}
+  </hxgn-common-dropdown-item-v2>
+
+</hxgn-common-dropdown-v2>
+
+<!-- Date Filter -->
+<hxgn-common-datepicker *ngIf="activeFilterProperty?.operation?.inputType === filterInputType.date"
+  [(date)]="filterString" (dateChange)="valueChange()"
+  [attr.placeholder]="getPlaceHolderToken(activeFilterProperty.operation.property)">
+</hxgn-common-datepicker>
+
+<div class="delete-pane">
+  <img (click)="deleted.emit()" src="assets/common-libraries/images/delete-filter.svg" />
+</div>

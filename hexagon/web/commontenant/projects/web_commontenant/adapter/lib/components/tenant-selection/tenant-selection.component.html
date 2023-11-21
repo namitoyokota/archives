@@ -1,0 +1,29 @@
+<hxgn-commontenant-tenant-icon-list-v1 [urlList]="getUrlList()" [maxIcons]="4">
+</hxgn-commontenant-tenant-icon-list-v1>
+<div [matMenuTriggerFor]="menu" class="menu-btn">
+    <span class="tenant-name  multiple truncate" *ngIf="selectedTenants.length > 1">
+        <hxgn-commonlocalization-translate-v1 skeletonWidth="75" [token]="tokens.showingMultipleOrganizations"></hxgn-commonlocalization-translate-v1>
+    </span>
+    <span class="tenant-name truncate" *ngIf="selectedTenants.length === 1">{{selectedTenants[0].name}}</span>
+    <img src="assets/commontenant-core/dropdown-arrow.png" width="12" height="7" />
+</div>
+<mat-menu #menu="matMenu">
+    <div class="selection-pane">
+        <ng-container *ngFor="let tenant of tenants">
+            <mat-checkbox *ngIf="!readOnly" [disabled]="selectedTenants.length === 1 && isChecked(tenant.id)"
+                (click)="stop()" [checked]="isChecked(tenant.id)" (change)="setIsChecked($event, tenant)">
+                <div class="menu-item">
+                    <hxgn-commontenant-icon *ngIf="tenant" [url]="tenant.tenantIconUrl">
+                    </hxgn-commontenant-icon>
+                    <span class="truncate">{{tenant?.name}}</span>
+                </div>
+            </mat-checkbox>
+    
+            <div *ngIf="readOnly" class="menu-item read-only">
+                <hxgn-commontenant-icon *ngIf="tenant" [url]="tenant.tenantIconUrl">
+                </hxgn-commontenant-icon>
+                <span class="truncate">{{tenant?.name}}</span>
+            </div>
+        </ng-container>
+    </div>
+</mat-menu>

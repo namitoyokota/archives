@@ -1,0 +1,36 @@
+:host {
+    display: flex;
+    position: relative;
+    width: 36px;
+    height: 36px;
+    justify-content: center;
+    align-items: center;
+}
+:host ::ng-deep .focused {
+    transform: scale(1.2);
+}
+
+.selected {
+    position: absolute;
+    pointer-events: none;
+    width: 85px;
+}
+
+hxgn-alarms-icon {
+    cursor: pointer;
+}
+
+
+.tool-tip {
+    position: absolute;
+    white-space: nowrap;
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 4px;
+    background-color: #fff;
+    left: 46px;
+}
+
+.tool-tip-selection {
+    left: 75px;
+}

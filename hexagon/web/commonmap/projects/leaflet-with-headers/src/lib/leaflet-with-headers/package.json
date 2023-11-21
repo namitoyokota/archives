@@ -1,0 +1,26 @@
+{
+  "name": "@galileo/leaflet-with-header",
+  "version": "1.0.4",
+  "description": "Custom headers on Leaflet Tile Layer, WMS, and WMTS",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "leaflet",
+    "headers",
+    "tilelayer",
+    "wms",
+    "plugin",
+    "typescript",
+    "types"
+  ],
+  "author": "Copied from code written by Ticinum Aerospace",
+  "license": "ISC",
+  "dependencies": {
+    "rxjs": "^6.6.3",
+    "typescript": "~4.0.7"
+  }
+}

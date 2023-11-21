@@ -1,0 +1,16 @@
+<template>
+    <require from="./vm-checkbox.component.css"></require>
+
+    <input
+        id.bind="name"
+        class="vm-checkbox--input"
+        type="checkbox"
+        checked.bind="checked"
+        model.bind="model"
+        disabled.bind="isDisabled"
+        change.delegate="handleChange($event)"
+    />
+    <label class="vm-checkbox--label" for.bind="name">
+        <slot></slot>
+    </label>
+</template>

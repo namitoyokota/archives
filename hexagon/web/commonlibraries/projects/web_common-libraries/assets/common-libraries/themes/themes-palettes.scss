@@ -1,0 +1,176 @@
+@use '@angular/material' as mat;
+@import 'themes-colors';
+
+$background-palette: (
+  status-bar:               #0f0,
+  app-bar:                  #0f0,
+  background:               $white,
+  hover:                    $hxgn-tab-grey,
+  card:                     $hxgn-placeholder-grey,
+  dialog:                   $white,
+  disabled-button:          $hxgn-tab-grey,
+  raised-button:            $white,
+  focused-button:           #f00,
+  selected-button:          #f00,
+  unselected-chip:          #0f0,
+  disabled-list-option:     #0f0,
+  disabled-button-toggle:   #00f,
+  selected-disabled-button: #00f
+);
+
+$foreground-palette: (
+  base:              $black,
+  divider:           $hxgn-tab-grey,
+  dividers:          #f00,
+  disabled:          $hxgn-line-grey,
+  disabled-button:   $hxgn-arrows-grey,
+  disabled-text:     $hxgn-disabled-grey,
+  hint-text:         $black,
+  secondary-text:    $black,
+  icon:              #0f0,
+  icons:             #00f,
+  text:              $black,
+  slider-min:        $hxgn-line-grey,
+  slider-off:        $hxgn-line-grey,
+  slider-off-active: $hxgn-line-grey
+);
+
+$hxgn-blue-palette: (
+    50: #e7ebf4,
+    100: #c2cee4,
+    200: #99aed2,
+    300: #708dc0,
+    400: #5274b3,
+    500: $hxgn-primary-blue,
+    600: #2e549d,
+    700: #274a93,
+    800: #20418a,
+    900: #143079,
+    A100: #afc2ff,
+    A200: #7c9bff,
+    A400: #4975ff,
+    A700: #3061ff,
+    contrast: (
+        50: $black,
+        100: $black,
+        200: $black,
+        300: $black,
+        400: $white,
+        500: $white,
+        600: $white,
+        700: $white,
+        800: $white,
+        900: $white,
+        A100: $black,
+        A200: $black,
+        A400: $white,
+        A700: $white
+    )
+);
+
+$hxgn-light-blue-palette: (
+    50: #ecf6ff,
+    100: #d0e9ff,
+    200: #b1daff,
+    300: #91cbff,
+    400: #7abfff,
+    500: $hxgn-highlight-blue,
+    600: #5aadff,
+    700: #50a4ff,
+    800: #469cff,
+    900: #348cff,
+    A100: $white,
+    A200: $white,
+    A400: #dfecff,
+    A700: #c5ddff,
+    contrast: (
+        50: $black,
+        100: $black,
+        200: $black,
+        300: $black,
+        400: $black,
+        500: $black,
+        600: $black,
+        700: $black,
+        800: $black,
+        900: $white,
+        A100: $black,
+        A200: $black,
+        A400: $black,
+        A700: $black
+    )
+);
+
+$hxgn-green-palette: (
+    50: #eef6ee,
+    100: #d4e8d4,
+    200: #b8d9b8,
+    300: #9bc99b,
+    400: #85be85,
+    500: $hxgn-secondary-green,
+    600: #68ab68,
+    700: #5da25d,
+    800: #539953,
+    900: #418a41,
+    A100: #e0ffe0,
+    A200: #adffad,
+    A400: #7aff7a,
+    A700: #60ff60,
+    contrast: (
+        50: $black,
+        100: $black,
+        200: $black,
+        300: $black,
+        400: $black,
+        500: $black,
+        600: $black,
+        700: $black,
+        800: $white,
+        900: $white,
+        A100: $black,
+        A200: $black,
+        A400: $black,
+        A700: $black
+    )
+);
+
+$hxgn-orange-palette: (
+    50: #fef4e6,
+    100: #fde3c0,
+    200: #fbd097,
+    300: #f9bd6d,
+    400: #f8ae4d,
+    500: $hxgn-accent-orange,
+    600: #f69829,
+    700: #f58e23,
+    800: #f3841d,
+    900: #f17312,
+    A100: #ffffff,
+    A200: #fff3eb,
+    A400: #ffd5b8,
+    A700: #ffc59f,
+    contrast: (
+        50: $white,
+        100: $white,
+        200: $white,
+        300: $white,
+        400: $white,
+        500: $white,
+        600: $white,
+        700: $white,
+        800: $white,
+        900: $white,
+        A100: $white,
+        A200: $white,
+        A400: $white,
+        A700: $white
+    )
+);
+
+$primary-palette: mat.define-palette($hxgn-blue-palette);
+$accent-palette: mat.define-palette($hxgn-green-palette);
+$warn-palette: mat.define-palette($hxgn-orange-palette);
+
+$dark-primary-palette: mat.define-palette(mat.$deep-orange-palette);
+$dark-accent-palette: mat.define-palette(mat.$blue-palette);
+$dark-warn-palette: mat.define-palette(mat.$blue-grey-palette);

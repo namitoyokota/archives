@@ -1,0 +1,45 @@
+<div class="dialog-title">
+    <hxgn-commonlocalization-translate-v1 [token]="tokens.manageVisibility">
+    </hxgn-commonlocalization-translate-v1>
+    <img (click)="close()" src="assets/commonnotifications-core/images/x_dialog.png" height="18" width="18" />
+</div>
+<div class="content">
+    <div class="title border-right">
+        <span>
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.groups">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+    </div>
+    <div class="title">
+        <span>
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.notificationPresets">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+    </div>
+    <hxgn-commonidentity-group-list-v1 class="border-right" [selectedGroup]="selectedGroupId" [searchable]="false"
+        [showOtherUsers]="true" [showHeaders]="false" (selection)="selectedGroupId = $event">
+    </hxgn-commonidentity-group-list-v1>
+    <div class="notification-presets-container">
+        <div class="notification-preset" *ngFor="let preset of settingsPresets">
+            <div class="preset-title">
+                <img *ngIf="isDefault(preset)" src="assets/commonnotifications-core/images/star_for_button.png"
+                    width="19" height="18" />
+                <span>{{preset.presetName}}</span>
+            </div>
+            <button class="hxgn-btn-secondary" [disabled]="isDefault(preset)" (click)="setDefault(preset)">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.setAsDefault">
+                </hxgn-commonlocalization-translate-v1>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="buttons-row">
+    <button class="hxgn-btn-secondary" (click)="close()">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.cancel" [ignoreSkeleton]="true">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+    <button class="hxgn-btn-primary" (click)="saveChanges()" [disabled]="!haveChangesOccurred">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.saveChanges" [ignoreSkeleton]="true">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+</div>

@@ -1,0 +1,29 @@
+:host {
+    width: 100%;
+    display: grid;
+    grid-template-rows: 26px auto;
+    grid-template-columns: 30px auto;
+    grid-column-gap: 5px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.title {
+    grid-column: 1 / span 2;
+    font-size: 15px;
+}
+
+hxgn-common-initials {
+    height: 30px;
+    width: 30px;
+}
+
+.name {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 3px;
+
+    span {
+        margin-right: 5px;
+    }
+}

@@ -1,0 +1,40 @@
+﻿<template>
+  <require from="../controls.scss"></require>
+  <require from="./datepicker-control.scss"></require>
+
+  <div
+    class="shared-control-container datepicker-control-component"
+    class.bind="isFirst ? 'show-bar' : ''"
+  >
+    <!-- Gray Bar -->
+    <div if.bind="isFirst" class="gray-bar"></div>
+
+    <!-- Control -->
+    <div class="control-pane">
+      <div class="control datepicker-control-pane">
+        <!-- Title -->
+        <span>${model.name}</span>
+
+        <!-- Date Picker -->
+        <div class.bind="!model.isEditable ? 'is-disabled' : ''">
+          <vm-date-picker-input
+            date-from.two-way="selectedAnswer"
+          ></vm-date-picker-input>
+        </div>
+
+        <!-- Error Message -->
+        <span if.bind="model.errorMsg" class="danger">${model.errorMsg}</span>
+      </div>
+
+      <!-- Expand Button -->
+      <div
+        if.bind="model.isEditable && !model.isSingleControlEdit"
+        class="expand-pane"
+      >
+        <button class="expand-button" click.delegate="caretButtonClicked()">
+          <i class="fa fa-angle-right fa-lg"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</template>

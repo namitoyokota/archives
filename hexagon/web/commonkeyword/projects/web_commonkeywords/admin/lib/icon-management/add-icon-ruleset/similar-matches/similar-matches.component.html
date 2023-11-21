@@ -1,0 +1,15 @@
+<ng-template #similar let-matches="matches">
+    <div class="box" [class.error]=hasErrorMatch(matches) [class.warning]="hasWarningMatch(matches)"
+        [class.no-matches]="!matches.length">
+        <div class="inner-box">
+            <span>{{matches.length}}
+                <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]='tokens.similar'>
+                </hxgn-commonlocalization-translate-v1>
+            </span>
+            <span class="description" *ngIf="matches.length">
+                ({{matches[0].friendlyName}} - {{getMatchPercentageText(matches[0].percentage)}})
+            </span>
+        </div>
+    </div>
+</ng-template>
+<ng-container *ngTemplateOutlet="similar; context:{ matches: getSimilarMatches() }"></ng-container>

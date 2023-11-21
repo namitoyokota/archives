@@ -1,0 +1,41 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "baseUrl": "./",
+        "outDir": "./dist/out-tsc",
+        "sourceMap": true,
+        "declaration": false,
+        "downlevelIteration": true,
+        "experimentalDecorators": true,
+        "module": "es2020",
+        "moduleResolution": "node",
+        "importHelpers": true,
+        "target": "es2015",
+        "typeRoots": [
+            "node_modules/@types"
+        ],
+        "lib": [
+            "es2018",
+            "dom"
+        ],
+        "paths": {
+            "@galileo/web_alarms": [
+                "dist/web_alarms/alarms",
+                "dist/web_alarms"
+            ],
+            "@galileo/web_alarms/core": [
+                "dist/web_alarms/core",
+            ],
+            "@galileo/web_alarms/adapter": [
+                "dist/web_alarms/adapter",
+            ],
+            "@galileo/web_alarms/_common": [
+                "dist/web_alarms/_common",
+            ]
+        }
+    },
+    "angularCompilerOptions": {
+        "fullTemplateTypeCheck": true,
+        "strictInjectionParameters": true
+    }
+}

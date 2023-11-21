@@ -1,0 +1,57 @@
+﻿$nav-menu-width: 220px;
+
+@media screen and (max-width:75em) {
+    .navbar-default {
+        width: $nav-menu-width;
+        z-index: 1001;
+
+        .header-logo {
+            width: $nav-menu-width;
+            padding: 23px;
+            margin: 10px 20px;
+            background: url('../../../images/logo/venminder_white.png') no-repeat;
+            background-size: contain !important;
+        }
+
+        .nav li {
+            white-space: initial;
+            z-index: 1003;
+
+            .hideInNarrow {
+                display: block;
+            }
+
+            a.showInNarrow {
+                display: none;
+            }
+
+            a {
+                display: inherit;
+                padding: 14px 20px;
+                line-height: 18px;
+
+                i {
+                    display: none;
+                }
+
+                span {
+                    display: inline-block;
+                    background-color: initial;
+                    margin: initial;
+                    padding-left: unset;
+                    width: initial;
+                    color: unset;
+                }
+            }
+        }
+
+        .nav_clientname_bg {
+            display: block;
+        }
+    }
+
+    .footer-content .nav-spacer {
+        width: $nav-menu-width;
+    }
+}
+

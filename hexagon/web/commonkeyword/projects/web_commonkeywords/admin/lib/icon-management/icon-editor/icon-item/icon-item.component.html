@@ -1,0 +1,39 @@
+<div *ngIf="toggle" class="layer" cdkDrag cdkDragBoundary=".icon-pane"
+    [class.selected]="isSelected"
+    [cdkDragFreeDragPosition]="iconPos"
+    (cdkDragEnded)="onDragEnd($event)"
+    (cdkDragStarted)="onDragStart($event)"
+    (click)="onLayerClick()"
+    [style.width.px]="iconSize.x"
+    [style.height.px]="iconSize.y">
+
+    <div class="drag-handle" [class.error]="!iconUrl" cdkDragHandle
+        [class.flip-h]="compositeIcon.options.flipH && !compositeIcon.options.flipV"
+        [class.flip-v]="compositeIcon.options.flipV && !compositeIcon.options.flipH"
+        [class.flip-h-v]="compositeIcon.options.flipV && compositeIcon.options.flipH"
+        [style.background-image]="'url(' + UrlHelper.mapMediaUrl(iconUrl) + ')'"></div>
+
+    <!-- Selected tools -->
+    <ng-container *ngIf="isSelected">
+        <div class="selected-pane"></div>
+        <div  (mousedown)="onStartIconResize($event, resizeHandle.w)"
+        class="resize-handle left-handle"></div>
+
+        <div (mousedown)="onStartIconResize($event, resizeHandle.e)"
+            class="resize-handle right-handle"></div>
+
+        <div (mousedown)="onStartIconResize($event, resizeHandle.n)"
+            class="resize-handle top-handle"></div>
+
+        <div (mousedown)="onStartIconResize($event, resizeHandle.s)"
+            class="resize-handle bottom-handle"></div>
+
+        <div class="delete-icon" (click)="delete.emit()"></div>
+    </ng-container>
+
+</div>
+
+<div *ngIf="startPos" style="width:0;height:0;"
+    (window:mouseup)="onEndIconResize($event)"
+    (window:mousemove)="onIconResize($event)"
+></div>

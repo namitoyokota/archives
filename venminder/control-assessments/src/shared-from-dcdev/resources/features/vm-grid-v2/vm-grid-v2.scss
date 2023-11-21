@@ -1,0 +1,297 @@
+﻿@import "../../../core-styles/stylesheets/_variables.scss";
+
+$class-cell-overflow: "grid-cell--overflow";
+$class-cell-stickyleft: "grid-cell--sticky-first";
+$class-cell-stickyright: "grid-cell--sticky-last";
+$class-header-sortable: "grid-header--sortable";
+$class-header-overflow: "grid-header--overflow";
+$class-header-last: "grid-header--last";
+$class-header-stickyleft: "grid-header--sticky-first";
+$class-header-stickyright: "grid-header--sticky-last";
+$class-container-scrolledleft: "__scrolled-left";
+$class-container-scrolledright: "__scrolled-right";
+$class-container-visible: "__visible";
+$class-row-last: "grid-row--last";
+
+$grid-scrollbar-bg: $scrollbar-bg;
+$grid-header-bg: $light-gray;
+$grid-header-bg-hover: darken($grid-header-bg, 5%);
+
+$grid-scrollbar-size: 0.7em;
+$grid-scrollbar-offset: 0.68em;
+$grid-container-height: 36px;
+$grid-border-color: $N40;
+$grid-header-bg-active: darken($grid-header-bg-hover, 5%);
+$grid-color: $navy;
+
+$sortable-icon-width: 15px;
+
+$top-row-padding-top: 10px;
+
+$tooltip-column-offset: 20px;
+
+@mixin scrollBarStyle {
+  @at-root {
+    ::-webkit-scrollbar {
+      height: $grid-scrollbar-size;
+      width: $grid-scrollbar-size;
+    }
+
+    ::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
+      border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: $grid-scrollbar-bg;
+      border-radius: 8px;
+    }
+  }
+}
+
+vm-grid-v2 {
+  position: relative;
+
+  .grid-controls {
+    display: flex;
+
+    .btn-default {
+      border: 1px solid $medium-gray;
+    }
+
+    > div {
+      display: flex;
+      column-gap: 8px;
+    }
+
+    div:last-child {
+      margin-left: auto;
+    }
+
+    .vm-grid-button-container {
+      display: flex;
+
+      img {
+        width: 16px;
+        margin: -3px 0px 0px -1px;
+      }
+
+      button.btn-options {
+        font-weight: 600;
+        width: 35px;
+        height: 34px;
+      }
+
+      .btn-option-container {
+        margin-top: 4px !important;
+
+        span {
+          display: inline-block;
+          padding-right: 10px;
+        }
+      }
+    }
+  }
+
+    .grid-container {
+        border: 1px solid $grid-border-color;
+        border-radius: 4px;
+        color: $grid-color;
+        position: relative;
+        visibility: hidden;
+        overflow: auto;
+        margin-top: 10px;
+
+    --grid-scroll-top: 0px;
+    --grid-scroll-left: 0px;
+
+    vm-tooltip {
+      position: static;
+
+      .tooltip__info {
+        --tooltip-info-top: 0px;
+        --tooltip-info-left: 0px;
+
+        top: calc(var(--tooltip-info-top) + $tooltip-column-offset - var(--grid-scroll-top)) !important;
+        left: calc(var(--tooltip-info-left) - $tooltip-column-offset - var(--grid-scroll-left)) !important;
+      }
+    }
+
+    &.#{$class-container-visible} {
+      visibility: visible;
+    }
+
+    scrollbar-color: $grid-scrollbar-bg;
+    scrollbar-width: thin;
+
+    @include scrollBarStyle();
+  }
+
+  .grid-body {
+    display: grid;
+
+    .grid-action-button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      outline: none;
+      width: 100%;
+
+      &.disabled {
+        cursor: not-allowed;
+        color: $medium-gray;
+      }
+
+      i {
+        font-size: 11px;
+      }
+    }
+
+    .grid-no-results {
+      grid-column: 1/-1;
+      background-color: $white;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .disabled-link {
+      pointer-events: none;
+      color: #808080;
+    }
+  }
+
+  .grid-header {
+    position: sticky;
+    height: $grid-container-height;
+    top: 0;
+    border-bottom: 1px solid $grid-border-color;
+    background-color: $grid-header-bg;
+    cursor: default;
+    padding-top: 5px;
+    margin-bottom: -2px;
+    z-index: 2;
+    -webkit-transition: background-color 150ms linear;
+    -ms-transition: background-color 150ms linear;
+    transition: background-color 150ms linear, box-shadow 150ms linear;
+
+    > div {
+      border-right: 1px solid $grid-border-color;
+      display: flex;
+      font-weight: 600;
+      height: 25px;
+      line-height: 25px;
+      padding-left: 10px;
+      padding-right: 8px;
+
+      div:first-child {
+        width: calc(100% - $sortable-icon-width);
+      }
+
+      div:last-child {
+        width: $sortable-icon-width;
+      }
+
+      i {
+        float: right;
+        font-size: 1.2em;
+        margin-top: 6px;
+
+        &.__not-sorted {
+          visibility: hidden;
+        }
+      }
+    }
+
+    &.#{$class-header-sortable} {
+      cursor: pointer;
+
+      &:hover {
+        background-color: $grid-header-bg-hover;
+
+        i.__not-sorted {
+          visibility: visible;
+        }
+      }
+
+      &:active {
+        background-color: $grid-header-bg-active !important;
+      }
+    }
+  }
+
+  .grid-cell {
+    background-color: $white;
+    border-bottom: 1px solid $grid-border-color;
+    padding: 8px 8px 5px 10px;
+    transition: box-shadow 150ms linear;
+  }
+
+  .#{$class-cell-overflow} {
+    div {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  .#{$class-cell-stickyleft} {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+  }
+
+  .#{$class-cell-stickyright} {
+    position: sticky;
+    right: 0;
+    z-index: 1;
+  }
+
+  .#{$class-header-last} {
+    > div {
+      border-right: none;
+    }
+  }
+
+  .#{$class-header-stickyleft} {
+    left: 0;
+    z-index: 3;
+  }
+
+  .#{$class-header-stickyright} {
+    right: 0;
+    z-index: 3;
+  }
+
+  .#{$class-row-last} {
+    border-bottom: none;
+  }
+
+  .#{$class-container-scrolledright} {
+    .#{$class-header-stickyleft} {
+      box-shadow: 2px -2px 6px rgb(0, 0, 0, 0.15);
+
+      > div {
+        border-right: 1px solid transparent;
+      }
+    }
+  }
+
+  .#{$class-container-scrolledleft} {
+    .#{$class-header-stickyright} {
+      box-shadow: -2px -2px 6px rgb(0, 0, 0, 0.15);
+    }
+  }
+
+  .#{$class-container-scrolledright} {
+    .#{$class-cell-stickyleft} {
+      box-shadow: 2px 2px 6px rgb(0, 0, 0, 0.15);
+    }
+  }
+
+  .#{$class-container-scrolledleft} {
+    .#{$class-cell-stickyright} {
+      box-shadow: -2px 2px 6px rgb(0, 0, 0, 0.15);
+    }
+  }
+}

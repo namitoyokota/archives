@@ -1,0 +1,11 @@
+<#@ include file="..\..\..\..\..\CreateTypeScript.ttinclude" #>
+<#@ template debug="true" hostSpecific="true" language="C#" #>
+<#@ output extension="ts" #>
+
+import { AnswerOption } from "shared/models/answer-option";
+
+<#= GetClass<ControlAssessments.Business.Models.DTO.Templates.SectionControl>(generateCreateFunction:true, leaveClassOpen: true) #>
+    isEditable: boolean = false;
+    isSingleControlEdit: boolean = false;
+    sectionId: number = 0;
+};

@@ -1,0 +1,65 @@
+:host {
+    height: 100%;
+    display: grid;
+    grid-template-rows: min-content 1fr min-content;
+
+    hxgn-commonidentity-group-list-v1 {
+        overflow: hidden;
+    }
+}
+
+.content {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: min-content 1fr;
+    border: 1px solid #a7a7a7;
+    box-sizing: border-box;
+    overflow: hidden;
+
+    .border-right {
+        border-right: 1px solid #a7a7a7;
+        box-sizing: border-box;
+    }
+}
+
+.notification-presets-container {
+    overflow-y: auto;
+
+    .notification-preset {
+        width: 100%;
+        min-height: 60px;
+        display: grid;
+        grid-template-columns: 1fr min-content;
+        column-gap: 10px;
+        align-items: center;
+        border-bottom: 1px solid #a7a7a7;
+        box-sizing: border-box;
+        padding: 0 10px;
+
+        .preset-title {
+            display: flex;
+            align-items: center;
+            column-gap: 5px;
+            font-size: 15px;
+            font-weight: 500;
+            overflow: hidden;
+
+            span {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
+    }
+}
+
+.title {
+    height: 35px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #a7a7a7;
+    box-sizing: border-box;
+    font-size: 15px;
+    font-weight: 500;
+    padding-left: 10px;
+}

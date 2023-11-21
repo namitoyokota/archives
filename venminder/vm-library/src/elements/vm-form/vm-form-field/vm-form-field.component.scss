@@ -1,0 +1,70 @@
+@use "../../../styles/variables" as v;
+
+$error-class: "has-error";
+
+vm-form-field {
+    padding-top: 0.5em;
+    padding-bottom: 0.25em;
+    display: block;
+
+    .vm-form-field--error {
+        color: v.$danger;
+    }
+
+    input.#{$error-class},
+    input:focus.#{$error-class} {
+        border-color: v.$danger;
+    }
+
+    .vm-checkbox-label.#{$error-class}::before {
+        border-color: v.$danger;
+    }
+
+    &.vm-form-field--phone-number-area-code,
+    &.vm-form-field--phone-number-prefix,
+    &.vm-form-field--phone-number-suffix,
+    &.vm-form-field--phone-number-ext,
+    &.vm-form-field--phone-number-type,
+    &.vm-form-field--phone-number-international {
+        display: inline-block;
+        position: relative;
+    }
+
+    &.vm-form-field--phone-number-prefix,
+    &.vm-form-field--phone-number-suffix,
+    &.vm-form-field--phone-number-ext,
+    &.vm-form-field--phone-number-type,
+    &.vm-form-field--phone-number-international {
+        padding-left: 16px;
+    }
+
+    &.vm-form-field--phone-number-prefix::before,
+    &.vm-form-field--phone-number-suffix::before {
+        content: "-";
+        position: absolute;
+        top: 16px;
+        left: 0;
+    }
+
+    &.vm-form-field--phone-number-ext::before {
+        content: "x";
+        position: absolute;
+        top: 16px;
+        left: 0;
+    }
+
+    &.vm-form-field--phone-number-international {
+        content: "+";
+        position: absolute;
+        top: 16px;
+        left: 0;
+    }
+}
+
+vm-form {
+    .vm-form-field--phone-number-label {
+        margin-bottom: 0;
+        margin-top: 0;
+        display: block;
+    }
+}

@@ -1,0 +1,119 @@
+:host {
+  display: grid;
+  grid-template-rows: min-content repeat(2, 44px) auto;
+}
+
+.search-pane {
+  border-bottom: 1px solid #b8babc;
+  padding: 10px;
+}
+
+.list-cmd {
+  cursor: pointer;
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #b8babc;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  box-sizing: border-box;
+  column-gap: 15px;
+
+  &.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  img {
+    width: 25px;
+  }
+}
+
+.shape-pane {
+  display: block;
+  overflow-y: auto;
+}
+
+.item {
+  min-height: 47px;
+  border-bottom: 1px solid #b8babc;
+  display: grid;
+  grid-template-rows: auto min-content;
+  align-items: center;
+  align-content: center;
+  overflow: hidden;
+  padding: 0 15px;
+  font-size: 14px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #eceeee;
+
+    .action-icon {
+      background-image: url("assets/shapes/images/action_menu_row_selected.png");
+    }
+  }
+
+  .shape-name {
+    min-height: 16px;
+  }
+
+  .shape-item {
+    display: grid;
+    grid-template-columns: 20px auto min-content;
+    column-gap: 15px;
+    align-items: center;
+    align-content: center;
+
+    &.managed-internally {
+      padding-top: 5px;
+    }
+
+    &.editable {
+      grid-template-columns: 20px auto 20px min-content;
+    }
+
+    &.invalid {
+      grid-template-columns: 20px auto 20px min-content;
+
+      &.editable {
+        grid-template-columns: 20px auto 20px repeat(2, min-content);
+      }
+    }
+  }
+
+  &.active {
+    background-color: #cbdeef;
+
+    &:hover {
+      background-color: #cbdeef;
+      cursor: default;
+    }
+  }
+
+
+  &.is-dirty {
+    font-weight: 700;
+  }
+
+  .color-preview {
+    width: 20px;
+    height: 20px;
+    border: 2px solid;
+    box-sizing: border-box;
+  }
+
+  .action-icon {
+    height: 30px;
+    width: 30px;
+    background-image: url("assets/shapes/images/action_menu_icon.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-left: auto;
+
+    &:hover {
+      background-image: url("assets/shapes/images/action_menu_icon_selected.png") !important;
+      cursor: pointer;
+    }
+  }
+}

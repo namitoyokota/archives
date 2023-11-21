@@ -1,0 +1,40 @@
+﻿.radio-control-component {
+  &.show-top-border {
+    border-top: thin solid lightGray;
+  }
+
+  .radio-control-pane {
+    display: grid;
+    grid-template-columns: auto repeat(4, min-content);
+    grid-template-rows: repeat(2, auto);
+
+    &.show-expand {
+      grid-template-columns: auto repeat(5, min-content);
+    }
+
+    .control-title {
+      display: flex;
+      flex-direction: column;
+      row-gap: 5px;
+      padding: 20px;
+    }
+
+    .radio-option {
+      width: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-left: thin solid lightGray;
+    }
+
+    .expand-bar {
+      border-left: thin solid lightGray;
+    }
+
+    .radio-button {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

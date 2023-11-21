@@ -1,0 +1,102 @@
+﻿<template>
+  <require from="shared/styles/style.scss"></require>
+  <require
+    from="shared-from-dcdev/shared/components/loader/loader.component"
+  ></require>
+  <require from="./perform-assessment.scss"></require>
+
+  <div slot="content" class="perform-assessment">
+    <div if.bind="!orderInfoLoaded">
+      <loader></loader>
+    </div>
+    <div if.bind="orderInfoLoaded">
+      <div class="main-container">
+        <!-- Header -->
+        <div class="container-header">
+          <vm-breadcrumbs></vm-breadcrumbs>
+
+          <div class="assessment-header">
+            <vm-header
+              text.one-time="pageTitle"
+              show-border.bind="false"
+            ></vm-header>
+          </div>
+        </div>
+
+        <!-- Body -->
+        <div class="container-body">
+          <div show.bind="!redirecting" class="action-pane">
+            <!-- Order Information -->
+            <vm-grid-v2
+              config.bind="gridConfig"
+              grid-data.bind="gridData"
+              max-height="500px"
+              show-pager.one-time="false"
+            ></vm-grid-v2>
+
+            <!-- Select Template -->
+            <div class="select-template-pane">
+              <div class="select-title">Select an assessment template</div>
+              <div class="select-pane">
+                <!-- Template Selection Dropdown -->
+                <vm-dropdown
+                  display-text.to-view="selectedTemplateItem.templateTitle"
+                  value.bind="selectedTemplateItem"
+                >
+                  <!-- Matching Templates -->
+                  <vm-dropdown-item
+                    repeat.for="item of templateDropdownItems"
+                    value.one-time="item.templateTitle"
+                    on-selection.call="templateItemSelected($event)"
+                  >
+                    ${item.templateTitle}
+                  </vm-dropdown-item>
+
+                  <!-- Custom Templates -->
+                  <vm-dropdown-item is-disabled.one-time="true">
+                    --- Custom Templates ---
+                  </vm-dropdown-item>
+                  <vm-dropdown-item
+                    repeat.for="customItem of customDropdownItems"
+                    value.one-time="customItem.templateTitle"
+                    on-selection.call="customTemplateSelected($event)"
+                  >
+                    ${customItem.templateTitle}
+                  </vm-dropdown-item>
+                </vm-dropdown>
+
+                <!-- Create New Template Button -->
+                <vm-button click.delegate="createTemplate()" secondary>
+                  Create a new template
+                </vm-button>
+              </div>
+            </div>
+
+            <!-- No Selectable Templates Message -->
+            <div
+              if.bind="templateDropdownItems.length === 0 && customDropdownItems.length === 0"
+            >
+              No templates available. Please create a template to proceed.
+            </div>
+
+            <!-- Perform Review-->
+            <vm-button
+              is-disabled.bind="!isTemplateSelected"
+              click.delegate="performReview()"
+              primary
+              medium
+            >
+              Perform Review
+            </vm-button>
+          </div>
+
+          <div show.bind="redirecting">
+            <label>
+              Assessment already started. Redirecting to Perform Review screen.
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

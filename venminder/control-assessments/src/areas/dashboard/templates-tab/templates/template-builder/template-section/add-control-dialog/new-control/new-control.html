@@ -1,0 +1,107 @@
+<template>
+  <require from="./new-control.scss"></require>
+  <require from="../control-tags/control-tags"></require>
+  <require from="shared/controls/radio-button/radio-button-control"></require>
+  <require from="shared/controls/textbox/textbox-control"></require>
+  <require from="shared/controls/datepicker/datepicker-control"></require>
+  <require from="shared/controls/checkbox/checkbox-control"></require>
+  <require from="shared/controls/dropdown/dropdown-control"></require>
+
+  <vm-button show.bind="!visible" click.delegate="showForm()" secondary small>
+    Create New Control
+  </vm-button>
+  <br />
+  <form id="control-form" show.bind="visible">
+    <section class="control-line">
+      <p class="label-input-pair fill-line">
+        <label for="control-question">Control Question</label>
+        <input
+          value.bind="controlQuestion"
+          id="control-question"
+          name="control-question"
+          type="text"
+          class="vm-input"
+          placeholder="Enter a Control Question"
+        />
+      </p>
+    </section>
+    <section class="control-line">
+      <p class="label-input-pair" validation-errors.bind="nameErrors">
+        <label for="control-name"
+          >Control Name<span class="danger">*</span></label
+        >
+        <input
+          value.bind="controlName & validate"
+          id="control-name"
+          name="control-name"
+          type="text"
+          class="vm-input"
+          placeholder="Enter Control Name"
+        />
+        <span class="danger" repeat.for="errorInfo of nameErrors">
+          ${errorInfo.error.message}
+        </span>
+      </p>
+      <p
+        class="label-input-pair fill-line"
+        validation-errors.bind="displayDropdownErrors"
+      >
+        <label for="control-display"
+          >Display Control As<span class="danger">*</span></label
+        >
+        <vm-dropdown
+          display-text.to-view="selectedDisplayAsDropdownItem.name"
+          value.bind="selectedDisplayAsDropdownItem & validate"
+        >
+          <vm-dropdown-item
+            repeat.for="item of displayAsDropdownItems"
+            is-selected.to-view="item.isSelected"
+            value.one-time="item.id"
+            on-selection.call="displayAsItemSelected($event)"
+          >
+            ${item.name}
+          </vm-dropdown-item>
+        </vm-dropdown>
+        <span class="danger" repeat.for="errorInfo of displayDropdownErrors">
+          ${errorInfo.error.message}
+        </span>
+      </p>
+    </section>
+    <section
+      class="control-line"
+      if.bind="selectedDisplayAsDropdownItem != null"
+    >
+      <p class="label-input-pair fill-line">
+        <compose
+          view-model="shared/controls${selectedDisplayAsDropdownItem.type}"
+          model.bind="displayAsModel"
+        ></compose>
+      </p>
+    </section>
+    <section class="control-line">
+      <p class="label-input-pair fill-line">
+        <label for="control-description">Control Description</label>
+        <input
+          value.bind="controlDescription"
+          name="control-description"
+          type="text"
+          class="vm-input"
+          placeholder="Describe the Control, what should be found as evidence?"
+        />
+      </p>
+    </section>
+    <section class="control-line">
+      <p class="label-input-pair fill-line">
+        <control-tags view-model.ref="controlTags"></control-tags>
+      </p>
+    </section>
+    <section class="control-line">
+      <p>
+        <vm-button click.delegate="save()" primary class="margin-right"
+          >Save</vm-button
+        >
+        <vm-button click.delegate="clear()" secondary>Cancel</vm-button>
+      </p>
+    </section>
+  </form>
+</template>

@@ -1,0 +1,152 @@
+:host {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-rows: repeat(2, min-content) auto;
+}
+
+.settings-bar {
+  display: grid;
+  grid-template-columns: auto repeat(2, min-content);
+  align-items: center;
+
+  background-color: #eaecec;
+  border-bottom: 1px solid #c2c3c3;
+  padding: 5px 10px;
+
+  .header {
+    font-size: 13px;
+  }
+
+  .search-icon {
+    padding-right: 8px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .settings-icon {
+    border-left: 1px solid #c5c5c5;
+    padding-left: 8px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.input-bar {
+  display: grid;
+  grid-template-columns: min-content auto;
+  column-gap: 5px;
+  align-items: center;
+
+  background-color: #cccbcb;
+  padding: 5px 10px;
+
+  .style-options {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    hxgn-common-post-style-menu {
+      position: inherit;
+
+      ::ng-deep .menu {
+        position: absolute;
+        z-index: 3;
+        top: 64px;
+        left: 10px;
+        width: 300px;
+        overflow: auto;
+        overflow-y: hidden;
+        padding: 10px;
+      }
+    }
+  }
+
+  .input-container {
+    display: grid;
+    grid-template-columns: auto min-content;
+    align-items: center;
+    background-color: #ffffff;
+
+    hxgn-common-input-v2 {
+      border-right: none;
+    }
+
+    .send-btn {
+      height: 100%;
+      width: 20px;
+      display: flex;
+      align-items: center;
+      border: 1px solid #adafb2;
+      border-left: none;
+      box-sizing: border-box;
+
+      .send-icon {
+        height: 15px;
+        width: 15px;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.comment-list {
+  padding: 0 10px;
+  overflow-y: auto;
+
+  .comment-card {
+    display: grid;
+    grid-template-columns: min-content auto min-content;
+    column-gap: 10px;
+    padding: 8px;
+
+    &.no-author {
+      grid-template-columns: auto min-content !important;
+    }
+
+    hxgn-common-initials {
+      height: 25px;
+      width: 25px;
+      font-size: 12px;
+    }
+
+    .comment {
+      padding: 5px 10px;
+    }
+
+    &:not(:last-of-type) {
+      border-bottom: 1px solid #c2c3c3;
+    }
+  }
+}
+
+.no-comments {
+  display: grid;
+  grid-template-rows: repeat(3, min-content);
+  row-gap: 5px;
+  align-items: center;
+  justify-items: center;
+  padding: 20px;
+
+  .title {
+    font-size: 22px;
+    font-weight: 600;
+  }
+
+  .description {
+    font-size: 18px;
+    text-align: center;
+  }
+}

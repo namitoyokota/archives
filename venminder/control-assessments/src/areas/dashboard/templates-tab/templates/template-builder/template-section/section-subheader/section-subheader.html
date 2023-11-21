@@ -1,0 +1,14 @@
+﻿<template>
+  <require from="./section-subheader.scss"></require>
+
+  <input
+    class="vm-input sub-header"
+    placeholder="Enter sub-header text"
+    value.bind="value"
+    focusout.delegate="changeText()"
+  />
+
+  <span class="danger" repeat.for="errorInfo of subHeaderErrors">
+    ${errorInfo}
+  </span>
+</template>

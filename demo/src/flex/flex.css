@@ -1,0 +1,32 @@
+.thumbnail-pane-flex {
+  display: flex;
+  column-gap: 20px;
+}
+
+.thumbnail-box-flex {
+  min-height: 200px;
+  max-height: 100%;
+
+  min-width: 50px;
+  width: 100%;
+}
+
+.flex-container {
+  display: flex;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.align-stretch {
+  align-items: stretch;
+}

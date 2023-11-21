@@ -1,0 +1,164 @@
+<div class="map-config-page" *ngIf="mapDataLoaded">
+    <div class="main-div">
+        <div class="tabs-group">
+            <hxgn-common-tabs theme="light">
+                <mat-tab-group #tabs [(selectedIndex)]="selectedTabIndex" disableRipple="true"
+                    (selectedTabChange)="tabChanged($event)">
+                    <mat-tab [disabled]="isTabDisabled(0)">
+                        <ng-template style="height:100%" mat-tab-label>
+                            <div style="width:100%;cursor:pointer" (click)="mouseTabClick(0)">
+                                <hxgn-commonlocalization-translate-v1 [token]="tokens.availMapLayersTab">
+                                    ({{mapAdminSvc.mapLayers.length}})
+                                </hxgn-commonlocalization-translate-v1>
+                            </div>
+                        </ng-template>
+                    </mat-tab>
+                    <mat-tab [disabled]="isTabDisabled(1)">
+                        <ng-template style="height:100%" mat-tab-label>
+                            <div style="width:100%;cursor:pointer" (click)="mouseTabClick(1)">
+                                <hxgn-commonlocalization-translate-v1 [token]="tokens.mapLayerPresetsTab">
+                                    ({{mapAdminSvc.mapPresets.length}})
+                                </hxgn-commonlocalization-translate-v1>
+                            </div>
+                        </ng-template>
+                    </mat-tab>
+                </mat-tab-group>
+            </hxgn-common-tabs>
+        </div>
+        <div class="configuration-group">
+            <div class="configuration-panel">
+                <div *ngIf="selectedTabIndex === 0" class="layers-tab"
+                    [class.hide]="isSetZoomCenter">
+                    <hxgn-commonmap-admin-layers-pane
+                        (previewNeedsRefresh)="setPreviewNeedsRefresh($event)">
+                    </hxgn-commonmap-admin-layers-pane>
+                </div>
+                <div *ngIf="selectedTabIndex === 1" class="presets-tab"
+                    [class.hide]="isSetZoomCenter">
+                    <hxgn-commonmap-admin-presets-pane (setPresetZoomCenter)="initializeZoomCenter()">
+                    </hxgn-commonmap-admin-presets-pane>
+                </div>
+                <div *ngIf="isSetZoomCenter" class="set-zoom-center-page">
+                    <div class="close-btn-row">
+                        <div class="close-btn" (click)="cancelSetZoomCenter()"></div>
+                    </div>
+                    <div class="set-zoom-icon">
+                        <img style="padding-bottom:20px" src="assets/commonmap-core/images/admin/set_zoom_large.png" />
+                    </div>
+                    <div class="zoom-center-instructions">
+                        <span>
+                            <hxgn-commonlocalization-translate-v1 [token]="tokens.definePresetZoomCenterInstructions" skeletonWidth="60px">
+                            </hxgn-commonlocalization-translate-v1>
+                        </span>
+                    </div>
+                    <div class="init-zoom-group">
+                        <div class="label">
+                            <hxgn-commonlocalization-translate-v1 [token]="tokens.defineZoomLevelLabel" skeletonWidth="60px">
+                            </hxgn-commonlocalization-translate-v1>
+                        </div>
+                        <div class="zoom-input">
+                            <input class="no-edit" id="initZoomLevelInput" type="number" name="initZoomLevel" [(ngModel)]="initZoomLevel"
+                                onwheel="return false" onkeydown="return false" min="0" max="30" step="1"
+                                (input)="setInitZoomLevel($event)" />
+                            <button  class="hxgn-btn-primary" (click)="finishSetZoomCenter()">
+                                <hxgn-commonlocalization-translate-v1 [token]="tokens.defineZoomCenterFinishedLabel">
+                                </hxgn-commonlocalization-translate-v1>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="map-preview-panel">
+                <div class="title">
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.mapPreviewHeader" skeletonWidth="60px">
+                    </hxgn-commonlocalization-translate-v1>
+                    <span *ngIf="this.selectedItem?.valid">{{ ' - ' + this.selectedItem.name + ' '}}</span>
+                </div>
+                <div class="preview-pane">
+                    <div #previewMap class="preview-map">
+                        <!-- <div class="preview-map"> -->
+                        <div class="full-size map" *ngIf="selectedMapPreset" leaflet
+                            [leafletOptions]="mapOptions$ | async" (leafletMapReady)="mcLeafletMapReady($event)">
+                            <div *ngFor="let l of mcGetLeafletLayers()" [leafletLayer]="l"></div>
+                        </div>
+                        <div *ngIf="selectedMapPreset" class="btn-pane">
+                            <div class="home-btn"
+                                title="{{transStrings[tokens.setViewToHomeTooltip]}}"
+                                (click)="setMapViewToPresetZoomCenter()">
+                                <img src="assets/commonmap-core/images/layout/map_home_button.svg" />
+                            </div>
+                        </div>
+                        <ng-container *featureFlag="FeatureFlags.LayerInfoCmds">
+                            <hxgn-commonmap-layer-props-cmd *ngIf="displayLayerPropsCmd"
+                                [layerData]="layerPropsCmdLayerInfos"
+                                [show]="displayLayerPropsCmd"
+                                [map]="map"
+                                [selectionSvc]="selectionSvc"
+                                [maxHeight]="maxHeight"
+                                [point]="layerPropsCmdPoint"
+                                (closeDialog)="layerPropsCmdClose(true)">
+                            </hxgn-commonmap-layer-props-cmd>
+                        </ng-container>
+                    </div>
+                    <div class="map-updating-pane" *ngIf="mapUpdating">
+                        <div class="map-updating">
+                            <div class="map-updating-text">
+                                <hxgn-commonlocalization-translate-v1
+                                    [token]="tokens.updatingMap">
+                                </hxgn-commonlocalization-translate-v1>
+                            </div>
+                            <div class="spinner">
+                                <mat-spinner></mat-spinner>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="no-preview-pane" *ngIf="showNoPreviewPane()">
+                        <div class="no-preview">
+                            <div class="no-preview-graphic">
+                                <img *ngIf="isValid() && previewNeedsRefresh" src="assets/commonmap-core/images/admin/preview-needs-refresh.png" height="161" width="177"/>
+                                <img *ngIf="!isValid()" src="assets/commonmap-core/images/admin/preview-not-available.png" height="161" width="177"/>
+                            </div>
+                            <div class="no-preview-title">
+                                <hxgn-commonlocalization-translate-v1 [token]="noPreviewTitleToken" skeletonWidth="60px">
+                                </hxgn-commonlocalization-translate-v1>
+                            </div>
+                            <div class="no-preview-text">
+                                <hxgn-commonlocalization-translate-v1 [token]="noPreviewTextToken" skeletonWidth="60px">
+                                </hxgn-commonlocalization-translate-v1>
+                            </div>
+                            <div class="refresh-preview-button-section">
+                                <button class="refresh-preview-button" *ngIf="isValid() && previewNeedsRefresh" (click)="refreshPreview()">
+                                    <div class="icon"></div>
+                                    <span>
+                                        <hxgn-commonlocalization-translate-v1 
+                                            [token]="tokens.refreshPreviewBtnLabel">
+                                        </hxgn-commonlocalization-translate-v1>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="save-discard-group">
+            <div class="save-discard-pane">
+                <span></span>
+                <button  class="hxgn-btn-secondary" (click)="discardChanges()"
+                    [disabled]="isDiscardDisabled()">
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.discardButtonLabel">
+                    </hxgn-commonlocalization-translate-v1>
+                </button>
+                <button  class="hxgn-btn-primary" (click)="saveChanges()"
+                    [disabled]="isSaveDisabled()">
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.saveButtonLabel">
+                    </hxgn-commonlocalization-translate-v1>
+                </button>
+            </div>
+        </div>
+    </div>
+    <hxgn-commonmap-admin-processing-pane *ngIf="isProcessing" 
+        [token]="processingToken">
+    </hxgn-commonmap-admin-processing-pane>
+</div>

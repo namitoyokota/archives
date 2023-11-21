@@ -1,0 +1,14 @@
+<div class="bar" [class.bar--low]="level === RestrictionLevels.low"
+    [class.bar--medium]="level === RestrictionLevels.medium" [class.bar--high]="level === RestrictionLevels.high">
+</div>
+
+<img class="level-icon" *ngIf="level === RestrictionLevels.low; else lockIcon"
+    src="assets/commontenant-core/checkmark-icon-lg.png" />
+
+<ng-template #lockIcon>
+    <img class="level-icon" src="assets/commontenant-core/lock-icon-lg.png" />
+</ng-template>
+
+<div class="text-pane">
+    <ng-content select="hxgn-commontenant-active-data-filter-item-section"></ng-content>
+</div>

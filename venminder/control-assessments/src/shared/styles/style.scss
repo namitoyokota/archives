@@ -1,0 +1,18 @@
+@import "shared-from-dcdev/core-styles/stylesheets/_variables.scss";
+
+.main-container {
+    display: grid;
+    grid-template-rows: min-content auto;
+
+    .container-header {
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+        border-bottom: 3px solid $N30;
+        padding: 30px 50px;
+    }
+
+    .container-body {
+        padding: 50px;
+    }
+}

@@ -1,0 +1,17 @@
+﻿<template>
+    <ux-dialog style="width: 0; min-width:30px !important; text-align: center;">
+        <ux-dialog-body>
+            <div class="modal-body au-please-wait-id">
+                <img if.bind="!showProgress" ref="imgElem" style="vertical-align: middle; text-align: center; padding: 8px;" src="../../images/busy.gif" />
+                <div if.bind="showProgress || showStatusText" class="m-t-sm">
+                    <div class="progress" if.bind="showProgress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="${workCompleted}" aria-valuemax="${totalWork}" css.bind="{width: percentComplete + '%'}">
+                            <span class="sr-only">${percentComplete}% Complete</span>
+                        </div>
+                    </div>
+                    <div style="min-width: 300px;max-width: 300px;" click.delegate="cancel()" if.bind="showStatusText">${statusText}</div>
+                </div>
+            </div>
+        </ux-dialog-body>
+    </ux-dialog>
+</template>

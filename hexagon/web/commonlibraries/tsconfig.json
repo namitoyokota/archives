@@ -1,0 +1,46 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "module": "es2020",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "target": "es2015",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "paths": {
+      "@galileo/web_common-libraries": [
+        "dist/web_common-libraries"
+      ],
+      "@galileo/web_common-libraries/*": [
+        "dist/web_common-libraries/*"
+      ],
+      "@galileo/web_common-libraries/graphical/line-type": [
+        "dist/web_common-libraries/graphical/line-type"
+      ],
+      "@galileo/web_common-libraries/graphical/line-weight": [
+        "dist/web_common-libraries/graphical/line-weight"
+      ],
+      "@galileo/web_common-libraries/graphical/color-selector": [
+        "dist/web_common-libraries/graphical/color-selector"
+      ],
+      "@galileo/web_common-libraries/common-properties": [
+        "dist/web_common-libraries/common-properties"
+      ],
+      "@galileo/web_common-libraries/common-hyperlinks": [
+        "dist/web_common-libraries/common-hyperlinks"
+      ],
+      "@galileo/web_common-libraries/common-remarks": [
+        "dist/web_common-libraries/common-remarks"
+      ]
+    }
+  }
+}

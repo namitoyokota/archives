@@ -1,0 +1,45 @@
+﻿.dropdown-control-component {
+  .dropdown-control-pane {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    padding: 20px;
+  }
+
+  .dropdown-edit-pane {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+
+    .left-pane {
+      border-right: thin solid lightGray;
+      padding: 20px;
+
+      .question-text {
+        font-weight: 800;
+      }
+    }
+
+    .right-pane {
+      display: grid;
+      grid-template-rows: auto min-content;
+      row-gap: 10px;
+      padding: 20px;
+
+      .option-list {
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+
+        .option {
+          display: grid;
+          grid-template-columns: auto min-content;
+          column-gap: 10px;
+        }
+      }
+
+      .add-option {
+        justify-self: right;
+      }
+    }
+  }
+}

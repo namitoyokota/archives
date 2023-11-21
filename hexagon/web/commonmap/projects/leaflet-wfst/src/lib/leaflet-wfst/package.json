@@ -1,0 +1,31 @@
+{
+  "name": "@galileo/leaflet-wfst",
+  "version": "2.0.6",
+  "description": "WFST plugin for Leaflet",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "directories": {
+    "example": "./examples",
+    "source": "./src",
+    "tests": "./spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Flexberry/Leaflet-WFST.git"
+  },
+  "keywords": [
+    "maps",
+    "leaflet",
+    "wfs",
+    "wfst"
+  ],
+  "author": "New Platform Ltd",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Flexberry/Leaflet-WFST/issues"
+  },
+  "homepage": "http://flexberry.github.io/Leaflet-WFST/",
+  "scripts": {
+    "test": "./node_modules/.bin/karma start --single-run --browsers PhantomJS"
+  }
+}

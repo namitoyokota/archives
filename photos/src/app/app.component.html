@@ -1,0 +1,17 @@
+<swiper
+    [slidesPerView]="1"
+    [spaceBetween]="50"
+    [navigation]="true"
+    [centeredSlides]="true"
+    [keyboard]="{
+        enabled: true
+    }"
+    [virtual]="true"
+    class="my-swiper"
+>
+    <ng-template swiperSlide *ngFor="let image of images">
+        <div class="swiper-slide-container">
+            <ny-image [src]="image"></ny-image>
+        </div>
+    </ng-template>
+</swiper>

@@ -1,0 +1,22 @@
+﻿<template>
+  <require from="../vm-date-picker.component.scss"></require>
+
+  <div class="vm-date-picker-input">
+    <div class="${dateRangeClass} vm-date-picker-text">
+        <vm-button click.call="openDatePicker($event)">
+            <span if.bind="dateFrom || dateTo" innerhtml.bind="getDisplayText | sanitizeHTML"></span>
+            <span else class="placeholder" innerhtml.bind="placeHolderText | sanitizeHTML"></span>
+        </vm-button>
+    </div>
+    <div class="vm-date-picker-clear">
+      <vm-button if.bind="displayDateText" click.call="clearDates()">
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </vm-button>
+    </div>
+    <div class="vm-date-picker-cal">
+      <vm-button secondary click.call="openDatePicker($event)">
+        <i class="fa fa-calendar"></i>
+      </vm-button>
+    </div>
+  </div>
+</template>

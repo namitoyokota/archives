@@ -1,0 +1,18 @@
+<div class="title">
+    <span>
+        <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]='tokens.steps'></hxgn-commonlocalization-translate-v1>
+    </span>
+</div>
+<div class="step-pane">
+
+    <div *ngFor="let step of steps" class="step" (click)="setSelected(step)"
+        [class.selected]="selectedStepId === step.componentType"
+        [class.locked]="isStepLocked(step)">
+        <div class="icon" [style.backgroundImage]="'url('+ step.iconPath +')'"></div>
+        <span>
+            <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]='step.nameToken'></hxgn-commonlocalization-translate-v1>
+        </span>
+        <img *ngIf="isStepCompleted(step.componentType)" src="assets/commontenant-core/filter-completed.png" />
+    </div>
+
+</div>

@@ -1,0 +1,47 @@
+:host {
+    display:flex;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 10px;
+}
+
+hxgn-commontenant-wizard-step-layout-content {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    padding: 15px 0;
+    box-sizing: border-box;
+}
+
+hxgn-commontenant-wizard-step-layout-description {
+    display: grid;
+    justify-content: center;
+    grid-template-rows: repeat(2, min-content) auto;
+    row-gap: 15px;
+    position: relative;
+    padding: 0 15px 0 0;
+
+    .title {
+        font-weight: 700;
+        text-align: center;
+        margin-top: 15px;
+        font-size: 16px;
+    }
+
+    .msg {
+        font-weight: 500;
+        font-size: 14px;
+    }
+
+    .capability-pane {
+        padding: 15px;
+        border-top: 1px solid #B8B8B8;
+    }
+
+    hxgn-commontenant-info-popover {
+        position: absolute;
+        bottom: 0;
+        left: calc(50% - 11px);
+    }
+}

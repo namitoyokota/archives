@@ -1,0 +1,32 @@
+<div class="share-tabs">
+    <div class="share-tab everything" (click)="setSelectedDisplayLevel(restrictionLevels.low)"
+        [class.selected]="displayedLevel === restrictionLevels.low">
+        <span class="title">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.lowShareMsg" skeletonWidth="80px" >
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+        <div *ngIf="!isOverride || (defaultLevel$ | async) === restrictionLevels.low" class="default-icon" [class.read-only]="isOverride" [class.selected]="(defaultLevel$ | async) === restrictionLevels.low"
+            (click)="setDefaultLevel(restrictionLevels.low, $event)"></div>
+    </div>
+
+    <div class="share-tab basic" (click)="setSelectedDisplayLevel(restrictionLevels.medium)"
+        [class.selected]="displayedLevel === restrictionLevels.medium">
+        <span class="title">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.mediumShareMsg" skeletonWidth="80px" >
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+        <div *ngIf="!isOverride || (defaultLevel$ | async) === restrictionLevels.medium" class="default-icon" [class.read-only]="isOverride" [class.selected]="(defaultLevel$ | async) === restrictionLevels.medium"
+            (click)="setDefaultLevel(restrictionLevels.medium, $event)"></div>
+    </div>
+
+    <div class="share-tab advanced" (click)="setSelectedDisplayLevel(restrictionLevels.high)"
+        [class.selected]="displayedLevel === restrictionLevels.high">
+        <span class="title">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.highShareMsg" skeletonWidth="80px" >
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+        <div *ngIf="!isOverride || (defaultLevel$ | async) === restrictionLevels.high" class="default-icon" [class.read-only]="isOverride" [class.selected]="(defaultLevel$ | async) === restrictionLevels.high"
+            (click)="setDefaultLevel(restrictionLevels.high, $event)"></div>
+    </div>
+</div>
+<div class="portal-host-criteria-setup"></div>

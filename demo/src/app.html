@@ -1,0 +1,30 @@
+<template>
+    <require from="./app.css"></require>
+
+    <!-- Navigation Bar -->
+    <nav class="split-nav">
+        <div class="nav-brand">
+            <h4><a href="#">demo</a></h4>
+        </div>
+        <div class="collapsible">
+            <input id="collapsible" type="checkbox" name="collapsible" />
+            <label for="collapsible">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </label>
+            <div class="collapsible-body">
+                <ul class="inline">
+                    <li repeat.for="nav of router.navigation">
+                        <a href.one-time="nav.href">${nav.title}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="page-content">
+        <router-view></router-view>
+    </div>
+</template>

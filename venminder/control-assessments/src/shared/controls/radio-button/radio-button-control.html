@@ -1,0 +1,68 @@
+﻿<template>
+  <require from="../controls.scss"></require>
+  <require from="./radio-button-control.scss"></require>
+
+  <div
+    class="shared-control-container radio-control-component"
+    class.bind="isFirst ? 'show-top-border' : ''"
+  >
+    <div class="control-pane">
+      <div
+        class="control radio-control-pane"
+        class.one-time="model.isEditable && !model.isSingleControlEdit ? 'show-expand' : ''"
+      >
+        <!-- --- Top Row --- -->
+        <template if.bind="isFirst || !model.groupControls">
+          <!-- Gray Bar (Above Title) -->
+          <div class="gray-bar"></div>
+
+          <!-- Answer Options -->
+          <div
+            repeat.for="answer of model.answerOptions"
+            class="gray-bar name radio-option"
+          >
+            ${answer.name}
+          </div>
+
+          <!-- Gray Bar (Above Expand Button)-->
+          <div
+            if.bind="model.isEditable && !model.isSingleControlEdit"
+            class="gray-bar expand-bar"
+          ></div>
+        </template>
+
+        <!-- --- Bottom Row --- -->
+        <!-- Title -->
+        <div class="control-title">
+          <!-- Control Name -->
+          <span>${model.name}</span>
+
+          <!-- Error Message -->
+          <span if.bind="model.errorMsg" class="danger">${model.errorMsg}</span>
+        </div>
+
+        <!-- Answer Options -->
+        <div repeat.for="answer of model.answerOptions" class="radio-option">
+          <input
+            id="generateGuid()"
+            type="radio"
+            class="radio-button"
+            value.bind="answer.id"
+            disabled.bind="!model.isEditable"
+            checked.bind="selectedAnswer"
+          />
+        </div>
+
+        <!-- Expand Button-->
+        <div
+          if.bind="model.isEditable && !model.isSingleControlEdit"
+          class="expand-pane"
+        >
+          <button class="expand-button" click.delegate="caretButtonClicked()">
+            <i class="fa fa-angle-right fa-lg"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

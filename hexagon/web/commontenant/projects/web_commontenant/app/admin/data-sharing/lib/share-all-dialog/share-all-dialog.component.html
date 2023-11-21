@@ -1,0 +1,23 @@
+<div class="dialog-pane">
+    <div class="pane">
+        <div class="title">
+            <span>
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.youDidIt"></hxgn-commonlocalization-translate-v1>
+            </span>
+            <div (click)="close()" class="close-btn"></div>
+        </div>
+        
+        <div class="content">
+            <img src="assets/commontenant-core/share_all_success_message.svg" />
+            <span>
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.youDidItMsg"></hxgn-commonlocalization-translate-v1>
+            </span>
+        </div>
+        
+        <div class="btn-pane">
+            <button (click)="close()" class="hxgn-btn-primary">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.close"></hxgn-commonlocalization-translate-v1>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="dialog-title">
+    <hxgn-commonlocalization-translate-v1 [token]="tokens.createNotificationPreset" skeletonWidth="265px">
+    </hxgn-commonlocalization-translate-v1>
+    <img (click)="close()" src="assets/commonnotifications-core/images/x_dialog.png" height="18" width="18" />
+</div>
+<div class="intro-description">
+    <hxgn-commonlocalization-translate-v1 [token]="tokens.presetDescription">
+    </hxgn-commonlocalization-translate-v1>
+</div>
+<hxgn-commonnotifications-preset-intro *ngIf="!isLoading && !hidePresetIntro && currentPage === 0"
+    [userInfo]="userInfo"
+    (cancel)="close()"
+    (next)="updateCurrentPage(true)">
+</hxgn-commonnotifications-preset-intro>
+<hxgn-commonnotifications-preset-options *ngIf="currentPage === 1"
+    (cancel)="close()"
+    (selectedPreset)="handleSelectedPreset($event)">
+</hxgn-commonnotifications-preset-options>
+<hxgn-commonnotifications-existing-preset *ngIf="currentPage === 2 && selectedPresetOption !== 2"
+    [selectedPresetOption]="selectedPresetOption"
+    (cancel)="close()"
+    (back)="updateCurrentPage(false)"
+    (create)="create($event)">
+</hxgn-commonnotifications-existing-preset>
+<hxgn-commonnotifications-blank-preset *ngIf="currentPage === 2 && selectedPresetOption === 2"
+    (cancel)="close()"
+    (back)="updateCurrentPage(false)"
+    (create)="create($event)">
+</hxgn-commonnotifications-blank-preset>

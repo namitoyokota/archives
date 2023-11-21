@@ -1,0 +1,25 @@
+<template>
+    <div>Day View(No Date Range)</div>
+    <vm-date-picker on-date-selected.to-view="(onDateSelected)" date-from.two-way="picker1Args.dateFrom"></vm-date-picker>
+    <p></p>
+    <div>Day View(Date Range)</div>
+    <vm-date-picker allow-date-range.to-view="true" on-date-selected.to-view="(onDateSelected)"></vm-date-picker>
+    <p></p>
+    <div>Predefined Date Ranges</div>
+    <vm-date-picker
+        display-type.to-view="vmDatePickerDisplayTypes.PredefinedRangesOnly"
+        on-date-selected.to-view="(onDateSelected)"
+        date-picker-range-title.to-view="'Published Date'"
+        date-range-options.to-view="dateRangeOptions"
+    ></vm-date-picker>
+    <p></p>
+    <div>Full View</div>
+    <vm-date-picker
+        display-type.to-view="vmDatePickerDisplayTypes.Full"
+        on-date-selected.to-view="(onDateSelected)"
+        date-from.two-way="picker4Args.dateFrom"
+        date-to.two-way="picker4Args.dateTo"
+        date-picker-range-title.to-view="'Published Date'"
+        date-range-options.to-view="dateRangeOptions"
+    ></vm-date-picker>
+</template>

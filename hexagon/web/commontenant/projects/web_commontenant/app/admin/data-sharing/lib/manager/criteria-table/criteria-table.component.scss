@@ -1,0 +1,307 @@
+$common-border: 1px solid #AFB0B2; // Common border style
+
+:host {
+    overflow: auto;
+    height: 100%;
+    width: 100%;
+    position: relative;
+
+    ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,
+    ::ng-deep .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+        background-color: #4172b5;
+    }
+}
+
+.data-sharing-off-pane {
+    height: 100%;
+    width: 100%;
+    border: solid 1px #bcbdbe;
+    background-color: #f4f4f4;
+    padding: 45px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+
+    .options-pane {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        color: #717171;
+        line-height: 39px;
+
+        .body {
+            font-size: 24px;
+            font-style: italic;
+            max-width: 705px;
+        }
+
+        .buttons {
+            margin-top: 25px;
+
+            .first-button {
+                margin-right: 10px;
+            }
+        }
+
+        .header {
+            font-size: 30px;
+            font-weight: 500;
+        }
+    }
+
+    .image-pane {
+        display: flex;
+        justify-content: center;
+        max-width: 325px;
+        max-height: 325px;
+        width: 100%;
+        height: 100%;
+        justify-self: center;
+        align-self: center;
+
+        .image {
+            width: 100%;
+            height: 100%;
+            background-image: url("assets/commontenant-core/data-sharing-turned-off.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+    }
+}
+
+.display-none {
+    display: none;
+}
+
+.element-detail {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    hxgn-commontenant-admin-active-data-filters {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+}
+
+.mat-checkbox,
+.mat-table {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.mat-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    .actions-container {
+        justify-content: flex-end;
+        display: flex;
+        align-items: center;
+
+        .action-icon {
+            background-image: url("assets/commontenant-core/action_menu_icon.png");
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 44px;
+            width: 44px;
+            cursor: pointer;
+            border-right: 1px solid #c4c5c8;
+        }
+
+        .action-icon:hover {
+            background-image: url("assets/commontenant-core/action_menu_icon_selected.png") !important;
+        }
+
+        .detail-btn {
+            margin-left: 14px;
+            width: 21px;
+            height: 21px;
+            cursor: pointer;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            background-image: url("assets/commontenant-core/expand_icon.png");
+        }
+
+        .expanded {
+            background-image: url("assets/commontenant-core/expand_icon_row_selected.png");
+            transform: rotate(180deg);
+        }
+    }
+
+    .access-container {
+        display: flex;
+        align-items: center;
+
+        .access-container-label {
+            margin-left: 10px;
+            font-size: 16px;
+        }
+    }
+
+    .data-shared-container {
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+
+        hxgn-common-chip {
+            margin-right: 10px;
+            margin-top: 3px;
+            margin-bottom: 3px;
+        }
+
+        ::ng-deep hxgn-common-chip .chip {
+            background-color: #fff;
+        }
+    }
+
+    .detail-row td {
+        border-bottom: $common-border;
+    }
+
+    .detail-row-internal {
+        border-bottom: 2px solid #fff;
+    }
+
+    .internal-detail {
+        border-bottom: none ;
+    }
+
+    .element-row td {
+        border-bottom: none;
+    }
+
+    .expanded-row {
+        border-bottom: $common-border;
+        background-color: #cadff2 !important;
+
+        .action-icon {
+            background-image: url("assets/commontenant-core/action_menu_row_selected.png");
+        }
+
+        .expanded-icon {
+            background-image: url("/images/row-chevron-open.png") !important;
+        }
+    }
+
+    .mat-cell:not(.mat-column-expandedDetail) {
+        padding-left: 10px !important;
+    }
+
+    .mat-column-canAccess {
+        width: 200px;
+    }
+
+    .mat-column-organizations {
+        width: 400px;
+    }
+
+    .mat-column-useGlobalPermissions {
+        width: 110px;
+    }
+
+    .mat-header-row {
+        height: 44px;
+        background: #c7c7c7;
+        border-bottom: $common-border;
+
+        .checkbox-label,
+        .mat-header-cell {
+            font-size: 15px;
+            font-weight: 400;
+        }
+
+        .mat-header-cell {
+            padding: 0 !important;
+            border-bottom: none;
+            height: 44px;
+            white-space: nowrap;
+        }
+    }
+
+    td.mat-column-expandedDetail {
+        padding: 0 15px;
+    }
+
+    tr.detail-row {
+        height: 0;
+        background: #fff;
+    }
+
+    tr.element-row {
+        background: #fff;
+        height: 78px;
+    }
+}
+
+.header-cell-pane {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    border-right: 2px solid #a8a8a8;
+
+    &.no-border {
+        border-right: none !important;
+    }
+
+    hxgn-commonlocalization-translate-v1 {
+        height: 15px;
+    }
+}
+
+.organization-container {
+    display: flex;
+    align-items: center;
+}
+
+.owner-icon {
+    height: 30px;
+    width: 30px;
+    margin-right: 5px;
+    border: 1px solid #a8a8a8;
+    overflow: hidden;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    background-color: #fff;
+
+    img {
+        width: auto;
+        height: auto;
+        max-height: 30px;
+    }
+}
+
+.popover-container {
+    width: 465px;
+    display: flex;
+    flex-direction: column;
+
+    .popover-img {
+        align-self: center;
+    }
+
+    .popover-intro {
+        height: 60px;
+        color: #333333;
+        font-size: 15px;
+        line-height: 22px;
+
+        .bold {
+            font-weight: 500;
+        }
+    }
+
+    .popover-title {
+        height: 30px;
+        font-size: 18px;
+        font-weight: 700;
+    }
+}

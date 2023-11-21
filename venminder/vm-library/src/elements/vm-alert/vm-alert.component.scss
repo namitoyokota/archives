@@ -1,0 +1,57 @@
+@use "../../styles/variables" as v;
+
+$vm-alert-normal-size: 13px;
+$vm-alert-large-size: 16px;
+
+vm-alert {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    column-gap: 7px;
+    border: solid 1px;
+    border-radius: 5px;
+    font-size: $vm-alert-normal-size;
+    line-height: 20px;
+    padding: 5px 15px;
+
+    &.vm-alert__danger {
+        background-color: v.$danger-bg;
+        border-color: v.$danger-border;
+        color: v.$danger-text;
+    }
+
+    &.vm-alert__hidden {
+        display: none;
+    }
+
+    &.vm-alert__info {
+        background-color: v.$info-bg;
+        border-color: v.$info-border;
+        color: v.$navy;
+    }
+
+    &.vm-alert__success {
+        background-color: v.$success-bg;
+        border-color: v.$success-border;
+        color: v.$success-text;
+    }
+
+    &.vm-alert__warning {
+        background-color: v.$warning-bg;
+        border-color: v.$warning-border;
+        color: v.$warning-text;
+    }
+
+    &.vm-alert__lg {
+        font-size: $vm-alert-large-size;
+        padding: 15px 20px;
+    }
+
+    .vm-alert--icon {
+        font-size: $vm-alert-large-size;
+    }
+
+    .vm-alert--text {
+        flex: 1;
+    }
+}

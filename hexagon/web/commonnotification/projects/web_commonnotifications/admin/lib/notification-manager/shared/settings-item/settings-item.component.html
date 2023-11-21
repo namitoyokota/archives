@@ -1,0 +1,32 @@
+<div class="default-image-container">
+    <img *ngIf="settings?.isDefault && showDefault" src="assets/commonnotifications-core/images/star_for_button.png" height="14"
+        width="15" />
+</div>
+<div class="dropdown-item-info">
+    <div class="preset-title">
+        <ng-container *ngIf="isDefaultItems; else notDefaultPreset">
+            <hxgn-commonlocalization-translate-v1 [token]="settings?.presetName">
+            </hxgn-commonlocalization-translate-v1>
+        </ng-container>
+        <ng-template #notDefaultPreset>
+            <span>{{settings?.presetName}}</span>
+        </ng-template>
+    </div>
+    <div class="preset-description" [class.no-description]="!settings?.description">
+        <ng-container *ngIf="settings?.description; else noDescription">
+            <ng-container *ngIf="isDefaultItems; else notDefaultDescription">
+                <hxgn-commonlocalization-translate-v1 [token]="settings.description">
+                </hxgn-commonlocalization-translate-v1>
+            </ng-container>
+            <ng-template #notDefaultDescription>
+                <span>{{settings.description}}</span>
+            </ng-template>
+        </ng-container>
+        <ng-template #noDescription>
+            <span>
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.noDescription">
+                </hxgn-commonlocalization-translate-v1>
+            </span>
+        </ng-template>
+    </div>
+</div>

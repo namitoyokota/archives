@@ -1,0 +1,10 @@
+<div class="list-item" *ngFor="let item of listSteps; let i = index" [class.selected]="isSelected(i)" [class.disabled]="isDisabled" (click)="select(i)">
+    <div *ngIf="!item.visited && !item.complete" class="dot"></div>
+    <img *ngIf="item.complete" class="check" src="assets/common-libraries/images/blue-check.svg" />
+    <div class="text column-2">
+        <hxgn-commonlocalization-translate-v1 [token]="item.token" skeletonWidth="60px">
+        </hxgn-commonlocalization-translate-v1>
+        <hxgn-commonlocalization-translate-v1 *ngIf="item.displayOptional && item.optional" [token]="tokens.optional" skeletonWidth="60px">
+        </hxgn-commonlocalization-translate-v1>
+    </div>
+</div>

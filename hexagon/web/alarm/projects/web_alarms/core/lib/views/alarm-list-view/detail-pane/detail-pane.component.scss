@@ -1,0 +1,39 @@
+:host {
+
+    hxgn-common-contact-v2,
+    hxgn-common-cross-street,
+    hxgn-common-remarks {
+        padding: 10px;
+        box-sizing: border-box;
+    }
+}
+
+.horizontal-divider {
+    background-color: #c8c7c7;
+    grid-column: span 3;
+    margin: 0 10px;
+}
+
+.primary-contact-cross-street-pane {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    grid-template-rows: min-content 1px;
+    position: relative;
+
+    hxgn-common-properties {
+        margin: 10px;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    &.single-pane {
+        grid-template-columns: 1fr;
+    }
+}
+
+.vertical-divider {
+    background-color: #c8c7c7;
+    height: 80%;
+    align-self: center;
+}

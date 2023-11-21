@@ -1,0 +1,15 @@
+:host {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 254px 46px 1fr;
+    row-gap: 30px;
+    margin-top: 70px;
+
+    .checkbox-container {
+        padding-left: 10px;
+    }
+
+    img {
+        justify-self: center;
+    }
+}

@@ -1,0 +1,62 @@
+<hxgn-alarms-bar [alarm]="alarm"
+    *ngIf="!alarm?.isRedacted(restrictIds.lastUpdateTime) || !alarm?.isRedacted(restrictIds.priority) || (alarm?.type && !alarm?.isRedacted(restrictIds.type))">
+</hxgn-alarms-bar>
+
+<hxgn-commontenant-redacted-bar *ngIf="redactedPropertyTokens?.length" [translationTokens]="redactedPropertyTokens">
+</hxgn-commontenant-redacted-bar>
+
+<div class="primary-contact-cross-street-pane"
+    *ngIf="(alarm?.primaryContact?.firstName && !alarm?.isRedacted(restrictIds.primaryContact)) || (alarm?.location?.crossStreet1 && !alarm?.isRedacted(restrictIds.location)) || (alarm?.properties?.size && !alarm?.isRedacted(restrictIds.properties))"
+    [class.single-pane]="!alarm?.primaryContact?.firstName || !alarm?.location?.crossStreet1 || alarm?.isRedacted(restrictIds.primaryContact) || alarm?.isRedacted(restrictIds.location)">
+
+    <hxgn-common-contact-v2 *ngIf="alarm?.primaryContact?.firstName && !alarm?.isRedacted(restrictIds.primaryContact)"
+        [contact]="alarm?.primaryContact">
+    </hxgn-common-contact-v2>
+
+    <div class="vertical-divider"
+        *ngIf="alarm?.primaryContact?.firstName && alarm?.location?.crossStreet1 && !alarm?.isRedacted(restrictIds.primaryContact) && !alarm?.isRedacted(restrictIds.location)">
+    </div>
+
+    <hxgn-common-cross-street *ngIf="alarm?.location?.crossStreet1 && !alarm?.isRedacted(restrictIds.location)"
+        [crossStreet1]="alarm?.location?.crossStreet1" [crossStreet2]="alarm?.location?.crossStreet2">
+    </hxgn-common-cross-street>
+
+    <div class="horizontal-divider"
+        *ngIf="enableRemarks && alarm?.remarks?.length && !alarm?.isRedacted(restrictIds.remarks)">
+    </div>
+
+</div>
+
+<hxgn-common-remarks *ngIf="enableRemarks && alarm?.remarks?.length && !alarm?.isRedacted(restrictIds.remarks)"
+    [remarks]="alarm?.remarks">
+</hxgn-common-remarks>
+
+<ng-container *ngIf="(deviceIds$ | async) as deviceIds">
+    <hxgn-devices-associated-device-v1 *ngIf="deviceIds?.length" [deviceIds]="deviceIds">
+    </hxgn-devices-associated-device-v1>
+</ng-container>
+
+<ng-container *ngIf="(assetIds$ | async) as assetIds">
+    <hxgn-assets-panel-v1 *ngIf="assetIds?.length" [assetIds]="assetIds"></hxgn-assets-panel-v1>
+</ng-container>
+
+<hxgn-alarms-history [alarm]="alarm" [contextId]="contextId"></hxgn-alarms-history>
+
+<!-- Property Bag -->
+<hxgn-common-properties *ngIf="alarm?.properties && !alarm?.isRedacted(restrictIds.properties)"
+    [properties]="alarm?.properties">
+</hxgn-common-properties>
+
+<ng-container *featureFlag="featureFlags.hyperlinks">
+    <hxgn-common-hyperlinks *ngIf="alarm?.hyperlinks?.length"
+        [links]="alarm?.hyperlinks">
+    </hxgn-common-hyperlinks>
+</ng-container>
+
+<hxgn-common-keywords *ngIf="enableKeywords && alarm?.keywords?.length && !alarm?.isRedacted(restrictIds.keywords)"
+    [keywords]="alarm?.keywords">
+</hxgn-common-keywords>
+
+<hxgn-common-media *ngIf="enableMedia && !alarm?.isRedacted(restrictIds.attachments) && fetcher"
+    [media]="alarm?.attachments" [fetcher]="fetcher">
+</hxgn-common-media>

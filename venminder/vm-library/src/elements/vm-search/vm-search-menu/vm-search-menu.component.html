@@ -1,0 +1,9 @@
+<template>
+    <require from="./vm-search-menu.component.css"></require>
+
+    <div if.bind="items.length" class="vm-search-menu actionable-item" style.bind="width">
+        <button class="vm-search-menu--item" repeat.for="item of items" type="button" click.delegate="contextMenu.methods.click(item)">
+            ${item}
+        </button>
+    </div>
+</template>

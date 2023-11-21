@@ -1,0 +1,14 @@
+<div class="border"
+    [class.show-border]="showBorder"
+    [class.shared]="sharedMarker"
+    [class.shadow]="showShadow">
+</div>
+<hxgn-commonkeywords-composite-icon-v2
+    [capabilityId]="'@hxgn/alarms'"
+    [industryId]="alarm?.industryId"
+    [tenantId]="alarm?.tenantId"
+    [keywords]="alarm?.keywords" [size]="size - 20">
+</hxgn-commonkeywords-composite-icon-v2>
+<hxgn-alarms-priority-icon *ngIf="showPriority" 
+    [priority]="alarm?.priority">
+</hxgn-alarms-priority-icon>

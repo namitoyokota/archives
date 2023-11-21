@@ -1,0 +1,11 @@
+:host {
+    display: block;
+    width: 16px;
+    height: 16px;
+    box-sizing: border-box;
+
+    &.line-type {
+        border: solid 4px;
+    }
+}
+

@@ -1,0 +1,78 @@
+:host {
+    display: grid;
+    grid-template-columns: fit-content(364px) auto;
+    grid-template-rows: 46px calc(100vh - 46px);
+}
+
+.header {
+    background-color: #242425;
+    color: #fff;
+    display: flex;
+    align-content: center;
+    height: 46px;
+
+    .menu-btn {
+        height: 100%;
+        display: flex;
+        padding: 14px;
+        border-right: 1px solid #fff;
+        cursor: pointer;
+        display: block;
+    }
+
+    .title {
+        align-self: center;
+        font-size: 18px;
+        font-weight: 500;
+        padding-left: 20px;
+    }
+
+    #help-btn-container {
+        width: 50px;
+        height: 100%;
+        display: flex;
+        border-right: 1px solid #e0e0e0;
+        border-left: 1px solid #e0e0e0;
+        justify-content: center;
+        margin-left: auto;
+    }
+
+    .help-btn {
+        justify-self: center;
+        align-self: center;
+        cursor: pointer;
+        width: 26px;
+        height: 26px;
+    }
+
+    .margin-left-auto {
+        margin-left: auto;
+    }
+
+    .help {
+        align-self: center;
+        margin-left: auto;
+        justify-self: center;
+        align-self: center;
+        border-right: 1px solid #e0e0e0;
+        border-left: 1px solid #e0e0e0;
+        padding: 14px;
+        cursor: pointer;
+    }
+
+    .border-right {
+        border-right: 1px solid #e0e0e0;
+    }
+
+    .logo {
+        justify-self: center;
+        align-self: center;
+        padding-right: 20px;
+        padding-left: 10px;
+        cursor: pointer;
+    }
+}
+
+hxgn-root-admin-menu {
+    grid-row: 1 / span 2;
+}

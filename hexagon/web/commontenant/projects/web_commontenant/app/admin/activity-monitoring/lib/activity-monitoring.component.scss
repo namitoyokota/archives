@@ -1,0 +1,174 @@
+:host {
+    height: calc(100% - 40px);
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    border: 1px solid #a7a7a7;
+    box-sizing: border-box;
+    margin: 20px;
+    width: 100%;
+}
+
+.data-type-container {
+    display: grid;
+    grid-template-rows: repeat(2, min-content);
+    row-gap: 5px;
+}
+
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.loading-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.number-display-container {
+    .number {
+        color: #a9a9a9;
+        font-size: 43px;
+        font-weight: 500;
+    }
+
+    .number-title {
+        font-size: 19px;
+        white-space: nowrap;
+    }
+}
+
+.organizations-list-container,
+.selected-organization-info-container {
+    height: 100%;
+    display: grid;
+    overflow: hidden;
+}
+
+.organizations-list-container {
+    grid-template-rows: repeat(2, min-content) 1fr;
+    border-right: 1px solid #a7a7a7;
+
+    .organizations-list {
+        overflow-y: auto;
+    }
+
+    .search-box {
+        padding: 10px;
+        border-bottom: 1px solid #a7a7a7;
+    }
+}
+
+.overview-container {
+    display: grid;
+    grid-template-rows: 1fr min-content;
+    overflow: hidden;
+
+    .buttons-row {
+        border-top: 1px solid #a7a7a7;
+        padding: 10px;
+
+        .hxgn-btn-secondary {
+            max-width: unset;
+        }
+    }
+}
+
+.selected-organization-info {
+    display: grid;
+    grid-template-rows: min-content 1fr;
+    row-gap: 20px;
+    padding: 20px;
+
+    .data-usage,
+    .top-item {
+        border: 1px solid #a7a7a7;
+        padding: 20px;
+    }
+
+    .top-content {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 20px;
+    }
+}
+
+.table-container {
+    overflow-y: auto;
+
+    .overview-table {
+        width: 100%;
+
+        tr.mat-header-row {
+            height: 40px;
+            background-color: #d7d7d7;
+
+            th.mat-header-cell {
+                color: #424242;
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 20px;
+                padding: 0 10px !important;
+
+                ::ng-deep .mat-sort-header-container {
+                    justify-content: space-between;
+                }
+
+                &:not(:last-child) {
+                    border-right: 1px solid #a7a7a7;
+                }
+            }
+        }
+
+        tr.mat-row {
+            height: 48px;
+            background-color: #fff;
+
+            td {
+                border-bottom: 1px solid #a7a7a7;
+                color: #424242;
+                font-size: 15px;
+                line-height: 18px;
+                padding: 0 10px !important;
+            }
+
+            &:last-of-type {
+                td {
+                    border-bottom: none;
+                }
+            }
+        }
+    }
+}
+
+.title {
+    height: 54px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #a7a7a7;
+    box-sizing: border-box;
+    font-size: 18px;
+    line-height: 24px;
+    padding: 0 16px;
+}
+
+.top-item {
+    display: grid;
+    grid-template-rows: min-content 1fr;
+    row-gap: 20px;
+
+    .top-item-content {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 20px;
+        row-gap: 20px;
+    }
+
+    .top-item-title {
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 20px;
+    }
+}

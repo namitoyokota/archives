@@ -1,0 +1,19 @@
+<div class="local-access-only-section">
+    <div class="info-icon" #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="localAccessOnlyInfo"></div>
+    <mat-menu #localAccessOnlyInfo="matMenu" style="width:275px" xPosition="before">
+        <div class="info-text" >
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.localAccessInfoText"></hxgn-commonlocalization-translate-v1>
+        </div>
+    </mat-menu>
+</div>
+<div class="small-checkbox-font"
+    [class.disabled]="!isNew">
+    <mat-checkbox 
+        [checked]="localAccessOnly"
+        disableRipple="true"
+        (change)="setLocalAccessOnly($event)">
+        <hxgn-commonlocalization-translate-v1 
+            [token]="tokens.localAccessOnlyLabel">
+        </hxgn-commonlocalization-translate-v1>
+    </mat-checkbox>
+</div>

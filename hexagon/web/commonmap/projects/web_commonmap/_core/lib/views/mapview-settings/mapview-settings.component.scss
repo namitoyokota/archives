@@ -1,0 +1,121 @@
+:host {
+    width: 100%;
+    height: 100%;
+}
+
+
+.mapview-settings {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px;
+}
+
+input {
+    height: 34px;
+    box-sizing: border-box;
+    padding: 5px;
+    width: 100%;
+}
+
+.title {
+    font-size: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.map-presets-group {
+    padding-bottom: 10px;
+}
+
+.map-presets-group-info {
+    font-size: 14px;
+    color: #ADAFB2;
+    padding-top:5px;
+    line-height: 1;
+}
+
+.map-presets-drop-down {
+    padding-top: 10px;
+    width: 100%;
+}
+
+.item {
+    padding: 10px 20px;
+}
+
+.additional-map-settings-group {
+    padding-top:15px;
+}
+
+.toggle-pane {
+    padding-top: 19px;
+}
+
+.toggle-item {
+    padding-top: 10px;
+    display: grid;
+    grid-template-columns: auto 45px;
+    align-items: center;
+}
+
+.label {
+    width: 100%;
+    padding-bottom: 5px;
+}
+
+.label-inline {
+    display: inline-block;
+}
+
+.dark-bg {
+    background-color: #E9EAEB;
+}
+
+.light-bg {
+    background-color: #FFF;
+}
+
+.layer-panel {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 45px;
+    grid-template-rows: 75px 40px 90px auto;
+}
+
+.locking-map-info {
+    grid-column: 1 / 3;
+    display: grid;
+    grid-template-columns: 50px auto;
+    grid-template-rows: 75px;
+    font-size: 14px;
+}
+
+.locking-map-info-icon {
+    margin: 20px 5px 0 20px;
+    width: 25px;
+    height: 25px;
+}
+
+.locking-map-info-text {
+    align-self: center;
+}
+
+.layer-panel-location {
+    padding-top: 10px;
+}
+
+.layer-panel-location-radio {
+    display: inline-flex;
+    flex-direction: row;
+    padding-right: 20px;
+
+    mat-radio-button {
+        margin-right: 20px;
+    }
+
+}
+
+:host ::ng-deep .mat-radio-label-content {
+	font-size: 14px;
+}

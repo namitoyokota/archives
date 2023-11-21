@@ -1,0 +1,37 @@
+<hxgn-commontenant-wizard-step-layout [stepTitle]="tTokens.externalDataSharingSetup"
+    [layoutType]="'Simple'" [actionPaneRef]="actionPaneRef" [descriptionHeaderPaneRef]="descriptionHeaderPaneRef">
+    <hxgn-commontenant-wizard-step-layout-content>
+
+        <div class="step-pane">
+            <hxgn-commontenant-step-icon [stepTitle]="tTokens.receiveData" stepNumber=1
+                imageUrl="assets/commontenant-core/receive-data.svg">
+            </hxgn-commontenant-step-icon>
+            <div class="step-connection"></div>
+            <hxgn-commontenant-step-icon [stepTitle]="tTokens.dataTypes" stepNumber=2
+                imageUrl="assets/commontenant-core/data-types-icon.svg">
+            </hxgn-commontenant-step-icon>
+            <div class="step-connection"></div>
+            <hxgn-commontenant-step-icon [stepTitle]="tTokens.defaultPresets" stepNumber=3
+                imageUrl="assets/commontenant-core/global-filter-icon.svg">
+            </hxgn-commontenant-step-icon>
+            <div class="step-connection"></div>
+            <hxgn-commontenant-step-icon [stepTitle]="tTokens.sharingNetwork" stepNumber=4
+                imageUrl="assets/commontenant-core/sharing-network-icon.svg">
+            </hxgn-commontenant-step-icon>
+            <div class="step-connection"></div>
+            <hxgn-commontenant-step-icon [stepTitle]="tTokens.shareData" stepNumber=5
+                imageUrl="assets/commontenant-core/share-data.svg">
+            </hxgn-commontenant-step-icon>
+        </div>
+
+        <span class="msg">
+            <hxgn-commonlocalization-translate-v1 [token]='tokens.dataSharingSetupDialogue'></hxgn-commonlocalization-translate-v1>
+        </span>
+        <span class="msg continue">
+            <hxgn-commonlocalization-translate-v1 [token]='tokens.dataSharingContinueNotice'></hxgn-commonlocalization-translate-v1>
+        </span>
+    </hxgn-commontenant-wizard-step-layout-content>
+</hxgn-commontenant-wizard-step-layout>
+
+<hxgn-commontenant-info-popover [msg]="tTokens.infoButtonMessage">
+</hxgn-commontenant-info-popover>

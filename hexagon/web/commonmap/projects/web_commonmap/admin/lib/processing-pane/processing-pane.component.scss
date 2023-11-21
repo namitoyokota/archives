@@ -1,0 +1,43 @@
+:host {
+    position: absolute;
+    top:0;
+    left:0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,.32);
+    z-index: 1000;
+  }
+
+  
+.processing-pane {
+    display:grid;
+    grid-template-rows: 60px 150px;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    background: white;
+    padding: 20px;
+    border-radius:5px;
+}
+.label {
+    position:relative;
+    display: flex;
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.spinner {
+    position: relative;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+:host ::ng-deep #spin {
+    height:20px;
+}
+    

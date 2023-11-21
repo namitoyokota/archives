@@ -1,0 +1,13 @@
+<template class="${!showBorder ? 'vm-header__no-border' : ''}">
+    <require from="./vm-header.component.css"></require>
+
+    <div class="vm-header--title">
+        <h1>${text}</h1>
+        <vm-button if.bind="faClass" icon click.call="faClick()">
+            <i class="${faClass}"></i>
+        </vm-button>
+    </div>
+    <div class="vm-header--content">
+        <slot></slot>
+    </div>
+</template>

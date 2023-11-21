@@ -1,0 +1,53 @@
+<hxgn-commonkeywords-icon-editor-toolbar
+	[compositeIcon]="compositeIcon.iconStack[selectedIconLayer]" 
+	(change)="toolBarChange($event)" >
+</hxgn-commonkeywords-icon-editor-toolbar>
+
+<div #editorPane class="editor-pane" (click)="setSelectedIconLayer(null)">
+    <div class="icon-pane"
+        [class.empty]="!compositeIcon?.iconStack?.length"
+		[style.height.px]="iconPaneSize"
+		[style.width.px]="iconPaneSize" >
+
+        <div *ngIf="!compositeIcon?.iconStack?.length" class="empty-msg-pane">
+            <img src="assets/commonkeywords-core/images/choose-icon.png" />
+            <span>
+                <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]="tokens.chooseIcon">
+                </hxgn-commonlocalization-translate-v1>
+            </span>
+        </div>
+
+        <hxgn-commonkeywords-icon-item *ngFor="let icon of compositeIcon.iconStack;let i = index"
+            [compositeIcon]="icon"
+            [iconPaneSize]="iconPaneSize"
+            [isSelected]="selectedIconLayer === i"
+            [relativeScale]="relativeScale"
+            (update)="iconUpdated($event, i)"
+            (delete)="iconDeleted(i)"
+            (layerClick)="setSelectedIconLayer(i)" >
+        </hxgn-commonkeywords-icon-item>
+    </div>
+
+    <!-- Max layer count reached error message -->
+    <div class="max-error" *ngIf="compositeIcon?.iconStack?.length === 10">
+		<div class="icon"></div>
+		<div class="msg">
+			<span>
+				<hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]="tokens.maximumLayersReached">
+				</hxgn-commonlocalization-translate-v1>
+			</span>
+		</div>
+    </div>
+</div>
+
+<hxgn-commonkeywords-icon-layer-pane class="layer-pane"
+	[selectedIconIndex]="selectedIconLayer"
+    (iconDelete)="iconDeleted($event)"
+	[iconLayers]="[].concat(compositeIcon?.iconStack)" 
+    (iconUpdate)="iconStackUpdate($event)"
+    (selectionChange)="setSelectedIconLayer($event)" >
+</hxgn-commonkeywords-icon-layer-pane>
+
+<hxgn-commonkeywords-icon-preview-pane class="preview-item-pane"
+	[icon]="getCompositeIcon()" >
+</hxgn-commonkeywords-icon-preview-pane>

@@ -1,0 +1,70 @@
+﻿<template>
+  <vm-dialog
+    class="AddControlDialog"
+    dialog-title="Upload New Theme"
+    ok-label="Save"
+    ok-click.call="submit()"
+    is-large.bind="true"
+    ok-disabled.bind="!canSave"
+  >
+    <div class="row m-b-lg">
+      <div class="col-sm-12">
+        <div class="row">
+          <div class="col-sm-12">
+            <label class="m-b-md">Upload Theme</label><br />
+            <vm-button secondary small class="m-r-md" click.call="openBrowse()">
+              <i class="fa fa-upload"></i>
+              <span>Browse</span>
+            </vm-button>
+            <span class="mediumGray"
+              >Please upload the .zip files that contains html, css, and any
+              supporting files</span
+            >
+            <input
+              id="addThemeBrowseFiles"
+              type="file"
+              accept=".zip"
+              style="display: none"
+              files.bind="filesList"
+              change.delegate="addFile()"
+            />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12 m-t-md">
+            <span class.bind="hasFileError ? 'red m-b-sm' : 'mediumGray'"
+              >${fileName}</span
+            >
+          </div>
+        </div>
+
+        <div class="row" show.bind="hasFileError">
+          <div class="col-sm-12 m-t-md">
+            <span class="red">Only zip files are accepted. Zip files cannot contain subfolders.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <label class="m-t-sm">Theme Name</label>
+        <input class="vm-input" value.bind="themeName" />
+
+        <label class="m-t-sm">Description</label>
+        <textarea
+          class="form-control"
+          rows="6"
+          value.bind="themeDescription"
+        ></textarea>
+
+        <vm-checkbox
+          name="isDefaultFile"
+          class="m-t-md"
+          checked.two-way="defaultTheme"
+          >Default File</vm-checkbox
+        >
+      </div>
+    </div>
+  </vm-dialog>
+</template>

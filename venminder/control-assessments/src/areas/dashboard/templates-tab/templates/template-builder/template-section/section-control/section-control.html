@@ -1,0 +1,67 @@
+﻿<template>
+  <require from="./section-control.scss"></require>
+
+  <!-- Title -->
+  <div class="control-container">
+    <span class="title">${controlText}</span>
+
+    <vm-tooltip
+      text-options.to-view="vmTooltipTextOptions"
+      class="pull-right"
+      text.to-view="toolTipText"
+    >
+      <vm-checkbox
+        if.bind="displayType === 'radio'"
+        is-disabled.bind="!model.enableGroupControls"
+        name="group-control-${model.sectionId}-${model.sortId}"
+        checked.two-way="groupControls"
+        change.call="groupControlsSelected()"
+      >
+        Group Controls
+      </vm-checkbox>
+    </vm-tooltip>
+  </div>
+
+  <!-- Answer Options -->
+  <div class="answer-container" repeat.for="item of answerOptions">
+    <div class="question-panel">
+      <input
+        id="answerOptions"
+        type.bind="displayType"
+        value.bind="item.name"
+        disabled
+        if.bind="displayType!='dropdown'"
+      />
+      <select disabled if.bind="displayType=='dropdown'"></select>
+      <span for="answerOptions" if.bind="displayType!='text'"
+        >${item.name}</span
+      >
+    </div>
+
+    <div class="scoring-panel" if.bind="displayType!='text'">
+      <vm-button icon small click.delegate="toggleScore(item.id)">
+        <i class="fa fa-lg fa-eye" show.bind="item.calculateScore"></i>
+        <i class="fa fa-lg fa-eye-slash" show.bind="!item.calculateScore"></i>
+      </vm-button>
+
+      <input
+        type="number"
+        value.bind="item.score"
+        show.bind="item.calculateScore"
+        class="vm-input scoring-input"
+        min="0"
+      />
+      <input
+        type="number"
+        show.bind="!item.calculateScore"
+        class="vm-input scoring-input"
+        min="0"
+      />
+    </div>
+  </div>
+
+  <!-- Error Message -->
+  <div class="error-msg-pane" repeat.for="errorInfo of scoringErrors">
+    <span class="danger"> ${errorInfo} </span>
+  </div>
+</template>

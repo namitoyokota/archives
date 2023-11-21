@@ -1,0 +1,271 @@
+﻿@import 'shared-from-dcdev/core-styles/stylesheets/_variables.scss';
+
+$border-color: #C1C7D0;
+$command-container-bg: #EFF2F7;
+$command-item-hover-color: #EFF2F7;
+$command-item-active-color: #DEE4EF;
+$search-tag-bg: #EFF2F7;
+$search-tag-color: #172b4a;
+$grid-scrollbar-bg: #bcc1cb;
+
+
+/*
+
+  Common Styles *******************************
+*/
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.clearfix {
+    clear: both;
+}
+/**********************************************/
+
+/*
+  Main Grid Styles ****************************
+*/
+.vm-grid {
+    border: 1px solid $border-color;
+    border-radius: 4px;
+    width: 100%;
+    position: relative;
+}
+
+.vm-grid-header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    background-color: #EFF2F7;
+}
+.vm-grid-body {
+    height: 100%;
+    overflow-y: auto;
+}
+.vm-grid-body-container {
+    display: grid;
+
+}
+
+.vm-grid-body::-webkit-scrollbar {
+    height: 0.75em;
+    width: 0.75em;
+}
+
+.vm-grid-body::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+}
+
+.vm-grid-body::-webkit-scrollbar-thumb {
+    background-color: $grid-scrollbar-bg;
+    border-radius: 8px;
+    /*outline: 1px solid $border-color;*/
+}
+
+.vm-grid-footer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.vm-grid-controls {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+
+    .btn-default {
+        border: 1px solid $medium-gray;
+    }
+
+    > div {
+        display: flex;
+        column-gap: 8px;
+    }
+
+    .vm-grid-button-container {
+        display: flex;
+        margin-left: auto;
+
+        button {
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+
+        img {
+            width: 16px;
+
+            &.img-svg {
+                margin-top: -3px;
+            }
+        }
+
+        button.btn-options {
+            font-weight: 600;
+            width: 35px;
+        }
+
+        .btn-option-container {
+            margin-top: 0px !important;
+        }
+    }
+}
+
+/*********************************************/
+/*
+  Progress status Styles *********************
+*/
+.vm-grid-progress-border {
+    border: 1px solid $border-color !important;
+}
+
+.vm-grid-progress-container {
+    border-radius: 10px;
+    background-color: #efefef;
+}
+
+.vm-grid-progress-status-notcomplete {
+    border-radius: 9px 0 0 9px;
+}
+
+.vm-grid-progress-status-complete {
+    border-radius: 9px;
+}
+
+.vm-grid-progress-status-large {
+    text-align: center;
+    line-height: 28px;
+}
+
+.vm-grid-progress-status-small {
+    height: 12px;
+}
+
+.vm-grid-progress-status-small div {
+    height: 12px;
+}
+
+.vm-grid-progress-green {
+    background-color: green;
+    color: #FFFFFF;
+}
+
+.vm-grid-progress-orange {
+    background-color: orange;
+    color: #FFFFFF;
+}
+
+.vm-grid-progress-red {
+    background-color: red;
+    color: #FFFFFF;
+}
+
+/*********************************************/
+/*
+  Search Tag Styles **************************
+*/
+.vm-grid-global-search-tag {
+    background-color: $search-tag-bg;
+    border-radius: 5px;
+    color: $search-tag-color;
+    margin: 10px 4px 0px 0px;
+    padding: 3px 7px 3px 7px;
+    text-transform: capitalize;
+}
+
+.vm-grid-global-search-tag i {
+    cursor: pointer;
+    margin-left: 10px;
+}
+/*********************************************/
+/*
+  Action Button Styles ***********************
+*/
+.vm-grid-action-column {
+    position: relative;
+    button {
+        padding: 0px;
+    };
+}
+.vm-grid-action-button, .vm-grid-filter-button {
+    border: none;
+    outline: none;
+    text-align: center;
+    border-radius: 3px;
+    cursor: pointer;
+    color: #FFFFFF;
+    width: 100%;
+}
+
+.vm-grid-action-button:hover, .vm-grid-filter-button:hover {
+    background-color: rgb(84, 116, 21);
+}
+
+.vm-grid-action-button:active, .vm-grid-filter-button:active {
+    background-color: rgb(59, 83, 10);
+}
+
+.vm-grid-action-button i {
+    font-size: 11px;
+}
+
+.vm-grid-action-button.ellipses {
+    cursor: pointer;
+    color: inherit;
+    font-weight: bold;
+    background: none !important;
+    width: 100%;
+}
+
+.vm-grid-action-button.ellipses:hover {
+    background-color: rgb(84, 116, 21);
+}
+
+.vm-grid-action-button.ellipses:active {
+    background-color: rgb(59, 83, 10);
+}
+/*********************************************/
+/*
+  Misc Grid Styles ***************************
+*/
+.vm-grid-anchor-link a {
+    text-decoration: none;
+}
+
+.vm-column-span-container {
+    margin-top: 8px;
+}
+
+.vm-column-draft {
+    border-radius: 5px;
+    background-color: #EEEEEE;
+    padding: 4px 8px 4px 8px;
+}
+
+.vm-grid-row {
+    border-bottom: 1px solid $border-color;
+    display: grid;
+}
+
+.vm-grid-row-column {
+    padding: 8px;
+    ul {
+        padding-left: 14px;
+    }
+}
+
+.vm-grid-row-container-overflow {
+    min-width: 0;
+}
+.vm-grid-row-column-overflow {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+/*********************************************/

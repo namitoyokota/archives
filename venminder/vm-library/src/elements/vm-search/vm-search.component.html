@@ -1,0 +1,13 @@
+<template class="${isDisabled ? 'vm-search__disabled' : ''}">
+    <require from="./vm-search.component.css"></require>
+
+    <i if.bind="showIcon" class="fas fa-search vm-search--icon"></i>
+    <input
+        class="vm-search--input"
+        type="text"
+        placeholder.bind="placeholderText"
+        value.bind="value"
+        keyup.delegate="handleKeypress($event) & debounce"
+        disabled.bind="isDisabled"
+    />
+</template>

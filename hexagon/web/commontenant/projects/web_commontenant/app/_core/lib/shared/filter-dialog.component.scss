@@ -1,0 +1,120 @@
+:host {
+    position: relative;
+    .mat-dialog-title {
+        margin-bottom: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-weight: bold;
+    }
+
+    ::ng-deep .mat-radio-label,
+    ::ng-deep .mat-checkbox-label {
+        font-size: 14px !important;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    ::ng-deep .mat-dialog-container {
+        overflow: visible !important;
+    }
+}
+
+.dialog-container {
+    display: grid;
+    grid-template-rows: min-content auto min-content;
+    height: 100%;
+}
+
+.dialog-header {
+    display: grid;
+    grid-template-columns: auto min-content !important;
+    column-gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-left: 20px;
+
+    .close-btn {
+        height: 35px;
+        width: 35px;
+        background-image: url("assets/commontenant-core/cancel.png");
+        cursor: pointer;
+        transition: all 0.5s ease;
+        background-position: bottom;
+    }
+
+    .close-btn:hover {
+        background-image: url("assets/commontenant-core/cancel-hover.png");
+    }
+}
+
+.intro {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 244px 638px;
+    height: 100%;
+}
+
+.display-none {
+    display: none;
+}
+
+.loading-pane {
+    top: 0;
+    position: absolute;
+    background: #ffffffb8;
+    max-width: 882px;
+    width: 100vw;
+    max-height: 530px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.data-box,
+.filter-dialog-container {
+    height: 100%;
+}
+
+.finished-container {
+    display: grid;
+    grid-template-rows: min-content 492px;
+    height: 100%;
+}
+
+.finished-header {
+    display: grid;
+    grid-template-columns: auto min-content !important;
+    column-gap: 10px;
+    align-items: center;
+
+    .close-btn {
+        height: 35px;
+        width: 35px;
+        background-image: url("assets/commontenant-core/cancel.png");
+        cursor: pointer;
+        transition: all 0.5s ease;
+        background-position: bottom;
+    }
+
+    .close-btn:hover {
+        background-image: url("assets/commontenant-core/cancel-hover.png");
+    }
+}
+
+.finished-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.finished-img {
+    height: 250px;
+}
+
+.finished-title {
+    font-size: 26px;
+    font-weight: bold;
+}

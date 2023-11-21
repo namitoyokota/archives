@@ -1,0 +1,79 @@
+<div class="item">
+    <div class="info-text header-padding">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.urlLinkInfo" skeletonWidth="60px">
+        </hxgn-commonlocalization-translate-v1>
+        <a target="_blank" href="https://www.waze.com/livemap">www.waze.com/livemap</a>
+    </div>
+    <div class="info-text">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.urlInfoText" skeletonWidth="60px">
+        </hxgn-commonlocalization-translate-v1>
+    </div>
+</div>
+
+<div class="item">
+    <div class="label">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.wazeUrlLabel" skeletonWidth="60px">
+        </hxgn-commonlocalization-translate-v1>
+    </div>
+    <hxgn-common-input-v2 [isValid]="wazeUrlIsValid" style="width:100%">
+        <input type="text" id="twitterHandle" [(ngModel)]="settings.wazeUrl" (input)="parseUrl()">
+    </hxgn-common-input-v2>
+    <div class="error-message ng-invalid" *ngIf="wazeUrlIsValid === false">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.urlValidationMessage" skeletonWidth="60px">
+        </hxgn-commonlocalization-translate-v1>
+    </div>
+</div>
+
+<div class="item">
+    <div class="title header-padding">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.wazeSettingsTitle" skeletonWidth="60px">
+        </hxgn-commonlocalization-translate-v1>
+    </div>
+    <div class="info-text">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.wazeSettingsInfoText" skeletonWidth="60px">
+        </hxgn-commonlocalization-translate-v1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="column">
+        <div class="label">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.wazeLatLabel" skeletonWidth="60px">
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+        <hxgn-common-input-v2 [isValid]="latIsValid" style="width:100%">
+            <input type="text" id="twitterHandle" [(ngModel)]="settings.latitude" (input)="replaceParameter('lat')">
+        </hxgn-common-input-v2>
+    </div>
+
+    <div class="column">
+        <div class="label">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.wazeLonLabel" skeletonWidth="60px">
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+        <hxgn-common-input-v2 [isValid]="lonIsValid" style="width:100%">
+            <input type="text" id="twitterHandle" [(ngModel)]="settings.longitude" (input)="replaceParameter('lon')">
+        </hxgn-common-input-v2>
+    </div>
+</div>
+
+<div class="item">
+    <div class="half-width">
+        <div class="label">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.wazeZoomLabel" skeletonWidth="60px">
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+        <hxgn-common-input-v2 [isValid]="zoomIsValid" style="width:100%">
+            <input type="number" min="3" max="17" id="twitterHandle" [(ngModel)]="settings.zoom"
+                (input)="replaceParameter('zoom')">
+        </hxgn-common-input-v2>
+    </div>
+</div>
+
+<div class="toggle-item dark-bg margin-top">
+    <div class="label-inline">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.wazePinLabel" skeletonWidth="60px">
+        </hxgn-commonlocalization-translate-v1>
+    </div>
+    <mat-slide-toggle [(ngModel)]="settings.enablePin" (change)="replaceParameter('pin')"></mat-slide-toggle>
+</div>

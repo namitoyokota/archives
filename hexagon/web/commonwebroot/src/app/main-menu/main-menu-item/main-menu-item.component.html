@@ -1,0 +1,16 @@
+<div class="main-menu-nav-button" 
+    [class.selected]="navigationService.getCurrentRoute() === routerLink"
+    [class.has-image]="imageSrc && !isProvisioner && !hasSubItems"
+    [class.has-icon]="!imageSrc && (isProvisioner || hasSubItems)"
+    [class.has-image-and-icon]="imageSrc && (isProvisioner || hasSubItems)"
+    (click)="itemClicked()">
+    <img class="main-menu-nav-button-image" src="{{imageSrc}}" *ngIf="imageSrc" />
+    <span class="main-menu-nav-button-text ellipsis">
+        <ng-content></ng-content>
+    </span>
+    <img *ngIf="isProvisioner" src="assets/provisioner-icon.svg" height="22" width="22" />
+    <img *ngIf="hasSubItems" [@rotateArrow]="getAnimationState()" src="assets/menu-dropdown-icon.svg" width="16" height="8" />
+</div>
+<div [@expansionState]="getAnimationState()" class="sub-item" #subItems>
+    <ng-content select="hxgn-main-menu-item"></ng-content>
+</div>

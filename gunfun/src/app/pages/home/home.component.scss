@@ -1,0 +1,96 @@
+.header {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 100px auto 100px;
+    align-items: center;
+    justify-items: center;
+
+    &--title {
+        font-size: 2.5em;
+        font-weight: 700;
+    }
+}
+
+.content {
+    height: calc(100vh - 100px);
+    display: grid;
+    grid-template-rows: min-content auto min-content;
+    row-gap: 20px;
+    overflow: hidden;
+
+    .filter-pane {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        column-gap: 20px;
+
+        .date-pane {
+            display: flex;
+            flex-direction: column;
+            row-gap: 10px;
+
+            .date-input-pane {
+                display: grid;
+                grid-template-columns: min-content auto min-content;
+            }
+        }
+
+        .action-pane {
+            display: grid;
+            grid-template-columns: repeat(2, 120px);
+            column-gap: 10px;
+        }
+    }
+
+    .press-list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 20px;
+        overflow: hidden;
+    }
+
+    .batch-pane,
+    .unassigned-pane {
+        display: grid;
+        grid-template-rows: min-content auto;
+        row-gap: 10px;
+        border: 1px solid rgba(196, 196, 196, 0.5);
+        border-radius: 5px;
+        padding: 15px;
+        background-color: white;
+        overflow: hidden;
+
+        .press-title {
+            font-size: 1.3em;
+            font-weight: 700;
+        }
+
+        .batch-list,
+        .unassigned-list {
+            display: flex;
+
+            .batch {
+                &:hover {
+                    cursor: pointer;
+                }
+
+                .preview-image {
+                    height: auto;
+                    width: 100px;
+                }
+            }
+        }
+
+        .batch-list {
+            flex-direction: column;
+            row-gap: 10px;
+            overflow-y: auto;
+        }
+
+        .unassigned-list {
+            min-height: 100px;
+            column-gap: 10px;
+            overflow-x: auto;
+        }
+    }
+}

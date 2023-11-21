@@ -1,0 +1,53 @@
+:host {
+  display: grid;
+  grid-template-rows: 36px auto;
+  width: 100%;
+}
+
+:host ::ng-deep galileo-common-expansion-panel-title {
+  font-size: 13px;
+}
+
+.header {
+  background: #e6e6e6;
+  border-top: 2px solid #d1d3d4;
+  display: grid;
+  align-content: center;
+  grid-template-columns: 38px auto;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.no-icon {
+  grid-template-columns:auto;
+}
+
+.header:last-child {
+  border-bottom: 2px solid #d1d3d4;
+}
+
+.indicator-icon {
+  justify-self: center;
+  padding: 11px;
+  transform: rotate(-90deg);
+  transition: all 0.5s ease;
+}
+
+.title-content {
+  display:grid;
+  grid-template-columns: fit-content(100%) auto;
+  grid-column-gap: 5px;
+}
+
+.expanded {
+  transform: rotate(0);
+}
+
+.content {
+  overflow:hidden;
+}
+
+.expanded-panel {
+  border-top: 2px solid #d1d3d4;
+}

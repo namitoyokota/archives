@@ -1,0 +1,177 @@
+﻿@import "ux-dialog.scss";
+@import "../core-styles/stylesheets/_variables.scss";
+
+/*  -------------- Tooltip Decoration --------------  */
+
+a.tooltipDecor {
+    border-bottom: 1px dotted;
+    text-decoration: none;
+}
+
+a.tooltipDecor:hover {
+    border-bottom: 1px dotted;
+}
+
+span.tooltipDecor {
+    border-bottom: 1px dotted;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+span.tooltipDecor:hover {
+    border-bottom: 1px dotted;
+}
+
+/* TipTip CSS - Version 1.2 */
+
+#tiptip_holder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    display: none;
+}
+
+#tiptip_holder.tip_top {
+    padding-bottom: 5px;
+}
+
+#tiptip_holder.tip_bottom {
+    padding-top: 5px;
+}
+
+#tiptip_holder.tip_right {
+    padding-left: 5px;
+}
+
+#tiptip_holder.tip_left {
+    padding-right: 5px;
+}
+
+#tiptip_content {
+    padding: 4px 8px 8px 8px;
+    border: 1px solid rgba(119,110,113,0.25);
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    background-color: #6D6E71;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(transparent), to(#000));
+    color: #fff;
+    -webkit-text-shadow: 0 0 2px #000;
+    text-shadow: 0 0 2px #000;
+    font-size: 0.9em;
+}
+
+#tiptip_arrow, #tiptip_arrow_inner {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent;
+}
+
+#tiptip_holder.tip_top #tiptip_arrow {
+    border-top-color: #fff;
+    border-top-color: rgba(119,110,113,0.35);
+}
+
+#tiptip_holder.tip_bottom #tiptip_arrow {
+    border-bottom-color: #fff;
+    border-bottom-color: rgba(119,110,113,0.35);
+}
+
+#tiptip_holder.tip_right #tiptip_arrow {
+    border-right-color: #fff;
+    border-right-color: rgba(119,110,113,0.35);
+}
+
+#tiptip_holder.tip_left #tiptip_arrow {
+    border-left-color: #fff;
+    border-left-color: rgba(119,110,113,0.35);
+}
+
+#tiptip_holder.tip_top #tiptip_arrow_inner {
+    margin-top: -7px;
+    margin-left: -6px;
+    border-top-color: rgb(119,110,113);
+    border-top-color: rgba(119,110,113,0.92);
+}
+
+#tiptip_holder.tip_bottom #tiptip_arrow_inner {
+    margin-top: -5px;
+    margin-left: -6px;
+    border-bottom-color: rgb(119,110,113);
+    border-bottom-color: rgba(119,110,113,0.92);
+}
+
+#tiptip_holder.tip_right #tiptip_arrow_inner {
+    margin-top: -6px;
+    margin-left: -5px;
+    border-right-color: rgb(119,110,113);
+    border-right-color: rgba(119,110,113,0.92);
+}
+
+#tiptip_holder.tip_left #tiptip_arrow_inner {
+    margin-top: -6px;
+    margin-left: -7px;
+    border-left-color: rgb(119,110,113);
+    border-left-color: rgba(119,110,113,0.92);
+}
+
+.delete-icon {
+    color:#676a6c !important;
+}
+.search-vendor {
+    font-weight: bold;
+    border: 0px !important;
+}
+.break-all {
+    word-break: break-all !important;
+    word-wrap: break-word !important;
+}
+
+.has-error .btn {
+    position: relative;
+}
+
+.has-error .btn:not([class*=btn-error-border]):after {
+    content: "*";
+    color: red;
+    position: absolute;
+    right: 3px;
+    top: 0;
+}
+.has-error .btn.btn-error-border {
+    border-color: $red;
+}
+
+.white-space-pre-wrap {
+    white-space: pre-wrap;
+}
+
+.row.row-slim-gutters {
+    margin-right: -1px;
+    margin-left: -1px;
+}
+
+.row.row-slim-gutters > [class^="col-"],
+.row.row-slim-gutters > [class*=" col-"] {
+    padding-right: 1px;
+    padding-left: 1px;
+}
+
+.row.row-no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.row.row-no-gutters > [class^="col-"]:first-child,
+.row.row-no-gutters > [class*=" col-"]:first-child {
+    padding-left: 0;
+}
+
+.row.row-no-gutters > [class^="col-"]:last-child,
+.row.row-no-gutters > [class*=" col-"]:last-child {
+    padding-right: 0;
+}

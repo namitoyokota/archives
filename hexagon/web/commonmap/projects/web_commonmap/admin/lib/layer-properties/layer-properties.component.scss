@@ -1,0 +1,84 @@
+:host {
+    width:100%;
+    height:100%;
+    overflow:hidden;
+
+}
+
+.title {
+    font-size: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.error-msg {
+    width: 100%;
+    font-size: 12px;
+    color: #f29e25;
+}
+
+input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.label {
+    width: 100%;
+    min-width: 50%;
+    padding-bottom: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.layer-properties {
+    height: 100%;
+    overflow:auto;
+    padding-right: 5px;
+    box-sizing: border-box;
+}
+
+.layer-property {
+    padding-bottom:10px;
+}
+
+.layer-options {
+    padding-bottom:10px;
+
+    &.obsecure {
+        pointer-events: none;
+        opacity:.3;
+    }
+}
+
+.data-layer-properties {
+    width:100%;
+    height:100%;
+}
+.pad-bottom {
+    padding-bottom: 10px;
+}
+
+.divider {
+	border-bottom: 2px solid #828485 !important;
+}
+
+.ellipsis {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.section {
+	width:100%;
+	padding-top:15px;
+}
+
+.section-header {
+	width:100%;
+	height:20px;
+	font-size:16px;
+}
+
+

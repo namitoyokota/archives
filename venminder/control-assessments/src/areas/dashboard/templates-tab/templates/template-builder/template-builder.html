@@ -1,0 +1,160 @@
+﻿<template>
+  <require from="shared/styles/style.scss"></require>
+  <require from="./template-builder.scss"></require>
+  <require from="./template-section/template-section"></require>
+
+  <div slot="content" class="template-builder">
+    <div class="main-container">
+      <div class="container-header">
+        <vm-breadcrumbs></vm-breadcrumbs>
+
+        <div class="template-header">
+          <!-- Page Title -->
+          <vm-header text.one-time="pageTitle" show-border.bind="false">
+          </vm-header>
+
+          <!-- Button Pane -->
+          <div class="button-pane">
+            <vm-button
+              secondary
+              is-disabled.bind="!canSave"
+              click.delegate="saveAndClose()"
+            >
+              Save & Close
+            </vm-button>
+            <vm-button secondary is-disabled.bind="!canPreview">
+              Preview
+            </vm-button>
+            <vm-button
+              primary
+              is-disabled.bind="!canPublish"
+              click.delegate="publishTemplate()"
+            >
+              Publish
+            </vm-button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="template-layout">
+        <div class="left-content">
+          <!-- Template Name -->
+          <div class="template-name">
+            <label>Template Name</label>
+            <input
+              class="vm-input"
+              value.bind="templateTitle"
+              focus.bind="hasFocus"
+              focusout.delegate="autoSaveTitle()"
+            />
+          </div>
+
+          <!-- Template Body -->
+          <div class="template-body">
+            <!-- Sections -->
+            <div repeat.for="item of listOfSections">
+              <template-section model.bind="item.model"></template-section>
+            </div>
+
+            <!-- New Section Button -->
+            <div class="new-section">
+              <vm-button
+                secondary
+                is-disabled.bind="!canAddSection"
+                click.call="addSection()"
+              >
+                <i class="fa fa-plus"></i>
+                <span>Section</span>
+              </vm-button>
+            </div>
+          </div>
+        </div>
+
+        <div class="right-content">
+          <!-- Type Dropdown -->
+          <div>
+            <label for="typeDropdown">Assessment Type</label>
+            <vm-dropdown
+              id="typeDropdown"
+              display-text.to-view="selectedTypeItem.name"
+              placeholder-text="Select"
+              value.bind="selectedTypeItem"
+              focusout.delegate="saveTemplate()"
+            >
+              <vm-dropdown-item
+                repeat.for="item of typeDropdownItems"
+                value.one-time="item"
+                on-selection.call="selectedTypeItem = $event"
+              >
+                ${item.name}
+              </vm-dropdown-item>
+            </vm-dropdown>
+
+            <span class="danger" repeat.for="errorInfo of typeErrors">
+              ${errorInfo}
+            </span>
+          </div>
+
+          <!-- Level Dropdown -->
+          <div>
+            <label for="levelDropdown">Level</label>
+            <vm-dropdown
+              id="levelDropdown"
+              display-text.to-view="selectedLevelItem"
+              placeholder-text="Select"
+              value.bind="selectedLevelItem"
+              focusout.delegate="saveTemplate()"
+            >
+              <vm-dropdown-item
+                repeat.for="item of levelDropdownItems"
+                value.one-time="item"
+                on-selection.call="selectedLevelItem = $event"
+              >
+                ${item}
+              </vm-dropdown-item>
+            </vm-dropdown>
+
+            <span class="danger" repeat.for="errorInfo of levelErrors">
+              ${errorInfo}
+            </span>
+          </div>
+
+          <!-- Notes Text Area-->
+          <div>
+            <label>Template Notes</label><br />
+            <textarea
+              class="form-control vm-input"
+              rows="6"
+              value.bind="template.notes"
+            ></textarea>
+          </div>
+
+          <!-- Theme Dropdown -->
+          <div>
+            <label for="themeDropdown">Theme</label>
+            <vm-dropdown
+              id="themeDropdown"
+              display-text.to-view="selectedThemeItem.themeName"
+              placeholder-text="Select"
+              value.bind="selectedThemeItem"
+              focusout.delegate="saveTemplate()"
+            >
+              <vm-dropdown-item
+                repeat.for="item of themeDropdownItems"
+                value.one-time="item"
+                on-selection.call="selectedThemeItem = $event"
+              >
+                ${item.themeName}
+              </vm-dropdown-item>
+            </vm-dropdown>
+
+            <span class="danger" repeat.for="errorInfo of themeErrors">
+              ${errorInfo}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

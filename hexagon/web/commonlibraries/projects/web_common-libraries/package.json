@@ -1,0 +1,14 @@
+{
+    "name": "@galileo/web_common-libraries",
+    "version": "13.2.17",
+    "peerDependencies": {},
+    "dependencies": {
+        "ngx-infinite-scroll": "^9.1.0",
+        "ngx-color-picker": "^11.0.0",
+        "tslib": "^2.0.0",
+        "@galileo/platform_common-libraries": "^1.0.3"
+    },
+    "scarfSettings": {
+        "enabled": false
+    }
+}

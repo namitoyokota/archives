@@ -1,0 +1,99 @@
+﻿<template>
+  <require from="shared/styles/style.scss"></require>
+  <require from="./complete-assessment.scss"></require>
+  <require from="./section/section"></require>
+  <require from="./overall-rating/overall-rating"></require>
+  <require from="./vendor-product-section/vendor-product-section"></require>
+  <require from="shared/value-converters/date-format"></require>
+
+  <div slot="content" class="complete-assessment">
+    <div class="main-container">
+      <div class="container-header">
+        <vm-breadcrumbs></vm-breadcrumbs>
+
+        <div class="assessment-header">
+          <!-- Page Title -->
+          <vm-header text="Perform Review" show-border.bind="false">
+          </vm-header>
+
+          <!-- Button Pane -->
+          <div class="button-pane">
+            <span
+              if.bind="(model.assessmentDate != null && model.isCompleted)"
+              class="saved-text"
+            >
+              Completed Date: ${model.assessmentDate | dateFormat}
+            </span>
+            <span
+              if.bind="(model.assessmentDate != null && !model.isCompleted)"
+              class="saved-text"
+            >
+              Last Saved Date: ${model.assessmentDate | dateFormat}
+            </span>
+
+            <vm-button
+              is-disabled.bind="!canSave"
+              click.delegate="saveAndClose()"
+              secondary
+            >
+              Save & Close
+            </vm-button>
+
+            <vm-button click.delegate="preview()" secondary>
+              Preview
+            </vm-button>
+
+            <vm-button
+              is-disabled.bind="!canSave"
+              click.delegate="markAsComplete()"
+              primary
+            >
+              Mark Complete
+            </vm-button>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-layout">
+        <!-- Assessment -->
+        <div class="left-content">
+          <form class="form-layout">
+            <vendor-product-section model.bind="model"></vendor-product-section>
+
+            <assessment-section-component
+              repeat.for="item of listOfSections"
+              model.bind="item.model"
+              focusout.delegate="saveAssessment()"
+            ></assessment-section-component>
+
+            <overall-rating
+              model.bind="model"
+              focusout.delegate="saveAssessment()"
+            ></overall-rating>
+          </form>
+        </div>
+
+        <!-- Additional Information -->
+        <div class="right-content">
+          <!-- Order Information-->
+          <div class="order-pane">
+            <div class="order-header">
+              <i class="fa fa-angle-down fa-lg"></i>
+              <span class="header-text">Order</span>
+            </div>
+
+            <div class="order-info">
+              <div
+                class="order-info-row"
+                repeat.for="[title, value] of orderInfo"
+              >
+                <span class="order-info-title">${title}</span>
+                <span class="order-info-value">${value}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,4 @@
+<div class="icon-pane" #container>
+    <hxgn-commontenant-tenant-icon size="22px" *ngFor="let url of urlList?.slice(0, maxIcons + 1)" [url]="url"></hxgn-commontenant-tenant-icon>
+    <div *ngIf="urlList?.length - maxIcons - 1 > 0" class="icon-plus truncate">+{{urlList?.length - maxIcons - 1}}</div>
+</div>

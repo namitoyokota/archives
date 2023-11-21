@@ -1,0 +1,8 @@
+<template>
+    <require from="./vm-tooltip.component.css"></require>
+
+    <slot></slot>
+    <div if.bind="showTooltip" class="tooltip__info ${positionClass} ${pinClass}" style.bind="style">
+        <span class="info__title" innerhtml.bind="text | sanitizeHTML"></span>
+    </div>
+</template>

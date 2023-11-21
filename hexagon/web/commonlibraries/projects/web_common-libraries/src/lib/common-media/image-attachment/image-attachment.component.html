@@ -1,0 +1,12 @@
+<div class="item" [class.loading]="!media.uri" *ngFor="let media of mediaList;trackBy: trackByFn"
+    [style.backgroundImage]="'url('+ media.uri +')'" (dblclick)="show(media.uri, media.contentType)">
+    <div class="info-pane">
+        <div class="title">{{media.name}}</div>
+        <a *ngIf="media.uri" [attr.href]="media.uri" download>
+            <img src="assets/common-libraries/images/download-white.png" />
+        </a>
+    </div>
+    <div class="full-screen-btn" (click)="show(media.uri, media.contentType)">
+        <img src="assets/common-libraries/images/full-screen.png" />
+    </div>
+</div>

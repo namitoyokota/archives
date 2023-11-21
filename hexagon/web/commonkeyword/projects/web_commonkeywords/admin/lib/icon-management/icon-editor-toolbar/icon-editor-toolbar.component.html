@@ -1,0 +1,15 @@
+<div class="btn-flip" [class.disabled]="disabledTools()" (click)="toggleFlipH()" title="Flip Horizontally">
+    <img src="assets/commonkeywords-core/images/flip_horizontally.png" />
+</div>
+<div class="btn-flip" [class.disabled]="disabledTools()" (click)="toggleFlipV()" title="Flip Vertically">
+    <img src="assets/commonkeywords-core/images/flip_vertically.png" />
+</div>
+<div class="show-stroke-pane">
+    <mat-slide-toggle *ngIf="supportsIconStroke()" [disabled]="disabledTools()" [checked]="compositeIcon?.options?.showStroke"
+        (change)="strokeToggle($event)">
+        <span style="font-size: 14px;">
+            <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]='tokens.showStroke'>
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+    </mat-slide-toggle>
+</div>

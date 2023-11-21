@@ -1,0 +1,75 @@
+<div class="main-pane">
+    <div style="position: relative;">
+        <span class="title">
+            <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]='data.titleToken'>
+            </hxgn-commonlocalization-translate-v1>
+            <span class="rule-friendly-name" *ngIf="data.ruleFriendlyName"> - {{data.ruleFriendlyName}}</span>
+        </span>
+        <div class="info-pane" *ngIf="modifierTutorialDone">
+            <img src="assets/commonkeywords-core/images/info-icon.png" />
+            <span>
+                <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]='data.descriptionToken'>
+                </hxgn-commonlocalization-translate-v1>
+            </span>
+        </div>
+        <img *ngIf="data.allowCancel" (click)="close()" class="close-btn"
+            src="assets/commonkeywords-core/images/x_dialog.png" />
+    </div>
+
+    <div class="loading-pane" *ngIf="isLoadingTutorial">
+        <mat-spinner></mat-spinner>
+    </div>
+    <ng-container *ngIf="!isLoadingTutorial">
+        <ng-container *ngIf="modifierTutorialDone; else tutorial">
+
+            <div class="content-pane">
+                <hxgn-commonkeywords-icon-library #iconLib
+                    [selectedIcons]="selectedIcons()"
+                    (iconClicked)="setIcon($event)" >
+                </hxgn-commonkeywords-icon-library>
+
+                <hxgn-commonkeywords-icon-editor #iconEditor [compositeIcon]="editedCompositeIcon"
+                    (iconChange)="isDirty = true">
+                </hxgn-commonkeywords-icon-editor>
+            </div>
+            <div class="footer">
+                <button class="hxgn-btn-secondary" [disabled]="!isDirty" (click)="discard()">
+                    <hxgn-commonlocalization-translate-v1 [token]='tokens.discardChanges' [ignoreSkeleton]="true">
+                    </hxgn-commonlocalization-translate-v1>
+                </button>
+
+                <button class="hxgn-btn-primary" [disabled]="!isDirty || !editedCompositeIcon?.iconStack?.length"
+                    (click)="saveIcon()">
+                    <hxgn-commonlocalization-translate-v1 [token]='tokens.saveIcon' [ignoreSkeleton]="true">
+                    </hxgn-commonlocalization-translate-v1>
+                </button>
+            </div>
+        </ng-container>
+    </ng-container>
+
+    <ng-template #tutorial>
+        <div class="tutorial">
+            <div class="info-img"></div>
+            <div class="title">
+                <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]='tokens.modifiersGiveMoreDetails'>
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+            <div class="msg">
+                <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]='tokens.modifiersGiveMoreDetailsMsg'>
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+            <div class="dont-show-pane">
+                <mat-checkbox (change)="disableTutorial($event)">
+                    <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]='tokens.dontShowThisAgain'>
+                    </hxgn-commonlocalization-translate-v1>
+                </mat-checkbox>
+            </div>
+        </div>
+        <div class="footer">
+            <button class="hxgn-btn-primary" (click)="tutorialDone()">
+                <hxgn-commonlocalization-translate-v1 [token]='tokens.continue' [ignoreSkeleton]="true">
+                </hxgn-commonlocalization-translate-v1>
+            </button>
+        </div>
+    </ng-template>
+</div>

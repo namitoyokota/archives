@@ -1,0 +1,15 @@
+<img src="assets/commonnotifications-core/images/create-preset-intro.svg" height="220" width="394" />
+<div class="onboarding-header">
+    <hxgn-commonlocalization-translate-v1 [token]="tokens.notificationsDefaultPreset" skeletonWidth="370px">
+    </hxgn-commonlocalization-translate-v1>
+</div>
+<div class="onboarding-intro">
+    <hxgn-commonlocalization-translate-v1 [token]="tokens.onboardingIntro" skeletonWidth="800px">
+    </hxgn-commonlocalization-translate-v1>
+</div>
+<hxgn-common-dropdown-v2 (selectionChange)="setSelectedPreset($event)" [disabled]="isLoading">
+    <hxgn-common-dropdown-item-v2 *ngFor="let preset of presets" [value]="preset.preset">
+        <hxgn-commonlocalization-translate-v1 [token]="preset.presetName">
+        </hxgn-commonlocalization-translate-v1>
+    </hxgn-common-dropdown-item-v2>
+</hxgn-common-dropdown-v2>

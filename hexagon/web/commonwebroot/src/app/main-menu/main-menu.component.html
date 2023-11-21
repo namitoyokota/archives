@@ -1,0 +1,36 @@
+<div class="main-menu" [@slideRight]="navigationSrv.mainMenuState" (@slideRight.done)="animationDone($event)">
+    <div class="title-bar">
+        <div class="gradient"></div>
+        <img *ngIf="!isAdminMenu; else admin" src="assets/Connect-LiveShare_Slideout.svg"
+            height="15" width="218" [alt]="tTokens.hxgnConnect" />
+        <ng-template #admin>
+            <img src="assets/Connect-Administrator_Slideout.svg" height="15" width="248"
+                [alt]="tTokens.hxgnConnectAdmin" />
+        </ng-template>
+    </div>
+    <div class="user-area">
+        <div class="user-content">
+            <hxgn-commonidentity-user-icon-v2 [darkInitials]="true" [useBorder]="true" [userId]="user?.id" [size]="'38px'">
+            </hxgn-commonidentity-user-icon-v2>
+            <div class="user-info">
+                <div class="user-name ellipsis">{{user?.displayName}}</div>
+                <div class="user-email ellipsis">{{user?.accountUserName}}</div>
+                <ng-content *ngIf="user" select="hxgn-common-open-user-profile"></ng-content>
+            </div>
+        </div>
+        <button class="hxgn-btn-sign-out" (click)="onLogOut()">
+            <span>
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.signOut" ignoreSkeleton="true">
+                </hxgn-commonlocalization-translate-v1>
+            </span>
+        </button>
+    </div>
+    <div class="menu-item-pane">
+        <ng-content select="hxgn-main-menu-section"></ng-content>
+        <ng-content select="hxgn-main-menu-item"></ng-content>
+    </div>
+    <div class="logo-area">
+        <img src="assets/Hexagon-Logo_White.svg" height="44" width="144"
+            [alt]="tTokens.hexagonLogo" />
+    </div>
+</div>

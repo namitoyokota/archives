@@ -1,0 +1,60 @@
+:host {
+    position: relative;
+    display: flex;
+    height: 100%;
+    overflow: hidden;
+}
+
+.dialog-pane {
+    display: flex;
+    max-width: 882px;
+    max-height: 540px;
+    width: calc(100vw - 150px);
+    height: calc(100vh - 150px);
+}
+
+.pane {
+    display: grid;
+    width: 100%;
+    grid-template-rows: min-content auto min-content;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        max-height: 330px;
+    }
+}
+
+.btn-pane {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.title {
+    font-weight: 700;
+    font-size: 20px;
+    text-transform: capitalize;
+}
+
+.close-btn {
+    height: 35px;
+    width: 35px;
+    background-image: url("assets/commontenant-core/cancel.png");
+    cursor: pointer;
+    transition: all 0.5s ease;
+    background-position: bottom;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.close-btn:hover {
+    background-image: url("assets/commontenant-core/cancel-hover.png");
+}

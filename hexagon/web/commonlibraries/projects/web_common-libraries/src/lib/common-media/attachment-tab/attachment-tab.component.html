@@ -1,0 +1,7 @@
+<div class="tab-pane">
+    <div *ngFor="let tab of tabOrder" class="tab" [class.selected]="selectedTab === tab"
+        [class.disabled]="!mediaList.get(tab).length" (click)="selectTab(tab)">
+        <div class="{{getIconClass(tab)}}"></div>
+        <span class="count">{{mediaList.get(tab).length}}</span>
+    </div>
+</div>

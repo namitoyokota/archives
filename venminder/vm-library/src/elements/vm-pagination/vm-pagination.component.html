@@ -1,0 +1,23 @@
+<template>
+    <require from="./vm-pagination.component.css"></require>
+
+    <div if.bind="pager && pager.totalItems" class="vm-pagination">
+        <button class="vm-pagination--btn" disabled.bind="pager.currentPage === 1" click.trigger="setPage(1)">
+            <i class="fas fa-chevron-double-left"></i>
+        </button>
+        <button class="vm-pagination--btn" disabled.bind="pager.currentPage === 1" click.trigger="setPage(pager.currentPage - 1)">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <div class="vm-pagination--info">${pager.currentPage} of ${pager.totalPages}</div>
+        <button
+            class="vm-pagination--btn"
+            disabled.bind="pager.currentPage === pager.totalPages"
+            click.trigger="setPage(pager.currentPage + 1)"
+        >
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <button class="vm-pagination--btn" disabled.bind="pager.currentPage === pager.totalPages" click.trigger="setPage(pager.totalPages)">
+            <i class="fas fa-chevron-double-right"></i>
+        </button>
+    </div>
+</template>

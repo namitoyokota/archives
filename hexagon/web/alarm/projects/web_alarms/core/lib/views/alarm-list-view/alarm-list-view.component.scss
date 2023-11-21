@@ -1,0 +1,104 @@
+:host {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-rows: min-content auto;
+    overflow: hidden;
+    position: relative;
+}
+
+:host(.show-header) {
+    grid-template-rows: min-content min-content auto !important;
+
+    .list-pane {
+        border-left:1px solid #c3c4c7;
+        border-right:1px solid #c3c4c7;
+        border-bottom:1px solid #c3c4c7;
+    }
+
+    .option-pane {
+        border-left:1px solid #c3c4c7;
+        border-right:1px solid #c3c4c7;
+        box-sizing: border-box;
+        top: 30px;
+        max-height: calc(100% - 30px);
+    }
+}
+
+.header-pane {
+    display: grid;
+    grid-template-columns: minmax(0, min-content) auto 45px;
+    border-bottom:  1px solid #c3c4c7;
+    box-sizing: border-box;
+    padding: 5px 0 3px 5px;
+    margin-bottom: 3px;
+    height: 30px;
+
+    .count {
+        margin: 0 5px;
+    }
+
+    span {
+        font-size: 18px;
+        font-weight: 700;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .option-pane-btn {
+        background-image: url('assets/alarms-core/images/settings-icon.svg');
+        background-repeat: no-repeat;
+        background-position: top center;
+        cursor: pointer;
+        height: calc(100% + 4px);
+        box-sizing: border-box;
+        border: 1px solid transparent;
+        border-bottom: 0;
+
+        &.selected {
+            background-image: url('assets/alarms-core/images/settings-icon-selected.svg');
+            background-color: #fff;
+            border: 1px solid #c3c4c7;
+            border-bottom: 0;
+        }
+    }
+}
+
+.option-pane {
+    position: absolute;
+    background-color: #fff;
+    width: 100%;
+    border-bottom: 1px solid #c3c4c7;
+    box-shadow: 0 4px 4px 0 rgba(0,0,0,.16);
+    overflow: hidden;
+    overflow-y: auto;
+    top: 0;
+    max-height: 100%;
+    z-index: 3;
+    padding: 5px 5px 10px 5px;
+    box-sizing: border-box;
+}
+
+hxgn-alarms-card{
+    border-top: none;
+    border-bottom: 1px solid #C3C4C7;
+    min-height: 71px;
+
+    &.tenant-info-height {
+        min-height: 88px;
+    }
+}
+
+hxgn-commontenant-selection {
+    width:100%;
+    align-self: center;
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+
+.list-pane {
+    display:flex;
+    flex-direction: column;
+    overflow-y: auto;
+}

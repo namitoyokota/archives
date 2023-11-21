@@ -1,0 +1,23 @@
+<template>
+    <style>
+        .relative-loader {
+            position: relative;
+            z-index: 99999;
+        }
+
+        .fixed-loader {
+            position: fixed;
+            left: 45%;
+            height: 40%;
+            z-index: 99999;
+        }
+    </style>
+    <div class="${noRow ? '' : 'row'} ${textAlignment}" class.bind="className">
+        <br />
+        <img src="../../../images/busy.gif" if.bind="!isLightColor" />
+        <img src="../../../images/processing_onboarding.gif" if.bind="isLightColor" />
+        <br if.bind="hasMessage" />
+        <br if.bind="hasMessage" />
+        <label if.bind="hasMessage" class="${isMsgStrong?'strong':''}">${message}</label>
+    </div>
+</template>

@@ -1,0 +1,14 @@
+.dialog-container {
+    min-width: 350px;
+}
+
+.color-list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.button-pane {
+    display: flex;
+    justify-content: space-between;
+}

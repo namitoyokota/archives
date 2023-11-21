@@ -1,0 +1,9 @@
+<hxgn-shapes-icon *ngIf="(shape$ | async)?.graphicsSettings as graphicsSettings;else default_icon"
+	[fillColor]="graphicsSettings?.fillColor"
+	[lineColor]="graphicsSettings?.lineColor"
+	[lineType]="graphicsSettings?.lineType" >
+</hxgn-shapes-icon>
+
+<ng-template #default_icon>
+  <img src="assets/shapes/images/channel-icon.svg" />
+</ng-template>

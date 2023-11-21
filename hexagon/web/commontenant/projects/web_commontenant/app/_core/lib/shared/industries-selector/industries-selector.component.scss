@@ -1,0 +1,42 @@
+:host {
+  display: grid;
+  grid-auto-flow: column;
+  column-gap: 50px;
+}
+
+.checkbox-content {
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  column-gap: 5px;
+  align-items: center;
+  font-size: 16px;
+
+  .icon {
+    height: 19px;
+    width: 19px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border: 1px solid #c0c0c0;
+    border-radius: 50%;
+    padding: 4px;
+
+    img {
+      width: auto;
+      height: auto;
+      max-height: 18px;
+    }
+  }
+}
+
+.sector {
+  display: grid;
+  grid-auto-rows: min-content;
+  row-gap: 10px;
+
+  .sector-name {
+    font-size: 16px;
+    font-weight: 500;
+  }
+}

@@ -1,0 +1,30 @@
+﻿<template>
+  <require from="shared/controls/radio-button/radio-button-control"></require>
+  <require from="shared/controls/textbox/textbox-control"></require>
+  <require from="shared/controls/datepicker/datepicker-control"></require>
+  <require from="shared/controls/checkbox/checkbox-control"></require>
+  <require from="shared/controls/dropdown/dropdown-control"></require>
+
+  <div class="control-narrative-dialog">
+    <vm-dialog
+      class="ControlNarrativeDialog"
+      dialog-title="${model.sectionTitle}"
+      ok-label="Save"
+      ok-click.call="submit()"
+      is-large.bind="true"
+      ok-disabled.bind="!canSave"
+    >
+      <div class="m-t-sm">
+        <compose
+          view-model="shared/controls${displayType.type}"
+          model.bind="model.controlModel"
+        ></compose>
+      </div>
+      <div class="m-t-md">
+        <label>Narrative</label>
+        <br />
+        <textarea class="vm-input" rows="8" value.bind="narrative"></textarea>
+      </div>
+    </vm-dialog>
+  </div>
+</template>

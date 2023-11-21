@@ -1,0 +1,22 @@
+<div class="loading-container">
+    <div class="loading-content" [class.loading-content-admin]="isAdmin">
+        <div class="loading-content-container">
+            <div class="loading-text loading-initializing">
+                <hxgn-commonlocalization-translate-v1 token="commonwebroot-main.loader.initializing">
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+            <div class="loading-progress-bar-container">
+                <!-- <div class="loading-progress-bar"></div> -->
+                <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </div>
+            <div class="loading-text loading-copyright">
+                <hxgn-commonlocalization-translate-v1 token="commonwebroot-main.loader.copyright">
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+            <div class="loading-text loading-legal">
+                <hxgn-commonlocalization-translate-v1 token="commonwebroot-main.loader.legal">
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+        </div>
+    </div>
+</div>

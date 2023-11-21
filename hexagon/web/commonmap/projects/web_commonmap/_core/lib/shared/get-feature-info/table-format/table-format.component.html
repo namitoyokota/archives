@@ -1,0 +1,37 @@
+<div *ngIf="layerInfos?.length > 0">
+    <div class="layer-data" *ngFor="let layerInfo of filteredInfos">
+        <div class="layer-name" *ngIf="layerInfo.layerName">
+            <span>{{layerInfo.layerName}}</span>
+        </div>
+        <div class="layer-props" [class.no-name]="!layerInfo.layerName">
+            <div class="header">
+                <div class="label name">
+                    <span>
+                        <hxgn-commonlocalization-translate-v1
+                            [token]="tokens.getFeatInfoHeaderNameLabel">
+                        </hxgn-commonlocalization-translate-v1>
+                    </span>
+                </div>
+                <div class="label">
+                    <span>
+                        <hxgn-commonlocalization-translate-v1
+                            [token]="tokens.getFeatInfoHeaderDetailsLabel">
+                        </hxgn-commonlocalization-translate-v1>
+                    </span>
+                </div>
+            </div>
+            <div class="property-data-item" *ngFor="let layerProp of layerInfo.layerProps">
+                <span class="text">{{layerProp.name}}</span>
+                <span class="text">{{layerProp.value}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="no-layer-info" *ngIf="layerInfos?.length === 0">
+    <div class="content">
+        <img class="no-layer-info-icon" src="assets/commonmap-core/images/layout/no-layer-info.svg" />
+        <span class="no-layer-info-text">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.getFeatInfoNoLayerInfo"></hxgn-commonlocalization-translate-v1>
+        </span>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+<ng-container [ngSwitch]="displayFilterLevel">
+    <hxgn-alarms-low-filter *ngSwitchCase="RestrictionLevels.low"></hxgn-alarms-low-filter>
+    <hxgn-alarms-medium-filter *ngSwitchCase="RestrictionLevels.medium" [redactionCriteria]="editableMediumRedaction"
+        [readOnlyRedactionCriteria]="readonlyMediumRedaction" [isOverride]="settings.isOverride"
+        (changes)="onMediumFilterChange($event)"></hxgn-alarms-medium-filter>
+    <hxgn-alarms-high-filter *ngSwitchCase="RestrictionLevels.high" [filterCriteria]="editableHighFilters"
+        [readOnlyFilterCriteria]="readonlyHighFilters" [isOverride]="settings.isOverride"
+        (filterChange)="onHighFilterChange($event)"></hxgn-alarms-high-filter>
+</ng-container>

@@ -1,0 +1,11 @@
+<template class="${alertClasses}">
+    <require from="./vm-alert.component.css"></require>
+
+    <i if.bind="showIcon" class="vm-alert--icon ${iconClasses}"></i>
+    <div class="vm-alert--text">
+        <slot></slot>
+    </div>
+    <vm-button if.bind="showDismiss" icon small click.call="hasBeenDismissed = true">
+        <i class="fas fa-times"></i>
+    </vm-button>
+</template>

@@ -1,0 +1,177 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #c3c4c7;
+    box-sizing: border-box;
+    position: relative;
+
+    .header-pane  {
+
+        &:hover {
+            &.selected {
+                background-color: #bed6ee !important;
+            }
+        }
+    }
+
+    .selected {
+        background-color: #bed6ee;
+
+        .expand-btn {
+            background-image: url(assets/common-libraries/images/expand-card-selected.png) !important;
+        }
+
+        .lock-icon {
+            border-color: #335ca5;
+            background-color: #fff;
+        }
+    }
+}
+
+.header-pane {
+    display: grid;
+    grid-template-columns: min-content auto min-content;
+    column-gap: 8px;
+    padding: 3px;
+    box-sizing: border-box;
+
+    &.has-header-text {
+        grid-template-rows: min-content auto;
+    }
+
+    &:hover {
+        background-color: #EDEDED;
+
+        .expand-btn {
+            background-image: url(assets/common-libraries/images/expand-card-hover.png);
+        }
+
+        .header-text-pane {
+
+            .header-text {
+                background-color: #EDEDED;
+            }
+        }
+
+    }
+
+    .header-text-pane {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        grid-column: 1 / span 3;
+        background-image: url(assets/common-libraries/images/card-header-text.png);
+        background-repeat: repeat-x;
+        background-position: center;
+
+        .header-text {
+            background-color: #fff;
+            padding: 0 5px;
+        }
+    }
+
+    .icon-pane {
+        display: flex;
+        height:100%;
+        margin-bottom: 10px;
+    }
+
+    .content-pane {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .title {
+        font-size: 17px;
+        font-weight: 700;
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
+
+    .action-pane {
+        align-self: center;
+        justify-self: center;
+        display: grid;
+        grid-template-rows: repeat(2, min-content);
+        row-gap: 10px;
+        justify-content: center;
+        padding-right:5px;
+    }
+
+    .expand-btn {
+        cursor: pointer;
+        width: 22px;
+        height: 22px;
+        transform: rotate(0);
+        transform-origin: center center;
+        background-image: url(assets/common-libraries/images/expand-normal.png);
+        justify-self: flex-end;
+
+        &.expanded {
+            transform: rotate(-180deg);
+            background-image: url(assets/common-libraries/images/expand-button-selected.png);
+        }
+    }
+
+    .lock-icon {
+        border-radius: 50%;
+        box-sizing: border-box;
+        border: 1.5px solid #C6C8C9;
+        width: 22px;
+        height: 22px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        justify-self: center;
+    
+        img {
+            height: 13px;
+        }
+    }
+}
+
+.expanded-pane {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.select-pane {
+    height: 100%;
+    width:100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    pointer-events: none;
+    border: 3px solid #335ca5;
+}
+
+.status-pane {
+    color: #fff;
+    font-size: 13px;
+    background-color: #5495f0;
+    border-radius: 4px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    justify-content: center;
+    margin-top: 8px;
+    overflow: hidden;
+    height: 100%;
+    white-space: nowrap;
+}
+
+.tool-bar {
+    display: flex;
+    column-gap: 5px;
+
+    .is-editable {
+        width: 22px;
+        height: 22px;
+    }
+}
+

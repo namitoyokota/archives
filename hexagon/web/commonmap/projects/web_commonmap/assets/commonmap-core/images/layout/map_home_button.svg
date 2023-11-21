@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <g id="map_home_button" transform="translate(-796 -975)">
+    <g id="Group_164155" data-name="Group 164155" transform="translate(798 977)">
+      <g id="Group_162704" data-name="Group 162704" transform="translate(0)">
+        <g id="Group_10389" data-name="Group 10389">
+          <g id="Rectangle_4322" data-name="Rectangle 4322" fill="#fff" stroke="rgba(0,0,0,0.25)" stroke-miterlimit="10" stroke-width="2">
+            <rect width="28" height="28" rx="3" stroke="none"/>
+            <rect x="-1" y="-1" width="30" height="30" rx="4" fill="none"/>
+          </g>
+        </g>
+      </g>
+    </g>
+    <path id="Path_40952" data-name="Path 40952" d="M15.255,7.926l2.11,2.019c.047.045-.18.113-.244.113H15.255v7.728a.267.267,0,0,1-.266.266H11.524a.267.267,0,0,1-.266-.266v-4.53a.267.267,0,0,0-.266-.266H6.727a.267.267,0,0,0-.266.266v4.53a.267.267,0,0,1-.266.266H2.73a.267.267,0,0,1-.266-.266V10.058H.6a.146.146,0,0,1-.1-.251L8.859,1.723,12.6,5.34,12.594,4.2a.533.533,0,0,1,.53-.536h1.6a.533.533,0,0,1,.533.533Z" transform="translate(803 980.685)"/>
+  </g>
+</svg>

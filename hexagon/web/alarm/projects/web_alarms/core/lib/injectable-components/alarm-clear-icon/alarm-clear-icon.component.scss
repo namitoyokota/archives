@@ -1,0 +1,42 @@
+:host {
+    width: 22px;
+    height: 18px;
+    display: flex;
+    justify-content: center;
+}
+
+.icon {
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    cursor: pointer;
+}
+
+.icon-managed {
+    width: 15px;
+    background-image: url("assets/alarms-core/images/Clear-Managed-Alarms.svg");
+}
+
+.icon-managed:hover {
+    background-image: url("assets/alarms-core/images/Clear-Managed-Alarms-Hover.svg");
+}
+
+.icon-managed-selected {
+    width: 15px;
+    background-image: url("assets/alarms-core/images/Clear-Managed-Alarms-Selected.svg") !important;
+}
+
+.icon-unmanaged {
+    width: 22px;
+    background-image: url("assets/alarms-core/images/Clear-Alarms.svg");
+}
+
+.icon-unmanaged:hover {
+    background-image: url("assets/alarms-core/images/Clear-Alarms-Hover.svg");
+}
+
+.icon-unmanaged-selected {
+    width: 22px;
+    background-image: url("assets/alarms-core/images/Clear-Alarms-Selected.svg") !important;
+}

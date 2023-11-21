@@ -1,0 +1,8 @@
+{
+    "name": "@galileo/web_commontenant",
+    "version": "13.1.13",
+    "peerDependencies": { },
+    "dependencies": {
+        "@galileo/platform_commontenant": "^1.0.0"
+    }
+}

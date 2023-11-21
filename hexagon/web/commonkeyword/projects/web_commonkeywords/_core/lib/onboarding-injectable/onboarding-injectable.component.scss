@@ -1,0 +1,105 @@
+:host {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 320px 1fr;
+
+    hxgn-common-dropdown-v2 {
+        width: 200px;
+    }
+}
+
+.capability-list {
+    border-top: solid 1px #a0a0a0;
+    overflow-y: auto;
+
+    .capability {
+        height: 54px;
+        display: grid;
+        grid-template-columns: 40px 1fr 20px;
+        column-gap: 10px;
+        align-items: center;
+        border-bottom: solid 1px #a0a0a0;
+        box-sizing: border-box;
+        font-size: 16px;
+        padding: 0 20px 0 10px;
+
+        .capability-icon-container {
+            height: 40px;
+            width: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #d2e1ef;
+            border-radius: 50%;
+
+            .capability-icon {
+                height: 25px;
+                width: 25px;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: contain;
+            }
+        }
+
+        &:hover:not(.selected) {
+            background-color: #eceeee;
+            cursor: pointer;
+        }
+
+        &.selected {
+            background-color: #d2e1ef;
+            font-weight: 700;
+
+            .capability-icon-container {
+                background-color: #fff;
+            }
+        }
+    }
+}
+
+.capability-list-container {
+    display: grid;
+    grid-template-rows: repeat(2, min-content) 1fr;
+    border-right: solid 1px #a0a0a0;
+    overflow: hidden;
+}
+
+.capability-list-icon {
+    height: 275px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.capability-list-intro {
+    padding: 20px;
+    padding-top: 0;
+
+    .capability-list-intro-header {
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 27px;
+    }
+
+    .capability-list-intro-text {
+        font-size: 13px;
+        font-style: italic;
+        line-height: 21px;
+    }
+}
+
+.selected-capability-container {
+    display: grid;
+    grid-template-rows: min-content 1fr;
+    row-gap: 15px;
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: 20px 0 20px 20px;
+
+    .selected-capability-title {
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 27px;
+    }
+}

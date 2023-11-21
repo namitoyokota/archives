@@ -1,0 +1,48 @@
+<div class="organizations-container">
+    <div class="organizations-title">
+        <div class="margin-top-2">{{getActiveCount()}}</div>
+        <div class="margin-top-2">
+            <hxgn-commonlocalization-translate-v1 skeletonWidth="100px" [token]='tokens.selected'>
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+        <hxgn-commontenant-tenant-icon-list [urlList]="getUrlListOfSelectedOrgs()" [maxIcons]="3"></hxgn-commontenant-tenant-icon-list>
+    </div>
+    <div class="search-box">
+        <hxgn-common-input-v2 [isSearchBox]="true" [showClearBtn]="searchString.length > 0" (clearText)="clearText()">
+            <input type="text"
+                [(ngModel)]="searchString"
+                [placeholder]="tTokens.searchOrganizations"
+            />
+        </hxgn-common-input-v2>
+    </div>
+    <div class="organizations-content">
+        <div *ngFor="let sector of sectors | keyvalue; let i = index">
+            <ng-container *ngFor="let industry of getIndustryListSorted(sector.value)">
+                <div *ngIf="getAvailableTenantList(industry, true)?.length" class="industry-container" [class.margin-top]="i === 0">
+                    <div class="industry">
+                        <span>
+                            <hxgn-commonlocalization-translate-v1 skeletonWidth="50px"
+                                [token]='industry.nameToken'>
+                            </hxgn-commonlocalization-translate-v1>
+                        </span>
+                    </div>
+                    <div class="organization"
+                        *ngFor="let organization of getAvailableTenantList(industry, true)">
+                        <mat-checkbox [checked]="getActiveValue(organization.id)"
+                            (change)="setActiveValue(organization.id, $event)">
+                            <div class="organization-content">
+                                <div class="organization-icon" *ngIf="organization.tenantIconUrl">
+                                    <img [src]="organization.tenantIconUrl" />
+                                </div>
+                                <span>
+                                    {{organization.name}}
+                                </span>
+                            </div>
+                        </mat-checkbox>
+                    </div>
+                </div>
+            </ng-container>
+            
+        </div>
+    </div>
+</div>

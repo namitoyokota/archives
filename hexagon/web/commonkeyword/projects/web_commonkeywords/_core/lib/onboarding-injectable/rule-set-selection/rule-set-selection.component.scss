@@ -1,0 +1,67 @@
+:host {
+    display: grid;
+    grid-template-rows: min-content 1fr;
+    row-gap: 20px;
+    overflow: hidden;
+}
+
+.industry-container {
+    display: grid;
+    grid-template-columns: 470px 200px;
+    align-items: center;
+    margin-top: 20px;
+
+    .industry {
+        display: grid;
+        grid-template-columns: 36px 1fr;
+        column-gap: 10px;
+        align-items: center;
+
+        .industry-icon-pane {
+            height: 34px;
+            width: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #adafb2;
+            border-radius: 50%;
+
+            .industry-icon {
+                height: 22px;
+                width: 22px;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: contain;
+            }
+        }
+
+        .industry-title {
+            font-size: 16px;
+            line-height: 27px;
+        }
+    }
+
+    &:first-of-type {
+        margin-top: 0;
+    }
+}
+
+.selected-capability-apply-all {
+    display: grid;
+    grid-template-columns: repeat(2, min-content);
+    column-gap: 10px;
+    align-items: center;
+
+    hxgn-common-dropdown-v2 {
+        min-width: 200px;
+    }
+
+    .selected-capability-apply-all-label {
+        font-size: 13px;
+        font-style: italic;
+    }
+}
+
+.selected-capability-industry-list {
+    overflow-y: auto;
+}

@@ -1,0 +1,24 @@
+:host {
+    display: grid;
+    grid-template-columns: min-content auto;
+    grid-template-rows: min-content auto;
+    column-gap: 10px;
+    row-gap: 10px;
+    width: 100%;
+    height: 100%;
+    padding: 11px;
+    box-sizing: border-box;
+}
+
+.header {
+    white-space: nowrap;
+}
+
+input {
+    text-transform: capitalize;
+}
+
+tag-input {
+    border: 1px solid #afafaf;
+    padding: 0 5px;
+}

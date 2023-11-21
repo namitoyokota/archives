@@ -1,0 +1,86 @@
+<div class="cluster-marker" (click)="clusterClicked($event)">
+    <div class="cluster-count-container">
+        <div class="cluster-count"
+            [class.mid-font]="childCount > 99"
+            [class.small-font]="childCount > 999">
+            <span>{{childCount}}</span>
+        </div>
+    </div>
+    <hxgn-alarms-priority-icon 
+        [priority]="highestPriority">
+    </hxgn-alarms-priority-icon>
+    <div class="cluster-flip-button" 
+        [class.left]="showLeft"
+        (click)="toggleSide($event)">
+    </div>
+    <div class="alarm-select-list" *ngIf="childCount > 0"
+        [class.left]="showLeft"
+        [style.top.px]="selectListTopOffset">
+        <div class="select-list-container"> 
+            <div class="connect-line-main" *ngIf="!showLeft"
+                [style.height.px]="connectLineHeight">
+            </div>
+            <div class="select-list-pane"
+                [class.left]="showLeft">
+                <div class="select-list-body-pane"
+                    [style.height.px] = "cardListHeight">
+                    <div class="select-list-item" *ngFor="let alarm of clusterPageMarkers; let idx=index;">
+                        <div class="connect-line-card-top" 
+                            [ngClass]="[idx === 0  ? 'first' : '']"
+                            [class.left]="showLeft">
+                        </div>
+                        <div class="card-main"
+                            [class.left]="showLeft">
+                            <div class="card-container">
+                                <hxgn-alarms-map-cluster-details-marker-v1 
+                                    [alarmId]="alarm.id"
+                                    [contextId]="contextId"
+                                    (markerClicked)=markerClicked($event)
+                                    (alarmCleared)=alarmCleared()>
+                                </hxgn-alarms-map-cluster-details-marker-v1>
+                            </div>
+                        </div>
+                        <div class="connect-line-card-bottom" 
+                            [ngClass]="getLastLineClass(idx)"
+                            [style.height.px]="getLastLineHeight(idx)"
+                            [class.left]="showLeft">
+                        </div>
+                    </div>
+                    <div class="connect-line-filler"
+                        [class.show]="showConnectLineFiller"
+                        [style.height.px]="connectLineFillerHeight"
+                        [class.left]="showLeft">
+                    </div>
+                </div>
+                <div class="select-list-footer-pane" *ngIf="clusterMaxPage > 1">
+                    <div class="page-button" (click)="stopPropagation($event)">
+                        <div class="page-up" 
+                            [class.disabled]="clusterCurrentPage === 1"
+                            (click)="scrollUp()">
+                        </div>
+                        <div class="page-button-text" *ngIf="clusterPageSize > 1">
+                                <span>
+                                    {{clusterStartItem}}
+                                      -  
+                                    {{clusterEndItem}}
+                                </span>
+                            </div>
+                            <div class="page-button-text" *ngIf="clusterPageSize === 1">
+                                <span>
+                                    {{clusterCurrentPage}}
+                                </span>
+                            </div>
+                        <div class="page-down" 
+                            [class.disabled]="clusterCurrentPage === clusterMaxPage"
+                            (click)="scrollDown()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="connect-line-main" *ngIf="showLeft"
+                [style.height.px]="connectLineHeight">
+            </div>
+        </div>
+    </div>
+</div>
+

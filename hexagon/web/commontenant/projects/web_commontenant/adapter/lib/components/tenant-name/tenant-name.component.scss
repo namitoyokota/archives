@@ -1,0 +1,12 @@
+:host {
+    display: flex;
+    margin-right: 5px;
+
+    &.show-icon {
+        display: grid;
+        grid-template-columns: min-content 1fr;
+        column-gap: 5px;
+        align-items: center;
+        margin-right: 0;
+    }
+}

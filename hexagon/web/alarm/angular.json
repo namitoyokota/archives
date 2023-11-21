@@ -1,0 +1,193 @@
+{
+	"$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+	"version": 1,
+	"newProjectRoot": "projects",
+	"projects": {
+		"testbed": {
+			"projectType": "application",
+			"schematics": {
+				"@schematics/angular:component": {
+					"style": "scss"
+				}
+			},
+			"root": "",
+			"sourceRoot": "src",
+			"prefix": "app",
+			"architect": {
+				"build": {
+					"builder": "@angular-devkit/build-angular:browser",
+					"options": {
+						"outputPath": "dist/testbed",
+						"index": "src/index.html",
+						"main": "src/main.ts",
+						"polyfills": "src/polyfills.ts",
+						"tsConfig": "tsconfig.app.json",
+						"assets": [
+							"src/favicon.ico",
+							{
+								"glob": "**/*",
+								"input": "projects/web_alarms/assets",
+								"output": "/assets"
+							},
+							{
+								"glob": "**/*",
+								"input": "node_modules/@galileo/web_commonmap/assets",
+								"output": "/assets/"
+							},
+							{
+								"glob": "**/*",
+								"input": "node_modules/@galileo/web_units/assets",
+								"output": "/assets/"
+							},
+							{
+								"glob": "**/*",
+								"input": "node_modules/@galileo/web_incidents/assets",
+								"output": "/assets/"
+							},
+							{
+								"glob": "**/*",
+								"input": "node_modules/@galileo/web_assets/assets",
+								"output": "/assets/"
+							},
+							{
+								"glob": "**/*",
+								"input": "node_modules/@galileo/web_devices/assets",
+								"output": "/assets/"
+							},
+							{
+								"glob": "**/*",
+								"input": "node_modules/@galileo/web_video/assets",
+								"output": "/assets/"
+							},
+							{
+								"glob": "**/*",
+								"input": "node_modules/@galileo/web_common-libraries/assets",
+								"output": "/assets/"
+							}
+						],
+						"styles": [
+							"src/styles.scss",
+							"node_modules/leaflet/dist/leaflet.css",
+							"node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css",
+							"node_modules/@galileo/web_common-libraries/assets/common-libraries/themes/themes.scss"
+						],
+						"scripts": [],
+						"vendorChunk": true,
+						"extractLicenses": false,
+						"buildOptimizer": false,
+						"sourceMap": true,
+						"optimization": false,
+						"namedChunks": true
+					},
+					"configurations": {
+						"production": {
+							"fileReplacements": [
+								{
+									"replace": "src/environments/environment.ts",
+									"with": "src/environments/environment.prod.ts"
+								}
+							],
+							"optimization": true,
+							"outputHashing": "all",
+							"sourceMap": false,
+							"namedChunks": false,
+							"extractLicenses": true,
+							"vendorChunk": false,
+							"buildOptimizer": true,
+							"budgets": [
+								{
+									"type": "initial",
+									"maximumWarning": "2mb",
+									"maximumError": "5mb"
+								},
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "6kb",
+									"maximumError": "10kb"
+								}
+							]
+						}
+					},
+					"defaultConfiguration": ""
+				},
+				"serve": {
+					"builder": "@angular-devkit/build-angular:dev-server",
+					"options": {
+						"browserTarget": "testbed:build",
+						"host": "localhost.hxgnconnect.com",
+						"ssl": true
+					},
+					"configurations": {
+						"production": {
+							"browserTarget": "testbed:build:production"
+						}
+					}
+				},
+				"extract-i18n": {
+					"builder": "@angular-devkit/build-angular:extract-i18n",
+					"options": {
+						"browserTarget": "testbed:build"
+					}
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"main": "src/test.ts",
+						"polyfills": "src/polyfills.ts",
+						"tsConfig": "tsconfig.spec.json",
+						"karmaConfig": "karma.conf.js",
+						"assets": [
+							"src/favicon.ico",
+							"src/assets"
+						],
+						"styles": [
+							"src/styles.scss"
+						],
+						"scripts": []
+					}
+				},
+				"e2e": {
+					"builder": "@angular-devkit/build-angular:protractor",
+					"options": {
+						"protractorConfig": "e2e/protractor.conf.js",
+						"devServerTarget": "testbed:serve"
+					},
+					"configurations": {
+						"production": {
+							"devServerTarget": "testbed:serve:production"
+						}
+					}
+				}
+			}
+		},
+		"web_alarms": {
+			"projectType": "library",
+			"root": "projects/web_alarms",
+			"sourceRoot": "projects/web_alarms/src",
+			"prefix": "lib",
+			"architect": {
+				"build": {
+					"builder": "@angular-devkit/build-angular:ng-packagr",
+					"options": {
+						"tsConfig": "projects/web_alarms/tsconfig.lib.json",
+						"project": "projects/web_alarms/ng-package.json"
+					},
+					"configurations": {
+						"production": {
+							"tsConfig": "projects/web_alarms/tsconfig.lib.prod.json"
+						}
+					}
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"main": "projects/web_alarms/src/test.ts",
+						"tsConfig": "projects/web_alarms/tsconfig.spec.json",
+						"karmaConfig": "projects/web_alarms/karma.conf.js"
+					}
+				}
+			}
+		}
+	},
+	"defaultProject": "testbed"
+}

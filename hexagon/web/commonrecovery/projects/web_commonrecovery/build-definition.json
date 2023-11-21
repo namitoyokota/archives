@@ -1,0 +1,28 @@
+{
+    "featureModules": [
+        {
+            "entryPointId": "@galileo/web_commonrecovery/_core",
+            "chunkId": "@hxgn/commonrecovery",
+            "module": "CommonrecoveryCoreModule"
+        },
+        {
+            "entryPointId": "@galileo/web_commonrecovery/admin/recovery-management",
+            "chunkId": "@hxgn/commonrecovery/admin/recoverymanagement",
+            "module": "RecoveryManagementModule"
+        }
+    ],
+    "adminFeatureRouting": [
+        {
+            "path": "recoveryManager",
+            "data": {
+                "adminComponent": "@hxgn/commonrecovery/admin/recoverymanagement/v1",
+                "adminId": "@hxgn/commonrecovery/admin/recoverymanagement",
+                "adminTitle": "commonrecovery-recoveryManager.component.recoveryManager",
+                "claim": "uiRecoveryManagementAccess",
+                "capabilityId": "@hxgn/commonrecovery"
+            },
+            "canActivate": ["ClaimGuard$v1", "OnboardingGuard$v1"],
+            "canDeactivate": []
+        }
+    ]
+}

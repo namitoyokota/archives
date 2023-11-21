@@ -1,0 +1,65 @@
+﻿@import '../core-styles/stylesheets/_variables.scss';
+
+// Styles for aurelia-dialog footer buttons
+// These are in a separate file because the style unknown elements which fails sonar tests.  
+// We are excluding this file from the sonar scanning.
+ux-dialog > ux-dialog-footer button.btn {
+    margin: 0px 0px 0px 5px;
+}
+
+ux-dialog > ux-dialog-footer button.btn-primary:hover:enabled {
+    color: #FFFFFF;
+    background-color: darken($brand-primary, 5%);;
+    border-color: $brand-primary;
+}
+
+input:invalid {
+    outline-color: transparent;
+}
+
+ux-dialog > ux-dialog-footer button.btn-default:hover:enabled {
+    color: inherit;
+    border: 1px solid #d2d2d2;
+}
+
+ux-dialog-overlay, ux-dialog-container {
+    z-index: 1002 !important;
+}
+
+ux-dialog-overlay.active {
+    background-color: black;
+    opacity: .5 !important;
+}
+
+ux-dialog {
+    padding: 0px;
+    position: relative;
+}
+
+ux-dialog > ux-dialog-body {
+    position: relative;
+    display: inline;
+    padding: 0;
+    word-break: break-word;
+}
+
+ux-dialog > ux-dialog-header.empty-header {
+    padding: 0;
+    border-bottom: none;
+}
+
+.ux-dialog-padding {
+    padding: 16px;
+}
+
+.ux-dialog-lr-padding {
+    padding: 0 16px 0 16px;
+}
+
+ux-dialog > ux-dialog-footer {
+    padding: 16px
+}
+
+ux-dialog-container.active {
+    background-color: rgba(60, 60, 60, 0.4)
+}

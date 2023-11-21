@@ -1,0 +1,23 @@
+<app-bar style="position: absolute; top:0; left:0;">
+</app-bar>
+
+<div class="pane">
+    <div class="not-found-img"></div>
+    <div class="msg-pane">
+        <span>
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.hxgnConnect" skeletonWidth="250px">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+        <span class="error-msg">
+            <hxgn-commonlocalization-translate-v1 *ngIf="!licenseMaximum else license_max" [token]="tokens.licenseIssue"
+                skeletonWidth="250px">
+            </hxgn-commonlocalization-translate-v1>
+
+            <ng-template #license_max>
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.maxLicenseMaxError"
+                    skeletonWidth="400px">
+                </hxgn-commonlocalization-translate-v1>
+            </ng-template>
+        </span>
+    </div>
+</div>

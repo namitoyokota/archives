@@ -1,0 +1,51 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "baseUrl": "./",
+        "outDir": "./dist/out-tsc",
+        "sourceMap": true,
+        "declaration": false,
+        "module": "es2020",
+        "moduleResolution": "node",
+        "experimentalDecorators": true,
+        "importHelpers": true,
+        "target": "es5",
+        "skipLibCheck": true,
+        "typeRoots": [
+            "node_modules/@types"
+        ],
+        "lib": [
+            "es2015",
+            "dom"
+        ],
+        "paths": {
+            "@galileo/web_commonmap/_core": [
+                "dist/web_commonmap/_core",
+            ],
+            "@galileo/web_commonmap/adapter": [
+                "dist/web_commonmap/adapter",
+            ],
+            "@galileo/web_commonmap/_common": [
+                "dist/web_commonmap/_common",
+            ],
+            "@galileo/web_commonmap/admin": [
+                "dist/web_commonmap/admin"
+            ],
+            "@galileo/leaflet-contextmenu": [
+                "projects/leaflet-contextmenu/src/lib/leaflet-contextmenu"
+            ],
+            "@galileo/leaflet-with-header": [
+                "projects/leaflet-with-headers/src/lib/leaflet-with-headers"
+            ],
+            "@galileo/leaflet-draw": [
+                "projects/leaflet-draw/src/lib/leaflet-draw"
+            ],
+            "@galileo/leaflet-ajax": [
+                "projects/leaflet-ajax/src/lib/leaflet-ajax"
+            ],
+            "@galileo/leaflet-wfst": [
+                "projects/leaflet-wfst/src/lib/leaflet-wfst"
+            ],
+        }
+    }
+}

@@ -1,0 +1,5 @@
+.vscode
+aurelia_project
+dev-app/environment.ts
+dist
+node_modules

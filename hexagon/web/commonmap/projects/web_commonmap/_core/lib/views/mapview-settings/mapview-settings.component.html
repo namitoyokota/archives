@@ -1,0 +1,80 @@
+<div class="mapview-settings" *ngIf="mapDataLoaded">
+    <div class="map-presets-group">
+        <div class="title map-settings-group-header">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.mapPresetsGroupLabel" skeletonWidth="60px">
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+        <div class="map-presets-group-info">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.mapPresetsGroupInfo" skeletonWidth="60px">
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+        <div class="map-presets-drop-down" *ngIf="mapDataLoaded">
+            <div class="label" style="grid-column:1/3">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.loadMapPresetLabel" skeletonWidth="60px">
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+            <hxgn-common-dropdown-v2 #mapPresetsDropdown placeholder="{{transStrings[tokens.selectMapPreset]}}"
+                [value]="mapPreset" [disabled]="mapCoreSvc.mapPresets.length === 0"
+                (selectionChange)="setSelectedPresetName($event)">
+                <hxgn-common-dropdown-item-v2 *ngFor="let mapPreset of mapCoreSvc.mapPresets; let i = index;" [value]="mapPreset">
+                    {{mapPreset.name}}
+                </hxgn-common-dropdown-item-v2>
+            </hxgn-common-dropdown-v2>
+        </div>
+    </div>
+    <div class="additional-map-settings-group">
+        <div class="title map-settings-group-header">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.additionalMapSettingsGroupLabel" skeletonWidth="60px">
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+        <div class="show-layer-panel toggle-item">
+            <div class="label-inline">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.showLayerPanelLabel" skeletonWidth="60px">
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+            <mat-slide-toggle [(ngModel)]="settings.layerPanel.displayLayerPanel" (change)="emitUpdate()">
+            </mat-slide-toggle>
+        </div>
+        <div class="layer-panel-location" *ngIf="settings.layerPanel.displayLayerPanel">
+            <mat-radio-group class="layer-panel-location-radio" [(ngModel)]="settings.layerPanel.layerPanelLocation"
+                (change)="emitUpdate()">
+                <mat-radio-button [value]="LayerPanelControlPositions.TopLeft">
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.layerPanelTopLeftLabel" skeletonWidth="60px">
+                    </hxgn-commonlocalization-translate-v1>
+                </mat-radio-button>
+                <mat-radio-button [value]="LayerPanelControlPositions.TopRight">
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.layerPanelTopRightLabel" skeletonWidth="60px">
+                    </hxgn-commonlocalization-translate-v1>
+                </mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </div>
+</div>
+<!-- Skeleton Loading
+<div class="skeleton" *ngIf="!mapDataLoaded">
+	<div>
+		<div class="fake-tab">
+			<div class="fake-tab-space light fakeSelectedTab"></div>
+			<div class="fake-tab-space dark"></div>
+			<div class="fake-tab-space dark"></div>
+		</div>
+	</div>
+	<div>
+		<div class="map-setup">
+			<div>
+				<div class="dark fake-title"></div>
+				<div class="light fake-info"></div>
+				<div class="light fake-label"></div>
+				<div class="light gadget"></div>
+			</div>
+			<div>
+				<div class="dark fake-title"></div>
+				<div class="light fake-label"></div>
+				<div class="light gadget"></div>
+			</div>
+			<div>
+				<div class="dark fake-title"></div>
+			</div>
+		</div>
+	</div>
+</div> -->

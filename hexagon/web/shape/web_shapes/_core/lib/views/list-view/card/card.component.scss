@@ -1,0 +1,54 @@
+:host {
+  display: block;
+  user-select: none;
+}
+
+.action-button {
+  height: 26px;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  background-image: url('assets/shapes/images/action_menu_icon.png');
+
+  &.selected {
+      background-image: url('assets/shapes/images/action_menu_icon_selected.png');
+  }
+}
+
+.title-pane {
+  display: flex;
+  line-height: 21px;
+}
+
+hxgn-common-card-icon {
+  position: relative;
+
+  hxgn-shapes-icon {
+      margin-left: 12px;
+      margin-top: 10px;
+  }
+}
+
+hxgn-common-card-info-content {
+  min-height: 30px;
+}
+
+hxgn-common-card {
+  &:hover {
+    .action-button  {
+        background-image: url('assets/shapes/images/action_menu_row_selected.png');
+    }
+  }
+}
+
+.closed-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height:  100%;
+  background-image: url('assets/shapes/images/tombstoned.png');
+  background-position: center;
+  background-repeat: repeat-y;
+  width: 100%;
+}

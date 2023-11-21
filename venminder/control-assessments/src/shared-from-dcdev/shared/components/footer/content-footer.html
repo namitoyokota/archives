@@ -1,0 +1,32 @@
+<template>
+    <require from="./content-footer.scss"></require>
+
+    <div slot="content">
+        <div class="nav-spacer"></div>
+
+        <footer>
+            <div class="p-w-md">
+                <div class="row">
+                    <div class="col-md-12" if.bind="!hideTermsAndConditions">
+                        &copy; 2013-${currentyear} Venminder, Inc.
+                        &nbsp;|&nbsp;
+                        <a href="${termsUrl}" target="_blank" rel="noopener">Terms and Conditions</a>
+                        &nbsp;|&nbsp;
+                        <a href.bind="privacyPolicyUrl" target="_blank" rel="noopener">Security &amp; Privacy</a>
+                    </div>
+                    <div class="col-md-12" if.bind="hideTermsAndConditions">
+                        &copy; 2013-${currentyear} Venminder, Inc.
+                        &nbsp;|&nbsp;
+                        <a href.bind="privacyPolicyUrl" target="_blank" rel="noopener">Security &amp; Privacy</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <div class="clearfix"></div>
+
+        <span id="back-to-top" class="btn btn-primary btn-lg back-to-top" role="button" title="" data-toggle="tooltip" data-placement="left" data-original-title="Go to top" click.delegate="scrollToTop">
+            <span class="glyphicon glyphicon-chevron-up"></span>
+        </span>
+    </div>
+</template>

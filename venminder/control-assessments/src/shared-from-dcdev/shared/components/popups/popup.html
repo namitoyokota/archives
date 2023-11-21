@@ -1,0 +1,19 @@
+<template>
+    <require from="./popup.scss"></require>
+
+    <div ref="popupContainer" class="popup-container">
+        <div class="popup-header">
+            <div>${viewModel.Model.Title}</div>
+            <div click.delegate="close()"><i class="fas fa-times"></i></div>
+        </div>
+        <div class="popup-content">
+            <compose view-model="${viewModel.View}" model.bind="viewModel.Model">
+        </div>
+        <div class="popup-footer">
+            <div>
+                <button class="btn btn-default btn-sm" click.delegate="close()">Cancel</button>
+                <button class="btn btn-primary btn-sm"  click.delegate="save()">Save</button>
+            </div>
+        </div>
+    </div>
+</template>

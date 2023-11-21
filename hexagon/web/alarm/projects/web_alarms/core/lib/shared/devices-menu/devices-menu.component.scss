@@ -1,0 +1,29 @@
+:host {
+    display: block;
+    padding: 8px 0;
+}
+
+hxgn-alarms-non-clearable-alarms {
+    margin: 8px 10px 0 10px;
+}
+
+.menu-item {
+    height: 30px;
+    line-height: 30px;
+    display: grid;
+    grid-template-columns: 20px auto;
+    column-gap: 10px;
+    align-items: center;
+    font-size: 11px;
+
+    .menu-btn-icon {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.menu-title {
+    font-size: 15px;
+    padding: 0 15px;
+    margin-bottom: 8px;
+}

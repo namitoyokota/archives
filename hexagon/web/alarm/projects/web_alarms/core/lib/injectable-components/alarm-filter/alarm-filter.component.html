@@ -1,0 +1,5 @@
+<hxgn-alarms-list-filter [alarmIds]="(settings.alarmIds$ | async)"
+    [customValues]="settings.customValues$ ? (settings.customValues$ | async) : null"
+    (filteredAlarmsIds)="settings.setFilteredAlarmIds($event)"
+    (filteredStatus)="settings.setFilteredStatus($event)"
+    (selectedValue)="settings.setSelectedValue($event)"></hxgn-alarms-list-filter>

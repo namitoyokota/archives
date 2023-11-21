@@ -1,0 +1,17 @@
+<hxgn-commontenant-wizard-step-layout [stepTitle]="tTokens.externalSharingNetwork" [actionPaneRef]="actionPaneRef"
+    [descriptionHeaderPaneRef]="descriptionHeaderPaneRef">
+    <hxgn-commontenant-wizard-step-layout-content>
+        <hxgn-commontenant-organization-select-v2 [selectedTenants]="selectedTenants"
+            (selectionChange)="updateCriteria($event)"></hxgn-commontenant-organization-select-v2>
+    </hxgn-commontenant-wizard-step-layout-content>
+
+    <hxgn-commontenant-wizard-step-layout-description>
+        <hxgn-commontenant-step-description [stepTitle]="tTokens.chooseYourSharingNetwork"
+            [description]="tTokens.chooseYourSharingNetworkMessage"
+            imageUrl="assets/commontenant-core/sharing-network-icon.svg">
+        </hxgn-commontenant-step-description>
+
+        <hxgn-commontenant-info-popover [msg]="tTokens.infoButtonMessage">
+        </hxgn-commontenant-info-popover>
+    </hxgn-commontenant-wizard-step-layout-description>
+</hxgn-commontenant-wizard-step-layout>

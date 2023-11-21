@@ -1,0 +1,52 @@
+<template>
+    <div class="form-group">
+        <label>Dropdown</label>
+        <vm-dropdown display-text.to-view="selectedDropdownItemName">
+            <vm-dropdown-item
+                repeat.for="item of dropdownItems"
+                is-selected.to-view="item.isSelected"
+                value.to-view="item.id"
+                on-selection.call="dropdownItemSelected($event)"
+            >
+                ${item.name}
+            </vm-dropdown-item>
+        </vm-dropdown>
+    </div>
+
+    <div class="form-group">
+        <label>Disabled Dropdown</label>
+        <vm-dropdown is-disabled.one-time="true"> </vm-dropdown>
+    </div>
+
+    <div class="form-group">
+        <label>Dropdown w/ Search</label>
+        <vm-dropdown allow-search.one-time="true" display-text.to-view="selectedSearchItemName" on-search.call="handleSearch($event)">
+            <vm-dropdown-item
+                repeat.for="item of filteredSearchItems"
+                is-selected.to-view="item.isSelected"
+                value.to-view="item.id"
+                on-selection.call="searchItemSelected($event)"
+            >
+                ${item.name}
+            </vm-dropdown-item>
+        </vm-dropdown>
+    </div>
+
+    <div class="form-group">
+        <label>Multiselect Dropdown</label>
+        <vm-dropdown display-text.to-view="selectedMultiselectItemsName">
+            <vm-dropdown-item is-selected.to-view="selectAllValue" multiselect.one-time="true" on-selection.call="toggleAll()">
+                Select All
+            </vm-dropdown-item>
+            <vm-dropdown-item
+                repeat.for="item of multiselectItems"
+                is-selected.to-view="item.isSelected"
+                multiselect.one-time="true"
+                value.to-view="item.id"
+                on-selection.call="multiselectItemSelected($event)"
+            >
+                ${item.name}
+            </vm-dropdown-item>
+        </vm-dropdown>
+    </div>
+</template>

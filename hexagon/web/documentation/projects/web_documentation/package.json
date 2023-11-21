@@ -1,0 +1,8 @@
+{
+    "name": "@galileo/web_documentation",
+    "version": "13.1.1",
+    "peerDependencies": {},
+    "dependencies": {
+        "ngx-markdown": "13.1.0"
+    }
+}

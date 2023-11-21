@@ -1,0 +1,39 @@
+<hxgn-commontenant-wizard-step-layout [stepTitle]="tTokens.externalDataSharingSetup"
+    [layoutType]="'Simple'" [actionPaneRef]="actionPaneRef" [descriptionHeaderPaneRef]="descriptionHeaderPaneRef">
+    <hxgn-commontenant-wizard-step-layout-content>
+        <span class="description">
+            <hxgn-commonlocalization-translate-v1 [token]='tokens.externalCloneDescription'></hxgn-commonlocalization-translate-v1>
+        </span>
+        <div class="graphic-pane">
+            <div class="internal">
+                <span class="title">
+                    <hxgn-commonlocalization-translate-v1 [token]='tokens.internalSetupComplete'></hxgn-commonlocalization-translate-v1>
+                </span>
+                <img class="icon" src="assets/commontenant-core/Internal-Group-Sharing-Graphic.svg" />
+                <img class="arrow" src="assets/commontenant-core/Blue-Arrow-Graphic.svg" />
+            </div>
+
+            <img class="clone" src="assets/commontenant-core/Clone-Graphic.svg" />
+
+            <div class="external">
+                <span class="title">
+                    <hxgn-commonlocalization-translate-v1 [token]='tokens.externalSetup'></hxgn-commonlocalization-translate-v1>
+                </span>
+                <img class="arrow" src="assets/commontenant-core/Blue-Arrow-Graphic.svg" />
+                <img class="icon" src="assets/commontenant-core/External-Sharing-Graphic.svg" />
+            </div>
+        </div>
+
+        <span class="option-title">
+            <hxgn-commonlocalization-translate-v1 [token]='tokens.cloneExternallyMsg'></hxgn-commonlocalization-translate-v1>
+        </span>
+
+        <div [class.disable-selection]="disable">
+            <mat-checkbox [disabled]="disable"  [checked]="clone" (change)="cloneInternal.emit($event.checked)">
+                <hxgn-commonlocalization-translate-v1 [token]='tokens.cloneInternallyOption'></hxgn-commonlocalization-translate-v1>
+            </mat-checkbox>
+        </div>
+        
+    </hxgn-commontenant-wizard-step-layout-content>
+</hxgn-commontenant-wizard-step-layout>
+

@@ -1,0 +1,36 @@
+@import '../../../../../core-styles/stylesheets/variables';
+
+/**********************************************/
+/*
+  Search bar Styles ***************************
+*/
+.vm-grid-search-bar {
+    font-size: 13px;
+    overflow: hidden;
+    width: 34px;
+
+    &.search-bar-expanded {
+        width: 250px;
+    }
+
+    i {
+        cursor: pointer;
+    }
+
+    .search-text {
+        border: none;
+        margin-top: 2px;
+        padding-left: 0px;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    transition: all 0.15s ease-in 0s;
+}
+
+.vm-grid-search-bar input {
+    padding-left: 10px;
+    height: 30px;
+}

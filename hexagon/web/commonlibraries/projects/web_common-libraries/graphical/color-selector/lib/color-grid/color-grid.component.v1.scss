@@ -1,0 +1,63 @@
+:host {
+  display: grid;
+  grid-template-rows: 44px auto;
+  height: 176px;
+  width: 210px;
+  background-color: #f7f7f7;
+
+  mat-slider {
+    height: 35px;
+    padding: 0;
+
+    ::ng-deep .mat-slider-wrapper {
+      top: 16px;
+    }
+  }
+}
+
+.opacity-pane {
+  border: 1px solid #b8babc;
+  display: grid;
+  grid-template-columns: auto 45px;
+  column-gap: 10px;
+  justify-content: center;
+  align-items: center;
+
+  .opacity-display {
+    text-align: center;
+    height: 25px;
+    width: 45px;
+    background-color: #fff;
+    border: 1px solid #b8babc;
+    box-sizing: border-box;
+  }
+}
+
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 1f;
+  border-left: 1px solid #b8babc;
+
+  .color {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #b8babc;
+    border-right: 1px solid #b8babc;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #e8e8e8;
+    }
+
+    &.active {
+        cursor: default;
+        background-color: #C9DFF1;
+
+        &:hover {
+            background-color: #C9DFF1;
+        }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+<div class="header">
+    <div (click)="editDefault()" class="base-icon-pane">
+        <hxgn-commonkeywords-composite-icon *ngIf="group?.resourceId" [icon]="groupCompositeIcon" size="80">
+        </hxgn-commonkeywords-composite-icon>
+        <div class="edit-icon"></div>
+    </div>
+
+    <div>
+        <h2>
+            {{group?.name}}
+        </h2>
+        <div class="msg">
+            <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]='tokens.addIconMsg'>
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+    </div>
+</div>
+
+<div class="rule-pane">
+    <hxgn-commonkeywords-rule-grid (cloneRule)="cloneRule($event)" [group]="group">
+    </hxgn-commonkeywords-rule-grid>
+
+    <div class="add-new-pane">
+        <button class="hxgn-btn-secondary" (click)="addNewRule(null)">
+            <img src="assets/commonkeywords-core/images/add_green.png" />
+            <span>
+                <hxgn-commonlocalization-translate-v1 [token]='tokens.addEntry' [ignoreSkeleton]="true">
+                </hxgn-commonlocalization-translate-v1>
+            </span>
+        </button>
+    </div>
+</div>

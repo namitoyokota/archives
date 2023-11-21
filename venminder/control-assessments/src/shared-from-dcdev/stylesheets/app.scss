@@ -1,0 +1,379 @@
+﻿@import "../core-styles/stylesheets/_variables.scss";
+
+.onoffswitch {
+    position: relative;
+    width: 68px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.onoffswitch-checkbox {
+    display: none;
+}
+
+.onoffswitch-label {
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 16px;
+}
+
+.overflow-auto{
+    overflow-y: auto;
+}
+
+.onoffswitch-inner {
+    display: block;
+    width: 200%;
+    margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block;
+    float: left;
+    width: 50%;
+    height: 25px;
+    padding: 0;
+    line-height: 25px;
+    font-size: 13px;
+    color: white;
+    font-family: Trebuchet, Arial, sans-serif;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.onoffswitch-inner:before {
+    content: "ON";
+    padding-left: 10px;
+    background-color: rgb(125, 195, 25);
+    color: #FFFFFF;
+}
+
+.onoffswitch-inner:after {
+    content: "OFF";
+    padding-right: 10px;
+    background-color: rgb(245, 245, 245); /*#999;*/
+    color: rgb(103, 106, 108); /*#FFFFFF;*/
+    text-align: right;
+}
+
+.onoffswitch-switch {
+    display: block;
+    width: 19px;
+    margin: 3px;
+    background: #FFFFFF;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 42px;
+    border: 1px solid #ccc;
+    border-radius: 16px;
+    transition: all 0.3s ease-in 0s;
+}
+
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px;
+}
+
+
+div.rating-control {
+    display: inline-block;
+    overflow:auto;
+    white-space:nowrap;
+}
+
+div.star-rating {
+    float: left;
+    width: 17px;
+    height: 15px;
+    /*text-indent: -999em;*/
+    cursor: pointer;
+    display: block;
+    background: transparent;
+    overflow: hidden
+}
+
+div.star-rating, div.star-rating a {
+    background: url(./images/star.gif) no-repeat 0 0px;
+    color: black;
+}
+
+div.star-rating a {
+    display: block;
+    width: 16px;
+    height: 100%;
+    background-position: 0 0px;
+    border: 0;
+    color: black;
+}
+
+div.star-rating-on a {
+    background-position: 0 -16px !important;
+    color: black;
+}
+
+div.star-rating-hover a {
+    background-position: 0 -32px;
+    color: black;
+}
+
+div.star-rating-readonly {
+    cursor: default !important
+}
+
+div.star-rating-readonly a {
+    cursor: default !important;
+    color: black;
+}
+
+div.star-rating {
+    background: transparent !important;
+    overflow: hidden !important
+}
+
+div.hbar-rating {
+    float: left;
+    width: 50px;
+    height: 20px;
+    cursor: pointer;
+    display: block;
+    background-color: #E3E3E3;
+    overflow: hidden;
+    margin: 1px;
+    text-align:center;
+}
+
+div.hbar-rating a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-position: 0 0px;
+    border: 0;
+    color: black;
+}
+
+div.hbar-rating-on a {
+    background-color: #77A800;
+    color: black;
+}
+
+div.hbar-rating-hover a {
+    background-color: #77A800;
+    color: black;
+}
+
+div.hbar-rating-readonly a {
+    cursor: default !important;
+    color: black;
+}
+
+div.hbar-rating {
+    background: #E3E3E3 !important;
+    overflow: hidden !important
+}
+
+div.vbar-rating {
+    float: left;
+    width: 15px;
+    height: 34px;
+    /*text-indent: -999em;*/
+    cursor: pointer;
+    display: block;
+    background-color: #E3E3E3;
+    overflow: hidden;
+    margin: 1px
+}
+
+div.vbar-rating a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-position: 0 0px;
+    border: 0;
+    color: black;
+}
+
+div.vbar-rating-on a {
+    background-color: #77A800;
+    color: black;
+}
+
+div.vbar-rating-hover a {
+    background-color: #77A800;
+    color: black;
+}
+
+div.vbar-rating-readonly a {
+    cursor: default !important;
+    color: black;
+}
+
+div.vbar-rating {
+    background: #E3E3E3 !important;
+    overflow: hidden !important
+}
+
+div.square-rating {
+    float: left;
+    width: 15px;
+    height: 15px;
+    /*text-indent: -999em;*/
+    cursor: pointer;
+    display: block;
+    background-color: #E3E3E3;
+    overflow: hidden;
+    margin: 1px
+}
+
+div.square-rating a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-position: 0 0px;
+    border: 0;
+    color: black;
+}
+
+div.square-rating-on a {
+    background-color: #77A800;
+    color: black;
+}
+
+div.square-rating-hover a {
+    background-color: #77A800;
+    color: black;
+}
+
+div.square-rating-readonly a {
+    cursor: default !important;
+    color: black;
+}
+
+div.square-rating {
+    background: #E3E3E3 !important;
+    overflow: hidden !important
+}
+
+.editBubble {
+    background-color: white;
+    position: absolute;
+    margin-top: 20px;
+    border: #6D6E71 solid 1px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.30);
+    -moz-box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.75);
+    padding: 16px;
+    min-width: 300px;
+    max-width: 500px;
+    z-index:9999;
+}
+
+.editBubble:after {
+    content: "";
+    position: absolute;
+    top: -15px;
+    border-style: solid;
+    border-width: 0 10px 15px;
+    border-color: #ffffff transparent;
+    display: block;
+    width: 0;
+    z-index: 1;
+}
+
+.editBubbleLeft {
+    /*margin-left: -40px;*/
+}
+
+.editBubbleRight {
+    /*margin-right: -40px;*/
+}
+
+.editBubbleLeft:after {
+    left: 36px;
+}
+
+.editBubbleRight:after {
+    right: 36px;
+}
+
+.editBubble:before {
+    content: "";
+    position: absolute;
+    top: -16px;
+    border-style: solid;
+    border-width: 0 10px 15px;
+    border-color: #000000 transparent;
+    display: block;
+    width: 0;
+    z-index: 0;
+}
+
+.editBubbleLeft:before {
+    left: 36px;
+}
+
+.editBubbleRight:before {
+    right: 36px;
+}
+
+.no-wrap {
+    white-space:nowrap;
+}
+
+.has-error .btn-default.dropdown-toggle {
+    border-color: $red;
+}
+
+.modal-body {
+    overflow: initial;
+}
+
+/* Profile Sync Classes */
+.pd-profileRequestSent {
+    background-color: #EFEFEF; 
+    font-style: italic;
+}
+
+.pd-profileItemsForReview {
+    background-color: $brand-info;
+    border-color: $brand-info;
+    color: white;    
+}
+
+ul.comma-list {
+    display: inline;
+    list-style: none;
+
+    li {
+        display: inline;
+    }
+
+    li:after {
+        content: ", ";
+    }
+
+    li:last-child:after {
+        content: "";
+    }
+}
+
+ul.inline-list {
+    display: inline;
+    list-style: none;
+
+    li {
+        display: inline;
+    }
+
+}
+

@@ -1,0 +1,9 @@
+﻿<div class="opacity-slider-group">
+    <div>
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.opacityLabel">
+        </hxgn-commonlocalization-translate-v1>
+    </div>
+    <span>{{getDisplayOpacityLabel()}}</span>
+    <mat-slider class="opacity-slider" [min]="0" [max]="100" [value]="getDisplayOpacity()"
+        (change)="setOpacity($event)"></mat-slider>
+</div>

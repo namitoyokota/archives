@@ -1,0 +1,9 @@
+<hxgn-commonkeywords-icon
+  [size]="size" [icon]="(icon$ | async)"
+  [fallbackIcon]="(fallbackIcon$ | async)"
+  [iconRules]="(iconRules$ | async)"
+  [editable]="(settings.editable$ | async)"
+  [title]="(settings.title$ | async)"
+  [subtitle]="(settings.subtitle$ | async)"
+  (keywordsChange)="updateKeywords($event)">
+</hxgn-commonkeywords-icon>

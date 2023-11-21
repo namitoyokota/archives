@@ -1,0 +1,17 @@
+<div class="add-new" (click)="startNewGroup()">
+    <img src="assets/commonkeywords-core/images/add-icon.png" />
+    <div>
+        <hxgn-commonlocalization-translate-v1 skeletonWidth="150px" [token]="tokens.addNewGroup">
+        </hxgn-commonlocalization-translate-v1>
+    </div>
+</div>
+<div>
+    <div [hidden]="newGroupName === null">
+        <div class="new-group-pane" (mouseenter)="disableGlobalAdd()" (mouseleave)="enableGlobalAdd()">
+            <hxgn-common-input-v2>
+                <input #addNewGroup [(ngModel)]="newGroupName" (keyup.enter)="createNewGroup()" type="text" />
+            </hxgn-common-input-v2>
+            <img src="assets/commonkeywords-core/images/x_grey_in_circle.png" (click)="cancelAddGroup()" />
+        </div>
+    </div>
+</div>

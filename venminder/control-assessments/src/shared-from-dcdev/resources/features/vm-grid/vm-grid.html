@@ -1,0 +1,80 @@
+﻿<template>
+    <require from="./vm-grid.scss"></require>
+    <require from="./header/vm-grid-header"></require>
+    <require from="./pager/vm-grid-pager"></require>
+    <require from="./converters/sanitize"></require>
+    <require from="./converters/progress-status"></require>
+    <require from="./converters/bool-status"></require>
+    <require from="./filters/search-field/search-field"></require>
+    <require from="./filters/filter-pillbox/filter-pillbox"></require>
+    <require from="./filters/custom-filter-group/custom-filter-group"></require>
+    <require from="./converters/format-text"></require>
+    <require from="./converters/format-list"></require>
+    <require from="./command-menu/vm-command-menu"></require>
+
+    <div class="vm-grid-controls">
+        <div>
+            <custom-filter-group if.bind="!!config.CustomFilters" grid-data.bind="gridData" custom-filters.bind="config.CustomFilters"></custom-filter-group>
+            <compose if.bind="!!config.SearchComponent" view-model.bind="getFilterView('SearchComponent')" model.bind="getFilterModel()"></compose>
+        </div>
+        <div class="vm-grid-button-container">
+            <div class="dropdown">
+                <button if.bind="showGridButtonOptions" class="btn btn-default btn-sm btn-options" type="button" data-toggle="dropdown" aria-expanded="false">
+                    <i class="far fa-ellipsis-v"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-no-margin btn-option-container">
+                    <li if.bind="showGridDownloadButton"><a click.delegate="downloadCSV()" href.bind="requestVendorUrl">Download</a></li>
+                    <li repeat.for="button of buttonOptions || []"><a click.delegate="button.Click()" href="javascript:void(0)">${button.Text}</a></li>
+                </ul>
+            </div>
+            <div if.bind="config.AllowColumnConfiguration">
+                <button class="btn btn-default btn-sm" click.delegate="openColumnsConfiguration($event)"><img src="../../../images/custom-column-icon.svg" /></button>
+            </div>
+        </div>
+    </div>
+
+    <filter-pillbox grid-data.bind="gridData" config.bind="config"></filter-pillbox>
+
+    <div class="vm-grid" id="vm-grid${config.ID}" css="height:${gridHeight}px;">
+        <div class="vm-grid-body" id="vm-grid-body${config.ID}">
+            <div id="vm-grid-body-container${config.ID}" class="vm-grid-body-container">
+                <vm-grid-header class="vm-grid-header"
+                                config.bind="config"
+                                grid-data.bind="gridData"
+                                parent-id.bind="config.ID"></vm-grid-header>
+
+                <div repeat.for="row of gridData.rows" class="vm-grid-row vm-grid-row${config.ID}" css="${gridRowStyle}">
+                    <div repeat.for="column of config.ColumnDefinitions" class="vm-grid-row-column ${column.TextOverflow?'vm-grid-row-container-overflow':''}">
+                        <div if.bind="column.ColumnFieldType=='boolean'" innerhtml.bind="row[column.ColumnName] | sanitizeHTML | boolStatus:column.ColumnValueConverter"></div>
+                        <div if.bind="column.ColumnFieldType=='linktext'" click.delegate="column.ColumnClick(row)"><a>${row[column.ColumnName]}</a></div>
+                        <div if.bind="column.ColumnFieldType=='select'"><input checked.bind="row.IsSelected" type="checkbox" /></div>
+                        <div if.bind="column.ColumnFieldType=='literal'" class="${column.TextOverflow?'vm-grid-row-column-overflow':''}" innerhtml.bind="row[column.ColumnName] | sanitizeHTML | sanitize | formatText:column.ColumnValueConverter"></div>
+                        <div if.bind="column.ColumnFieldType=='list'"
+                             class="${column.TextOverflow?'vm-grid-row-column-overflow':''}"
+                             aubs-tooltip="text.bind: formatListTooltip(row[column.ColumnName]); position.bind: 'left'; disabled.bind: disableListTooltip(row[column.ColumnName], column.ColumnValueConverter);"
+                             innerhtml.bind="row[column.ColumnName] | sanitizeHTML | sanitize | formatList:column.ColumnValueConverter">
+                        </div>
+                        <div if.bind="column.ColumnFieldType=='custom'">
+                            <div if.bind="column.ColumnClick!=undefined" click.delegate="column.ColumnClick(row)" innerhtml.bind="column.ColumnHtmlFormatter(row) | sanitizeHTML"></div>
+                            <div else innerhtml.bind="column.ColumnHtmlFormatter(row) | sanitizeHTML"></div>
+                        </div>
+                        <div if.bind="column.ColumnFieldType=='compose'">
+                            <compose view-model.bind="column.ViewModel" model.bind="column.BindingContext(row, column)"></compose>
+                        </div>
+                        <div if.bind="column.ColumnFieldType=='actionellipsis'"
+                             click.trigger="openCommandItems($event, column.CommandItems, column.CommandItemCheckVisibility, row)"
+                             data-action-column
+                             class="vm-grid-action-column">
+                            <button class="vm-grid-action-button ellipses">
+                                <i class="far fa-ellipsis-v"></i>
+                            </button>
+                            <vm-command-menu if.bind="showMenu(row, commandState.row)" state.bind="commandState"></vm-command-menu>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <vm-grid-pager show.bind="!config.HidePager" config.bind="config" grid-data.bind="gridData"></vm-grid-pager>
+</template>

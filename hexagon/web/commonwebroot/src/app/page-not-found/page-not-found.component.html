@@ -1,0 +1,28 @@
+<app-bar style="position: absolute; top:0; left:0;">
+</app-bar>
+
+<div class="pane">
+    <div class="not-found-img"></div>
+    <div class="msg-pane">
+        <span >
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.pageNotFoundTitle" skeletonWidth="250px">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+        <span>
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.pageNotFoundMsg" skeletonWidth="250px">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+    </div>
+
+    <div class="action-pane">
+        <button mat-raised-button (click)="goBack()">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.goBack">
+            </hxgn-commonlocalization-translate-v1>
+        </button>
+        <button mat-raised-button (click)="logOut()">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.signOut">
+            </hxgn-commonlocalization-translate-v1>
+        </button>
+    </div>
+</div>
+

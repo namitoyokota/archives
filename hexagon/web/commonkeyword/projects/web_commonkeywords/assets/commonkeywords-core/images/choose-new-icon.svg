@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="19.253" height="19.253" viewBox="0 0 19.253 19.253">
+  <g id="choose-new-incident-icon" transform="translate(4479.895 2476.828)">
+    <circle id="Ellipse_1429" data-name="Ellipse 1429" cx="9.627" cy="9.627" r="9.627" transform="translate(-4479.895 -2476.828)" fill="#acaeb1"/>
+    <g id="Group_11981" data-name="Group 11981" transform="translate(-5068.879 -2801.725)">
+      <path id="Path_5985" data-name="Path 5985" d="M604.309,330.292l-1.471-1.5a1.017,1.017,0,0,0-1.461-.008l-1.183,1.21,2.938,3,1.184-1.211A1.071,1.071,0,0,0,604.309,330.292Z" fill="#fff"/>
+      <path id="Path_5986" data-name="Path 5986" d="M594.4,335.78a.423.423,0,0,0-.145.211l-1.025,3.563a.445.445,0,0,0,.109.436.432.432,0,0,0,.308.129.4.4,0,0,0,.122-.018l3.492-1.046a.423.423,0,0,0,.2-.136l4.789-4.845-3.067-3.129Zm.465,3.072-.409-.418.581-2.018,1.485.312.294,1.54Z" fill="#fff"/>
+    </g>
+  </g>
+</svg>

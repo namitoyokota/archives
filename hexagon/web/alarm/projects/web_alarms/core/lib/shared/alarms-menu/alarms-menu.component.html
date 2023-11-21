@@ -1,0 +1,21 @@
+<div class="menu-title">
+    {{clearableCount}} <hxgn-commonlocalization-translate-v1 [token]='tokens.closeableAlarms' skeletonWidth="110px">
+    </hxgn-commonlocalization-translate-v1>
+</div>
+
+<hxgn-common-menu-item *ngIf="nonClearableCount" [disabled]="!clearableCount"
+    imgSrc="assets/alarms-core/images/Clear-Alarms-Menu-Item.svg" [token]="tokens.closeAlarms" (click)="clearAlarms()">
+</hxgn-common-menu-item>
+<hxgn-common-menu-item *ngIf="!nonClearableCount" [disabled]="!clearableCount"
+    imgSrc="assets/alarms-core/images/Clear-All-Alarms.svg" [token]="tokens.closeAllAlarms" (click)="clearAlarms()">
+</hxgn-common-menu-item>
+
+<hxgn-common-menu-item *ngIf="clearableCount" imgSrc="assets/alarms-core/images/Clear-Individual-Alarms.svg"
+    [token]="tokens.closeAlarmsIndividually" (click)="openClearDialog()">
+</hxgn-common-menu-item>
+<hxgn-common-menu-item *ngIf="!clearableCount" imgSrc="assets/alarms-core/images/view-alarms.svg"
+    [token]="tokens.viewAlarms" (click)="openClearDialog()">
+</hxgn-common-menu-item>
+
+<hxgn-alarms-non-clearable-alarms *ngIf="nonClearableCount" [nonClearableCount]="nonClearableCount">
+</hxgn-alarms-non-clearable-alarms>

@@ -1,0 +1,44 @@
+@use "variables" as v;
+
+$vm-dialog-border: solid 1px v.$N40;
+$vm-dialog-padding: 25px;
+
+.vm-dialog {
+    width: 600px;
+    background-color: v.$white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
+
+    &.vm-dialog__lg {
+        width: 900px;
+    }
+
+    .vm-dialog--body {
+        padding: $vm-dialog-padding;
+    }
+
+    .vm-dialog--footer,
+    .vm-dialog--header {
+        display: flex;
+        align-items: center;
+        padding: 0 $vm-dialog-padding;
+    }
+
+    .vm-dialog--footer {
+        height: 75px;
+        column-gap: 15px;
+        justify-content: flex-end;
+        border-top: $vm-dialog-border;
+    }
+
+    .vm-dialog--header {
+        height: 70px;
+        justify-content: space-between;
+        border-bottom: $vm-dialog-border;
+
+        .vm-dialog--title {
+            font-size: 18px;
+            font-weight: 700;
+        }
+    }
+}

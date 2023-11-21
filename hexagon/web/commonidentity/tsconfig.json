@@ -1,0 +1,51 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "module": "es2020",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "downlevelIteration": true,
+    "target": "es5",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "paths": {
+      "@galileo/web_commonidentity/app/_core": [
+        "dist/web_commonidentity/app/_core",
+      ],
+      "@galileo/web_commonidentity/app/admin/user-management": [
+        "dist/web_commonidentity/app/admin/user-management",
+      ],
+      "@galileo/web_commonidentity/app/admin/token-management": [
+        "dist/web_commonidentity/app/admin/token-management",
+      ],
+      "@galileo/web_commonidentity/app/admin/provider-management": [
+        "dist/web_commonidentity/app/admin/provider-management",
+      ],
+      "@galileo/web_commonidentity/app/admin/user-profile": [
+        "dist/web_commonidentity/app/admin/user-profile",
+      ],
+      "@galileo/web_commonidentity/adapter": [
+        "dist/web_commonidentity/adapter",
+      ],
+      "@galileo/web_commonidentity/_common": [
+        "dist/web_commonidentity/_common",
+      ],
+      "@galileo/web_commonidentity/app/_elements/login-provider": [
+        "dist/web_commonidentity/app/_elements/login-provider",
+      ]
+    }
+  },
+  "angularCompilerOptions": {
+    "enableIvy": true
+  }
+}

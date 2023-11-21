@@ -1,0 +1,12 @@
+
+::ng-deep .mat-tooltip {
+    background: rgba(97,97,97,.9) !important;
+    font-size: 14px !important;
+    max-width: 1000px !important;
+}
+
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

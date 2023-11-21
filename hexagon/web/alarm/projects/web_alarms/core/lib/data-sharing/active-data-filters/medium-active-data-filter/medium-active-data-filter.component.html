@@ -1,0 +1,42 @@
+<hxgn-commontenant-active-data-filter-item *ngIf="!showEverything()" [level]="RestrictionLevels.medium">
+    <hxgn-commontenant-active-data-filter-item-section>
+        <hxgn-commontenant-active-data-filter-item-section-title>
+            <hxgn-commonlocalization-translate-v1 [token]='tokens.dontShareSubsections'>
+            </hxgn-commonlocalization-translate-v1>
+        </hxgn-commontenant-active-data-filter-item-section-title>
+        <hxgn-commontenant-active-data-filter-item-section-text>
+            <ng-container *ngFor="let item of allRestrictions?.restrictions; let i = index;">
+                <div class="d-inline-block" *ngIf="dontShow(item.content.restrictId)">
+                    <ng-container [ngSwitch]="item.content.restrictId">
+                        <hxgn-commonlocalization-translate-v1 *ngSwitchCase="RestrictIds.location"
+                            [token]='tokens.alarmCurrentLocation'>
+                        </hxgn-commonlocalization-translate-v1>
+                        <hxgn-commonlocalization-translate-v1 *ngSwitchCase="RestrictIds.attachments"
+                            [token]='tokens.imagesAndVideoClips'>
+                        </hxgn-commonlocalization-translate-v1>
+                        <hxgn-commonlocalization-translate-v1 *ngSwitchCase="RestrictIds.keywords"
+                            [token]="tokens.keywords">
+                        </hxgn-commonlocalization-translate-v1>
+                        <hxgn-commonlocalization-translate-v1 *ngSwitchCase="RestrictIds.lastUpdateTime"
+                            [token]="tokens.lastUpdatedTime">
+                        </hxgn-commonlocalization-translate-v1>
+                        <hxgn-commonlocalization-translate-v1 *ngSwitchCase="RestrictIds.primaryContact"
+                            [token]="tokens.primaryContact">
+                        </hxgn-commonlocalization-translate-v1>
+                        <hxgn-commonlocalization-translate-v1 *ngSwitchCase="RestrictIds.priority"
+                            [token]='tokens.priority'>
+                        </hxgn-commonlocalization-translate-v1>
+                        <hxgn-commonlocalization-translate-v1 *ngSwitchCase="RestrictIds.remarks"
+                            [token]='tokens.remarks'>
+                        </hxgn-commonlocalization-translate-v1>
+                        <hxgn-commonlocalization-translate-v1 *ngSwitchCase="RestrictIds.type" [token]="tokens.type">
+                        </hxgn-commonlocalization-translate-v1>
+                    </ng-container>
+                    <span class="spacing-right" *ngIf="i !== (allRestrictions?.restrictions.length - 1)">,</span>
+                </div>
+            </ng-container>
+        </hxgn-commontenant-active-data-filter-item-section-text>
+    </hxgn-commontenant-active-data-filter-item-section>
+</hxgn-commontenant-active-data-filter-item>
+<hxgn-alarms-low-active-data-filter *ngIf="showEverything() && showLowFilters">
+</hxgn-alarms-low-active-data-filter>

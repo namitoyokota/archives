@@ -1,0 +1,16 @@
+<template>
+  <vm-dialog
+    cancel-label.to-view="model.cancelText"
+    cancel-shown.to-view="model.showCancel"
+    dialog-title.to-view="model.dialogTitle"
+    ok-disabled.to-view="model.showConfirmation && !confirmed"
+    ok-label.to-view="model.okText"
+    ok-shown.to-view="model.showOk"
+    ok-click.call="ok()"
+  >
+    <div innerhtml.bind="model.dialogMessage | sanitizeHTML"></div>
+    <vm-checkbox if.bind="model.showConfirmation" name="confirmationCheckbox" checked.two-way="confirmed">
+      ${model.confirmationLabel}
+    </vm-checkbox>
+  </vm-dialog>
+</template>

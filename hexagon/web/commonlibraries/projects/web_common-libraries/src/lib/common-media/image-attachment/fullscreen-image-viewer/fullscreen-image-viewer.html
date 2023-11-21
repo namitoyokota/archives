@@ -1,0 +1,10 @@
+<!-- None panoramic image -->
+<div *ngIf="!settings.isPanoramic && settings?.url" class="content" [style.backgroundImage]="'url('+ settings.url +')'">
+    <img (click)="close()" src="assets/common-libraries/images/close.png" />
+</div>
+
+<!-- Panoramic image -->
+<div class="content" *ngIf="settings.isPanoramic && settings?.url">
+    <hxgn-panormaic-viewer-v1 [imgUrl]="settings.url"></hxgn-panormaic-viewer-v1>
+    <img (click)="close()" src="assets/common-libraries/images/close.png" />
+</div>

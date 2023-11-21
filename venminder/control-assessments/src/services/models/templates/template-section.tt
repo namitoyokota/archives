@@ -1,0 +1,8 @@
+﻿<#@ include file="..\..\..\..\..\CreateTypeScript.ttinclude" #>
+<#@ template debug="true" hostSpecific="true" language="C#" #>
+<#@ output extension="ts" #>
+
+import { SectionControl } from "./section-control";
+import { SubHeader } from "./sub-header";
+
+<#= GetClass<ControlAssessments.Business.Models.DTO.Templates.TemplateSection>(generateCreateFunction:true) #>

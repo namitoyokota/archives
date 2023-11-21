@@ -1,0 +1,41 @@
+﻿<template>
+  <require from="./vendor-product-section.scss"></require>
+
+  <div class="panel panel-default vendor-section-panel">
+    <!-- Header -->
+    <div class="panel-header vendor-panel-header">
+      <span>Vendor / Product Information</span>
+    </div>
+
+    <!-- Body -->
+    <div class="panel-body vendor-panel-body">
+      <!-- Vendor -->
+      <div class="input-pane">
+        <label for="Vendor">Vendor</label>
+        <input
+          id="vendor"
+          class="vm-input"
+          name="vendor"
+          type="text"
+          placeholder="Vendor Name"
+          disabled
+          value.bind="model.vendor"
+        />
+      </div>
+
+      <!-- Product -->
+      <div if.bind="!model.isVendorLevel" class="input-pane">
+        <label for="Product">Product</label>
+        <input
+          id="product"
+          class="vm-input"
+          name="product"
+          type="text"
+          placeholder="Product Name"
+          disabled
+          value.bind="model.products[0]"
+        />
+      </div>
+    </div>
+  </div>
+</template>

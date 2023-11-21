@@ -1,0 +1,76 @@
+.action-icon {
+    background-color: #fff;
+    background-image: url("assets/common-libraries/images/properties-icon.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    height: 18px;
+    width: 18px;
+    cursor: pointer;
+}
+
+.action-icon:hover {
+    background-image: url("assets/common-libraries/images/properties-icon-selected.svg");
+}
+
+.menu-content {
+    padding: 10px;
+    overflow: hidden;
+
+    .table-container {
+        height: 175px;
+        border: solid 1px #abacae;
+        overflow-y: auto;
+
+        table {
+            width: 100%;
+            background: #fff;
+            overflow-x: hidden;
+
+            ::ng-deep .mat-sort-header-container {
+                justify-content: space-between;
+            }
+
+            td.mat-cell {
+                border-bottom-color: #d9d9d9;
+                padding: 0 10px;
+            }
+
+            th.mat-header-cell {
+                font-size: 14px;
+                border-bottom: none;
+                font-weight: 400;
+                padding: 0 10px;
+            }
+
+            th.mat-header-cell:not(:last-of-type) {
+                border-right: solid 1px #94979a;
+            }
+
+            tr.mat-header-row {
+                height: 25px;
+                background: #c8c8c8;
+            }
+
+            tr.mat-row {
+                height: 40px;
+            }
+        }
+    }
+
+    .table-container-empty {
+        display: grid;
+        grid-template-rows: min-content 1fr;
+
+        .no-properties {
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+    }
+
+    .property-header {
+        font-size: 15px;
+        margin-bottom: 10px;
+    }
+}

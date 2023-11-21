@@ -1,0 +1,28 @@
+<div class="priority-pane" [style.background]="color$ | async"></div>
+<div class="icon-pane">
+    <div [attr.id]="iconContextId" class="icon">
+        <div class="skeleton-icon"></div>
+    </div>
+    <div *ngIf="appNotifications?.length > 1" class="group-count">{{appNotifications?.length | maxNumber: 9}}</div>
+</div>
+<div class="title-pane">
+    {{title$ | async}}
+    <div class="skeleton-title" *ngIf="(title$ | async) === ''"></div>
+    <span *ngIf="appNotifications?.length > 1">({{appNotifications?.length | maxNumber: 9}})</span>
+</div>
+<div class="action-pane">
+    <div (click)="flag($event)" class="flag-btn">
+
+        <img *ngIf="appNotifications[0]?.flagged" src="assets/commonnotifications-core/images/not-flagged.svg" />
+        <img *ngIf="!appNotifications[0]?.flagged" src="assets/commonnotifications-core/images/flagged.svg" />
+    </div>
+    <img (click)="clearNotifications()" class="clear-btn" src="assets/commonnotifications-core/images/x_dialog.png" />
+</div>
+<div class="content-pane">
+    <div [attr.id]="itemContextId">
+        <div class="skeleton-content"></div>
+    </div>
+    <div *ngIf="!isToast" class="time-since">
+        {{appNotifications[0]?.timestamp | amTimeAgo:true}}
+    </div>
+</div>

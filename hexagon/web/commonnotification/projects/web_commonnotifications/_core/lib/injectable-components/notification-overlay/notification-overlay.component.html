@@ -1,0 +1,6 @@
+<hxgn-commonnotifications-toast-pane *ngIf="(showNotificationPanel$ | async) === false" [contextId]="contextId$ | async"
+    [appNotificationGroups]="toastNotifications$ | async" [maxItemCount]="maxCount$ | async" (notificationsUpdated)="update($event)" (clear)="clear($event)"
+    (showFullPane)="showNotificationPane()"></hxgn-commonnotifications-toast-pane>
+
+<hxgn-commonnotifications-full-pane [@slideInOut] *ngIf="(showNotificationPanel$ | async) === true" [contextId]="contextId$ | async"
+    [appNotifications]="notifications$ | async" (notificationsUpdated)="update($event)" (clear)="clear($event)"></hxgn-commonnotifications-full-pane>

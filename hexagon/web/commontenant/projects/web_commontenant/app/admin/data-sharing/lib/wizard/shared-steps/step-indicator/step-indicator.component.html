@@ -1,0 +1,9 @@
+<span class="title">
+    <hxgn-commonlocalization-translate-v1 [token]='titleToken'></hxgn-commonlocalization-translate-v1>
+</span>
+<div class="steps-pane">
+    <div *ngFor="let step of [].constructor(stepCount); let i = index" 
+     class="step-pane" [class.active]="(i+1) === activeStep">
+        <span>{{(i + 1)}}</span>
+    </div>
+</div>

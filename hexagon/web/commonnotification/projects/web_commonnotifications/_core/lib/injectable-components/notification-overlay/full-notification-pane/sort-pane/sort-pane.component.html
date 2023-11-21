@@ -1,0 +1,102 @@
+<span class="title">
+    <hxgn-commonlocalization-translate-v1 [token]="tokens.filterOption" skeletonWidth="50px"></hxgn-commonlocalization-translate-v1>
+</span>
+
+<span class="title">
+    <hxgn-commonlocalization-translate-v1 [token]="tokens.sortOptions" skeletonWidth="64px"></hxgn-commonlocalization-translate-v1>
+</span>
+
+<div class="filter-btn" [matMenuTriggerFor]="menu">
+    <span *ngIf="enabledNotifications.length === filterOptions.length || enabledNotifications.length > filterOptions.length ; else show_some_show_none">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.showAll" skeletonWidth="64px"></hxgn-commonlocalization-translate-v1>
+    </span>
+
+    <ng-template #show_some_show_none>
+        <span *ngIf="enabledNotifications.length < filterOptions.length && enabledNotifications.length; else show_none">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.showSome" skeletonWidth="40px"></hxgn-commonlocalization-translate-v1>
+        </span>
+        <ng-template #show_none>
+            <span><hxgn-commonlocalization-translate-v1 [token]="tokens.showNone" skeletonWidth="40px"></hxgn-commonlocalization-translate-v1></span>
+        </ng-template>
+    </ng-template>
+
+    <div class="drop-down-btn"></div>
+</div>
+
+
+<hxgn-common-dropdown-v2 [value]="selectedSort" (selectionChange)="setSort($event?.value)">
+    <hxgn-common-dropdown-item-v2 [value]="sortOptions.newestOnTop">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.newestOnTop" skeletonWidth="80px"></hxgn-commonlocalization-translate-v1>
+    </hxgn-common-dropdown-item-v2>
+    <hxgn-common-dropdown-item-v2 [value]="sortOptions.oldestOnTop">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.oldestOnTop" skeletonWidth="80px"></hxgn-commonlocalization-translate-v1>
+	</hxgn-common-dropdown-item-v2>
+    <hxgn-common-dropdown-item-v2 [value]="sortOptions.displayOrderAsc">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.displayOrderAsc" skeletonWidth="80px"></hxgn-commonlocalization-translate-v1>
+    </hxgn-common-dropdown-item-v2>
+    <hxgn-common-dropdown-item-v2 [value]="sortOptions.displayOrderDesc">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.displayOrderDesc" skeletonWidth="80px"></hxgn-commonlocalization-translate-v1>
+    </hxgn-common-dropdown-item-v2>
+</hxgn-common-dropdown-v2>
+
+<div class="showing-msg">
+    <span *ngIf="enabledNotifications.length === filterOptions.length; else show_some">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.showingAllNotifications" skeletonWidth="80px"></hxgn-commonlocalization-translate-v1>
+        ({{notificationCount}})
+    </span>
+
+    <ng-template #show_some>
+        <span>
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.showingNotifications" skeletonWidth="80px"></hxgn-commonlocalization-translate-v1>
+            ({{notificationCount}})
+        </span>    
+    </ng-template>
+</div>
+
+<mat-menu #menu="matMenu" [class]="'notification-filter-pane'">
+    <div class="filter-list" (click)=$event.stopPropagation()>
+        
+        <!-- Back button -->
+        <div *ngIf="selectedCapabilityId" class="back-pane" (click)="selectedCapabilityId = null">
+            <img class="back-icon" src="assets/commonnotifications-core/images/dropdown-arrow.png" />
+            <span>
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.back" skeletonWidth="40px"></hxgn-commonlocalization-translate-v1>
+            </span>
+        </div>
+
+        <!-- Show all option -->
+        <div class="show-all-pane">
+            <mat-checkbox [checked]="enabledNotifications.length === filterOptions.length" 
+                [indeterminate]="enabledNotifications?.length !== filterOptions?.length && !!enabledNotifications?.length" (change)="toggleAll($event)">
+            <span class="filter-option">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.showAll" skeletonWidth="40px"></hxgn-commonlocalization-translate-v1>
+            </span> 
+            </mat-checkbox>
+        </div>
+
+        <!-- Show capability roll up -->
+        <div *ngFor="let capabilityId of capabilityIds">
+            <ng-container *ngIf="!selectedCapabilityId">
+                <div  class="capability-pane">
+                    <mat-checkbox (change)="toggleCapabilityFilter($event, capabilityId)" [checked]="isCapabilityChecked(capabilityId)"
+                        [indeterminate]="isSomeCapabilityChecked(capabilityId)"></mat-checkbox>
+                    <span class="filter-option" (click)="selectedCapabilityId = capabilityId">
+                        <hxgn-commonlocalization-translate-v1 [token]="getCapabilityToken(capabilityId)" skeletonWidth="40px"></hxgn-commonlocalization-translate-v1>
+                    </span>
+    
+                    <img (click)="selectedCapabilityId = capabilityId" class="drill-down-icon" src="assets/commonnotifications-core/images/dropdown-arrow.png" />
+                </div>
+            </ng-container>
+            
+            <!-- Show Capability options -->
+            <ng-container *ngIf="selectedCapabilityId === capabilityId">
+                <mat-checkbox *ngFor="let option of getFilterOptions(capabilityId)"
+                    [checked]="isChecked(option.id)" (change)="toggleFilter($event, option.id)">
+                    <span class="filter-option">
+                        <hxgn-commonlocalization-translate-v1 [token]="option.nameToken" skeletonWidth="40px"></hxgn-commonlocalization-translate-v1>
+                    </span> 
+                </mat-checkbox>
+            </ng-container>
+        </div>
+    </div>
+</mat-menu>

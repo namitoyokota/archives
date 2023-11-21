@@ -1,0 +1,23 @@
+export enum DateFormats {
+    DATE_DAY_LONG = 'ddd',
+    DATE_LONG = 'MMMM DD, YYYY',
+    DATE_MDAY = 'MMM D',
+    DATE_MYR = 'MMMM YYYY',
+    DATE_SEP_DASH = 'YYYY-MM-DD',
+    DATE_SEP_SLASH = 'MM/DD/YYYY',
+    DATE_SINGLE_DIGIT = 'M/D/YYYY',
+    DATE_YEAR = 'YYYY',
+    DATE_YMD = 'YYYYMMDD',
+    DATE_DAY_DMY = 'ddd, D MMM YYYY',
+    DATETIME = 'M/DD/YYYY hh:mm a',
+    DATETIME_WITH_SECONDS = 'M/D/YYYY h:mm:ss a',
+    DATETIME_YMD = 'YYYY-MM-DD h:mm:ss a',
+    TIME = 'h:mm A',
+    TIME_LONG = 'h:mm:ss A',
+    TIMESTAMP = 'YYYYMMDDHHmmssSSS',
+    DATETIME_DMY_WITHOUT_SECONDS = 'MM/DD/YYYY h:mm A',
+    DATETIME_WITH_SECONDS_AM_PM = 'M/D/YYYY h:mm:ss A',
+    DATETIME_WITH_SECONDS_AM_PM_2_DIGITS = 'MM/DD/YYYY hh:mm:ss A',
+    MONTH_YEAR = 'MMMM YYYY',
+    MONTH_SEP_YEAR = 'MM/YYYY'
+}

@@ -1,0 +1,35 @@
+:host {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr min-content;
+}
+
+.content {
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, min-content);
+    column-gap: 50px;
+
+    .content-column-two {
+        display: grid;
+        grid-template-rows: repeat(2, min-content);
+        row-gap: 27px;
+
+        hxgn-common-input-v2 {
+            width: 340px;
+        }
+
+        textarea {
+            height: 220px;
+            width: 340px;
+        }
+    }
+}
+
+.template-list {
+    height: 342px;
+    width: 342px;
+    border: solid 1px #adafb2;
+    box-sizing: border-box;
+    overflow-y: auto;
+}

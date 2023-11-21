@@ -1,0 +1,19 @@
+:host {
+    height: 100%;
+    width: 100%;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.note-pane {
+    margin-bottom: 20px;
+
+    label, span {
+        font-size: 1.3em !important;
+        font-style: italic;
+    }
+}
+
+label {
+    font-weight: bold;
+}

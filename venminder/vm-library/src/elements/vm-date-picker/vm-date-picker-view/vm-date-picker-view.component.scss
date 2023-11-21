@@ -1,0 +1,175 @@
+@use "../../../styles/variables" as v;
+@use "../../../styles/vm-date-picker-mixins" as m;
+
+.date-picker-container {
+  display: flex;
+  font-size: m.$date-picker-font-size;
+  padding: 5px;
+
+  &__rangeoptions {
+    width: 160px;
+    max-height: 390px;
+    overflow-y: auto;
+
+    @extend .scroll-bar-styles;
+
+    button {
+      border-radius: 5px;
+      line-height: 35px;
+      padding: 0 15px;
+      text-align: left;
+      width: 100%;
+      @include m.datePickerDefaultButton;
+
+      &:hover {
+        background-color: v.$N30;
+      }
+    }
+
+    &.full-view {
+      padding-top: 5px;
+    }
+  }
+
+  &__rangetitle {
+    font-weight: 700;
+    padding-left: 15px;
+    padding-bottom: 5px;
+  }
+
+  &__calendar {
+    padding: 5px 10px 10px 10px;
+    width: 350px;
+
+    &.border-right {
+      border-left: 1px solid v.$N40;
+      margin-left: 5px;
+      padding-left: 15px;
+    }
+  }
+
+  &__navigation {
+    display: flex;
+    column-gap: 5px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+
+    vm-button {
+      position: relative;
+    }
+
+    vm-button:nth-child(2) {
+      button {
+        width: 60px;
+        text-align: center;
+      }
+    }
+
+    vm-button:last-child {
+      margin-left: auto;
+    }
+  }
+
+  &__days-of-week {
+    margin-bottom: 15px;
+    @extend .date-picker-grid;
+  }
+
+  &__week-of-weeks {
+    @extend .date-picker-grid;
+
+    button {
+      border-radius: 5px;
+      height: 40px;
+      line-height: 40px;
+      width: 100%;
+      @include m.datePickerDefaultButton;
+
+      &.selected {
+        color: v.$white;
+        background-color: v.$brand-primary;
+
+        &:hover {
+          background-color: v.$brand-primary;
+        }
+      }
+
+      &.start {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+
+      &.end {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+
+      &.lighter {
+        border-radius: 0;
+        opacity: 0.6;
+      }
+
+      &:hover,
+      &.today {
+        background-color: v.$N30;
+      }
+
+      &.day-not-in-month {
+        color: v.$light-gray;
+
+        &:hover {
+          color: inherit;
+        }
+      }
+    }
+  }
+
+  &__year-month-items {
+    border-radius: 3px;
+    background-color: v.$white;
+    box-shadow: 0 0 3px rgba(86, 96, 117, 0.7);
+    padding: 5px;
+    position: absolute;
+    z-index: 30000;
+    width: 90px;
+    overflow-y: auto;
+    max-height: 395px;
+    left: 0px;
+    top: 43px;
+
+    @extend .scroll-bar-styles;
+
+    button {
+      @include m.datePickerButtonOverrideStyle;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    column-gap: 5px;
+    justify-content: right;
+    margin-left: auto;
+    margin-top: 10px;
+  }
+}
+
+.date-picker-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+}
+
+.scroll-bar-styles {
+  &::-webkit-scrollbar {
+    width: 13px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: v.$N40;
+    border-radius: 20px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: v.$N30;
+  }
+}

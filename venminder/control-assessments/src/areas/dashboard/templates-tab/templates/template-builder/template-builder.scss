@@ -1,0 +1,55 @@
+﻿@import "shared-from-dcdev/core-styles/stylesheets/_variables.scss";
+
+.template-builder {
+  .template-header {
+    display: grid;
+    grid-template-columns: auto min-content;
+    column-gap: 10px;
+
+    .button-pane {
+      display: flex;
+      column-gap: 10px;
+    }
+  }
+
+  .template-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+
+    .left-content,
+    .right-content {
+      height: 100%;
+      width: 100%;
+    }
+
+    .left-content {
+      display: grid;
+      grid-template-rows: min-content auto;
+      row-gap: 20px;
+      background-color: $N10;
+      padding: 50px;
+
+      .template-body {
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+
+        .new-section {
+          padding-left: 20px;
+        }
+      }
+    }
+
+    .right-content {
+      display: flex;
+      flex-direction: column;
+      row-gap: 20px;
+      border-left: 3px solid $N30;
+      padding: 50px;
+
+      .danger {
+        color: $brand-danger;
+      }
+    }
+  }
+}

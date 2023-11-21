@@ -1,0 +1,24 @@
+<!-- Filtered out message -->
+<ng-container *ngIf="loadingDone">
+    <div *ngIf="(missingIds$ | async)?.length as count" class="filter-msg-pane">
+        <img src="assets/alarms-core/images/locked_14x17.png" />
+        <span>{{count}}
+            <hxgn-commonlocalization-translate-v1 *ngIf="count === 1" [token]="tokens.alarmNotBeingShown"
+                skeletonWidth="100px">
+            </hxgn-commonlocalization-translate-v1>
+            <hxgn-commonlocalization-translate-v1 *ngIf="count !== 1" [token]="tokens.alarmsNotBeingShown"
+                skeletonWidth="100px">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+    </div>
+</ng-container>
+
+<hxgn-alarms-card *ngFor="let alarm of (alarms$ | async); trackBy: trackByFn; let i = index" #cardRef
+    [alarm]="alarm"
+    [showTenantInfo]="true"
+    [enableRemarks]="true"
+    [enableMedia]="true"
+    [enableKeywords]="true"
+    [showCreateChannelBtn]="false"
+    (expansionChange)="focusCard($event, i)">
+</hxgn-alarms-card>

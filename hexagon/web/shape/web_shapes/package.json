@@ -1,0 +1,9 @@
+{
+  "name": "@galileo/web_shapes",
+  "version": "13.1.20",
+  "peerDependencies": { },
+  "dependencies": {
+    "@types/robust-point-in-polygon": "^1.0.1",
+    "robust-point-in-polygon": "^1.0.3"
+  }
+}

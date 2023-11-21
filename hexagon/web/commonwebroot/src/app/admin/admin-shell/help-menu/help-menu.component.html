@@ -1,0 +1,9 @@
+<div class="container" cdkOverlayOrigin #origin="cdkOverlayOrigin" (click)="popover.open()">
+    <img class="help-btn" src="assets/icons/help-menu.png" height="26" width="26" />
+</div>
+<hxgn-common-popover #popover [origin]="origin" [menuMode]="true" [position]="popoverPosition">
+    <hxgn-common-menu-item [token]="tokens.helpLink" (click)="openHelp()">
+    </hxgn-common-menu-item>
+    <hxgn-common-menu-item [token]="tokens.provisionerHelpLink" (click)="openProvisionerHelp()">
+    </hxgn-common-menu-item>
+</hxgn-common-popover>

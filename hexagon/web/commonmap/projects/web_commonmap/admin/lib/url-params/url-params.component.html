@@ -1,0 +1,73 @@
+<div class="url-params-section">
+    <div class='url-info-section'>
+        <div class="layer-info-icon" #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="urlParamsInfo"></div>
+        <mat-menu #urlParamsInfo="matMenu" style="width:275px" xPosition="before">
+            <div class="layer-info-text" >
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.urlParamsInfoText"></hxgn-commonlocalization-translate-v1>
+            </div>
+        </mat-menu>
+    </div>
+    <hxgn-common-expansion-panel [panelState]="showUrlParams">
+        <hxgn-common-expansion-panel-title>
+            <hxgn-commonlocalization-translate-v1 
+               [token]="tokens.sectionHeaderAdditionalURLParameters">
+            </hxgn-commonlocalization-translate-v1>
+        </hxgn-common-expansion-panel-title>
+        <hxgn-common-expansion-panel-content>
+            <div class="url-params-container">
+                <div class='url-param' *ngIf="urlParams?.length > 0">
+                    <div class="name-header">
+                        <hxgn-commonlocalization-translate-v1 
+                           [token]="tokens.urlParamsNameHeaderLabel">
+                         </hxgn-commonlocalization-translate-v1>
+                    </div>
+                    <div class="value-header">
+                        <hxgn-commonlocalization-translate-v1 
+                            [token]="tokens.urlParamsValueHeaderLabel">
+                         </hxgn-commonlocalization-translate-v1>
+                    </div>
+                </div>
+                <div class="url-param" *ngFor="let urlParam of urlParams; let idx=index;">
+                    <hxgn-common-input-v2
+                        tooltip="{{transStrings[urlParam.readOnlyTooltipToken]}}">
+                        <input class="url-param-name" type="text" [value]="urlParam.mapOption.name"
+                            [readOnly]="urlParam.readOnly"
+                            (change)="setUrlParamName(urlParam,$event)"
+                            placeholder="{{transStrings[tokens.urlParamNamePlaceholder]}}" />
+                    </hxgn-common-input-v2>
+                    <span class="url-param-divider"> = </span>
+                    <div class="url-param-value">
+                        <hxgn-common-input-v2 
+                            [locked]="urlParam.valueHidden"
+                            [showLockBtn]="!urlParam.readOnly"
+                            [showReadOnlyIcon]="urlParam.readOnly"
+                            tooltip="{{transStrings[urlParam.readOnlyTooltipToken]}}"
+                            lockBtnTooltip="{{transStrings[urlParam.lockBtnTooltipToken]}}"
+                            (toggleLocked)="toggleTextDisplay(urlParam)"
+                            style="width:100%">
+                            <input type="{{urlParam.valueHidden ? 'password' : 'text'}}" [value]="urlParam.mapOption.value"
+                                [readOnly]="urlParam.readOnly" (change)="setUrlParamValue(urlParam,$event)"
+                                placeholder="{{transStrings[urlParam.valuePlaceholderToken]}}" />
+                        </hxgn-common-input-v2>
+                    </div>
+                    <div class="remove-button" (click)=removeUrlParam(idx)>
+                        <img src="assets/commonmap-core/images/admin/delete_url_param.png" />
+                    </div>
+                    <span class="error-msg-url-param" *ngIf="urlParam.isError">
+                        <hxgn-commonlocalization-translate-v1 [token]="urlParamErrorMsg" skeletonWidth="60px">
+                        </hxgn-commonlocalization-translate-v1>
+                    </span>
+                </div>
+                <div class="add-button-section">
+                    <div class="add-button" [class.disabled]="!urlParamsValid" (click)="addUrlParam()">
+                        <img src="assets/commonmap-core/images/admin/add_green.png" />
+                        <span>
+                            <hxgn-commonlocalization-translate-v1 [token]="tokens.addUrlParamBtnLabel">
+                            </hxgn-commonlocalization-translate-v1>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </hxgn-common-expansion-panel-content>
+    </hxgn-common-expansion-panel>
+</div>

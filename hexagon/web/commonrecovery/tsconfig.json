@@ -1,0 +1,36 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "baseUrl": "./",
+        "paths": {
+            "@galileo/web_commonrecovery/_core": [
+                "dist/web_commonrecovery/_core",
+            ],
+            "@galileo/web_commonrecovery/admin/recovery-management": [
+                "dist/web_commonrecovery/admin/recovery-management",
+            ],
+            "@galileo/web_commonrecovery/_common": [
+                "dist/web_commonrecovery/_common",
+            ],
+            "@galileo/web_commonrecovery/adapter": [
+                "dist/web_commonrecovery/adapter",
+            ]
+        },
+        "outDir": "./dist/out-tsc",
+        "sourceMap": true,
+        "declaration": false,
+        "downlevelIteration": true,
+        "experimentalDecorators": true,
+        "moduleResolution": "node",
+        "importHelpers": true,
+        "target": "es2015",
+        "module": "es2020",
+        "lib": [
+            "es2018",
+            "dom"
+        ]
+    },
+    "angularCompilerOptions": {
+        "enableI18nLegacyMessageIdFormat": false
+    }
+}

@@ -1,0 +1,41 @@
+<div class="map-marker-details-container"
+[class.tombstoned]="(alarm$ | async)?.tombstoned"
+(mouseenter)="mouseEnter()"
+    (mouseleave)="mouseLeave()" 
+    (click)="emitMarkerClicked($event)">
+    <div class="tombstoned-pane" *ngIf="(alarm$ | async)?.tombstoned">
+        <div class="tombstoned-text">
+            <hxgn-commonlocalization-translate-v1 
+                [token]="tokens.alarmClosed" skeletonWidth="75px">
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+    </div>
+    <div class="map-marker"  
+        [class.focused]="isFocused"
+        [class.tombstoned]="(alarm$ | async)?.tombstoned">
+        <hxgn-alarms-icon
+            [showSharedIndicator]="true"
+            [showPriority]="true"
+            [alarm]="alarm$ | async">
+        </hxgn-alarms-icon>
+    </div>
+    <div class="map-marker-details">
+        <div class='first-line'
+            [class.tombstoned]="(alarm$ | async)?.tombstoned">
+            <span class="title"> 
+                {{(alarm$ | async)?.title}} 
+                - 
+                <span class="time-since">{{(alarm$ | async)?.reportedTime | commonTimeSince: refreshToggle | async}}</span>
+            </span>
+            <div class="cancel-btn" *ngIf="!((alarm$ | async)?.tombstoned) && !((alarm$ | async)?.isManaged) && (alarm$ | async)?.tenantId === tenantId"
+                (click)="clearAsync($event)">
+            </div>
+        </div>
+        <div class="second-line"
+            [class.tombstoned]="(alarm$ | async)?.tombstoned">
+            <div class="location" *ngIf="!((alarm$ | async)?.isRedacted(RestrictIds$v1.location))" >
+                {{(alarm$ | async)?.location.formattedAddress}}
+            </div>
+        </div>
+    </div>
+</div>

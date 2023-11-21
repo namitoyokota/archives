@@ -1,0 +1,86 @@
+<nb-layout>
+    <nb-layout-header fixed>
+        <div class="header">
+            <!-- Back Icon -->
+            <div class="icon-pane" (click)="goToPreviousPage()">
+                <nb-icon class="icon" icon="arrow-back-outline"></nb-icon>
+            </div>
+
+            <!-- Header Text -->
+            <span class="header--title">Administrator</span>
+
+            <!-- Empty -->
+            <span></span>
+        </div>
+    </nb-layout-header>
+
+    <nb-layout-column class="content">
+        <!-- Press List -->
+        <nb-card>
+            <nb-card-body class="card-content">
+                <label class="card-title">Press List</label>
+                <div class="list-pane">
+                    <div *ngFor="let press of pressList" class="item-pane">
+                        <input nbInput fullWidth disabled [ngModel]="press.name" />
+                        <button nbButton status="danger" (click)="deletePress(press.id)">Delete</button>
+                    </div>
+                </div>
+                <div class="add-pane">
+                    <input nbInput fullWidth placeholder="Press Name" [(ngModel)]="newPressName" (keydown.enter)="addPress()" />
+                    <button nbButton status="primary" [disabled]="!newPressName.trim().length" (click)="addPress()">Add</button>
+                </div>
+            </nb-card-body>
+        </nb-card>
+
+        <!-- Ink Color List -->
+        <nb-card>
+            <nb-card-body class="card-content">
+                <label class="card-title">Ink Color List</label>
+                <div class="list-pane">
+                    <div *ngFor="let ink of inkList" class="item-pane">
+                        <input nbInput fullWidth disabled [ngModel]="ink.name" />
+                        <button nbButton status="danger" (click)="deleteInk(ink.id)">Delete</button>
+                    </div>
+                </div>
+                <div class="add-pane">
+                    <input nbInput fullWidth placeholder="Ink Name" [(ngModel)]="newInkName" (keydown.enter)="addInk()" />
+                    <button nbButton status="primary" [disabled]="!newInkName.trim().length" (click)="addInk()">Add</button>
+                </div>
+            </nb-card-body>
+        </nb-card>
+
+        <!-- Press Operator List -->
+        <nb-card>
+            <nb-card-body class="card-content">
+                <label class="card-title">Press Operator List</label>
+                <div class="list-pane">
+                    <div *ngFor="let operator of operatorList" class="item-pane">
+                        <input nbInput fullWidth disabled [ngModel]="operator.name" />
+                        <button nbButton status="danger" (click)="deleteOperator(operator.id)">Delete</button>
+                    </div>
+                </div>
+                <div class="add-pane">
+                    <input nbInput fullWidth placeholder="Operator Name" [(ngModel)]="newOperatorName" (keydown.enter)="addOperator()" />
+                    <button nbButton status="primary" [disabled]="!newOperatorName.trim().length" (click)="addOperator()">Add</button>
+                </div>
+            </nb-card-body>
+        </nb-card>
+
+        <!-- Item List -->
+        <nb-card>
+            <nb-card-body class="card-content">
+                <label class="card-title">Item List</label>
+                <div class="list-pane">
+                    <div *ngFor="let item of itemList" class="item-pane">
+                        <input nbInput fullWidth disabled [ngModel]="item.name" />
+                        <button nbButton status="danger" (click)="deleteItem(item.id)">Delete</button>
+                    </div>
+                </div>
+                <div class="add-pane">
+                    <input nbInput fullWidth placeholder="Ink Name" [(ngModel)]="newItemName" (keydown.enter)="addItem()" />
+                    <button nbButton status="primary" [disabled]="!newItemName.trim().length" (click)="addItem()">Add</button>
+                </div>
+            </nb-card-body>
+        </nb-card>
+    </nb-layout-column>
+</nb-layout>

@@ -1,0 +1,87 @@
+@import "../_variables.scss";
+
+$vm-input-border: 1px solid $N40;
+$vm-input-border-radius: 3px;
+$vm-input-font-size: 16px;
+$vm-input-height: 40px;
+
+@mixin vm-input {
+  width: 100%;
+  border: $vm-input-border;
+  outline: none;
+
+  &:disabled {
+    background-color: $N10;
+    cursor: not-allowed;
+  }
+
+  &:focus {
+    border-color: $green;
+  }
+}
+
+input.vm-input {
+  @include vm-input();
+  height: $vm-input-height;
+  border-radius: $vm-input-border-radius;
+  font-size: $vm-input-font-size;
+  line-height: 19px;
+  padding: 10px 13px;
+
+  &::placeholder {
+    color: $N50;
+  }
+}
+
+textarea.vm-input {
+  @include vm-input();
+  min-height: $vm-input-height;
+  max-width: 100%;
+  min-width: 100%;
+  border-radius: 4px;
+  box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.08);
+  font-size: 14px;
+  line-height: 17px;
+  padding: 8px;
+
+  &::placeholder {
+    color: $input-color-placeholder;
+  }
+
+  &.no-resize {
+    resize: none;
+  }
+}
+
+.has-error > .vm-input {
+  border-color: $deny-bg;
+}
+
+.vm-input--no-arrows::-webkit-outer-spin-button,
+.vm-input--no-arrows::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.vm-input-group {
+  display: flex;
+
+  .vm-input {
+    border-radius: 0 $vm-input-border-radius $vm-input-border-radius 0;
+  }
+
+  .vm-input-group-addon {
+    display: flex;
+    align-items: center;
+    border: $vm-input-border;
+    border-right: none;
+    border-radius: $vm-input-border-radius 0 0 $vm-input-border-radius;
+    font-size: $vm-input-font-size;
+    padding: 0 13px;
+  }
+
+  &:focus-within {
+    .vm-input-group-addon {
+      border-color: $green;
+    }
+  }
+}

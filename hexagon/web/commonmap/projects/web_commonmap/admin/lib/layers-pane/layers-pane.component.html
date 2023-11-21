@@ -1,0 +1,152 @@
+<div class="layers-tab">
+    <div class="layers-pane">
+        <div class="list-btn" (click)="addNewLayer()">
+            <div class="list-btn-icon">
+                <img src="assets/commonmap-core/images/admin/add-icon.png" />
+            </div>
+            <div class="ellipsis">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.addNewMapLayerBtnLabel" skeletonWidth="60px">
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+        </div>
+        <div class="layers-list">
+            <hxgn-common-expansion-panel panelState="expanded">
+                <hxgn-common-expansion-panel-title>
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.dataLayersHeader">
+                        ({{dataLayers.length}})
+                    </hxgn-commonlocalization-translate-v1>
+                </hxgn-common-expansion-panel-title>
+                <hxgn-common-expansion-panel-content *ngFor="let mapLayer of dataLayers">
+                    <div class="list-item" [class.selected]="isSelected(mapLayer)" (click)="setSelectedLayer(mapLayer)"
+                        title="{{mapLayer.name}}">
+                        <div class="ellipsis name">
+                            {{mapLayer.name}}
+                        </div>
+                        <div class="no-edit-icon" *ngIf="mapLayer.isSystemDefined"></div>
+                    </div>
+                </hxgn-common-expansion-panel-content>
+            </hxgn-common-expansion-panel>
+            <hxgn-common-expansion-panel panelState="expanded">
+                <hxgn-common-expansion-panel-title>
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.overlaysHeader">
+                        ({{overlays.length}})
+                    </hxgn-commonlocalization-translate-v1>
+                </hxgn-common-expansion-panel-title>
+                <hxgn-common-expansion-panel-content *ngFor="let mapLayer of overlays">
+                    <div class="list-item" [class.selected]="isSelected(mapLayer)" (click)="setSelectedLayer(mapLayer)"
+                        title="{{mapLayer.name}}">
+                        <div class="ellipsis name">
+                            {{mapLayer.name}}
+                        </div>
+                        <div class="action-icon" *ngIf="!mapLayer.isSystemDefined" #menuTrigger="matMenuTrigger"
+                            [matMenuTriggerFor]="layerCmds"
+                            (click)="clearSelectedLayerFromActionIcon($event,mapLayer,menuTrigger)">
+                        </div>
+                        <div class="no-edit-icon" *ngIf="mapLayer.isSystemDefined"></div>
+                        <mat-menu #layerCmds="matMenu" style="width:200px;" xPosition="before">
+                            <div class="menu-item" mat-menu-item [role]="'menuItem'" (click)="deleteLayer(mapLayer)">
+                                <div class="menu-btn-icon">
+                                    <img src="assets/commonmap-core/images/admin/delete-icon.png" />
+                                </div>
+                                <div class="ellipsis">
+                                    <hxgn-commonlocalization-translate-v1 [token]="tokens.deleteLayerMenuItemLabel">
+                                    </hxgn-commonlocalization-translate-v1>
+                                </div>
+                            </div>
+                            <div class="menu-item" mat-menu-item [role]="'menuItem'" (click)="cloneLayer(mapLayer)">
+                                <div class="menu-btn-icon">
+                                    <img src="assets/commonmap-core/images/admin/clone-icon.png" />
+                                </div>
+                                <div class="ellipsis">
+                                    <hxgn-commonlocalization-translate-v1 [token]="tokens.cloneLayerMenuItemLabel">
+                                    </hxgn-commonlocalization-translate-v1>
+                                </div>
+                            </div>
+                        </mat-menu>
+                    </div>
+                </hxgn-common-expansion-panel-content>
+            </hxgn-common-expansion-panel>
+            <hxgn-common-expansion-panel panelState="expanded">
+                <hxgn-common-expansion-panel-title>
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.baseMapsHeader">
+                        ({{baseMaps.length}})
+                    </hxgn-commonlocalization-translate-v1>
+                </hxgn-common-expansion-panel-title>
+                <hxgn-common-expansion-panel-content *ngFor="let mapLayer of baseMaps">
+                    <div class="list-item" [class.selected]="isSelected(mapLayer)" (click)="setSelectedLayer(mapLayer)"
+                        title="{{mapLayer.name}}">
+                        <div class="ellipsis name">
+                            {{mapLayer.name}}
+                        </div>
+                        <div class="action-icon" *ngIf="!mapLayer.isSystemDefined" #menuTrigger="matMenuTrigger"
+                            [matMenuTriggerFor]="layerCmds"
+                            (click)="clearSelectedLayerFromActionIcon($event,mapLayer,menuTrigger)">
+                        </div>
+                        <div class="no-edit-icon" *ngIf="mapLayer.isSystemDefined"></div>
+                        <mat-menu #layerCmds="matMenu" style="width:200px;" xPosition="before">
+                            <div class="menu-item" mat-menu-item [role]="'menuItem'" (click)="deleteLayer(mapLayer)">
+                                <div class="menu-btn-icon">
+                                    <img src="assets/commonmap-core/images/admin/delete-icon.png" />
+                                </div>
+                                <div class="ellipsis">
+                                    <hxgn-commonlocalization-translate-v1 [token]="tokens.deleteLayerMenuItemLabel">
+                                    </hxgn-commonlocalization-translate-v1>
+                                </div>
+                            </div>
+                            <div class="menu-item" mat-menu-item [role]="'menuItem'" (click)="cloneLayer(mapLayer)">
+                                <div class="menu-btn-icon">
+                                    <img src="assets/commonmap-core/images/admin/clone-icon.png" />
+                                </div>
+                                <div class="ellipsis">
+                                    <hxgn-commonlocalization-translate-v1 [token]="tokens.cloneLayerMenuItemLabel">
+                                    </hxgn-commonlocalization-translate-v1>
+                                </div>
+                            </div>
+                        </mat-menu>
+                    </div>
+                </hxgn-common-expansion-panel-content>
+            </hxgn-common-expansion-panel>
+        </div>
+    </div>
+    <div class="edit-pane" *ngIf="selectedLayer && !selectedLayer.isSystemDefined">
+        <div class="layer-properties-header">
+            <div class="title">
+                <hxgn-commonlocalization-translate-v1 [token]="detailsHeaderToken" [skeletonWidth]="'100px'">
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+        </div>
+        <hxgn-commonmap-admin-layer-properties 
+            [mapLayer]="getSelectedLayer()" 
+            [isNew]="false"
+            (propertyChanged)="propertyChanged($event)"
+            (isValid)="setIsValid($event)"
+            (layerLoaded)="setLayerLoaded($event)">
+        </hxgn-commonmap-admin-layer-properties>
+    </div>
+    <div class="system-defined-pane" *ngIf="selectedLayer && selectedLayer.isSystemDefined">
+        <div class="system-defined">
+            <div class="system-defined-icon"></div>
+            <div class="system-defined-title">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.systemDefinedLayerTitle" skeletonWidth="60px">
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+            <div class="system-defined-text">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.systemDefinedLayerText" skeletonWidth="60px">
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+        </div>
+    </div>
+    <div class="no-layer-selected-pane" *ngIf="!selectedLayer">
+        <div class="no-layer-selected">
+            <div class="no-layer-selected-icon"></div>
+            <div class="no-layer-selected-title">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.noLayerSelectedTitle" skeletonWidth="60px">
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+            <div class="no-layer-selected-text">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.noLayerSelectedText" skeletonWidth="60px">
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+        </div>
+    </div>
+</div>

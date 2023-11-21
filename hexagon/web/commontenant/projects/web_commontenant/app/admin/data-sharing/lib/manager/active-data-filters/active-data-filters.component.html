@@ -1,0 +1,58 @@
+<div class="title">
+    <hxgn-commonlocalization-translate-v1 [token]='tokens.activeDataFilters'></hxgn-commonlocalization-translate-v1>
+</div>
+
+<ng-container *ngTemplateOutlet="estimateTemplate;context: {globalCriteria: globalSharingCriteria}">
+</ng-container>
+
+<ng-template #estimateTemplate let-globalCriteria="globalCriteria">
+    <ng-container *ngIf="globalCriteria.length">
+        <ng-container *ngFor="let criteria of globalCriteria" >
+            <hxgn-common-expansion-panel *ngIf="getOverride(criteria.capabilityId)"  panelState="expanded">
+                <hxgn-common-expansion-panel-title>
+                    <div class="filter-pane">
+                        <span>
+                            <hxgn-commonlocalization-translate-v1 skeletonWidth="120px"
+                                [token]='getCapability(criteria.capabilityId)?.nameToken'>
+                            </hxgn-commonlocalization-translate-v1>
+                        </span>
+                        &nbsp;
+                        <span>
+                            <hxgn-commonlocalization-translate-v1 [token]='tokens.defaultFilters'></hxgn-commonlocalization-translate-v1>
+                        </span>
+                        <hxgn-commontenant-admin-restriction-level-selector
+                            [selectedLevel]="getCurrentRestrictionLevel(criteria.capabilityId)"
+                            (click)="$event.stopPropagation()"
+                            (levelChange)="setOverrideLevel($event, criteria.capabilityId)">
+                        </hxgn-commontenant-admin-restriction-level-selector>
+                    </div>
+                </hxgn-common-expansion-panel-title>
+                <hxgn-common-expansion-panel-header>
+                    <div *ngIf="hasActiveFilterOverrides(criteria.capabilityId);else createOverride"
+                        (click)="openEditOverrideDialog(sharingConfiguration, criteria.capabilityId, $event)" class="btn-edit">
+                        <hxgn-commonlocalization-translate-v1 [token]='tokens.overridesEnabled'></hxgn-commonlocalization-translate-v1>
+                        <span class="edit">
+                            <hxgn-commonlocalization-translate-v1 [token]='tokens.edit'></hxgn-commonlocalization-translate-v1>
+                        </span>
+                    </div>
+                    <ng-template #createOverride>
+                        <span class="btn-link"
+                            (click)="openEditOverrideDialog(sharingConfiguration, criteria.capabilityId, $event)">
+                            <hxgn-commonlocalization-translate-v1 [token]='tokens.createOverrides'></hxgn-commonlocalization-translate-v1>
+                        </span>
+                    </ng-template>
+    
+                </hxgn-common-expansion-panel-header>
+                <hxgn-common-expansion-panel-content>
+                    <hxgn-commontenant-active-filter-item #fi [capabilityId]="criteria.capabilityId" [injectionSettings]="getInjectionSettings(criteria.capabilityId)"></hxgn-commontenant-active-filter-item>
+                </hxgn-common-expansion-panel-content>
+            </hxgn-common-expansion-panel>
+        </ng-container>
+        
+    </ng-container>
+    <div *ngIf="!sharingConfiguration?.criteria.length">
+        <span>
+            <hxgn-commonlocalization-translate-v1 [token]='tokens.noDataIsBeingShared'></hxgn-commonlocalization-translate-v1>
+        </span>
+    </div>
+</ng-template>

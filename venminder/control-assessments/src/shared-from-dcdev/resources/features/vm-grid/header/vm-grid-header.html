@@ -1,0 +1,13 @@
+<template>
+  <require from="./vm-grid-header.scss"></require>
+  <require from="./vm-grid-header-column"></require>
+
+  <div id="vm-grid-header${parentId}" class="vm-grid-header" css="${gridRowStyle}">
+    <vm-grid-header-column repeat.for="column of config.ColumnDefinitions"
+                            column.bind="column"
+                            grid-data.bind="gridData"
+                            default-sort.bind="defaultSort"
+                            is-last.bind="$index+1 == config.ColumnDefinitions.length"
+                            ></vm-grid-header-column>
+  </div>
+</template>

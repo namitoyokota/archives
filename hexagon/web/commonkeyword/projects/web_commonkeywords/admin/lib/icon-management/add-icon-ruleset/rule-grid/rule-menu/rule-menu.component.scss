@@ -1,0 +1,13 @@
+:host {
+    display: flex;
+}
+
+.cmd-btn {
+    cursor: pointer;
+    margin-right: 6px;
+    width: 15px;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 26px;
+    background-image: url("assets/commonkeywords-core/images/action_menu_icon.png");
+}

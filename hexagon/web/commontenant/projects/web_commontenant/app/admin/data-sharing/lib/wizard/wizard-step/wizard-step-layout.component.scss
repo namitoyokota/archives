@@ -1,0 +1,55 @@
+:host {
+    display: grid;
+    grid-template-columns: 244px auto;
+    column-gap: 20px;
+    width: 100%;
+    height: 100%;
+
+    &.simple {
+        grid-template-columns: auto;
+    }
+}
+
+.description-pane {
+    border-right: 1px solid #aaa;
+    display: grid;
+    grid-template-rows: min-content auto;
+}
+
+.content-pane {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    grid-template-rows: min-content auto min-content;
+}
+
+.title-pane {
+    font-weight: 700;
+    font-size: 20px;
+    text-transform: capitalize;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: auto min-content;
+
+    .title {
+        margin-top: 5px;
+    }
+
+    .close-btn {
+        height: 35px;
+        width: 35px;
+        background-image: url("assets/commontenant-core/cancel.png");
+        cursor: pointer;
+        transition: all 0.5s ease;
+        background-position: bottom;
+    }
+
+    .close-btn:hover {
+        background-image: url("assets/commontenant-core/cancel-hover.png");
+    }
+}
+
+.main-content-pane {
+    overflow: hidden;
+}

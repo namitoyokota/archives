@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>
+    <hxgn-commonlocalization-translate-v1 skeletonWidth="100px" [token]='tokens.warning'></hxgn-commonlocalization-translate-v1>
+</h1>
+<div mat-dialog-content>
+    <div>
+        <hxgn-commonlocalization-translate-v1 skeletonWidth="100px" [token]='tokens.forceUpdateListMsg'></hxgn-commonlocalization-translate-v1>
+        <span *ngFor="let name of friendlyNames; let isLast=last" class="flags">
+            <hxgn-commonlocalization-translate-v1 [token]='name'></hxgn-commonlocalization-translate-v1>{{isLast ? '' : ', '}}
+        </span>
+    </div>
+    <p>
+        <ng-container *ngIf="globalMode; else tenantMode">
+            <hxgn-commonlocalization-translate-v1 skeletonWidth="200px" [token]='tokens.globalWarningMsg'></hxgn-commonlocalization-translate-v1>
+        </ng-container>
+        <ng-template #tenantMode>
+            <hxgn-commonlocalization-translate-v1 skeletonWidth="200px" [token]='tokens.tenantWarningMsg'></hxgn-commonlocalization-translate-v1>
+        </ng-template>
+    </p>
+</div>
+<div mat-dialog-actions align="end">
+  <button (click)="cancel()" class="hxgn-btn-secondary">
+      <hxgn-commonlocalization-translate-v1 [token]='tokens.cancel' [ignoreSkeleton]="true">
+      </hxgn-commonlocalization-translate-v1>
+  </button>
+  <button (click)="continue()" class="hxgn-btn-primary">
+      <hxgn-commonlocalization-translate-v1 [token]='tokens.continue' [ignoreSkeleton]="true">
+      </hxgn-commonlocalization-translate-v1>
+  </button>
+</div>

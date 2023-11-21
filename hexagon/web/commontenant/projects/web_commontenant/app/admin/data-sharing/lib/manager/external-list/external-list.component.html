@@ -1,0 +1,35 @@
+<div class="search-box">
+    <hxgn-common-input-v2 [isSearchBox]="true" [showClearBtn]="searchString.length > 0" (clearText)="clearText()">
+        <input [(ngModel)]="searchString" (input)="searchIndustries()" type="text"
+            [placeholder]="tTokens.searchIndustry" />
+    </hxgn-common-input-v2>
+</div>
+
+<div class="item-pane">
+    <ng-container *ngFor="let sector of sectors | keyvalue">
+        <div *ngIf="getOrganizationCount(sector.value)">
+            <div class="sector-name">
+                <span>
+                    <hxgn-commonlocalization-translate-v1 skeletonWidth="100px" [token]='sector.key'></hxgn-commonlocalization-translate-v1>
+                </span>
+            </div>
+
+            <ng-container *ngIf="industriesReady">
+                <ng-container *ngFor="let industry of getIndustryListSorted(sector.value)">
+                    <div class="industry" *ngIf="getOrganizationCount(industry) as orgCount"  (click)="setIndustry(industry)"
+                        [class.industry--selected]="industry === selectedIndustry">
+                        {{setDefaultSelection(industry)}} 
+                        <div class="industry-icon">
+                            <img [src]="industry.iconUrl" />
+                        </div>
+                        <span>
+                            <hxgn-commonlocalization-translate-v1 skeletonWidth="100px" [token]='industry.nameToken'></hxgn-commonlocalization-translate-v1>
+                        </span>
+                        <hxgn-commontenant-admin-badge>{{orgCount}}</hxgn-commontenant-admin-badge>
+                    </div>
+                </ng-container>
+                
+            </ng-container>
+        </div>
+    </ng-container>
+</div>

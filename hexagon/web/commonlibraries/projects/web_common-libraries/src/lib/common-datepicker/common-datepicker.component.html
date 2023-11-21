@@ -1,0 +1,13 @@
+<mat-form-field class="mat-datepicker">
+    <input matInput [(ngModel)]="_date" [matDatepicker]="picker" [disabled]="disabled" [readonly]="disabledInput" [min]="min" [max]="max" [class.partial-disabled]="disabledInput"
+        (change)="emitDate()" (click)="disabledInput ? picker.open() : null">
+    <mat-datepicker [disabled]="disabled"  (opened)="opened()" (closed)="closed()" #picker></mat-datepicker>
+</mat-form-field>
+<div class="tool-bar-pane" [class.disabled-color]="disabled" [class.partial-disabled]="disabledInput">
+    <svg (click)="picker.open()" [class.disabled-cursor]="disabled" class="calendar-icon" [style.color]="currentColor" fill="currentColor" focusable="false" height="24px"
+        viewBox="0 0 24 24" width="24px">
+        <path
+            d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z">
+        </path>
+    </svg>
+</div>

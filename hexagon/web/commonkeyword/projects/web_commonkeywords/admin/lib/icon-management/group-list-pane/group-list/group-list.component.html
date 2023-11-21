@@ -1,0 +1,9 @@
+<cdk-virtual-scroll-viewport #viewport itemSize="41" style="width:100%;height:100%;overflow-x: hidden;">
+    <hxgn-commonkeywords-group-item *cdkVirtualFor="let group of groups; trackBy: trackByFn; templateCacheSize: 0"
+        (click)="groupSelected.emit(group)"
+        (renamed)="renameGroup(group, $event)"
+        (delete)="deleteGroup(group)"
+        [selected]="selectedGroup && group.id === selectedGroup.id"
+        [group]="group"
+        [hasUnsavedChanges]="hasUnsavedChanges(group.id)"></hxgn-commonkeywords-group-item>
+</cdk-virtual-scroll-viewport>

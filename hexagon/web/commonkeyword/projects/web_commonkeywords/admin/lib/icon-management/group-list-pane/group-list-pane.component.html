@@ -1,0 +1,31 @@
+<div class="option-pane bottom-border">
+    <hxgn-common-dropdown-v2 [(value)]="selectedIndustry" (selectionChange)="setSelectedIndustry($event)">
+        <hxgn-common-dropdown-item-v2 *ngFor="let item of industryList" [value]="item.id" class="industry-container">
+            <div class="industry-container">
+                <div class="industry-icon-container">
+                    <img [src]="item.iconUrl" class="industry-icon" />
+                </div>
+                <span class="industry-name">
+                    <hxgn-commonlocalization-translate-v1 [token]='item.nameToken'>
+                    </hxgn-commonlocalization-translate-v1>
+                </span>
+            </div>
+        </hxgn-common-dropdown-item-v2>
+    </hxgn-common-dropdown-v2>
+</div>
+<div class="option-pane bottom-border">
+    <hxgn-common-input-v2 [isSearchBox]="true" [showClearBtn]="searchString?.length > 0" (clearText)="clearText()">
+        <input [(ngModel)]="searchString" [placeholder]="tTokens.searchGroups"
+            (input)="sortFilterRuleset()" type="text" />
+    </hxgn-common-input-v2>
+</div>
+
+<hxgn-commonkeywords-add-new-group class="bottom-border" (groupAdded)="addNewRuleNode($event)">
+</hxgn-commonkeywords-add-new-group>
+
+<div class="group-pane">
+    <hxgn-commonkeywords-group-list #grouplist [groups]="filterGroup" [unsavedGroups]="unsavedGroups"
+        (groupSelected)="setSelectedGroup($event)" (groupUpdated)="updateGroup($event)"
+        (groupDeleted)="deleteGroup($event)" [selectedGroup]="selectedGroup">
+    </hxgn-commonkeywords-group-list>
+</div>

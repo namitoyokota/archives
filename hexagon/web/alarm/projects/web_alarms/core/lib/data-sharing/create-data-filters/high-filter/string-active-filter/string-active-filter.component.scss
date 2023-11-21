@@ -1,0 +1,51 @@
+.property {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.operation, .item {
+    font-size: .9em;
+    margin-right: 5px;
+}
+
+.no-delete {
+    pointer-events: none;
+    border-bottom: none !important;
+}
+
+.item {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    text-transform: capitalize;
+    border-bottom: 1px solid #000;
+    padding-bottom: 1px;
+
+    .del-btn {
+        display: flex;
+
+        img {
+            margin-left: 4px;
+            height: 10px;
+            width: 10px;
+        }
+    }
+}
+
+.item:hover {
+    color: #335CA5;
+    text-decoration: none;
+    border-bottom: 2px solid #335CA5;
+    padding-bottom: 0;
+}
+
+.val {
+    max-width: 209px;
+    overflow: hidden;
+}
+
+.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

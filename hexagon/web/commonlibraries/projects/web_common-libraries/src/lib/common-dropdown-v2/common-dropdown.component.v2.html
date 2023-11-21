@@ -1,0 +1,16 @@
+<mat-select #matselect disableOptionCentering="true" [multiple]="multiple" disableRipple [required]="required" [disabled]="disabled"
+    [compareWith]="compareWith || defaultCompareWithFn" [placeholder]="placeholder" [value]="value"
+    (selectionChange)="selectionChanged($event)" (openedChange)="openedChanged($event)"
+    [class.custom-button]="value?.selectedImgSrc" [panelClass]="panelClass">
+    <mat-select-trigger *ngIf="customTriggerMode">
+        <ng-content select="hxgn-common-dropdown-trigger-v2"></ng-content>
+    </mat-select-trigger>
+    <mat-select-trigger *ngIf="!customTriggerMode && value?.selectedImgSrc">
+        <img src="{{ value.selectedImgSrc }}" />
+    </mat-select-trigger>
+    <mat-option [value]="customDropdownItem.value || i"
+        *ngFor="let customDropdownItem of customDropdownItems; let i = index" (click)="customDropdownItem.onClick()"
+        [style.width]="customDropdownItem.width" [style.height]="customDropdownItem.height">
+        <ng-container [ngTemplateOutlet]="customDropdownItem.content"></ng-container>
+    </mat-option>
+</mat-select>

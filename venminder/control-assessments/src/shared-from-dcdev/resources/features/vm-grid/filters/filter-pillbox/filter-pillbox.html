@@ -1,0 +1,10 @@
+<template>
+    <require from="./filter-pillbox.scss"></require>
+    <div class="vm-grid-pill-container">
+        <div repeat.for="pill of pillList"  class="vm-grid-global-search-tag"> ${ pill.display } <i click.trigger="remove(pill)" class="fas fa-times"></i></div>
+        <div if.bind="pillList.length" class="vm-grid-clear-filters" click.trigger="clearFilters()">
+            <a href="javascript:void(0);">Clear Filters</a>
+        </div>
+
+    </div>
+</template>

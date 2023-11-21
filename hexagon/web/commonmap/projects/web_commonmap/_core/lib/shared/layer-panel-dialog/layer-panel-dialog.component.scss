@@ -1,0 +1,22 @@
+﻿:host {
+	width: 360px;
+	max-height: calc(100vh - 120px);
+	background-color: white;
+	display: flex;
+	flex-direction:column;
+	transition: width 0.25s ease;
+}
+
+.layer-panel-container {
+	position: relative;
+	height: calc(100% - 40px);
+	top: 0px;
+	z-index: 1000;
+	width: 360px;
+}
+.actions {
+	display: flex;
+	justify-content: flex-end;
+	padding: 10px 0 10px 0;
+	height: 30px;
+}

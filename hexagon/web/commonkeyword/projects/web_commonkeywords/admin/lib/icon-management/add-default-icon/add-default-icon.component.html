@@ -1,0 +1,26 @@
+<div class="info-diagram-pane">
+    <div class="info-diagram"></div>
+</div>
+<div class="action-pane">
+    <span class="group-msg">
+        <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]='tokens.noDefaultIconMsg'>
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+    <span class="directions-msg">
+        <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]='tokens.chooseDefaultIconMsg'>
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+    <button class="hxgn-btn-primary" (click)="addDefaultIcon()">
+        <hxgn-commonlocalization-translate-v1 [token]='tokens.chooseDefaultIcon' [ignoreSkeleton]="true">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+</div>
+<div class="note-pane">
+    <div class="msg">
+        <img src="assets/commonkeywords-core/images/info-icon.png" />
+        <span>
+            <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]='tokens.addDefaultIconNote'>
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+    </div>
+</div>

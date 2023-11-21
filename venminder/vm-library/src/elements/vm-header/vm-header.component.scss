@@ -1,0 +1,27 @@
+@use "../../styles/variables" as v;
+
+vm-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: solid 1px v.$border-color;
+    margin-bottom: 20px;
+    padding: 10px 0;
+
+    &.vm-header__no-border {
+        border-bottom: none;
+        padding: 10px 0 0 0;
+    }
+
+    .vm-header--title {
+        display: flex;
+        align-items: center;
+        column-gap: 5px;
+
+        h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin: 0;
+        }
+    }
+}

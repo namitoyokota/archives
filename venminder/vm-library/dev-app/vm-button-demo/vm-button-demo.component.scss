@@ -1,0 +1,19 @@
+.vm-btns-demo {
+    border: solid 1px #c1c7d0;
+
+    td,
+    th {
+        padding: 8px;
+        text-align: center;
+    }
+
+    th {
+        background-color: #eff2f7;
+        border-bottom: solid 1px #c1c7d0;
+        border-right: solid 1px #c1c7d0;
+    }
+
+    tr:not(:last-of-type) td {
+        border-bottom: 1px solid #e7eaec;
+    }
+}

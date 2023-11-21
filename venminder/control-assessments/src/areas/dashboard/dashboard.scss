@@ -1,0 +1,14 @@
+@import "shared-from-dcdev/core-styles/stylesheets/_variables.scss";
+
+#ca-dashboard {
+  .header-pane {
+    .header-navigation {
+      padding: 20px 50px 0;
+    }
+  }
+
+  .list-pane {
+    background-color: $N10;
+    padding: 30px 50px;
+  }
+}

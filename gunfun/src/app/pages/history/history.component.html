@@ -1,0 +1,68 @@
+<nb-layout>
+    <nb-layout-header fixed>
+        <div class="header">
+            <!-- Back Icon -->
+            <div class="icon-pane" (click)="goToHomePage()">
+                <nb-icon class="icon" icon="arrow-back-outline"></nb-icon>
+            </div>
+
+            <!-- Header Text -->
+            <span class="header--title">History</span>
+
+            <!-- Empty -->
+            <span></span>
+        </div>
+    </nb-layout-header>
+
+    <nb-layout-column class="content">
+        <!-- Filter Pane -->
+        <div class="filter-pane">
+            <!-- Search Input -->
+            <nb-form-field>
+                <nb-icon nbPrefix icon="search" pack="eva"></nb-icon>
+                <input nbInput fullWidth placeholder="Search" [(ngModel)]="searchString" (keyup)="search()" />
+            </nb-form-field>
+
+            <!-- Type Filter -->
+            <button nbButton status="info" (click)="openTypeFilter()">Types</button>
+
+            <!-- Color Filter -->
+            <button nbButton status="info" (click)="openColorFilter()">Inks</button>
+
+            <!-- Show Completed Toggle -->
+            <nb-toggle status="basic" [(checked)]="showCompleted" (checkedChange)="search()">Only Show Completed</nb-toggle>
+        </div>
+
+        <!-- History Table -->
+        <table class="table-container" [nbTreeGrid]="data">
+            <tr class="header-row" nbTreeGridHeaderRow *nbTreeGridHeaderRowDef="columnList"></tr>
+            <tr class="batch-row" nbTreeGridRow *nbTreeGridRowDef="let row; columns: columnList"></tr>
+
+            <ng-container *ngFor="let column of columnList" [nbTreeGridColumnDef]="column">
+                <th nbTreeGridHeaderCell *nbTreeGridHeaderCellDef>{{ column }}</th>
+                <td class="batch-row" nbTreeGridCell *nbTreeGridCellDef="let row" (click)="goToPrintPage(row.data.id)">
+                    <span *ngIf="column === 'ID'" class="id"> {{ row.data.id }} </span>
+                    <span *ngIf="column === 'Item ID'"> {{ row.data.itemid }} </span>
+                    <span *ngIf="column === 'Description'">
+                        {{ row.data.description || '-' }}
+                    </span>
+                    <span *ngIf="column === 'Created'">
+                        {{ row.data.createddate | date : 'short' : 'UTC-6' }}
+                    </span>
+                    <span *ngIf="column === 'Used Inks'">
+                        {{ showInks(row.data) || '-' }}
+                    </span>
+                    <span *ngIf="column === 'Comments'">
+                        {{ row.data.comments || '-' }}
+                    </span>
+                    <span *ngIf="column === 'Scheduled'">
+                        {{ row.data.scheduleddate | date : 'short' : 'UTC-6' }}
+                    </span>
+                    <span *ngIf="column === 'Completed'">
+                        {{ row.data.completeddate | date : 'short' : 'UTC-6' }}
+                    </span>
+                </td>
+            </ng-container>
+        </table>
+    </nb-layout-column>
+</nb-layout>

@@ -1,0 +1,11 @@
+<hxgn-common-infinite-scroll-pane
+    [itemMinHeight]="itemMinHeight" 
+    [disableLoad]="allLogsLoaded" 
+    [itemCount]="logs.length" 
+    (loadPage)="requestMoreData()"
+>
+    <ng-container *ngFor="let log of logs; let i = index">
+        <hxgn-commonidentity-changelog-card-v1 [log]="log" [hideBorder]="i === logs.length-1">
+        </hxgn-commonidentity-changelog-card-v1>
+    </ng-container>
+</hxgn-common-infinite-scroll-pane>

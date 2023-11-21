@@ -1,0 +1,24 @@
+@use "../../../styles/variables" as v;
+
+.vm-search-menu {
+    max-height: 215px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+
+    .vm-search-menu--item {
+        background-color: v.$white;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        font-size: 16px;
+        outline: none;
+        padding: 10px;
+        text-align: left;
+
+        &:focus,
+        &:hover {
+            background-color: v.$N10;
+        }
+    }
+}

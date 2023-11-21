@@ -1,0 +1,6 @@
+{
+    "name": "@galileo/web_commonfeatureflags",
+    "version": "13.1.3",
+    "peerDependencies": { },
+    "dependencies": { }
+}

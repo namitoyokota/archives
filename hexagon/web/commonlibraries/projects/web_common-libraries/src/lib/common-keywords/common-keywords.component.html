@@ -1,0 +1,15 @@
+<hxgn-common-expansion-panel panelState="expanded">
+    <hxgn-common-expansion-panel-title>
+        <span>
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.keywords" skeletonWidth="55px">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+    </hxgn-common-expansion-panel-title>
+    <hxgn-common-expansion-panel-content>
+        <div class="keywords-container">
+            <div class="keyword" *ngFor="let keyword of keywords">
+                {{keyword}}
+            </div>
+        </div>
+    </hxgn-common-expansion-panel-content>
+</hxgn-common-expansion-panel>

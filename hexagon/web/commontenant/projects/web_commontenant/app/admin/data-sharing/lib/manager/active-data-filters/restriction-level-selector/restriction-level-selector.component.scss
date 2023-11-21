@@ -1,0 +1,36 @@
+$low-color: #8cc63f;
+$medium-color: #ead618;
+$high-color: #c1272d;
+
+:host {
+    width: 190px;
+    margin-left: 15px;
+}
+
+hxgn-common-dropdown-item-v2 {
+    display: flex;
+}
+
+.restriction-level {
+    display: flex;
+    align-items: center;
+}
+
+.restriction-badge {
+    border-radius: 50%;
+    height: 10px;
+    width: 10px;
+    margin-right: 10px;
+}
+
+.restriction--low {
+    background-color: $low-color;
+}
+
+.restriction--medium {
+    background-color: $medium-color;
+}
+
+.restriction--high {
+    background-color: $high-color;
+}

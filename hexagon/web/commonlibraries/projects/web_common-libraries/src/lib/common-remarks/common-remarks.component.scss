@@ -1,0 +1,58 @@
+:host {
+    width: 100%;
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.header {
+    display: grid;
+    grid-template-columns: auto auto;
+    margin-bottom: 10px;
+}
+
+.view-all-btn {
+    justify-self: flex-end;
+    color: #808080;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.title {
+    font-size: 15px;
+}
+
+.item {
+ 
+    hxgn-common-initials {
+        height: 22px;
+        width: 22px;
+        font-size: 11px;
+    }
+
+    .footer {
+        display: grid;
+        grid-template-columns: 22px auto auto;
+        grid-column-gap: 5px;
+        align-items: center;
+        margin-top: 10px;
+
+        &.no-name {
+            grid-template-columns: auto;
+        }
+    }
+
+    .name {
+        float:bold;
+    }
+
+    .time-since {
+        justify-self: flex-end;
+    }
+
+}
+
+.item:not(:first-child) {
+    border-top: 1px solid #ccc;
+    margin-top: 10px;
+    padding-top: 10px;
+}

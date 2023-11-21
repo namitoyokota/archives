@@ -1,0 +1,31 @@
+﻿@import "shared-from-dcdev/core-styles/stylesheets/_variables.scss";
+
+new-control {
+  #control-form {
+    background-color: $light-blue;
+    padding: 1em;
+  }
+
+  .label-input-pair {
+    display: flex;
+    flex-direction: column;
+    margin-right: 1em;
+  }
+
+  .fill-line {
+    flex-grow: 1;
+  }
+
+  .control-line {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .margin-right {
+    margin-right: 1em;
+  }
+
+  .danger {
+    color: $brand-danger;
+  }
+}

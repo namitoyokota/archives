@@ -1,0 +1,36 @@
+<h1 mat-dialog-title>
+    <span>
+        <hxgn-commonlocalization-translate-v1
+            [token]="titleToken">
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+</h1>
+<div mat-dialog-content class="content">
+    <span class="prompt">
+        <hxgn-commonlocalization-translate-v1
+            [token]="stepPromptToken">
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+    <hxgn-common-input-v2 style="width:100%">
+        <input class="input-name"
+            autofocus (input)="nameChanged($event)" [(ngModel)]="name" (change)="setName($event)"
+            placeholder="{{ transStrings[placeholderToken] }}" type="text" />
+    </hxgn-common-input-v2>
+    <span class="error-msg" *ngIf="nameErrorToken !== null">
+        <hxgn-commonlocalization-translate-v1 
+            [token]="nameErrorToken">
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+</div>
+<div mat-dialog-actions>
+    <button (click)="close()" class="hxgn-btn-secondary" style="margin-right: 10px;">
+        <hxgn-commonlocalization-translate-v1 
+            [token]="tokens.cancelBtnLabel">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+    <button [disabled]="!canSave" (click)="save()" class="hxgn-btn-primary">
+        <hxgn-commonlocalization-translate-v1 
+            [token]="btnLabelToken">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+</div>

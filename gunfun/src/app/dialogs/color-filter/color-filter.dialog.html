@@ -1,0 +1,21 @@
+<nb-card class="dialog-container">
+    <!-- Header -->
+    <nb-card-header> Filter by Inks </nb-card-header>
+
+    <!-- Body -->
+    <nb-card-body>
+        <div class="color-list">
+            <nb-checkbox *ngFor="let color of colorList | keyvalue" [(checked)]="color.value" (checkedChange)="check(color.key, $event)">
+                {{ color.key }}
+            </nb-checkbox>
+        </div>
+    </nb-card-body>
+
+    <!-- Footer -->
+    <nb-card-footer>
+        <div class="button-pane">
+            <button nbButton size="small" (click)="cancel()">Cancel</button>
+            <button nbButton size="small" status="primary" (click)="submit()">Submit</button>
+        </div>
+    </nb-card-footer>
+</nb-card>

@@ -1,0 +1,61 @@
+﻿<template>
+    <require from="shared-from-dcdev/core-styles/stylesheets/main-layout.scss"></require>
+    <require from="shared-from-dcdev/shared/components/footer/content-footer"></require>
+    <require from="shared-from-dcdev/shared/components/popups/popup"></require>
+    <require from="shared-from-dcdev/shared/components/slidable-panel/slidable-panel.component"></require>
+
+    <div class="client-body" ref="venminderBody">
+        <div class="page-topbar">
+            <compose view-model.bind="navTemplate.topNavTemplate"></compose>
+        </div>
+
+        <div class="main-content">
+            <nav class="navbar-default app-dropdown" role="navigation" id="mainMenu">
+                <a href.bind="redirectToDefaultUrl">
+                    <div class="header-logo" class.bind="navTemplate.isExchangeUser ? 'exchange-logo' : ''"></div>
+                </a>
+
+                <div class="nav_clientname_bg">
+                    <span class="block white">
+                        <strong class="font-bold">${user.fullName}</strong>
+                    </span>
+                    <span class="white text-xs block">${user.entityName}</span>
+                </div>
+
+                <ul class="nav headerMenu visible-xs m-t-sm">
+                    <li>
+                        <live-chat-zendesk show-text.bind="true"></live-chat-zendesk>
+                    </li>
+                </ul>
+
+                <compose view-model.bind="navTemplate.leftNavTemplate" model.bind="user"></compose>
+            </nav>
+
+            <div class="page-content">
+                <div class="widget-box">
+                    <slot name="contentslot"></slot>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-content">
+            <content-footer terms-url.bind="navTemplate.termsAndConditionsUrl"></content-footer>
+        </div>
+
+        <popup></popup>
+        <slidable-panel></slidable-panel>
+    </div>
+
+    <div ref="argosBody" style="display: none;" if.bind="canLoadArgos && !navTemplate.contentHasOwnLayout">
+        <div class="left bufferLeft bufferTop pointer" style="white-space: nowrap; background-color: white;" ref="helpSectionBrand" click.delegate="showVenminder()">
+            <div class="left">
+                <img alt="Back arrow" src="../../../images/arrow-left.png"> <span class="smallTxt gray">Back to&nbsp;</span><img alt="Venminder" src="../../../images/venminder-small.png">
+            </div>
+        </div>
+        <form ref="argosBodyForm" action.bind="argosUrl" method="post" target="${isArgosTargetFrame ? 'argosBodyFrame' : '_blank'}">
+            <input name="key1" id="key1" type="hidden" value.bind="layoutInfo.argosKey1">
+            <input name="key2" id="key2" type="hidden" value.bind="layoutInfo.argosKey2">
+        </form>
+        <iframe ref="argosBodyFrame" id="argosBodyFrame" name="argosBodyFrame" style="display: block; padding:0; margin: 0; width: 100%; border: 0; overflow: hidden;" src="about:blank" title="Argos"></iframe>
+    </div>
+</template>

@@ -1,0 +1,29 @@
+hxgn-common-expansion-panel {
+    margin-bottom: 10px;
+
+    ::ng-deep .header{
+        background: #fff !important;
+        border: none !important;
+    }
+
+    ::ng-deep hxgn-common-expansion-panel-content {
+        padding-left: 42px;
+        padding-right: 10px;
+        display: flex;
+    }
+}
+
+hxgn-common-expansion-panel-title {
+    display: grid;
+    grid-template-columns: 20px auto;
+    grid-column-gap: 10px;
+
+    span {
+        font-size: 1.3em;
+    }
+}
+
+.sort-pane {
+    display: flex;
+    width: 100%;
+}

@@ -1,0 +1,79 @@
+@use "../../styles/variables" as v;
+
+$box-size: 13px;
+$left-offset: 23px;
+$top-offset: 3px;
+
+vm-checkbox {
+    display: flex;
+    position: relative;
+    padding-left: $left-offset;
+
+    .vm-checkbox--input {
+        position: absolute;
+        left: 0;
+        top: 3px;
+        margin: 0 !important;
+        opacity: 0;
+
+        &:checked + .vm-checkbox--label::before {
+            background-color: v.$brand-primary;
+            border-color: v.$brand-primary;
+        }
+
+        &:checked + .vm-checkbox--label::after {
+            content: "\f00c";
+            color: v.$white;
+            font-family: "Font Awesome 5 Pro";
+            font-weight: 400;
+        }
+
+        &:checked:disabled + .vm-checkbox--label::before {
+            background-color: v.$N50;
+            border-color: v.$N50;
+        }
+
+        &:disabled + .vm-checkbox--label {
+            cursor: not-allowed;
+            opacity: 0.4;
+        }
+
+        &:focus:not(:checked) + .vm-checkbox--label::before,
+        &:hover:not(:checked) + .vm-checkbox--label::before {
+            background-color: v.$N10;
+        }
+    }
+
+    .vm-checkbox--label {
+        min-height: 20px;
+        display: inline-block;
+        position: relative;
+        cursor: pointer;
+        font-weight: 400;
+        margin-bottom: 0;
+
+        &::before {
+            content: "";
+            height: $box-size;
+            width: $box-size;
+            display: inline-block;
+            position: absolute;
+            left: -$left-offset;
+            top: $top-offset;
+            background-color: v.$white;
+            border: solid 1px v.$N40;
+            border-radius: 3px;
+            transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
+        }
+
+        &::after {
+            height: calc($box-size - 1px);
+            width: calc($box-size - 1px);
+            display: inline-block;
+            position: absolute;
+            left: calc(1px - $left-offset);
+            top: calc($top-offset - 1px);
+            font-size: calc($box-size - 2px);
+        }
+    }
+}

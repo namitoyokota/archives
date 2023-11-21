@@ -1,0 +1,22 @@
+<template>
+    <require from="./vm-form-wizard.component.css"></require>
+
+    <div class="vm-dialog vm-form-wizard ${setLargeClass()}">
+        <div class="vm-form-wizard--header vm-dialog--header">
+        <slot name="header"></slot>
+        <vm-button icon click.call="cancel()">
+            <i class="fa fa-times"></i>
+        </vm-button>
+        </div>
+    <div class="vm-form-wizard-content">
+        <div class="vm-form-wizard--nav vm-dialog--body">
+            <slot name="nav"></slot>
+        </div>
+        <div class="vm-form-wizard--body vm-dialog--body">
+            <slot name="body"></slot>
+        </div>
+    </div>
+    <div class="vm-dialog--footer">
+        <slot name="footer"></slot>
+    </div>
+</template>

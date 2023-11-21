@@ -1,0 +1,26 @@
+:host {
+    background-color: #cbcbcb;
+    display: grid;
+    grid-template-columns: 28px 28px auto;
+    grid-column-gap: 20px;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.show-stroke-pane {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 20px;
+}
+
+.btn-flip {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}

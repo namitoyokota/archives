@@ -1,0 +1,26 @@
+<div class="dialog-title">
+    <hxgn-commonlocalization-translate-v1 [token]="tokens.unsavedChangesWarning">
+    </hxgn-commonlocalization-translate-v1>
+    <img (click)="close(unsavedChangesOptions.cancel)" src="assets/common-libraries/images/x_dialog.png" height="18"
+        width="18" />
+</div>
+<div class="content">
+    <hxgn-commonlocalization-translate-v1 *ngIf="!disabledSave" [token]="tokens.promptSaveOrDiscard">
+    </hxgn-commonlocalization-translate-v1>
+    <hxgn-commonlocalization-translate-v1 *ngIf="disabledSave" [token]="tokens.promptCantSave">
+    </hxgn-commonlocalization-translate-v1>
+</div>
+<div class="buttons-row">
+    <button class="hxgn-btn-secondary" (click)="close(unsavedChangesOptions.cancel)">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.cancel" [ignoreSkeleton]="true">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+    <button class="hxgn-btn-secondary" (click)="close(unsavedChangesOptions.discardChanges)">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.discardChanges" [ignoreSkeleton]="true">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+    <button *ngIf="!disabledSave" class="hxgn-btn-primary" (click)="close(unsavedChangesOptions.saveChanges)">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.saveChanges" [ignoreSkeleton]="true">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+</div>

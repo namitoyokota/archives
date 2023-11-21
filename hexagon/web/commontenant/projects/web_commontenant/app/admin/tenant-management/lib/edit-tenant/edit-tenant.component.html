@@ -1,0 +1,227 @@
+<div class="cmd-pane">
+    <hxgn-commontenant-send-invitation-email-btn *ngIf="!tenant.invitationAccepted" [tenantId]="tenant?.id"
+        [disabled]="!tenant.contactAddress">
+    </hxgn-commontenant-send-invitation-email-btn>
+
+    <button class="edit-btn license-btn hxgn-btn-secondary" (click)="openUploadLicencingDialog()">
+        <img src="assets/commontenant-core/licensing-btn-icon.svg" width="16" height="16" />
+        <span>
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.uploadLicencingFile" [ignoreSkeleton]="true">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+    </button>
+
+    <button class="edit-btn hxgn-btn-secondary" (click)="openExperimentalFeaturesDialog()">
+        <img src="assets/commontenant-core/feature-flags.svg" width="11" height="16" />
+        <span>
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.featureFlags" [ignoreSkeleton]="true">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+    </button>
+
+    <button class="edit-btn hxgn-btn-secondary" [disabled]="unsavedChanges" (click)="refresh.emit()">
+        <img src="assets/commontenant-core/refresh-applications-icon.svg" width="17" height="13" />
+        <span>
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.refresh" [ignoreSkeleton]="true">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+    </button>
+
+    <button class="hxgn-btn-secondary" (click)="openActivityNotificationsDialog()">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.manageActivityEmails" [ignoreSkeleton]="true">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+
+    <!-- Enable/Disable user inactivity check -->
+    <hxgn-commonidentity-away-mode-settings-v1 *featureFlag="ffAwayMode" [tenantId]="tenant?.id">
+    </hxgn-commonidentity-away-mode-settings-v1>
+    
+</div>
+<div class="properties-toggles-container" *ngIf="tenant">
+    <div class="section-container">
+        <div class="header">
+            <span>
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.properties" skeletonWidth="75px">
+                </hxgn-commonlocalization-translate-v1>
+            </span>
+        </div>
+        <div class="section-body properties-pane">
+            <div class="form-container">
+                <label>
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.organizationId" skeletonWidth="80px">
+                    </hxgn-commonlocalization-translate-v1>
+                </label>
+                <hxgn-common-input-v2 [disabled]="true">
+                    <input type="text" [value]="tenant.id" />
+                </hxgn-common-input-v2>
+            </div>
+            <div class="form-container">
+                <label>
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.name" skeletonWidth="30px">
+                        <span class="required-star"> *</span>
+                    </hxgn-commonlocalization-translate-v1>
+                </label>
+                <hxgn-common-input-v2 [isValid]="!!tenant?.name?.trim()">
+                    <input type="text" [(ngModel)]="tenant.name" (input)="updateTenant()" />
+                </hxgn-common-input-v2>
+            </div>
+            <div class="form-container span-1">
+                <label>
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.abbreviation" skeletonWidth="30px">
+                        <span class="required-star"> *</span>
+                    </hxgn-commonlocalization-translate-v1>
+                </label>
+                <hxgn-common-input-v2 [isValid]="tenant?.abbreviation?.trim().length >= 2">
+                    <input type="text" [(ngModel)]="tenant.abbreviation" maxlength="4" (input)="updateTenant()" />
+                </hxgn-common-input-v2>
+            </div>
+            <div class="form-container span-1">
+                <label>
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.culture" skeletonWidth="35px">
+                    </hxgn-commonlocalization-translate-v1>
+                </label>
+                <hxgn-common-dropdown-v2 [value]="tenant.culture" (selectionChange)="updateCulture($event.value)">
+                    <hxgn-common-dropdown-item-v2 *ngFor="let langToken of languageTokens | keyvalue"
+                        [value]="langToken.key">
+                        <span>{{langToken.value}}</span>
+                    </hxgn-common-dropdown-item-v2>
+                </hxgn-common-dropdown-v2>
+            </div>
+            <div class="form-container">
+                <label>
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.city" skeletonWidth="15px">
+                        <span class="required-star"> *</span>
+                    </hxgn-commonlocalization-translate-v1>
+                </label>
+                <hxgn-common-input-v2 [isValid]="!!tenant?.city?.trim()">
+                    <input type="text" [(ngModel)]="tenant.city" (input)="updateTenant()" />
+                </hxgn-common-input-v2>
+            </div>
+            <div class="form-container">
+                <label>
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.state" skeletonWidth="25px">
+                        <span class="required-star"> *</span>
+                    </hxgn-commonlocalization-translate-v1>
+                </label>
+                <hxgn-common-input-v2 [isValid]="!!tenant?.state?.trim()">
+                    <input type="text" [(ngModel)]="tenant.state" (input)="updateTenant()" />
+                </hxgn-common-input-v2>
+            </div>
+            <div class="form-container mb-0">
+                <label>
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.country" skeletonWidth="40px">
+                        <span class="required-star"> *</span>
+                    </hxgn-commonlocalization-translate-v1>
+                </label>
+                <hxgn-common-input-v2 [isValid]="!!tenant?.country?.trim()">
+                    <input type="text" [(ngModel)]="tenant.country" (input)="updateTenant()" />
+                </hxgn-common-input-v2>
+            </div>
+            <div class="form-container mb-0">
+                <label>
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.contactEmailAddress" skeletonWidth="40px">
+                        <span class="required-star"> *</span>
+                    </hxgn-commonlocalization-translate-v1>
+                </label>
+                <hxgn-common-input-v2 [isValid]="!!tenant?.contactAddress?.trim()">
+                    <input type="text" [(ngModel)]="tenant.contactAddress" (input)="updateTenant()" />
+                </hxgn-common-input-v2>
+            </div>
+            <div class="form-container icon-upload mb-0">
+                <label>
+                    <ng-container *ngIf="tenant.tenantIconUrl; else noIcon">
+                        <hxgn-commonlocalization-translate-v1 skeletonWidth="180px" [token]="tokens.updateIcon">
+                        </hxgn-commonlocalization-translate-v1>
+                    </ng-container>
+                    <ng-template #noIcon>
+                        <hxgn-commonlocalization-translate-v1 skeletonWidth="180px" [token]="tokens.uploadIcon">
+                        </hxgn-commonlocalization-translate-v1>
+                    </ng-template>
+                </label>
+                <hxgn-common-file-upload #iconUpload acceptedExtensions=".jpg, .png, .JPG, .PNG"
+                    [btnText]="tTokens.chooseImage" [displayFile]="true" [dragAndDropText]="tTokens.dragAndDropImage"
+                    (fileSelected)="setNewIcon($event)">
+                </hxgn-common-file-upload>
+            </div>
+        </div>
+    </div>
+    <div class="section-container">
+        <div class="header">
+            <span>
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.onboarding" skeletonWidth="55px">
+                    <span>- {{onboardingStatus | percent}}</span>
+                </hxgn-commonlocalization-translate-v1>
+            </span>
+        </div>
+        <div class="section-body">
+            <ng-container *ngIf="onboardingSteps$ | async as onboardingSteps">
+                <div class="onboarding-step" *ngFor="let step of onboardingSteps">
+                    <img *ngIf="isStepCompleted(step.componentType); else pendingIcon"
+                        src="assets/commontenant-core/validation-pass.png" width="19" height="20" />
+                    <ng-template #pendingIcon>
+                        <img src="assets/commontenant-core/product-application-unlicensed.svg" width="20" height="20" />
+                    </ng-template>
+                    <span ellipsisTooltip>
+                        <hxgn-commonlocalization-translate-v1 [token]="step.nameToken" skeletonWidth="120px">
+                        </hxgn-commonlocalization-translate-v1>
+                    </span>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>
+<div class="section-container three-col">
+    <div class="section-container">
+        <div class="header">
+            <span>
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.applications" skeletonWidth="110px">
+                </hxgn-commonlocalization-translate-v1>
+            </span>
+        </div>
+        <div class="sector-container">
+            <hxgn-commontenant-application-selection (selectionChange)="updateEnabledApps($event)"
+                [selectedApps]="tenant?.applicationIds">
+            </hxgn-commontenant-application-selection>
+        </div>
+    </div>
+    <div class="section-container">
+        <div class="header">
+            <span>
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.industries" skeletonWidth="75px">
+                </hxgn-commonlocalization-translate-v1>
+            </span>
+        </div>
+        <div class="sector-container">
+            <hxgn-commontenant-industries-selector *ngIf="industryGroups" [industries]="industryGroups"
+                [selectedIndustryIds]="tenant?.industryIds" (selected)="updateSelectedIndustries($event)">
+            </hxgn-commontenant-industries-selector>
+        </div>
+    </div>
+    <div class="section-container">
+        <div class="header">
+            <span>
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.networks" skeletonWidth="75px">
+                </hxgn-commonlocalization-translate-v1>
+                ({{tenant?.dataSharingNetworks.length}})
+            </span>
+        </div>
+        <div class="sector-container">
+            <hxgn-commontenant-network-list class="network-list" (selectedNetworks)="setNetworks($event)"
+                [activeNetworks]="tenant?.dataSharingNetworks">
+            </hxgn-commontenant-network-list>
+        </div>
+    </div>
+</div>
+<div class="section-container" *ngIf="tenant">
+    <div class="header">
+        <span>
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.location" skeletonWidth="65px">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+    </div>
+    <div class="tenant-map">
+        <hxgn-commontenant-tenant-map [tenant]="tenant" (mapDataChanged)="updateMapData($event)"
+            (mousedown)="setMapTouched()">
+        </hxgn-commontenant-tenant-map>
+    </div>
+</div>

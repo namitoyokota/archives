@@ -1,0 +1,105 @@
+@use "../../styles/variables" as v;
+
+
+vm-label {
+    display: inline-block;
+    padding: 2px 8px 2px 8px;
+    margin: 0 10px 10px 0;
+
+    &:last-child {
+        margin-right: 0;
+    }
+
+    border-radius: 3px;
+
+    &[pill] {
+        padding: 0;
+        margin: 0;
+
+        vm-button {
+            height: 100%;
+            width: 100%;
+            display: block;
+        }
+
+        vm-button button {
+            border-radius: 3px;
+            padding: 4px 10px 4px 10px;
+            height: 100%;
+            width: 100%;
+            border: 0;
+            background-color: transparent;
+            font-size: 16px;
+        }
+    }
+
+    // default
+    background-color: v.$N40;
+    color: v.$navy;
+
+    // states
+    &[light],
+    &.vm-label--light {
+        background-color: v.$N20;
+        color: v.$navy;
+    }
+
+    &[danger] &.vm-label--light {
+        background-color: v.$danger;
+        color: v.$white;
+    }
+
+    &[danger][light],
+    &.vm-label--danger.vm-label--light {
+        background-color: v.$danger-bg;
+        color: v.$danger-text;
+    }
+
+    &[danger-low],
+    &.vm-label--danger-low {
+        background-color: v.$caution;
+        color: v.$white;
+    }
+
+    &[warning],
+    &.vm-label--warning {
+        background-color: v.$warning;
+        color: v.$navy;
+    }
+
+    &[warning][light],
+    &.vm-label--warning.vm-label--light {
+        background-color: v.$warning-bg;
+        color: v.$warning-text;
+    }
+
+    &[success],
+    &.vm-label--success {
+        background-color: v.$success;
+        color: v.$white;
+    }
+
+    &[success][light],
+    &.vm-label--success.vm-label--light {
+        background-color: v.$success-bg;
+        color: v.$success-text;
+    }
+
+    &[success-low],
+    &.vm-label--success-low {
+        background-color: #a6ce78;
+        color: v.$white;
+    }
+
+    &[info],
+    &.vm-label--info {
+        background-color: v.$info;
+        color: v.$white;
+    }
+
+    &[info][light],
+    &.vm-label--info.vm-label--light {
+        background-color: #dfeffd;
+        color: v.$info;
+    }
+}

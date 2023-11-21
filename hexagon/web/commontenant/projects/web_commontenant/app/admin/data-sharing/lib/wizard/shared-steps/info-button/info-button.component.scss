@@ -1,0 +1,39 @@
+:host {
+    position: relative;
+}
+
+.info-button {
+    border: 2px solid #4172b5;
+    border-radius: 50px;
+    width: 18px;
+    height: 18px;
+    font-style: italic;
+    color: #4172b5;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.info-button:hover~.info-box {
+    display: block;
+}
+
+.info-box {
+    font-size: 15px;
+    padding: 10px 20px 20px;
+    display: none;
+    position: absolute;
+    width: 286px;
+    height: auto;
+    background: no-repeat padding-box #fff;
+    box-shadow: 0 2px 2px #00000033;
+    border: 1px solid #afafaf;
+    bottom: 25px;
+    left: -123px;
+    line-height: 1.5;
+    z-index: 999;
+    text-align: left;
+    letter-spacing: 0;
+    color: #666;
+}

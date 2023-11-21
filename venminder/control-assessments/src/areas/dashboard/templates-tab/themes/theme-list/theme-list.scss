@@ -1,0 +1,23 @@
+.theme-list {
+  .theme-layout {
+    display: grid;
+    grid-template-rows: min-content auto;
+    row-gap: 20px;
+  }
+
+  .header {
+    display: grid;
+    grid-template-columns: auto min-content;
+    column-gap: 10px;
+    align-items: center;
+
+    .search-pane {
+      max-width: 500px;
+    }
+
+    .btn-pane {
+      display: flex;
+      align-items: center;
+    }
+  }
+}

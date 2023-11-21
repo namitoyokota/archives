@@ -1,0 +1,140 @@
+:host {
+    display: grid;
+    grid-template-rows: min-content 1fr min-content;
+    row-gap: 20px;
+    height: 100%;
+
+    .hxgn-btn-secondary {
+        margin-right: 10px;
+    }
+
+    mat-checkbox {
+        position: relative;
+        bottom: 2px;
+    }
+
+    mat-dialog-content {
+        display: grid;
+        grid-template-rows: 75px 1fr;
+        row-gap: 15px;
+        overflow: hidden;
+        position: relative;
+
+        &.no-device {
+            grid-template-rows: auto; 
+        }
+    }
+}
+
+.loading {
+    position: absolute;
+    z-index: 9999;
+    height: 100%;
+    width: 100%;
+    background: #ffffff94;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-pane {
+    display: grid;
+    grid-template-columns: auto 20px;
+
+    h2 {
+        padding: 0;
+        margin: 0;
+        font-weight: bold !important;
+    }
+
+    .close-btn {
+        background-image: url("assets/alarms-core/x_dialog.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        cursor: pointer;
+    }
+}
+
+.table-container {
+    border: solid 1px #abacae;
+    overflow-y: auto;
+}
+
+table {
+    width: 100%;
+    background: #fff;
+    overflow-x: hidden;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif !important;
+
+    .selected-row {
+        background-color: #cadff2 !important;
+    }
+
+    td.mat-cell {
+        border-bottom-color: #d9d9d9;
+    }
+
+    td.mat-column-date {
+        font-size: 13px;
+        line-height: 16px;
+    }
+
+    td.mat-column-title {
+        font-size: 15px;
+    }
+
+    td.mat-cell:not(:first-of-type),
+    th.mat-header-cell:not(:first-of-type) {
+        padding: 0 10px;
+    }
+
+    th.mat-column-select {
+        padding-right: 5px;
+        width: 16px;
+        border-right: none !important;
+    }
+
+    td.mat-footer-cell {
+        border-top: solid 1px #d9d9d9;
+        border-bottom: none;
+    }
+
+    th.mat-header-cell {
+        font-size: 14px;
+        border-bottom: none;
+        font-weight: 400;
+    }
+
+    th.mat-header-cell:not(:last-of-type) {
+        border-right: solid 1px #94979a;
+    }
+
+    .title-container {
+        height: 24px;
+        display: grid;
+        grid-template-columns: 7px auto;
+        column-gap: 10px;
+        align-items: center;
+    }
+
+    tr.mat-header-row {
+        height: 25px;
+        background: #c8c8c8;
+    }
+}
+
+.table-row:hover {
+    cursor: pointer;
+    background-color: #eceeee;
+}
+
+.toggle-managed {
+    text-decoration: underline;
+    color: #808080;
+    font-size: 15px;
+}
+
+.toggle-managed:hover {
+    cursor: pointer;
+    color: #4c4c4c;
+}

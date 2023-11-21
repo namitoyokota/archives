@@ -1,0 +1,28 @@
+:host {
+
+    .hxgn-btn-secondary {
+        margin-top: 10px;
+    }
+
+    mat-slide-toggle {
+        margin-bottom: 5px;
+    }
+
+    .mat-slide-toggle.mat-disabled {
+        opacity: 1;
+    }
+}
+
+
+.application-view {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    margin-bottom: 5px;
+    height: 20px;
+    cursor: help;
+
+    img {
+        margin-right: 10px;
+    }
+}

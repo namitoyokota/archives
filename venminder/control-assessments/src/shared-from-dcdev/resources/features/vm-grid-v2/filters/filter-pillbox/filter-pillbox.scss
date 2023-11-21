@@ -1,0 +1,22 @@
+$search-tag-bg: #EFF2F7;
+$search-tag-color: #172b4a;
+
+.vm-grid-pill-container {
+  margin-bottom: 10px;
+  display: flex;
+}
+
+.vm-grid-global-search-tag {
+  background-color: $search-tag-bg;
+  border-radius: 5px;
+  color: $search-tag-color;
+  display: flex;
+  margin: 10px 4px 0px 0px;
+  padding: 3px 7px 3px 7px;
+  text-transform: none;
+}
+
+.vm-grid-clear-filters {
+  float: left;
+  margin: 14px 0px 0px 5px;
+}

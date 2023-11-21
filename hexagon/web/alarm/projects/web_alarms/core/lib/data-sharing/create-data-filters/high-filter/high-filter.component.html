@@ -1,0 +1,95 @@
+<div class="add-pane">
+    <span class="direction-text">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.highFilterHelpMsg">
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+    <span class="share-type">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.dontShare">
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+    <div class=share-type-pane>
+        <hxgn-common-dropdown-v2 [(value)]="selectRestrictId" (selectionChange)="setSelectedRestrictId($event)">
+            <hxgn-common-dropdown-item-v2 [value]="RestrictIds.priority">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.priority">
+                </hxgn-commonlocalization-translate-v1>
+            </hxgn-common-dropdown-item-v2>
+            <hxgn-common-dropdown-item-v2 [value]="RestrictIds.keywords">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.keyword">
+                </hxgn-commonlocalization-translate-v1>
+            </hxgn-common-dropdown-item-v2>
+            <hxgn-common-dropdown-item-v2 [value]="RestrictIds.title">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.alarmName">
+                </hxgn-commonlocalization-translate-v1>
+            </hxgn-common-dropdown-item-v2>
+        </hxgn-common-dropdown-v2>
+
+        <hxgn-common-dropdown-v2 [(value)]="selectedPropertyProcessor.selectedOperation">
+            <hxgn-common-dropdown-item-v2 *ngFor="let operation of selectedPropertyProcessor.operationList()"
+                [value]="operation">
+                <hxgn-commonlocalization-translate-v1 [token]='getOperationToken(operation)'>
+                </hxgn-commonlocalization-translate-v1>
+            </hxgn-common-dropdown-item-v2>
+        </hxgn-common-dropdown-v2>
+    </div>
+    <div class="input-pane">
+        <ng-container [ngSwitch]="selectRestrictId">
+            <hxgn-common-input-v2 *ngSwitchCase="RestrictIds.priority" style="width:100%;"
+                [isValid]="(!isDirty) ? undefined : priorityOperationProcessor.validate()">
+                <input (keydown.enter)="addFilter()" [(ngModel)]="priorityOperationProcessor.addFilterValue" min="0"
+                    max="9999" type="number" [placeholder]="tTokens.typeInPriorityValue" />
+            </hxgn-common-input-v2>
+
+            <hxgn-common-input-v2 *ngSwitchCase="RestrictIds.title" style="width:100%;"
+                [isValid]="(!isDirty) ? undefined : titleOperationProcessor.validate()">
+                <input (keydown.enter)="addFilter()" [(ngModel)]="titleOperationProcessor.addFilterValue" type="text"
+                    [placeholder]="tTokens.typeInNameValue" />
+            </hxgn-common-input-v2>
+
+            <hxgn-common-input-v2 *ngSwitchCase="RestrictIds.keywords" style="width:100%;"
+                [isValid]="(!isDirty) ? undefined : keywordOperationProcessor.validate()">
+                <input (keydown.enter)="addFilter()" [(ngModel)]="keywordOperationProcessor.addFilterValue" type="text"
+                    [placeholder]="tTokens.typeInKeywordValue" />
+            </hxgn-common-input-v2>
+        </ng-container>
+    </div>
+    <div class="btn-pane">
+        <button class="hxgn-btn-secondary" (click)="addFilter()">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.addFilter">
+            </hxgn-commonlocalization-translate-v1>
+        </button>
+    </div>
+</div>
+<div class="filter-pane">
+    <h2>
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.activeFilters">
+        </hxgn-commonlocalization-translate-v1>
+    </h2>
+
+    <div *ngFor="let restriction of getEditableFilterCriteria(); trackBy: trackByFunction">
+        <hxgn-alarms-priority-active-filter *ngIf="restriction.content.restrictId === RestrictIds.priority"
+            [operation]="restriction" (delete)="removeFilter($event)">
+        </hxgn-alarms-priority-active-filter>
+
+        <hxgn-alarms-string-active-filter *ngIf="restriction.content.restrictId !== RestrictIds.priority"
+            [operation]="restriction" [propertyNameToken]="getLocalizationToken(restriction?.content.restrictId)"
+            (delete)="removeFilter($event)" (toggle)="toggleNoopFilter($event)"
+            (contentChange)="updateFilter($event, restriction.content.restrictId)">
+        </hxgn-alarms-string-active-filter>
+    </div>
+
+    <div *ngFor="let restriction of getReadOnlyFilterCriteria(); trackBy: trackByFunction">
+        <hxgn-alarms-priority-active-filter *ngIf="restriction.content.restrictId === RestrictIds.priority"
+            [operation]="restriction" [buttonType]="ActiveFilterButtonType.toggle"
+            [toggleEnabled]="isGlobalDisabled(restriction)" (delete)="removeFilter($event)"
+            (toggle)="toggleNoopFilter($event)">
+        </hxgn-alarms-priority-active-filter>
+
+        <hxgn-alarms-string-active-filter *ngIf="restriction.content.restrictId !== RestrictIds.priority"
+            [operation]="restriction" [operation]="restriction"
+            [propertyNameToken]="getLocalizationToken(restriction?.content.restrictId)"
+            [buttonType]="ActiveFilterButtonType.toggle" [toggleEnabled]="isGlobalDisabled(restriction)"
+            (toggle)="toggleNoopFilter($event)" (contentChange)="updateFilter($event, restriction.content.restrictId)"
+            (delete)="removeFilter($event)">
+        </hxgn-alarms-string-active-filter>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+<#@ include file="..\..\..\..\..\CreateTypeScript.ttinclude" #>
+<#@ template debug="true" hostSpecific="true" language="C#" #>
+<#@ output extension="ts" #>
+
+import { TemplateTheme } from "../themes/theme";
+import { TemplateStatus } from "shared/enums/template-statuses";
+import { TemplateSection } from "./template-section";
+
+<#= GetClass<ControlAssessments.Business.Models.DTO.Templates.Requests.SaveTemplateRequest>(generateCreateFunction:true) #>

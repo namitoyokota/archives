@@ -1,0 +1,63 @@
+<div class="tabs">
+    <hxgn-common-tabs>
+        <mat-tab-group #capabilityTabs (selectedTabChange)="setSelectedCapability($event)">
+            <mat-tab *ngFor="let capability of capabilityList" [label]="capabilityTokens.get(capability.nameToken)">
+            </mat-tab>
+        </mat-tab-group>
+    </hxgn-common-tabs>
+</div>
+
+<hxgn-commonkeywords-group-list-pane #groupList [rulesetGroups]="ruleStore.rulesetGroupList$ | async"
+    [unsavedGroups]="ruleStore.unsavedGroups$ | async" [searchRules]="(ruleStore.ruleset$ | async)?.rules"
+    [industryList]="industryList" [selectedIndustry]="selectedIndustry" (selection)="setSelectedGroup($event)"
+    (industrySelection)="loadRuleset($event)">
+</hxgn-commonkeywords-group-list-pane>
+
+<div class="main-pane">
+    <ng-container *ngIf="(ruleStore.ruleset$ | async) && !isLoading">
+        <!-- UI for when there are no groups -->
+        <div class="no-groups" *ngIf="!(ruleStore.rulesetGroupList$ | async).length">
+            <span>
+                <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]='tokens.addNewGroupToContinue'>
+                </hxgn-commonlocalization-translate-v1>
+            </span>
+        </div>
+
+        <!-- Ui for adding rules to a group -->
+        <hxgn-commonkeywords-add-icon-ruleset
+            *ngIf="(ruleStore.rulesetGroupList$ | async).length && (ruleStore.group$(selectedGroupId) | async)?.resourceId"
+            (newRule)="addNewRule($event)" [group]="ruleStore.group$(selectedGroupId) | async">
+        </hxgn-commonkeywords-add-icon-ruleset>
+
+        <!-- UI for setting up a default icon for a group -->
+        <hxgn-commonkeywords-add-default-icon
+            *ngIf="(ruleStore.rulesetGroupList$ | async).length && !(ruleStore.group$(selectedGroupId) | async)?.resourceId"
+            [groupName]="(ruleStore.group$(selectedGroupId) | async)?.name" (created)="onDefaultCreated($event)">
+        </hxgn-commonkeywords-add-default-icon>
+    </ng-container>
+
+    <div *ngIf="isLoading" class="loading-pane">
+        <mat-spinner></mat-spinner>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="upload-btn">
+        <button *ngIf="ffUploadIcons" class="hxgn-btn-secondary" [disabled]="isLoading" (click)="openUploadIconDialog()">
+            <hxgn-commonlocalization-translate-v1 [token]='tokens.uploadNewIcon' [ignoreSkeleton]="true">
+            </hxgn-commonlocalization-translate-v1>
+        </button>
+    </div>
+    <div class="save-btns">
+        <button class="hxgn-btn-secondary" [disabled]="!(ruleStore.unsavedGroups$ | async).length || isLoading"
+            (click)="discardChanges()">
+            <hxgn-commonlocalization-translate-v1 [token]='tokens.discardChanges' [ignoreSkeleton]="true">
+            </hxgn-commonlocalization-translate-v1>
+        </button>
+        <button class="hxgn-btn-primary" [disabled]="!(ruleStore.unsavedGroups$ | async).length || isLoading || !isValid"
+            (click)="saveChangesAsync()">
+            <hxgn-commonlocalization-translate-v1 [token]='tokens.saveChanges' [ignoreSkeleton]="true">
+            </hxgn-commonlocalization-translate-v1>
+        </button>
+    </div>
+</div>

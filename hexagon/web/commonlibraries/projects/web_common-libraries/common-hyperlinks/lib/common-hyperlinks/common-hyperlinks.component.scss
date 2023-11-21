@@ -1,0 +1,18 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+.show-all {
+    height: 30px;
+    font-weight: 700;
+    cursor: pointer;
+    border: 1px solid #b0b2b5;
+    box-sizing: border-box;
+    width: 100%;
+    margin-top: -2px;
+    background: #fff;
+    padding: 4px;
+    margin-bottom: 10px;
+}

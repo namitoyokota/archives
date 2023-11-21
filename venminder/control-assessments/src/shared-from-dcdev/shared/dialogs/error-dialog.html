@@ -1,0 +1,17 @@
+﻿<template>
+    <ux-dialog class="modal-dialog" style="opacity:1;">
+
+        <ux-dialog-header>
+            <button type="button" class="fa fa-close close au-target" data-dismiss="modal" aria-hidden="true" au-target-id="306" click.delegate="controller.cancel()"></button>
+            <h3 class="modal-title text-danger">Application Error</h3>
+        </ux-dialog-header>
+        <ux-dialog-body>
+            <div class="m-md">
+                <h4>Unable to complete action</h4>
+                <p innerhtml="${message | sanitizeHTML}"></p>
+            </div>
+        </ux-dialog-body>
+        <ux-dialog-footer>
+            <button type="button" class="btn btn-default" click.delegate="controller.ok()">Close</button>
+        </ux-dialog-footer>
+</template>

@@ -1,0 +1,86 @@
+<div cdkDrag #layerPropsCmd class="layer-props-cmd-container" *ngIf="show">
+    <div class="titlebar" cdkDragHandle>
+        <span class="titlebar-text">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.layerPropsCmdMenuItemLabel" [skeletonWidth]="'100px'"></hxgn-commonlocalization-translate-v1> 
+        </span>
+        <span class="titlebar-close" (click)="fireClose()">
+            <img class="titlebar-close-icon" src="assets/commonmap-core/images/layout/text-copied-close.png" />
+        </span>
+    </div>
+    <div class="search-box">
+        <hxgn-common-input-v2 [isSearchBox]="true" [showClearBtn]="searchString" (clearText)="clearText()"
+            style="width:100%">
+            <input class="search-input" (input)="searchStringChanged()" [(ngModel)]="searchString"
+                placeholder="{{ transStrings[tokens.searchPlaceholder] }}"
+                type="text" />
+        </hxgn-common-input-v2>
+    </div>
+    <div class="info-container">
+        <div class="layers-list-container" *ngIf="(layerPropsCmdInfoList$ | async)?.length > 0">
+            <div class="layers-list" *ngFor="let layerPropsCmdInfo of (layerPropsCmdInfoList$ | async);let idx=index;">
+                <hxgn-common-expansion-panel [panelState]="idx === 0 ? PanelState.Expanded : PanelState.Collapsed" (stateChange)="stateChange({layerPropsCmdInfo: layerPropsCmdInfo, state:$event})">
+                    <hxgn-common-expansion-panel-title>
+                        {{layerPropsCmdInfo.mapLayer.name}}
+                    </hxgn-common-expansion-panel-title>
+                    <hxgn-common-expansion-panel-content>
+                        <div class="layer-info-container">
+                            <div class='spinner' *ngIf="!layerPropsCmdInfo.featInfoData?.dataLoaded && !layerPropsCmdInfo.featInfoData?.errLoadingData">
+                                <mat-spinner></mat-spinner>
+                            </div>
+                            <div *ngIf="layerPropsCmdInfo.featInfoData?.dataLoaded">
+                                <div class="layer-info" *ngIf="layerPropsCmdInfo.featInfoData?.type === FeatInfoDisplayType.Html">
+                                    <div class="html-type">
+                                        <hxgn-commonmap-iframe-html-host *ngIf="layerPropsCmdInfo.featInfoData?.queryInfo"
+                                            [htmlString]="layerPropsCmdInfo.featInfoData?.queryInfo"
+                                            [refresh]="layerPropsCmdInfo.panelExpanded">
+                                        </hxgn-commonmap-iframe-html-host>
+                                        <div *ngIf="!layerPropsCmdInfo.featInfoData?.queryInfo" class="no-layer-info" >
+                                            <div class="content">
+                                                <img class="no-layer-info-icon" src="assets/commonmap-core/images/layout/no-layer-info.svg" />
+                                                <span class="no-layer-info-text">
+                                                    <hxgn-commonlocalization-translate-v1 [token]="tokens.getFeatInfoNoLayerInfo"></hxgn-commonlocalization-translate-v1>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    
+                                    </div>
+                                </div>
+                                <div class="layer-info" *ngIf="layerPropsCmdInfo.featInfoData?.type === FeatInfoDisplayType.Table">
+                                    <div class="table-type">
+                                        <hxgn-commonmap-feat-info-table-format
+                                            [layerPropsCmdInfo]="layerPropsCmdInfo"
+                                            [searchString]="searchString">
+                                        </hxgn-commonmap-feat-info-table-format>
+                                    </div>
+                                </div>
+                                <div class="layer-info" *ngIf="layerPropsCmdInfo.featInfoData?.type === FeatInfoDisplayType.GeoJSON">
+                                    <div class="table-type">
+                                        <hxgn-commonmap-geojson-props
+                                            [layerPropsCmdInfo]="layerPropsCmdInfo"
+                                            [searchString]="searchString">
+                                        </hxgn-commonmap-geojson-props>
+                                    </div>
+                                </div>
+                                <div class="layer-info" *ngIf="layerPropsCmdInfo.featInfoData?.type === FeatInfoDisplayType.Text">
+                                    <div class="text-type">
+                                        <pre class="text-type-text">
+                                            {{layerPropsCmdInfo.featInfoData?.queryInfo}}
+                                        </pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </hxgn-common-expansion-panel-content>
+                </hxgn-common-expansion-panel>
+            </div>
+        </div>
+        <div class="no-layer-info" *ngIf="(layerPropsCmdInfoList$ | async)?.length === 0">
+            <div class="content">
+                <img class="no-layer-info-icon" src="assets/commonmap-core/images/layout/no-layer-info.svg" />
+                <span class="no-layer-info-text">
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.getFeatInfoNoLayerInfo"></hxgn-commonlocalization-translate-v1>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

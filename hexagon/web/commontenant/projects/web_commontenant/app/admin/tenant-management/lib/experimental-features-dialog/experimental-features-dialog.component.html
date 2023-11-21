@@ -1,0 +1,7 @@
+<div class="dialog-title">
+    <hxgn-commonlocalization-translate-v1 [token]="tokens.featureFlags" skeletonWidth="120px">
+    </hxgn-commonlocalization-translate-v1>
+    <img (click)="close()" src="assets/commontenant-core/x_dialog.png" height="18" width="18" />
+</div>
+<hxgn-commonfeatureflags-tenant-editor [tenantId]='tenantId' (completed)="dialogRef.close()">
+</hxgn-commonfeatureflags-tenant-editor>

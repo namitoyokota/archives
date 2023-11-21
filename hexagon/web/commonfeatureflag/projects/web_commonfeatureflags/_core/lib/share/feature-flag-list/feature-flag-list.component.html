@@ -1,0 +1,22 @@
+<hxgn-commonfeatureflags-list-item-v2 *ngFor="let flag of featureFlags"
+    [class.disabled]="!isUnlocked(flag.flagId) && !provisionerMode" 
+    [featureFlag]="flag" [scope]="getScope(flag.flagId)"
+    [globalMode]="globalMode" [provisionerMode]="provisionerMode"
+    [isTouched]="isTouched(flag.flagId)"
+    [isDisabled]="isDisabled(flag.flagId)"
+    [isOverride]="isOverride(flag.flagId)"
+    [isActive]="isActive(flag.flagId)"
+    [isLockable]="isLockable(flag.flagId)"
+    [isEditable]="isEditable(flag.flagId)"
+    [isUnlocked]="isUnlocked(flag.flagId)"
+    (enabled)="enableFlag($event)" (disabled)="disableFlag($event)"
+    (locked)="lockFlag($event)" (unlocked)="unlockFlag($event)"
+    (remove)="removeOverride($event)" >
+</hxgn-commonfeatureflags-list-item-v2>
+
+<div class="no-features" *ngIf="!featureFlags?.length">
+    <span>
+        <hxgn-commonlocalization-translate-v1 skeletonWidth="75px" [token]="tokens.noExperimentalFeatures">
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+</div>

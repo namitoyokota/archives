@@ -1,0 +1,7 @@
+<div class="card-list">
+    <div class="card" *ngFor="let pipeline of pipelines">
+        <hxgn-commonrecovery-pipeline-card [pipeline]="pipeline" [tenantName]="tenantName"
+            [running]="running" [hiddenActions]="hiddenActions" >
+        </hxgn-commonrecovery-pipeline-card>
+    </div>
+</div>

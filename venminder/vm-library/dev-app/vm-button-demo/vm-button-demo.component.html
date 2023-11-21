@@ -1,0 +1,90 @@
+<template>
+    <require from="./vm-button-demo.component.css"></require>
+
+    <table class="vm-btns-demo">
+        <thead>
+            <th>Button Type</th>
+            <th>Normal</th>
+            <th>Icon</th>
+            <th>Disabled</th>
+            <th>Small</th>
+            <th>Large</th>
+            <th>XXL</th>
+        </thead>
+        <tbody>
+            <tr repeat.for="buttonType of buttonTypes">
+                <th>${buttonType}</th>
+                <td>
+                    <!-- Normal Button -->
+                    <vm-button type.one-time="buttonType" click.call="alert()"> Settings </vm-button>
+                </td>
+                <td>
+                    <!-- Button w/ Icon -->
+                    <vm-button type.one-time="buttonType" click.call="alert()">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </vm-button>
+                </td>
+                <td>
+                    <!-- Disabled Button -->
+                    <vm-button type.one-time="buttonType" is-disabled.to-view="true" click.call="alert()"> Settings </vm-button>
+                </td>
+                <td>
+                    <!-- Small Button -->
+                    <vm-button type.one-time="buttonType" size.one-time="vmButtonSizes.Small" click.call="alert()"> Settings </vm-button>
+                </td>
+                <td>
+                    <!-- Large Button -->
+                    <vm-button type.one-time="buttonType" size.one-time="vmButtonSizes.Large" click.call="alert()"> Settings </vm-button>
+                </td>
+                <td>
+                    <!-- XXL Button -->
+                    <vm-button type.one-time="buttonType" size.one-time="vmButtonSizes.XXL" click.call="alert()"> Settings </vm-button>
+                </td>
+            </tr>
+            <tr>
+                <th>icon</th>
+                <td></td>
+                <td>
+                    <vm-button icon click.call="alert()">
+                        <i class="fas fa-cog"></i>
+                    </vm-button>
+                </td>
+                <td>
+                    <vm-button icon click.call="alert()" is-disabled.one-time="true">
+                        <i class="fas fa-cog"></i>
+                    </vm-button>
+                </td>
+                <td>
+                    <vm-button icon small click.call="alert()" is-disabled.one-time="true">
+                        <i class="fas fa-cog"></i>
+                    </vm-button>
+                </td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>tertiary</th>
+                <td>
+                    <vm-button tertiary click.call="alert()">
+                        <span>Some Link</span>
+                    </vm-button>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <th>tertiary navy</th>
+                <td>
+                    <vm-button tertiaryNavy click.call="alert()">
+                        <span>Some Link</span>
+                    </vm-button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</template>

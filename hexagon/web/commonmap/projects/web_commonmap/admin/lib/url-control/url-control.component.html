@@ -1,0 +1,17 @@
+<div class="label">
+    <hxgn-commonlocalization-translate-v1
+        [token]="tokens.layerUrlLabel"
+        [skeletonWidth]="'60px'">
+    </hxgn-commonlocalization-translate-v1>
+</div>
+<hxgn-common-input-v2 [isValid]="!urlErrorMsg ? null : false" style="width:100%">
+    <input type="text" (input)="urlValidate($event);" (change)="setURL($event)"
+        placeholder="{{ transStrings[tokens.addingLayerUrlPlaceholder] }}"
+        [(ngModel)]="url" />
+</hxgn-common-input-v2>
+<span class="error-msg" *ngIf="urlErrorMsg">
+    <hxgn-commonlocalization-translate-v1 
+        [token]="urlErrorMsg"
+        [skeletonWidth]="'60px'">
+    </hxgn-commonlocalization-translate-v1>     
+</span>

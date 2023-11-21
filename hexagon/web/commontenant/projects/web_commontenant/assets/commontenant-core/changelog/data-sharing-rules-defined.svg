@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="26" height="24" viewBox="0 0 26 24">
+  <g id="data-sharing-rules-defined" transform="translate(4026.034 -6165.036)">
+    <path id="layer1" d="M17.411,14.245a3.087,3.087,0,0,0-2.223.957l-.123-.062L8.241,11.713l-.123-.062a2.871,2.871,0,0,0,0-1.019l.123-.062,6.823-3.365.123-.062a3.149,3.149,0,1,0-.8-1.636l-.123.062L7.408,8.934,7.284,9a3.087,3.087,0,1,0,0,4.261l.123.062,6.823,3.458.123.062a3.087,3.087,0,1,0,3.057-2.593Z" transform="translate(-4027.996 6163.188)"/>
+    <g id="Group_166083" data-name="Group 166083">
+      <g id="Group_264" data-name="Group 264" transform="translate(-4035.034 6174.036)">
+        <g id="Ellipse_98" data-name="Ellipse 98" transform="translate(20)" fill="#fff" stroke="#fff" stroke-width="2">
+          <circle cx="6.5" cy="6.5" r="6.5" stroke="none"/>
+          <circle cx="6.5" cy="6.5" r="7.5" fill="none"/>
+        </g>
+      </g>
+      <g id="Camera-Status-Disabled" transform="translate(-6856.911 5757.041)">
+        <circle id="Ellipse_2314" data-name="Ellipse 2314" cx="6.5" cy="6.5" r="6.5" transform="translate(2841.876 416.996)"/>
+      </g>
+    </g>
+    <path id="Path_42132" data-name="Path 42132" d="M561.623,408.154l2.942,2.942,4.715-6.408" transform="translate(-4574.157 5772.231)" fill="none" stroke="#fff" stroke-width="2"/>
+  </g>
+</svg>

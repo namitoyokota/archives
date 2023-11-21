@@ -1,0 +1,47 @@
+<ng-container *ngIf="featureFlags && currentStates; else loading" >
+    <hxgn-commonfeatureflags-list-v2 [featureFlags]="featureFlags" [flagStates]="currentStates"
+        [globalMode]="true" [provisionerMode]="true" (allChanges)="allChange($event)"
+        (flagsChange)="flagsChange($event)" (unlocksChange)="unlocksChange($event)" >
+    </hxgn-commonfeatureflags-list-v2>
+
+    <div class="button-pane">
+        <mat-checkbox class="force-button" [checked]="forcePush" (change)="toggleForce($event)">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.forceUpdate" [ignoreSkeleton]="true">
+            </hxgn-commonlocalization-translate-v1>
+        </mat-checkbox>
+        <button class="hxgn-btn-secondary" (click)="cancel()" [disabled]="!featureFlags?.length || !isDirty">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.discard" [ignoreSkeleton]="true">
+            </hxgn-commonlocalization-translate-v1>
+        </button>
+        <button class="hxgn-btn-primary" (click)="confirm()" [disabled]="!featureFlags?.length || !isDirty">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.save" [ignoreSkeleton]="true">
+            </hxgn-commonlocalization-translate-v1>
+        </button>
+    </div>
+
+    <div *ngIf="saving" class="spinner">
+        <mat-spinner></mat-spinner>
+    </div>
+</ng-container>
+
+<ng-template #loading>
+    <div class="loading-pane">
+        <div class="item">
+            <div class="loading first"></div>
+            <div class="loading"></div>
+            <div class="loading last"></div>
+        </div>
+    
+        <div class="item">
+            <div class="loading first"></div>
+            <div class="loading"></div>
+            <div class="loading last"></div>
+        </div>
+    
+        <div class="item">
+            <div class="loading first"></div>
+            <div class="loading"></div>
+            <div class="loading last"></div>
+        </div>
+    </div>
+</ng-template>

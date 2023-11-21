@@ -1,0 +1,205 @@
+.presets-tab {
+    display: grid;
+    grid-template-columns: .75fr 1fr;
+    grid-template-rows: auto;
+    height: 100%;
+}
+
+.presets-pane {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-right: 1px solid #d1d3d4;
+    overflow: hidden;
+}
+
+.divider {
+    border-bottom: 2px solid #d1d3d4 !important;
+}
+
+.presets-list {
+    height: 100%;
+    overflow: auto;
+}
+
+.page-header {
+    padding-left: 20px;
+    padding-top: 10px;
+    height: 40px;
+    border-bottom: 1px solid #d1d3d4;
+}
+
+.title {
+    display: flex;
+    font-size: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.list-btn {
+    display: grid;
+    grid-template-columns: 50px auto;
+    grid-template-rows: 45px;
+    align-items: center;
+    border-bottom: 1px solid #d1d3d4;
+    cursor: pointer;
+}
+
+.list-btn:hover,
+.list-btn.selected {
+    background-color: #eceeee
+}
+
+.list-btn-icon {
+    display: flex;
+    width: 25px;
+    height: 45px;
+    padding-left: 10px;
+    align-items: center;
+
+    img {
+        width: 25px;
+    }
+}
+
+.list-item {
+    display: grid;
+    grid-template-columns: auto 50px;
+    align-items: center;
+    border-bottom: 1px solid #d1d3d4;
+    cursor: pointer;
+    height: 44px;
+}
+
+.list-item:hover {
+    background-color: #eceeee
+}
+
+.list-item.selected {
+    background-color: #bed6ee
+}
+
+.list-item.selected .action-icon {
+    background-image: url('assets/commonmap-core/images/admin/action_menu_row_selected.png');
+}
+
+.list-item:hover .action-icon {
+    background-image: url('assets/commonmap-core/images/admin/action_menu_row_selected.png');
+}
+
+.action-icon {
+    background-image: url('assets/commonmap-core/images/admin/action_menu_icon.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 44px;
+    width: 44px;
+    cursor: pointer;
+}
+
+.action-icon:hover {
+    background-image: url('assets/commonmap-core/images/admin/action_menu_icon_selected.png') !important;
+}
+
+.edit-pane-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid #d1d3d4;
+    overflow: hidden;
+
+    .edit-pane {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+}
+
+.menu-btn-icon {
+    width: 35px;
+    height: 35px;
+}
+
+.menu-item {
+    display: grid;
+    grid-template-columns: 35px 75px;
+    align-items: center;
+}
+
+.layer-panel-config {
+    height: calc(100% - 97px);
+    overflow: auto;
+}
+
+.layer-controls {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 10px 0 20px;
+    height: calc(100% - 10px);
+
+    .layer-controls-header {
+        display: grid;
+        grid-template-columns: 25px auto;
+        height: 40px;
+        padding-bottom: 10px;
+        align-items: center;
+    }
+
+    .layer-properties {
+        height: 100%;
+        padding: 0 10px 10px 0;
+        overflow: auto;
+    }
+}
+
+.map-display-properties-controls {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 10px 0 20px;
+    height: calc(100% - 10px);
+
+    .map-display-properties-header {
+        display: grid;
+        grid-template-columns: 25px auto;
+        height: 40px;
+        padding-bottom: 10px;
+        align-items: center;
+    }
+
+    .map-display-properties {
+        height: 100%;
+        padding: 0 10px 10px 0;
+        overflow: auto;
+    }
+}
+
+.return-icon {
+    background-image: url("assets/commonmap-core/images/admin/back-arrow.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 23px;
+    height: 17px;
+    cursor: pointer;
+}
+
+.system-defined {
+    align-self: center;
+    justify-self: center;
+    font-size: 32px;
+}
+
+.layer-panel-config-readonly {
+    position: absolute;
+    ;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+}

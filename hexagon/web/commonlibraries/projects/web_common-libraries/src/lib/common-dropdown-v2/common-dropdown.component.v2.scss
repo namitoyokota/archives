@@ -1,0 +1,116 @@
+@import "../../../assets/common-libraries/themes/themes-colors.scss";
+
+:host {
+    width: 100%;
+
+    ::ng-deep .mat-select {
+        height: 30px;
+        width: 100%;
+        background-color: #f7f7f7;
+        border: solid 1px #afafaf;
+        box-shadow: 0px 1px 1px #00000033;
+        box-sizing: border-box;
+        color: #424242;
+        font-size: 13px;
+        font-weight: 17px;
+        padding-left: 7px;
+
+        &:not(.mat-select-disabled):hover,
+        &[aria-activedescendant] {
+            border-color: #64b4ff;
+        }
+
+        ::ng-deep .mat-select-trigger {
+            height: 100% !important;
+
+            .mat-select-arrow-wrapper {
+                padding-left: 5px;
+                padding-right: 5px;
+                background-image: url("assets/common-libraries/images/dropdown-arrow.png");
+                background-position: center;
+                background-repeat: no-repeat;
+
+                .mat-select-arrow {
+                    opacity: 0;
+                }
+            }
+
+            .mat-select-placeholder {
+                color: rgba(0, 0, 0, 0.87);
+            }
+
+            .mat-select-value {
+                vertical-align: middle;
+            }
+        }
+    }
+
+    ::ng-deep .mat-select-disabled {
+        background-color: #eeeeee;
+        border: none;
+        box-shadow: none;
+        cursor: not-allowed;
+
+        ::ng-deep .mat-select-trigger {
+            opacity: 0.3;
+
+            .mat-select-arrow-wrapper,
+            .mat-select-value {
+                cursor: not-allowed;
+            }
+        }
+    }
+
+    ::ng-deep .mat-select.custom-button {
+        width: 90px;
+        height: 56px;
+    }
+}
+
+::ng-deep .mat-select-panel {
+    min-width: calc(100% + 7px) !important;
+    border: solid 1px #adafb2;
+    border-radius: 0 !important;
+    border-top: none;
+    box-shadow: 0px 1px 1px #00000033 !important;
+    margin-left: 8px;
+    margin-top: 29px;
+
+    &.multi-select {
+        margin-left: 32px;
+    }
+
+    ::ng-deep .mat-option {
+        height: 27px !important;
+        min-height: 27px;
+        background-color: #fff;
+        color: #414042;
+        font-size: 13px !important;
+        line-height: 17px !important;
+        padding: 0 12px !important;
+
+        &:hover {
+            background: #f2f2f2;
+        }
+
+        &.has-image {
+            height: 40px !important;
+
+            .mat-option-text {
+                display: grid;
+                grid-template-columns: 25px 1fr;
+                column-gap: 5px;
+                align-items: center;
+
+                img {
+                    align-self: center;
+                    justify-self: center;
+                }
+            }
+        }
+    }
+
+    ::ng-deep .mat-option.mat-selected:not(.mat-option-multiple) {
+        background-color: #cadff2 !important;
+    }
+}

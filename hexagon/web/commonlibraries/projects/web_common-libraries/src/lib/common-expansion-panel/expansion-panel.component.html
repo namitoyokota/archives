@@ -1,0 +1,13 @@
+<div class="header" (click)="headerToggleClick()"
+  [class.no-icon]="!showIcon">
+  <img *ngIf="showIcon" class="indicator-icon"
+       [class.expanded]="panelState === PanelState.Expanded"
+       src="assets/common-libraries/images/down-arrow.png" />
+  <div class="title-content">
+    <ng-content select="hxgn-common-expansion-panel-title"></ng-content>
+    <ng-content select="hxgn-common-expansion-panel-header"></ng-content>
+  </div>
+</div>
+<div class="content" [@expansionState] *ngIf="panelState === PanelState.Expanded">
+  <ng-content select="hxgn-common-expansion-panel-content"></ng-content>
+</div>

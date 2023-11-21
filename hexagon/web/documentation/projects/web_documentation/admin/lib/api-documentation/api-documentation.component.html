@@ -1,0 +1,94 @@
+<div class="content-container" [class.hidden]="selectedDoc">
+    <div class="intro">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.welcome" skeletonWidth="525px">
+        </hxgn-commonlocalization-translate-v1>
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.welcomeDescription" skeletonWidth="1300px">
+        </hxgn-commonlocalization-translate-v1>
+    </div>
+    <div class="search-bar">
+        <hxgn-common-input-v2 [isSearchBox]="true" [showClearBtn]="searchString.length > 0" (clearText)="clearText()">
+            <input type="text" [(ngModel)]="searchString" (input)="search()"
+                [placeholder]="tTokens.searchDocumentation" />
+        </hxgn-common-input-v2>
+    </div>
+    <div class="divider">
+    </div>
+    <div class="content" *ngIf="(isPageLoading$ | async) === false; else loading">
+        <div class="sdk-container" *ngFor="let doc of filteredDocs; trackBy: trackByFn"
+            [class.no-btns]="!doc.codeSampleId && !doc.url">
+            <div class="sdk-title-container">
+                <div class="sdk-title" (click)="openMarkdownAsync(doc)">
+                    <hxgn-commonlocalization-translate-v1 [token]="doc.nameToken!">
+                    </hxgn-commonlocalization-translate-v1>
+                </div>
+            </div>
+            <div class="sdk-description">
+                <hxgn-commonlocalization-translate-v1 [token]="doc.descriptionToken!">
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+            <div class="sdk-keywords-container">
+                <div class="sdk-keyword" *ngFor="let keyword of doc.keywords">
+                    <span>
+                        <hxgn-commonlocalization-translate-v1 [token]="keyword">
+                        </hxgn-commonlocalization-translate-v1>
+                    </span>
+                </div>
+            </div>
+            <div class="sdk-divider" *ngIf="doc.codeSampleId || doc.url">
+            </div>
+            <div class="sdk-bottom-row">
+                <div class="icon-container">
+                    <img *ngIf="doc.audience === audiences.provider"
+                        src="assets/documentation-core/images/provisioner-icon.svg" width="22" height="22" />
+                </div>
+                <div class="buttons-container">
+                    <button *ngIf="doc.codeSampleId" class="hxgn-btn-secondary"
+                        (click)="openCodeSamplesAsync(doc, $event)">
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.codeSamples" [ignoreSkeleton]="true">
+                        </hxgn-commonlocalization-translate-v1>
+                    </button>
+                    <button *ngIf="doc.url" class="hxgn-btn-secondary" (click)="openSwaggerPage(doc, $event)">
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.swagger" [ignoreSkeleton]="true">
+                        </hxgn-commonlocalization-translate-v1>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="selected-doc-container" *ngIf="selectedDoc">
+    <ng-container *ngIf="(isMarkdownLoading$ | async) === false; else loading">
+        <div class="markdown-buttons-row">
+            <button class="hxgn-btn-secondary" (click)="closeMarkdown()">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.backToDocs" [ignoreSkeleton]="true">
+                </hxgn-commonlocalization-translate-v1>
+            </button>
+            <div class="markdown-title">
+                <hxgn-commonlocalization-translate-v1 [token]="selectedDoc?.nameToken!">
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+            <div class="right-buttons">
+                <button *ngIf="selectedDoc!.codeSampleId" class="hxgn-btn-secondary" (click)="openCodeSamplesAsync(selectedDoc!)">
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.codeSamples" [ignoreSkeleton]="true">
+                    </hxgn-commonlocalization-translate-v1>
+                </button>
+                <button *ngIf="selectedDoc?.url" class="hxgn-btn-secondary" (click)="openSwaggerPage(selectedDoc!)">
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.swagger" [ignoreSkeleton]="true">
+                    </hxgn-commonlocalization-translate-v1>
+                </button>
+            </div>
+        </div>
+        <div #markdownContainer class="markdown-container" (scroll)="onScroll($event)">
+            <div markdown class="markdown" [src]="(markdownURL$ | async)!">
+            </div>
+        </div>
+        <img *ngIf="showScrollBtn" class="back-to-top" (click)="markdownContainer.scrollTop = 0"
+            src="assets/documentation-core/images/up-arrow.svg" width="53" height="53" />
+    </ng-container>
+</div>
+<ng-template #loading>
+    <div class="loading-container">
+        <mat-spinner>
+        </mat-spinner>
+    </div>
+</ng-template>

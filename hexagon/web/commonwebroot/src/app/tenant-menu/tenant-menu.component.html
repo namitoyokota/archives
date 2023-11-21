@@ -1,0 +1,89 @@
+<div class="tenant-info-container" [title]="accountText" [class.tenant-info-container-admin]="inAdmin"
+    [class.menu-open]="isMenuOpen" cdkOverlayOrigin #origin="cdkOverlayOrigin"
+    (click)="popover.open(); isMenuOpen = true;">
+    <hxgn-commontenant-icon [tenant]="(activeTenant$ | async)" size="26px">
+    </hxgn-commontenant-icon>
+    <div *ngIf="inAdmin" class="tenant-info">
+        <div class="tenant-name">{{(activeTenant$ | async)?.name}}</div>
+        <div class="user-name">{{user?.displayName}}</div>
+    </div>
+</div>
+<hxgn-common-popover #popover [origin]="origin" [menuMode]="true" [position]="popoverPosition"
+    (closed)="isMenuOpen = false" width="313px">
+    <div class="active-tenant-container">
+        <hxgn-commontenant-icon [tenant]="(activeTenant$ | async)" size="40px">
+        </hxgn-commontenant-icon>
+        <div class="active-tenant-name">{{(activeTenant$ | async)?.name}}</div>
+    </div>
+    <ng-container *ngIf="otherTenants.length">
+        <div class="heading">
+            <span>
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.otherOrganizations" skeletonWidth="120px">
+                    ({{otherTenants.length}})
+                </hxgn-commonlocalization-translate-v1>
+            </span>
+        </div>
+        <div class="other-organizations">
+            <div class="other-organization" *ngFor="let tenant of otherTenants" (click)="changeTenant(tenant)">
+                <hxgn-commontenant-icon [tenant]="tenant" size="32px">
+                </hxgn-commontenant-icon>
+                <div class="organization-name">{{tenant.name}}</div>
+            </div>
+        </div>
+    </ng-container>
+    <div class="heading">
+        <span>
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.account" skeletonWidth="40px">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+    </div>
+    <div class="user-info-container">
+        <hxgn-commonidentity-user-icon-v2 *ngIf="isMenuOpen" [userId]="user?.id" [useBorder]="true" size="32px">
+        </hxgn-commonidentity-user-icon-v2>
+        <div class="user-info">
+            <div class="user-name">{{user?.displayName}}</div>
+            <div class="account-user-name">{{user?.accountUserName}}</div>
+            <div class="open-user-profile" (click)="navToUserProfile()">
+                <img src="assets/open-user-profile.svg" height="17" width="17" />
+                <span class="open-user-profile-text">
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.openUserProfile" skeletonWidth="100px">
+                    </hxgn-commonlocalization-translate-v1>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="linked-item" (click)="openAboutDialog()">
+        <img src="assets/icons/about-menu-icon.svg" height="18" width="18" />
+        <span>
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.about" skeletonWidth="35px">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+    </div>
+    <div class="linked-item"
+        *ngIf="!inAdmin && (user | claimGuard$v1: layoutManagerCapabilityId:layoutManagerClaims.adminAccess)"
+        (click)="navToAdminView()">
+        <img src="assets/icons/administrator-menu-icon.svg" height="21" width="22" />
+        <span>
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.administrator" skeletonWidth="80px">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+    </div>
+    <div class="sign-out-container">
+        <button *featureFlag="'FF_CommonIdentity_3'" class="sign-out-btn" (click)="awayMode()" ellipsisTooltip>
+            <span>
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.awayMode" [ignoreSkeleton]="true">
+                </hxgn-commonlocalization-translate-v1>
+            </span>
+        </button>
+        <button class="sign-out-btn" (click)="logOut()" ellipsisTooltip>
+            <span>
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.signOut" [ignoreSkeleton]="true">
+                </hxgn-commonlocalization-translate-v1>
+            </span>
+        </button>
+    </div>
+</hxgn-common-popover>
+
+<div *ngIf="showLoading" class="loading">
+    <mat-spinner></mat-spinner>
+</div>

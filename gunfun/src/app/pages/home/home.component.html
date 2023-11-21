@@ -1,0 +1,125 @@
+<nb-layout>
+    <nb-layout-header fixed>
+        <div class="header">
+            <button nbButton [nbContextMenu]="menuItems" nbContextMenuTag="navigation-menu">Menu</button>
+            <span class="header--title">Dashboard</span>
+            <button nbButton status="primary" (click)="goToPrintPage()">
+                <nb-icon nbPrefix icon="plus" pack="eva"></nb-icon>
+            </button>
+        </div>
+    </nb-layout-header>
+
+    <nb-layout-column class="content">
+        <!-- Filter Pane -->
+        <div class="filter-pane">
+            <!-- Date Pane -->
+            <div class="date-pane">
+                <!-- Dat of Week-->
+                <div class="day-of-week">
+                    {{ selectedDate | date : 'EEEE' }}
+                </div>
+
+                <!-- Selector -->
+                <div class="date-input-pane">
+                    <!-- Previous Day -->
+                    <button nbButton (click)="goToPreviousDay()">
+                        <nb-icon nbPrefix icon="arrow-ios-back-outline" pack="eva"></nb-icon>
+                    </button>
+
+                    <!-- Day Selector -->
+                    <div>
+                        <input
+                            nbInput
+                            fullWidth
+                            [nbDatepicker]="weekSelector"
+                            [(ngModel)]="selectedDate"
+                            (ngModelChange)="selectDate($event)"
+                        />
+                        <nb-datepicker #weekSelector></nb-datepicker>
+                    </div>
+
+                    <!-- Next Day -->
+                    <button nbButton (click)="goToNextDay()">
+                        <nb-icon nbPrefix icon="arrow-ios-forward-outline" pack="eva"></nb-icon>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Action Pane -->
+            <div class="action-pane">
+                <!-- Type Filter -->
+                <button nbButton status="info" (click)="openTypeFilter()">Types</button>
+
+                <!-- Color Filter -->
+                <button nbButton status="info" (click)="openColorFilter()">Ink</button>
+            </div>
+        </div>
+
+        <!-- Presses Pane -->
+        <div class="press-list">
+            <!-- Press One -->
+            <div class="batch-pane">
+                <label class="press-title">4 Color</label>
+                <div
+                    class="batch-list"
+                    #pressOneListId="cdkDropList"
+                    cdkDropList
+                    [cdkDropListData]="pressOneBatches"
+                    [cdkDropListConnectedTo]="[pressTwoListId, pressThreeListId, pressUnassignedListId]"
+                    [cdkDropListSortingDisabled]="true"
+                    (cdkDropListDropped)="drop($event, 1)"
+                >
+                    <print-item *ngFor="let batch of pressOneBatches" cdkDrag [cdkDragData]="batch" [batch]="batch"></print-item>
+                </div>
+            </div>
+
+            <!-- Press Two -->
+            <div class="batch-pane">
+                <label class="press-title">2 Color</label>
+                <div
+                    class="batch-list"
+                    #pressTwoListId="cdkDropList"
+                    cdkDropList
+                    [cdkDropListData]="pressTwoBatches"
+                    [cdkDropListConnectedTo]="[pressOneListId, pressThreeListId, pressUnassignedListId]"
+                    [cdkDropListSortingDisabled]="true"
+                    (cdkDropListDropped)="drop($event, 2)"
+                >
+                    <print-item *ngFor="let batch of pressTwoBatches" cdkDrag [cdkDragData]="batch" [batch]="batch"></print-item>
+                </div>
+            </div>
+
+            <!-- Press Three -->
+            <div class="batch-pane">
+                <label class="press-title">TBD</label>
+                <div
+                    class="batch-list"
+                    #pressThreeListId="cdkDropList"
+                    cdkDropList
+                    [cdkDropListData]="pressThreeBatches"
+                    [cdkDropListConnectedTo]="[pressTwoListId, pressThreeListId, pressUnassignedListId]"
+                    [cdkDropListSortingDisabled]="true"
+                    (cdkDropListDropped)="drop($event, 3)"
+                >
+                    <print-item *ngFor="let batch of pressThreeBatches" cdkDrag [cdkDragData]="batch" [batch]="batch"></print-item>
+                </div>
+            </div>
+        </div>
+
+        <!-- Unassigned Prints -->
+        <div class="unassigned-pane">
+            <label class="press-title">Unassigned</label>
+            <div
+                class="unassigned-list"
+                #pressUnassignedListId="cdkDropList"
+                cdkDropList
+                [cdkDropListData]="unassignedBatches"
+                [cdkDropListConnectedTo]="[pressOneListId, pressTwoListId, pressThreeListId]"
+                [cdkDropListSortingDisabled]="true"
+                (cdkDropListDropped)="drop($event, null)"
+            >
+                <print-item *ngFor="let batch of unassignedBatches" cdkDrag [cdkDragData]="batch" [batch]="batch"></print-item>
+            </div>
+        </div>
+    </nb-layout-column>
+</nb-layout>

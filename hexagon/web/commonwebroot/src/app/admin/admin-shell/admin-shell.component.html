@@ -1,0 +1,29 @@
+<hxgn-root-admin-menu [menuItems]="menuItems$ | async"></hxgn-root-admin-menu>
+<div class="header">
+    <div *ngIf="menuState();else closeMenuBtn" (click)="showMenu()" class="menu-btn">
+        <img src='assets/icons/main-menu-icon.png' />
+    </div>
+    <ng-template #closeMenuBtn>
+        <div (click)="closeMenu()" class="menu-btn">
+            <img src='assets/icons/close.png' />
+        </div>
+    </ng-template>
+    <div class="title">
+        <hxgn-commonlocalization-translate-v1 [token]="getMenuTitleToken()" ignoreSkeleton="true">
+        </hxgn-commonlocalization-translate-v1>
+    </div>
+    <hxgn-help-menu [title]="tTokens.help"
+        *ngIf="user | claimGuard$v1: layoutManagerCapabilityId:layoutManagerClaims.provisionerHelpAccess; else simpleHelp"
+        class="margin-left-auto"></hxgn-help-menu>
+    <ng-template #simpleHelp>
+        <div [title]="tTokens.help" id="help-btn-container">
+            <img (click)="openHelp()" class="help-btn" src="assets/icons/help-menu.png" />
+        </div>
+    </ng-template>
+    <tenant-menu [inAdmin]="true" [user]="user" class="border-right">
+    </tenant-menu>
+    <img class="logo" [title]="tTokens.about" src="assets/icons/hexagon-bug.png" (click)="openAboutDialog()" />
+</div>
+<div style="overflow: hidden;position: relative;">
+    <router-outlet></router-outlet>
+</div>

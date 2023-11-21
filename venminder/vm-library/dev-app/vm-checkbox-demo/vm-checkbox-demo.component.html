@@ -1,0 +1,11 @@
+<template>
+    <div class="form-group">
+        <label>vm-checkbox</label>
+        <vm-checkbox name="exampleCheckbox" checked.bind="isSelected">vm-checkbox test</vm-checkbox>
+    </div>
+
+    <div class="form-group">
+        <label>vm-checkbox-picklist</label>
+        <vm-checkbox-picklist model.two-way="items" change.call="handleItemsChange($event)"></vm-checkbox-picklist>
+    </div>
+</template>

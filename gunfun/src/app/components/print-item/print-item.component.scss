@@ -1,0 +1,45 @@
+.batch {
+    border: 1px solid var(--background-basic-color-3);
+    border-radius: 10px;
+
+    &.draggable:hover {
+        cursor: grab;
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        column-gap: 10px;
+    }
+
+    .content {
+        display: grid;
+        grid-template-columns: min-content auto min-content;
+        column-gap: 20px;
+
+        .preview-image {
+            height: auto;
+            width: 50px;
+            border-radius: 10px;
+        }
+
+        .info {
+            display: flex;
+            flex-direction: column;
+            row-gap: 5px;
+
+            .title {
+                font-size: 1.2em;
+                font-weight: 700;
+            }
+
+            .description {
+                color: grey;
+            }
+
+            .data {
+                font-size: 0.9em;
+            }
+        }
+    }
+}

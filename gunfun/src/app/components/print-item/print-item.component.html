@@ -1,0 +1,24 @@
+<nb-card class="batch" [class]="drag ? 'draggable' : ''" (click)="goToPrintPage()">
+    <nb-card-body>
+        <div class="content">
+            <!-- Preview Image -->
+            <img class="preview-image" src="/assets/targets/{{ batch.itemid }}.jpg" alt="Image not found" />
+
+            <!-- Information -->
+            <div class="info">
+                <span class="title">Item #{{ batch.itemid }}</span>
+                <span class="description">{{ batch.description }}</span>
+                <span class="data">{{ colors }}</span>
+            </div>
+
+            <!-- Status -->
+            <div class="status">
+                <nb-tag
+                    appearance="filled"
+                    [text]="batch.urgency"
+                    [status]="batch.urgency === 'Low' ? 'success' : batch.urgency === 'Medium' ? 'warning' : 'danger'"
+                ></nb-tag>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>

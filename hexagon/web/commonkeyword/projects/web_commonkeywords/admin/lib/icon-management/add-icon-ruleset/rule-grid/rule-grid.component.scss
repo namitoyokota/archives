@@ -1,0 +1,80 @@
+$common-border: 1px solid #A0A0A0;
+
+:host {
+    overflow-y: auto;
+}
+
+table {
+    width: 100%;
+}
+
+tr.mat-header-row {
+    height: 30px;
+}
+
+th:not(:last-child),
+td:nth-last-child(n + 3) {
+  border-right: $common-border;
+  border-right-width: 2px;
+}
+
+th {
+    padding-left: 10px !important;
+}
+
+.col-icon {
+    width: 110px;
+}
+
+.col-related-entries {
+    width: 200px;
+}
+
+.mat-cell {
+    background-color: #fff;
+    height: 120px;
+}
+
+.mat-footer-row {
+    background-color: #F2F2F2;
+}
+
+.mat-footer-cell, .mat-cell {
+    border-right: none !important;
+    border-bottom: $common-border;
+}
+
+.add-entry-btn {
+    display: grid;
+    grid-template-columns: repeat(2, min-content);
+    align-items: center;
+    column-gap: 5px;
+    cursor: pointer;
+}
+
+.new-rule-pane {
+    display: grid;
+    grid-template-columns: min-content auto;
+    column-gap: 10px;
+    padding-left: 11px;
+
+    .new-rule-name {
+        max-width: 300px;
+        width: 100%;
+    }
+}
+
+.related-entries-pane {
+    width:  100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+
+    hxgn-commonkeywords-rule-menu {
+        margin-top: 40px;
+    }
+}
+
+input {
+    text-transform: capitalize;
+}

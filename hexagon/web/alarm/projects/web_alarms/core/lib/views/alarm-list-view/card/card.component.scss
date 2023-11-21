@@ -1,0 +1,120 @@
+:host {
+    display: block;
+    user-select: none;
+}
+
+.action-button {
+    height: 26px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    background-image: url('assets/alarms-core/images/action_menu_icon.png');
+
+    &.selected {
+        background-image: url('assets/alarms-core/images/action_menu_icon_selected.png');
+    }
+}
+
+.cancel-btn {
+    width: 22px;
+    height: 18px;
+    background-image: url("assets/alarms-core/images/Clear-Alarms.svg");
+    background-size: contain;
+    background-position: center;
+    cursor: pointer;
+
+    &:hover {
+        background-image: url("assets/alarms-core/images/Clear-Alarms-Hover.svg");
+    }
+}
+
+hxgn-common-card {
+    height: 100%;
+    background-color: #fff;
+    &:hover {
+        .action-button  {
+            background-image: url('assets/alarms-core/images/action_menu_row_selected.png');
+        }
+    }
+}
+
+.priority-pane{
+    position: absolute;
+    left: -3px;
+    top: -3px;
+    height: calc(100% + 6px);
+    width: 8px;
+    display: flex;
+
+    .closed-bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height:  100%;
+        background-image: url('assets/alarms-core/images/tombstoned.png');
+        background-position: center;
+        background-repeat: repeat-y;
+        width: 100%;
+    }
+
+    &.has-header-text {
+        top: -17px;
+        height: calc(100% + 20px); 
+    }
+}
+
+hxgn-common-card-icon {
+    position: relative;
+
+    hxgn-alarms-icon {
+        margin-left: 12px;
+        margin-top: 8px;
+    }
+}
+
+.title-pane {
+    display: grid;
+    grid-template-columns: auto min-content;
+    line-height: 21px;
+
+    .time-since {
+        white-space: nowrap;
+    }
+}
+
+hxgn-common-card-info-content {
+    display: grid;
+    grid-template-rows: repeat(2, min-content);
+    row-gap: 5px;
+
+    .info-pane {
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        font-size: 15px;
+        line-height: 18px;
+        min-height: 18px;
+    }
+}
+
+.location {
+    font-size: 15px;
+    line-height: 18px;
+}
+
+.location,
+.title {
+    overflow: hidden;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.redaction {
+    img {
+        position: relative;
+        top: 1px;
+    }
+}

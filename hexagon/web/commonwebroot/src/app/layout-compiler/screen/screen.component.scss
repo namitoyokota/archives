@@ -1,0 +1,174 @@
+:host {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 46px calc(100vh - 50px);
+    grid-template-columns: auto;
+    position: relative;
+}
+
+.hidden {
+    display: none;
+}
+
+hxgn-common-main-menu {
+    grid-row: 1 / span 2;
+}
+
+.tabs {
+    width: 100%;
+    background-color: #242425;
+    display: flex;
+    display: grid;
+    grid-template-columns: 50px auto min-content;
+    overflow: hidden;
+
+    &.no-menu {
+        grid-template-columns: auto min-content;
+    }
+
+    span {
+        padding: 20px;
+        cursor: pointer;
+    }
+
+    .main-menu-btn {
+        cursor: pointer;
+        justify-self: center;
+        align-self: center;
+        padding: 13px;
+        padding-right: 9px;
+        border-right: 1px solid white;
+    }
+
+    #help-btn-container {
+        width: 46px;
+        height: 46px;
+        display: flex;
+        border-right: 1px solid #e0e0e0;
+        border-left: 1px solid #e0e0e0;
+        justify-content: center;
+    }
+
+    .help-btn {
+        justify-self: center;
+        align-self: center;
+        cursor: pointer;
+        width: 26px;
+        height: 26px;
+    }
+
+    .border-right {
+        border-right: 1px solid #e0e0e0;
+    }
+
+    .logo {
+        justify-self: center;
+        align-self: center;
+        padding-right: 20px;
+        padding-left: 10px;
+        cursor: pointer;
+    }
+
+    hxgn-common-tabs {
+        overflow: hidden;
+    }
+
+    .toolbar {
+        display: flex;
+        height: 46px;
+
+        .toolbar-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 46px;
+
+            &.wide {
+                width: 69px;
+            }
+        }
+
+        .notification-toolbar-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 65px;
+            height: 44px;
+        }
+
+        hxgn-commonnotifications-btn-v1,
+        hxgn-commonconversations-chat-btn-v1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            height: 44px;
+            padding: 0 6px;
+        }
+    }
+}
+
+hxgn-layout-compiler-render {
+    overflow: hidden;
+    display: flex;
+}
+
+.content {
+    overflow: hidden;
+    display: flex;
+}
+
+.update-banner {
+    display: flex;
+    position: fixed;
+    background-color: #fcf0d0;
+    width: 100%;
+    z-index: 10000;
+    font-weight: bold;
+    height: 50px;
+    align-items: center;
+    border-bottom: 2px solid #ccc;
+
+    .warn-icon {
+        background-color: #f1c73c;
+        height: 100%;
+        background-image: url(^assets/icons/warning-icon.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 66px;
+        margin-right: 10px;
+    }
+
+    button {
+        margin-left: 10px;
+        height: 38px;
+    }
+}
+
+.custom-tab {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+hxgn-common-tabs {
+    height: 46px;
+}
+
+.overlay-pane {
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 46px);
+    pointer-events: none;
+    display: flex;
+    overflow: hidden;
+    z-index: 10;
+
+    .overlay {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+    }
+}

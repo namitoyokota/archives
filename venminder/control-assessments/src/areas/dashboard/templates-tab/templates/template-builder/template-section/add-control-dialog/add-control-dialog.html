@@ -1,0 +1,64 @@
+﻿<template>
+  <require from="./add-control-dialog.scss"></require>
+  <require from="./new-control/new-control"></require>
+  <require from="./tag-filter/tag-filter"></require>
+
+  <div class="add-control-dialog">
+    <vm-dialog
+      class="AddControlDialog"
+      dialog-title="Add Control"
+      ok-label="Add"
+      ok-click.call="submit()"
+      is-large.bind="true"
+      ok-disabled.bind="!areAnyControlsSelected"
+    >
+      <tag-filter></tag-filter>
+
+      <br />
+
+      <section class="row">
+        <div
+          class="col-lg-12 col-md-12 col-sm-12 graybar control-list-row control-list-checkbox"
+        >
+          <vm-checkbox
+            name="selectAllCheckbox"
+            checked.two-way="selectAll"
+            change.call="handleAllControlsSelected()"
+          >
+            Select All
+          </vm-checkbox>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 control-list-section">
+          <div
+            class="row control-list-row border-bottom"
+            repeat.for="control of controlsList"
+          >
+            <div class="col-lg-11 col-md-11 col-sm-11 control-list-checkbox">
+              <vm-checkbox
+                name="control${$index}"
+                checked.two-way="control.isSelected"
+                change.call="handleControlSelected()"
+              >
+                ${control.controlListTitle}
+              </vm-checkbox>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1">
+              <vm-button
+                class="pull-right"
+                type="icon"
+                size="sm"
+                click.delegate="deleteControl(control)"
+              >
+                <i class="fa fa-trash"></i>
+              </vm-button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="m-t-sm">
+        <new-control id="newControl"></new-control>
+      </div>
+    </vm-dialog>
+  </div>
+</template>

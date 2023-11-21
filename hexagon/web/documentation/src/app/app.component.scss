@@ -1,0 +1,43 @@
+:host {
+    line-height: 1;
+    padding: 0;
+    margin: 0;
+    font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif !important;
+    font-size: 14px;
+    overflow: hidden;
+}
+
+.header {
+    position: absolute;
+    top: 0;
+    width: calc(100vw - 10px);
+    height: 30px;
+    background-color: #444;
+    left: 0;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+
+    span {
+        margin-left: 10px;
+        margin-right: 5px;
+    }
+}
+
+.content {
+    padding: 5px;
+    width: calc(100vw - 10px);
+    height: calc(100vh - 50px);
+    position: absolute;
+    top: 40px;
+    left: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#admin-portal {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}

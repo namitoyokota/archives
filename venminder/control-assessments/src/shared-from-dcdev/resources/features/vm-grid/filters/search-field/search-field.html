@@ -1,0 +1,9 @@
+<template>
+    <require from="./search-field.scss"></require>
+    <div class="vm-grid-search-bar ${!isSearchComponentExpandable?'search-bar-expanded':''}" ref="gridSearchBar">
+        <div class="search-box">
+            <i class="fas fa-search search-box-icon" click.trigger="searchFocus()"></i>
+            <input ref="gridSearchText" class="search-text" value.bind="searchText" placeholder="Search..." keyup.trigger="onSearchKeyup($event)" blur.trigger="searchBlur()" />
+        </div>
+    </div>
+</template>

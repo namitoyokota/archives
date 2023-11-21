@@ -1,0 +1,10 @@
+ <ng-content select="input"></ng-content>
+ <div class="tool-bar-pane">
+    <img *ngIf="showClearBtn"
+        (click)="clearText.emit()"
+        src="assets/common-libraries/images/x_dialog.png" 
+        style="height: 16px; align-self: center;"/>
+    <img *ngIf="isSearchBox && !showClearBtn" src="assets/common-libraries/images/search.png" />
+    <img *ngIf="isValid === false" src="assets/common-libraries/images/validation-error.png" />
+    <img *ngIf="isValid === true" src="assets/common-libraries/images/validation-pass.png" />
+ </div>

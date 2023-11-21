@@ -1,0 +1,149 @@
+<div class="tabs-pane">
+    <!-- Tab Switch -->
+    <hxgn-common-tabs>
+        <mat-tab-group [selectedIndex]="selectedTab" (selectedIndexChange)="tabChange.emit($event)">
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <span>
+                        <hxgn-commonlocalization-translate-v1 [token]='tokens.externalSharing'>
+                        </hxgn-commonlocalization-translate-v1>
+                    </span>
+                    <div *ngIf="(isExternalConfigured$ | async) === false" class="not-setup">1</div>
+                </ng-template>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <span>
+                        <hxgn-commonlocalization-translate-v1 [token]='tokens.internalSharing'>
+                        </hxgn-commonlocalization-translate-v1>
+                    </span>
+                </ng-template>
+            </mat-tab>
+        </mat-tab-group>
+    </hxgn-common-tabs>
+
+    <!-- View Changelog Button -->
+    <div *ngIf="showChangelog" class="changelog-pane">
+        <button class="hxgn-btn-secondary changelog-btn" (click)="openChangelogDialog()" >
+            <span class="changelog-icon"></span>
+            <hxgn-commonlocalization-translate-v1 ignoreSkeleton="true" [token]="tokens.viewChangelog">
+            </hxgn-commonlocalization-translate-v1>
+        </button>
+    </div>
+</div>
+
+<!-- Data Sharing Ribbon -->
+<ng-container *ngIf="(selectedTab === sharingTab.external && (isExternalConfigured$ | async) === true) || (selectedTab === sharingTab.internal && (isInternalConfigured$ | async) === true)">
+    <div class="ribbon">
+
+        <!-- External Data Sharing Ribbon -->
+        <hxgn-commontenant-external-ribbon *ngIf="selectedTab === sharingTab.external"
+            [enableDataReceiving]="(tenant$ | async)?.optInAsSharee"
+            [enabledDataSharing]="externalSharingEnabled$ | async"
+            (dataReceivingChange)="updateReceiving($event)"
+            (enabledDataSharingChange)="toggleExternalDataSharing($event)"
+            (editDataTypes)="showExternalWizard(externalWizardSteps.presetDataTypes)"
+            (editPresets)="showExternalWizard(externalWizardSteps.dataSharingPresetsInfo)"
+            (editSharingNetwork)="showExternalWizard(externalWizardSteps.sharingNetwork)" >
+        </hxgn-commontenant-external-ribbon>
+
+        <!-- Internal Data Sharing Ribbon  -->
+        <hxgn-commontenant-internal-ribbon *ngIf="selectedTab === sharingTab.internal"
+            [filterByGroup]="filterByGroup$ | async"
+            [shareAllData]="internalShareAllData$ | async"
+            (editAll)="showInternalWizard(null, internalWizardSteps.dataSharingSetupOptions)"
+            (editDataTypes)="showInternalWizard(null, internalWizardSteps.presetDataTypes)"
+            (editPresets)="showInternalWizard(null, internalWizardSteps.dataSharingPresetsInfo)"
+            (editSharingNetwork)="showInternalWizard(null, internalWizardSteps.filteringNetwork)"
+            (shareAllDataChange)="toggleInternalDataSharing($event)" >
+        </hxgn-commontenant-internal-ribbon>
+
+    </div>
+
+    <!-- Data Sharing List -->
+    <div class="list-pane">
+        <!-- External Data Sharing -->
+        <hxgn-commontenant-external-list *ngIf="selectedTab === sharingTab.external"
+            [industries]="industries$ | async"
+            [sharingCriteria]="externalSharingOverrides$ | async"
+            [tenants]="optInTenants$ | async"
+            (selectedCriteria)="setSelectedCriteria($event)" >
+        </hxgn-commontenant-external-list>
+
+        <!-- Internal Data Sharing -->
+        <hxgn-commontenant-internal-list *ngIf="selectedTab === sharingTab.internal"
+            [sharingCriteria]="internalSharingOverrides$ | async"
+            (selectedCriteria)="setSelectedCriteria($event)" >
+        </hxgn-commontenant-internal-list>
+    </div>
+
+    <!-- Dataring Criteria Table-->
+    <div class="table">
+        <!-- External Data Sharing -->
+        <hxgn-commontenant-criteria-table *ngIf="selectedTab === sharingTab.external"
+            [configuration]="externalSharingConfiguration$ | async"
+            [globalCriteria]="externalSharingGlobals$ | async"
+            [isExternal]="true"
+            [showExternalTour]="showExternalTour"
+            (criteriaDeleted)="deleteCriteria($event)"
+            (criteriaUpdate)="updateCriteria($event)"
+            (externalTourShown)="showExternalTour = false" >
+        </hxgn-commontenant-criteria-table>
+
+        <!-- Internal Data Sharing -->
+        <div *ngIf="selectedTab === sharingTab.internal" class="internal-table-pane">
+            <div *ngIf="internalShareAllData$ | async" class="disabled-msg">
+                <img src="assets/commontenant-core/filter-banner-icon.svg" />
+                <span>
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.shareAllWarningMsg" [customInterpolation]="true">
+                        <ng-template let-token="token">
+                            <hxgn-commonlocalization-translate-v1 *ngIf="token === 'internal'"
+                                class="bold" [token]="tokens.internalData">
+                            </hxgn-commonlocalization-translate-v1>
+                            <hxgn-commonlocalization-translate-v1 *ngIf="token === 'all'"
+                                class="bold" [token]="tokens.shareAll">
+                            </hxgn-commonlocalization-translate-v1>
+                            <hxgn-commonlocalization-translate-v1 *ngIf="token === 'share'"
+                                class="bold" [token]="tokens.shareAllDataInternally">
+                            </hxgn-commonlocalization-translate-v1>
+                        </ng-template>
+                    </hxgn-commonlocalization-translate-v1>
+                </span>
+            </div>
+            <hxgn-commontenant-criteria-table
+                [class.disabled]="internalShareAllData$ | async"
+                [configuration]="internalSharingConfiguration$ | async"
+                [globalCriteria]="internalSharingGlobals$ | async"
+                [hiddenColumns]="(filterByGroup$ | async) === true ? filterGroupCol : filterAllHiddenCol"
+                [isExternal]="false"
+                [showInternalTour]="showInternalTour"
+                (criteriaDeleted)="deleteCriteria($event)"
+                (criteriaUpdate)="updateCriteria($event)"
+                (internalTourShown)="showInternalTour = false" >
+            </hxgn-commontenant-criteria-table>
+        </div>
+    </div>
+
+    <!-- Footer Buttons -->
+    <div class="button-pane">
+        <button class="hxgn-btn-secondary" (click)="discardChanges()" [disabled]="(isDirty$ | async) === false">
+            <hxgn-commonlocalization-translate-v1 [token]='tokens.discardChanges'>
+            </hxgn-commonlocalization-translate-v1>
+        </button>
+        <button class="hxgn-btn-primary" (click)="confirmSave()" [disabled]="(isDirty$ | async) === false">
+            <hxgn-commonlocalization-translate-v1 [token]='tokens.saveChanges'></hxgn-commonlocalization-translate-v1>
+        </button>
+    </div>
+</ng-container>
+
+<!-- Internal data sharing needs to be setup -->
+<hxgn-commontenant-internal-setup
+    *ngIf="selectedTab === sharingTab.internal && ((isInternalConfigured$ | async) === false)"
+    (startWizard)="showInternalWizard($event)" >
+</hxgn-commontenant-internal-setup>
+
+<!-- External data sharing needs to be setup -->
+<hxgn-commontenant-external-setup
+    *ngIf="selectedTab === sharingTab.external && ((isExternalConfigured$ | async) === false)"
+    (startWizard)="showExternalWizard()" >
+</hxgn-commontenant-external-setup>

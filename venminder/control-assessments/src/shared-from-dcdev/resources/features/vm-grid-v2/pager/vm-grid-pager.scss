@@ -1,0 +1,85 @@
+@import '../../../../core-styles/stylesheets/_variables.scss';
+@import '../../../../core-styles/stylesheets/theme/_variables.scss';
+
+$pager-border-color: $N40;
+$pager-button-hover-color: $light-gray;
+$pager-button-active-color: $light-gray;
+$pager-button-icon-color: $light-blue-gray;
+$pager-button-hover-icon-color: $navy;
+$pager-button-disabled-bg: $N10;
+$pager-bg: $white;
+
+.vm-grid-pager-container {
+  display: flex;
+
+  .pager-button-container {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+
+    .pager-button {
+      border: 1px solid $pager-border-color;
+      border-left: 0px;
+      cursor: pointer;
+      font-size: 12px;
+      height: 25px;
+      line-height: 22px;
+      padding: 0px 8px;
+      text-align: center;
+
+      i {
+        color: $pager-button-icon-color;
+        font-size: .9em;
+      }
+
+      &:hover {
+        background-color: $pager-button-hover-color;
+      }
+
+      &:hover i {
+        color: $pager-button-hover-icon-color;
+      }
+
+      &:first-child {
+        border: 1px solid $pager-border-color;
+        border-radius: 5px 0 0 5px;
+      }
+
+      &:last-child {
+        border-radius: 0 5px 5px 0;
+      }
+
+      &.disabled {
+        background-color: $pager-button-disabled-bg;
+        cursor: default;
+
+        i {
+          opacity: .4;
+        }
+
+        &:hover i {
+          opacity: .25;
+        }
+      }
+
+      &.currentpage-text {
+        color: darken($pager-button-icon-color, 5%);
+        cursor: default;
+        font-size: 1em;
+
+        &:hover {
+          background-color: $pager-bg !important;
+        }
+      }
+    }
+  }
+
+  .vm-grid-results-text {
+    span {
+      font-weight: 600;
+    }
+
+    height: 45px;
+    line-height: 45px;
+  }
+}

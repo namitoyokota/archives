@@ -1,0 +1,44 @@
+<hxgn-common-expansion-panel panelState="expanded">
+
+    <!-- Header -->
+    <hxgn-common-expansion-panel-header>
+        <span>
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.shapeHistory" skeletonWidth="80px">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+    </hxgn-common-expansion-panel-header>
+
+    <!-- Content -->
+    <hxgn-common-expansion-panel-content>
+
+        <!-- Not Loading -->
+        <div class="history-container" *ngIf="shapeHistory.length && !shapesLoading">
+            <!-- Shape History-->
+            <ng-container *ngFor="let history of shapeHistory">
+                <div class="history-item" *ngIf="history.operations.length">
+                    <hxgn-shapes-history-item [operations]="history.operations" [concise]="true" [shape]="shape">
+                    </hxgn-shapes-history-item>
+                    <div class="time-since">{{history.timestampDate | commonTimeSince: refreshToggle | async}}</div>
+                </div>
+            </ng-container>
+
+            <!-- Open History Dialog -->
+            <div class="show-more-container" *ngIf="shapeHistory.length > 1" (click)="openHistoryDialog()">
+                <span>
+                    (<hxgn-commonlocalization-translate-v1 [token]="tokens.showAllEntries" skeletonWidth="95px">
+                    </hxgn-commonlocalization-translate-v1>)...
+                </span>
+                <img src="assets/shapes/images/expand-arrow.png" height="10" width="16" />
+            </div>
+        </div>
+
+        <!-- Loading -->
+        <div class="history-container" *ngIf="shapesLoading">
+            <div class="loading-pane">
+                <mat-spinner></mat-spinner>
+            </div>
+        </div>
+
+    </hxgn-common-expansion-panel-content>
+
+</hxgn-common-expansion-panel>

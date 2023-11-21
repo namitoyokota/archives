@@ -1,0 +1,61 @@
+<!-- Search Pane -->
+<div class="search-pane">
+  <hxgn-common-input-v2 [isSearchBox]="true" [showClearBtn]="searchString?.length" (clearText)="clearSearch()">
+    <input [(ngModel)]="searchString" (input)="search()" [placeholder]="tTokens?.search" type="text" />
+  </hxgn-common-input-v2>
+</div>
+
+<!-- Create new shape -->
+<div (click)="startNewShape()" class="list-cmd" [class.disabled]="(isLicensed$ | async) === false">
+  <img src="assets/shapes/images/add-icon.png" />
+  <span>
+    <hxgn-commonlocalization-translate-v1 skeletonWidth="164px" [token]="tokens.createNewSmartShape">
+    </hxgn-commonlocalization-translate-v1>
+  </span>
+</div>
+
+<!-- Clone Selected Shape -->
+<div (click)="cloneShape()" class="list-cmd" [class.disabled]="!activeShapeId || (isLicensed$ | async) === false">
+  <img src="assets/shapes/images/clone-icon.png" />
+  <span>
+    <hxgn-commonlocalization-translate-v1 skeletonWidth="125px" [token]="tokens.cloneSmartShape">
+    </hxgn-commonlocalization-translate-v1>
+  </span>
+</div>
+
+<!-- Shapes -->
+<div class="shape-pane">
+  <ng-contaner *ngIf="(shapes$ | async) as shapes">
+    <div class="item" [class.active]="shape.id === activeShapeId" [class.is-dirty]="isDirty(shape.id)"
+      *ngFor="let shape of shapes; trackBy: shapeTrackBy" (click)="selectShape(shape)">
+      <div class="shape-item" [class.editable]="!shape.isManaged"  [class.invalid]="!shape.isValid()" [class.managed-internally]="!shape.isManaged">
+        <!-- Preview of the color of the shape -->
+        <hxgn-shapes-icon [fillColor]="shape.graphicsSettings.fillColor" [lineColor]="shape.graphicsSettings.lineColor"
+          [lineType]="shape.graphicsSettings.lineType"></hxgn-shapes-icon>
+
+        <span class="shape-name" ellipsisTooltip>{{shape.name}}</span>
+
+        <!-- Invalid shape icon -->
+        <img *ngIf="!shape.isValid()" [title]="tTokens?.missingData" src="assets/shapes/images/warning-icon.svg" />
+
+        <img *ngIf="!shape.isManaged" src="assets/shapes/images/editable-icon.svg" />
+
+        <div *ngIf="!shape.isManaged" class="action-icon" cdkOverlayOrigin #origin="cdkOverlayOrigin" (click)="popover.open($event)">
+          <hxgn-common-popover #popover [origin]="origin" [menuMode]="true" [position]="popoverPosition">
+
+            <!-- Delete shape -->
+            <hxgn-common-menu-item (click)="deleteShape(shape.id)" imgSrc="assets/shapes/images/delete-icon.png"
+              [token]="tokens.deleteShape">
+            </hxgn-common-menu-item>
+
+            <!-- Discard changes -->
+            <hxgn-common-menu-item *ngIf="isDirty(shape.id)" (click)="reset(shape.id)" [token]="tokens.discardChanges">
+            </hxgn-common-menu-item>
+          </hxgn-common-popover>
+        </div>
+      </div>
+
+    </div>
+  </ng-contaner>
+
+</div>

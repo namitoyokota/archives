@@ -1,0 +1,27 @@
+<!-- Data is loading -->
+<div class="loader" *ngIf="isLoading">
+    <mat-spinner></mat-spinner>
+</div>
+
+<ng-container *ngIf="isConfigured !== null">
+
+    <!-- Data sharing is not configured -->
+    <hxgn-commontenant-data-sharing-unconfigured *ngIf="!isConfigured"
+        (setupExternal)="startWizard()"
+        (setupInternal)="startInternalWizard()" >
+    </hxgn-commontenant-data-sharing-unconfigured>
+
+    <!-- Data sharing manager -->
+    <div class="manager-pane"  *ngIf="isConfigured">
+        <hxgn-commontenant-data-sharing-manager #manger
+            [selectedTab]="selectedTab"
+            [tenant]="tenant$ | async"
+            (isLoading)="isLoading = $event"
+            (saveChanges)="save()"
+            (startExternalWizard)="startWizard($event)"
+            (startInternalWizard)="startInternalWizard($event)"
+            (tabChange)= "selectedTab = $event" >
+        </hxgn-commontenant-data-sharing-manager>
+    </div>
+
+</ng-container>

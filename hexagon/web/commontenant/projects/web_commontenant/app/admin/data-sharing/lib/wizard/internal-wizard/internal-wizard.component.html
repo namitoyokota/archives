@@ -1,0 +1,287 @@
+<div class="step-pane">
+
+    <!-- 
+        Internal Data Sharing Setup Options
+
+        Allows the user to choose if they want to apply internal data sharing to all users or by groups
+    -->
+    <hxgn-commontenant-internal-data-sharing-setup-options #dataSharingSetupOptions *ngIf="activeStep === steps.dataSharingSetupOptions" [filterByGroupsSource]="filterByGroupsSource"
+        (change)="setFilterOption($event)" [showShareAllOption]="editStep === steps.dataSharingSetupOptions" [filterByGroups]="filterByGroups" [actionPaneRef]="dataSharingSetupOptionsActionPane">
+        <ng-template #dataSharingSetupOptionsActionPane>
+
+            <!-- Show confirm discard current filter settings -->
+            <div *ngIf="filterByGroupsSource && !filterByGroups; else noConfirmDiscard" class="single-btn-pane">
+                <div class="confirm-button-pane">
+                    <button class="hxgn-btn-primary" cdkOverlayOrigin #discardOrigin="cdkOverlayOrigin"
+                        (click)="discardPopover.open()" [disabled]="(dataSharingSetupOptions.isDirty$ | async) === false">
+                        <hxgn-commonlocalization-translate-v1 [token]='tokens.continue'>
+                        </hxgn-commonlocalization-translate-v1>
+                    </button>
+                </div>
+
+                <!-- Confirm menu -->
+                <hxgn-common-popover #discardPopover [origin]="discardOrigin" position="above-left">
+                    <div class="confirm-pane">
+                        <span class="title">
+                            <hxgn-commonlocalization-translate-v1 [token]='tokens.discardCurrentFilterSettings'>
+                            </hxgn-commonlocalization-translate-v1>
+                        </span>
+                        <span class="msg">
+                            <hxgn-commonlocalization-translate-v1 [token]='tokens.discardCurrentFilterSettingsMsg'>
+                            </hxgn-commonlocalization-translate-v1>
+                        </span>
+                        <div class="confirm-btn-pane">
+                            <button class="hxgn-btn-secondary" (click)="discardPopover.close()">
+                                <hxgn-commonlocalization-translate-v1 [token]='tokens.goBack'></hxgn-commonlocalization-translate-v1>
+                            </button>
+                    
+                            <button *ngIf="(tenant$ | async).optIntoGroupDataSharing === true"
+                                (click)="setActiveStepAsync(steps.dataSharingSetupOptions, steps.dataSharingSetupInfo, dataSharingSetupOptions)"
+                                class="hxgn-btn-secondary">
+                                <hxgn-commonlocalization-translate-v1 [token]='tokens.continue'></hxgn-commonlocalization-translate-v1>
+                            </button>
+                            <button *ngIf="(tenant$ | async).optIntoGroupDataSharing === false"
+                                (click)="setActiveStepAsync(steps.dataSharingSetupOptions, steps.save, dataSharingSetupOptions)"
+                                class="hxgn-btn-secondary">
+                                <hxgn-commonlocalization-translate-v1 [token]='tokens.continue'></hxgn-commonlocalization-translate-v1>
+                            </button>
+                        </div>
+                    </div>
+                </hxgn-common-popover>
+            </div>
+
+            <!-- No discard current filter confirmation is needed -->
+            <ng-template #noConfirmDiscard>
+                <div  class="single-btn-pane">
+                    <button *ngIf="(tenant$ | async).optIntoGroupDataSharing === true" class="hxgn-btn-primary" [disabled]="(dataSharingSetupOptions.isDirty$ | async) === false"
+                        (click)="setActiveStepAsync(steps.dataSharingSetupOptions, steps.dataSharingSetupInfo, dataSharingSetupOptions)">
+                        <hxgn-commonlocalization-translate-v1 [token]='tokens.continue'></hxgn-commonlocalization-translate-v1>
+                    </button>
+    
+                    <button *ngIf="(tenant$ | async).optIntoGroupDataSharing === false" class="hxgn-btn-primary" [disabled]="(dataSharingSetupOptions.isDirty$ | async) === false"
+                        (click)="setActiveStepAsync(steps.dataSharingSetupOptions, steps.save, dataSharingSetupOptions)">
+                        <hxgn-commonlocalization-translate-v1 [token]='tokens.continue'></hxgn-commonlocalization-translate-v1>
+                    </button>
+                </div>
+            </ng-template>
+        </ng-template>
+    </hxgn-commontenant-internal-data-sharing-setup-options>
+
+    <!-- 
+        Internal Data Sharing Info
+
+        Gives the user an overview of the process of setting up internal data sharing.
+     -->
+    <hxgn-commontenant-internal-data-sharing-setup-info #dataSharingSetupInfo *ngIf="activeStep === steps.dataSharingSetupInfo"
+        [filterByGroups]="filterByGroups" [actionPaneRef]="dataSharingSetupInfoActionPane">
+        <ng-template #dataSharingSetupInfoActionPane>
+            <div class="two-btn-pane">
+                <button class="hxgn-btn-secondary" (click)="goBack()">
+                    <hxgn-commonlocalization-translate-v1 [token]='tokens.goBack'></hxgn-commonlocalization-translate-v1>
+                </button>
+
+                <button *ngIf="!editStep" class="hxgn-btn-primary" [disabled]="(dataSharingSetupInfo.isDirty$ | async) === false"
+                    (click)="setActiveStepAsync(steps.dataSharingSetupInfo, hasExternalSharing ? steps.dataSharingClone : steps.presetDataTypes, dataSharingSetupInfo)">
+                    <hxgn-commonlocalization-translate-v1 [token]='tokens.continue'></hxgn-commonlocalization-translate-v1>
+                </button>
+
+                <button *ngIf="editStep" class="hxgn-btn-primary" [disabled]="(dataSharingSetupInfo.isDirty$ | async) === false"
+                    (click)="setActiveStepAsync(steps.dataSharingSetupInfo, steps.presetDataTypes, dataSharingSetupInfo)">
+                    <hxgn-commonlocalization-translate-v1 [token]='tokens.continue'></hxgn-commonlocalization-translate-v1>
+                </button>
+            </div>
+        </ng-template>
+    </hxgn-commontenant-internal-data-sharing-setup-info>
+
+    <!-- 
+        Clone External Data Sharing (Optional)
+
+        Optional step that allow the user to clone external data sharing rules if they have been setup.
+    -->
+    <hxgn-commontenant-clone-external #cloneInternal  *ngIf="activeStep === steps.dataSharingClone"
+        (cloneExternal)="cloneEnabled = $event" [clone]="cloneEnabled" [disable]="hasConfiguration$ | async" [actionPaneRef]="cloneInternalDataActionPane">
+
+        <ng-template #cloneInternalDataActionPane>
+            <div class="two-btn-pane">
+                <button class="hxgn-btn-secondary" (click)="goBack()">
+                    <hxgn-commonlocalization-translate-v1 [token]='tokens.goBack'></hxgn-commonlocalization-translate-v1>
+                </button>
+
+                <button class="hxgn-btn-primary" [disabled]="(cloneInternal.isDirty$ | async) === false"
+                    (click)="clone(); setActiveStepAsync(steps.dataSharingClone, steps.presetDataTypes, cloneInternal)">
+                    <hxgn-commonlocalization-translate-v1 [token]='tokens.nextStep'></hxgn-commonlocalization-translate-v1>
+                </button>
+            </div>
+        </ng-template>
+
+    </hxgn-commontenant-clone-external>
+
+    <!-- 
+        Preset Data Types
+
+        Select the type of data to share. At least one data type must be selected to move forward.
+    -->
+    <hxgn-commontenant-preset-data-types #presetDataTypes  *ngIf="activeStep === steps.presetDataTypes" [enabledCapabilities]="enabledCapabilities$ | async"
+        [internalSharing]="true" (enabledChange)="dataTypesChange($event)" [actionPaneRef]="presetDataTypesActionPane" [descriptionHeaderPaneRef]="presetDataTypesDescriptionPane">
+
+        <ng-template #presetDataTypesActionPane>
+            <div [class.two-btn-pane]="editStep !== steps.presetDataTypes" [class.single-btn-pane]="editStep === steps.presetDataTypes">
+                <button *ngIf="editStep !== steps.presetDataTypes" class="hxgn-btn-secondary" (click)="goBack()">
+                    <hxgn-commonlocalization-translate-v1 [token]='tokens.goBack'></hxgn-commonlocalization-translate-v1>
+                </button>
+                <button class="hxgn-btn-primary" [disabled]="(presetDataTypes.isDirty$ | async) === false"
+                    (click)="setActiveStepAsync(steps.presetDataTypes, steps.dataSharingPresetsInfo, presetDataTypes)">
+                    <hxgn-commonlocalization-translate-v1 [token]='tokens.nextStep'></hxgn-commonlocalization-translate-v1>
+                </button>
+            </div>
+            
+        </ng-template>
+    
+        <ng-template #presetDataTypesDescriptionPane>
+            <hxgn-commontenant-step-indicator *ngIf="showStepIndicator" [titleToken]="tokens.internalSharing"
+                [stepCount]="filterByGroups ? 4 : 3" [activeStep]="1"></hxgn-commontenant-step-indicator>
+        </ng-template>
+    </hxgn-commontenant-preset-data-types>
+
+    <!-- 
+        Data Sharing Preset Info
+
+        Shows the user some information about the preset setup process. There is no data to validate or update.
+    -->
+    <hxgn-commontenant-preset-info #presetInfo *ngIf="activeStep === steps.dataSharingPresetsInfo"
+        [internalSharing]="true" [actionPaneRef]="presetInfoActionPane" [descriptionHeaderPaneRef]="presetInfoDescriptionPane">
+        <ng-template #presetInfoActionPane>
+            <div [class.two-btn-pane]="editStep !== steps.dataSharingPresetsInfo" [class.single-btn-pane]="editStep === steps.dataSharingPresetsInfo">
+                <button *ngIf="editStep !== steps.dataSharingPresetsInfo" class="hxgn-btn-secondary" (click)="goBack()">
+                    <hxgn-commonlocalization-translate-v1 [token]='tokens.goBack'></hxgn-commonlocalization-translate-v1>
+                </button>
+                <button class="hxgn-btn-primary" [disabled]="(presetInfo.isDirty$ | async) === false"
+                    (click)="setActiveStepAsync(steps.dataSharingPresetsInfo, steps.dataSharingPresetSetup, presetInfo)">
+                    <hxgn-commonlocalization-translate-v1 [token]='tokens.nextStep'></hxgn-commonlocalization-translate-v1>
+                </button>
+            </div>
+            
+        </ng-template>
+    
+    </hxgn-commontenant-preset-info>
+
+    <!-- 
+        Data Sharing Preset Setup
+
+        Allows the user to setup sharing criteria.
+    -->
+    <hxgn-commontenant-preset-setup #presetSetup *ngIf="activeStep === steps.dataSharingPresetSetup" [criteriaType]="criteriaType.internalGroupGlobal"
+        [overrideType]="criteriaType.internalGroupOverride" [activeCapabilities]="enabledCapabilities$ | async" [isInternal]="true"
+        [sharerTenantId]="tenantId" [actionPaneRef]="presetSetupActionPane" [descriptionHeaderPaneRef]="presetInfoDescriptionPane">
+        <ng-template #presetSetupActionPane>
+            <div class="two-btn-pane">
+                <button class="hxgn-btn-secondary" (click)="goBack()">
+                    <hxgn-commonlocalization-translate-v1 [token]='tokens.goBack'></hxgn-commonlocalization-translate-v1>
+                </button>
+                <button *ngIf="editStep !== steps.dataSharingPresetsInfo && editStep !== steps.presetDataTypes" class="hxgn-btn-primary"  [disabled]="(presetSetup.isDirty$ | async) === false"
+                    (click)="setActiveStepAsync(steps.dataSharingPresetSetup, filterByGroups ? steps.filteringNetwork : steps.applyPresets, presetSetup)">
+                    <hxgn-commonlocalization-translate-v1 [token]='tokens.nextStep'></hxgn-commonlocalization-translate-v1>
+                </button>
+
+                <button *ngIf="editStep === steps.dataSharingPresetsInfo || editStep === steps.presetDataTypes" class="hxgn-btn-primary"  [disabled]="(presetSetup.isDirty$ | async) === false"
+                    (click)="setActiveStepAsync(steps.dataSharingPresetSetup, steps.save, presetSetup)">
+                    <hxgn-commonlocalization-translate-v1 [token]='tokens.nextStep'></hxgn-commonlocalization-translate-v1>
+                </button>
+            </div>
+            
+        </ng-template>
+    
+    </hxgn-commontenant-preset-setup>
+
+    <!-- Template for the info panel for for all preset setup steps -->
+    <ng-template #presetInfoDescriptionPane>
+        <hxgn-commontenant-step-indicator *ngIf="showStepIndicator" [titleToken]="tokens.internalSharing"
+            [stepCount]="filterByGroups ? 4 : 3" [activeStep]="2"></hxgn-commontenant-step-indicator>
+    </ng-template>
+
+    <!-- 
+        Internal FIltering Network
+
+        Allows the user to select the groups to share data with
+     -->
+    <hxgn-commontenant-internal-filtering-network #filteringNetwork *ngIf="activeStep === steps.filteringNetwork"
+        [selectedGroups]="selectedGroupIds$ | async" [actionPaneRef]="filteringNetworkActionPane" [descriptionHeaderPaneRef]="filteringNetworkDescriptionPane">
+        <ng-template #filteringNetworkActionPane>
+            <div [class.two-btn-pane]="editStep !== steps.filteringNetwork" [class.single-btn-pane]="editStep === steps.filteringNetwork">
+                <button *ngIf="editStep !== steps.filteringNetwork" class="hxgn-btn-secondary" (click)="goBack()">
+                    <hxgn-commonlocalization-translate-v1 [token]='tokens.goBack'></hxgn-commonlocalization-translate-v1>
+                </button>
+                <button class="hxgn-btn-primary"  [disabled]="(filteringNetwork.isDirty$ | async) === false"
+                    (click)="setActiveStepAsync(steps.filteringNetwork, steps.applyPresets, filteringNetwork)">
+                    <hxgn-commonlocalization-translate-v1 [token]='tokens.nextStep'></hxgn-commonlocalization-translate-v1>
+                </button>
+            </div>
+        </ng-template>
+
+         <!-- Template for the info panel for for all preset setup steps -->
+        <ng-template #filteringNetworkDescriptionPane>
+            <hxgn-commontenant-step-indicator *ngIf="showStepIndicator" [titleToken]="tokens.internalSharing"
+                [stepCount]="4" [activeStep]="3"></hxgn-commontenant-step-indicator>
+        </ng-template>
+    </hxgn-commontenant-internal-filtering-network>
+
+
+    <!-- 
+        Apply Preset
+
+        Allows the user to decided how they want to apply the preset
+     -->
+
+    <hxgn-commontenant-internal-apply-presets #applyPresets *ngIf="activeStep === steps.applyPresets"
+        (applyToGroupsChange)="applyToGroups = $event" [applyToGroups]="applyToGroups" [applyToNewlySelected]="!!editStep"
+        (applyToOtherChange)="applyToOther = $event" [applyToOther]="applyToOther" [filterByGroups]="filterByGroups" [actionPaneRef]="applyPresetActionPane" [descriptionHeaderPaneRef]="applyPresetsDescriptionPane">
+
+        <ng-template #applyPresetActionPane>
+            <div class="two-btn-pane">
+                <button class="hxgn-btn-secondary" (click)="goBack()">
+                    <hxgn-commonlocalization-translate-v1 [token]='tokens.goBack'></hxgn-commonlocalization-translate-v1>
+                </button>
+                <button class="hxgn-btn-primary" 
+                    (click)="setActiveStepAsync(steps.applyPresets, steps.save, applyPresets); toggleDataShare();">
+                    <hxgn-commonlocalization-translate-v1 [token]='tokens.finish'></hxgn-commonlocalization-translate-v1>
+                </button>
+            </div>
+        </ng-template>
+
+         <!-- Template for the info panel for for all preset setup steps -->
+        <ng-template #applyPresetsDescriptionPane>
+            <hxgn-commontenant-step-indicator *ngIf="showStepIndicator" [titleToken]="tokens.internalSharing"
+                [stepCount]="filterByGroups ? 4 : 3" [activeStep]="filterByGroups ? 4 : 3"></hxgn-commontenant-step-indicator>
+        </ng-template>
+
+    </hxgn-commontenant-internal-apply-presets>
+
+
+     <!-- 
+        Save
+
+        This step confirms the user wants to save. Legal notice.
+     -->
+     <div class="save-step" *ngIf="activeStep === steps.save">
+        <hxgn-commontenant-data-sharing-notice></hxgn-commontenant-data-sharing-notice>
+    
+        <div class="two-btn-pane">
+            <button class="hxgn-btn-secondary" (click)="goBack()">
+                <hxgn-commonlocalization-translate-v1 [token]='tokens.goBack'></hxgn-commonlocalization-translate-v1>
+            </button>
+            <div class="btn-group">
+                <button class="hxgn-btn-secondary" (click)="cancel()">
+                    <hxgn-commonlocalization-translate-v1 [token]='tokens.discardChanges'></hxgn-commonlocalization-translate-v1>
+                </button>
+                <button class="hxgn-btn-primary" (click)="finish()">
+                    <hxgn-commonlocalization-translate-v1 [token]='tokens.accept'></hxgn-commonlocalization-translate-v1>
+                </button>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<div *ngIf="isLoading" class="loading">
+    <mat-spinner></mat-spinner>
+</div>

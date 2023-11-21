@@ -1,0 +1,90 @@
+$common-line-height: 22px;
+$common-margin-bottom: 15px;
+$pre-feedback-text-size: 16px;
+$post-feedback-text-size: 13px;
+
+%feedback-text {
+    color: #333333;
+    line-height: $common-line-height;
+}
+
+:host {
+    width: 600px;
+    display: block;
+    padding: 20px;
+
+    & * {
+        box-sizing: border-box;
+    }
+}
+
+.buttons-row {
+    display: flex;
+    justify-content: flex-end;
+    column-gap: 10px;
+}
+
+.checkbox-container {
+    margin-bottom: $common-margin-bottom;
+
+    ::ng-deep .mat-checkbox-label {
+        @extend %feedback-text;
+        font-size: $post-feedback-text-size
+    }
+}
+
+.features-list {
+    @extend %feedback-text;
+    font-size: $pre-feedback-text-size;
+    font-style: italic;
+    margin-bottom: $common-margin-bottom;
+}
+
+.feedback-container {
+    margin-bottom: $common-margin-bottom;
+
+    .feedback {
+        height: 160px;
+        width: 100%;
+        line-height: 18px;
+    }
+
+    .feedback-title {
+        @extend %feedback-text;
+        font-size: $pre-feedback-text-size;
+    }
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 27px;
+    margin-bottom: $common-margin-bottom;
+
+    img {
+        cursor: pointer;
+    }
+}
+
+.privacy-link-container {
+    margin-bottom: $common-margin-bottom;
+
+    a {
+        font-size: $post-feedback-text-size !important;
+        font-weight: 400 !important;
+        line-height: $common-line-height;
+        text-decoration: underline;
+    }
+}
+
+::ng-deep .feedback-dialog {
+    .mat-dialog-container {
+        border: 1px solid #afafaf;
+        border-radius: 0;
+        box-shadow: 0px 2px 2px #00000033;
+        padding: 0;
+    }
+}

@@ -1,0 +1,30 @@
+<hxgn-common-expansion-panel panelState="expanded">
+    <hxgn-common-expansion-panel-title>
+        <img src="assets/shapes/images/filtering-menu.svg" />
+        <span>
+            <hxgn-commonlocalization-translate-v1 skeletonWidth="75" [token]="tokens.filters"></hxgn-commonlocalization-translate-v1>
+            ({{getActiveFilterOperations()?.length}})
+        </span>
+    </hxgn-common-expansion-panel-title>
+
+    <hxgn-common-expansion-panel-content>
+        <div class="filter-menu">
+            <div class="filter-title-pane">
+
+                <hxgn-common-filter-operation *ngFor="let operation of filter.operations; let i = index; trackBy: filterOperationTrackBy"
+                    [operation]="operation" [propertyList]="propertyList" (filterChange)="onFilterChange($event, i)" (deleted)="deleteFilter(i)">
+                </hxgn-common-filter-operation>
+
+            </div>
+
+            <div class="add-new-pane">
+                <div class="add-new-btn" (click)="newFilter()">
+                    <img src="assets/shapes/images/add_green.png" />
+                    <span>
+                        <hxgn-commonlocalization-translate-v1 skeletonWidth="75" [token]="tokens.addNew"></hxgn-commonlocalization-translate-v1>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </hxgn-common-expansion-panel-content>
+</hxgn-common-expansion-panel>

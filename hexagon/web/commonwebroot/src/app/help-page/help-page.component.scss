@@ -1,0 +1,20 @@
+﻿iframe {
+    border-width: 0;
+    height: 99vh;
+    width: 100vw;
+}
+
+.warning-box {
+    height: 35px;
+    align-self: center;
+}
+
+.warning-text {
+    font-size: 24px;
+}
+
+:host {
+    display: flex;
+    justify-content: center;
+    height: 99vh;
+}

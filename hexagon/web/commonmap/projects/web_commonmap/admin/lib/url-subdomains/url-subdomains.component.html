@@ -1,0 +1,18 @@
+<div *ngIf="urlNeedsSubdomains">
+    <div class="label">
+        <hxgn-commonlocalization-translate-v1
+            [token]="tokens.optionSubdomainsLabel"
+            [skeletonWidth]="'60px'">
+        </hxgn-commonlocalization-translate-v1>
+    </div>
+    <hxgn-common-input-v2 [isValid]="!subdomainsErrorMsg ? null : false" style="width:100%">
+        <input type="text" (input)="validateSubdomainsStr($event)" (change)="setSubdomains($event)"
+            placeholder="{{ transStrings[tokens.optionSubdomainsPlaceholder] }}"
+            [(ngModel)]="subdomainsStr" />
+    </hxgn-common-input-v2>
+    <span class="error-msg" *ngIf="subdomainsErrorMsg">
+        <hxgn-commonlocalization-translate-v1
+            [token]="subdomainsErrorMsg">
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+</div>

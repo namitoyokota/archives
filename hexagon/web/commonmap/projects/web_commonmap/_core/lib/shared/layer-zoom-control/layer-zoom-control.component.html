@@ -1,0 +1,36 @@
+﻿<div class="zoom-group">
+    <mat-checkbox [checked]="defineMinZoom" disableRipple="true" (change)="setUseMinZoom($event)">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.showZoomLevelLabel">
+        </hxgn-commonlocalization-translate-v1>
+    </mat-checkbox>
+    <div class="zoom-input-group">
+        <div class="zoom-input"><input class="no-edit" type="number" name="minZoomLevel" [disabled]="!defineMinZoom"
+                [value]="getZoomValue(minZoomLevel)" onkeydown="return false" min="0" max="30" step="1"
+                (change)="setMinZoom($event)" /></div>
+        <div *ngIf="useMap" class="set-zoom-btn" [class.disabled]="!defineMinZoom"
+            (click)="setMinZoomFromMap()">
+            <img src="assets/commonmap-core/images/admin/set_zoom_small.png" />
+            <div class="inline-label">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.useMapPositionLabel">
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+        </div>
+    </div>
+    <mat-checkbox [checked]="defineMaxZoom" disableRipple="true" (change)="setUseMaxZoom($event)">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.hideZoomLevelLabel">
+        </hxgn-commonlocalization-translate-v1>
+    </mat-checkbox>
+    <div class="zoom-input-group">
+        <div class="zoom-input"><input class="no-edit" type="number" name="maxZoomLevel" [disabled]="!defineMaxZoom"
+                [value]="getZoomValue(maxZoomLevel)" onkeydown="return false" min="0" max="30" step="1"
+                (change)="setMaxZoom($event)" /></div>
+        <div *ngIf="useMap" class="set-zoom-btn" [class.disabled]="!defineMaxZoom"
+            (click)="setMaxZoomFromMap()">
+            <img src="assets/commonmap-core/images/admin/set_zoom_small.png" />
+            <div class="inline-label">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.useMapPositionLabel">
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+        </div>
+    </div>
+</div>

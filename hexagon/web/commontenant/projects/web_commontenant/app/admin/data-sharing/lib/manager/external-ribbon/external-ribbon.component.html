@@ -1,0 +1,32 @@
+<div class="option">
+    <mat-slide-toggle [checked]="enabledDataSharing" (change)="enabledDataSharingChange.emit($event.checked)">
+        <hxgn-commonlocalization-translate-v1 [token]='tokens.enableDataSharing'></hxgn-commonlocalization-translate-v1>
+    </mat-slide-toggle>
+</div>
+<div class="option">
+    <mat-slide-toggle [checked]="enableDataReceiving" (change)="dataReceivingChange.emit($event.checked)">
+        <hxgn-commonlocalization-translate-v1 [token]='tokens.enableDataReceiving'></hxgn-commonlocalization-translate-v1>
+    </mat-slide-toggle>
+</div>
+
+<button (click)="editDataTypes.emit()" class="hxgn-btn-secondary">
+    <img src="assets/commontenant-core/define-data-types.png" />
+    <div>
+        <hxgn-commonlocalization-translate-v1 [token]='tokens.defineDataTypes'></hxgn-commonlocalization-translate-v1>
+    </div>
+    
+</button>
+
+<button (click)="editPresets.emit()" class="hxgn-btn-secondary">
+    <img src="assets/commontenant-core/global-filter-levels-small.png" />
+    <div>
+        <hxgn-commonlocalization-translate-v1 [token]='tokens.externalSharingPresets'></hxgn-commonlocalization-translate-v1>
+    </div>
+</button>
+
+<button (click)="editSharingNetwork.emit()" class="hxgn-btn-secondary">
+    <img src="assets/commontenant-core/data-sharing-network-small.png" />
+    <div>
+        <hxgn-commonlocalization-translate-v1 [token]='tokens.myDataSharingNetwork'></hxgn-commonlocalization-translate-v1>
+    </div>
+</button>

@@ -1,0 +1,128 @@
+$common-border: 1px solid #a7a7a7; // common border style
+
+:host {
+    overflow-y: auto;
+}
+
+.mat-table {
+    overflow-y: auto;
+    width: 100%;
+
+    tr.mat-header-row {
+        height: 40px;
+        background-color: #d7d7d7;
+
+        th.mat-header-cell {
+            color: #424242;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 20px;
+            padding: 0 10px !important;
+
+            &:not(:last-child) {
+                border-right: 1px solid #a7a7a7;
+            }
+        }
+    }
+
+    tr.element-row {
+        height: 55px;
+        background-color: #fff;
+
+        &:hover {
+            cursor: pointer;
+            background-color: #eceeee;
+        }
+        
+        td {
+            border-bottom: 1px solid #a7a7a7;
+            color: #424242;
+            font-size: 15px;
+            line-height: 18px;
+            padding: 0 10px !important;
+        }
+    }
+
+    tr.detail-row {
+        height: 0;
+        border: none;
+        background: #fff;
+    }
+}
+
+.organization-container,
+.operation-container,
+.status-container,
+.duration-container,
+.date-container {
+    display: flex;
+    align-items: center;
+}
+
+.status-container {
+    flex: min-content auto;
+
+    .status-icon {
+        margin-right: 5px;
+    }
+}
+
+.date-container {
+    justify-content: space-between;
+
+    .detail-btn {
+        margin: 10px;
+        width: 21px;
+        height: 21px;
+        cursor: pointer;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        background-image: url("assets/commonrecovery-core/expand_icon.png");
+    }
+
+    .expanded {
+        background-image: url("assets/commonrecovery-core/expand_icon_row_selected.png");
+        transform: rotate(180deg);
+    }
+}
+
+.success {
+    border-left: 12px solid #62B4FF;
+}
+
+.warning {
+    border-left: 12px solid #F7A02E;
+}
+
+.failure {
+    border-left: 12px solid #AF6161;
+}
+
+.expanded-row {
+    background-color: #cadff2 !important;
+
+    .action-icon {
+        background-image: url("assets/commonrecovery-core/action_menu_row_selected.png");
+    }
+}
+
+.element-detail {
+    max-height: 450px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    .expand-table {
+        border: $common-border;
+        margin: 20px;
+        overflow-y: auto;
+    }
+}
+
+.download-link {
+    text-decoration: none;
+    color: black !important;
+    font-weight: normal !important;
+    border-bottom: solid 1px #E0E0E0;
+}

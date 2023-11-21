@@ -1,0 +1,114 @@
+@use "sass:map";
+@use "../../styles/variables" as v;
+
+$tab-types: (
+    "primary": "vm-tabs__primary",
+    "secondary": "vm-tabs__secondary",
+    "vertical": "vm-tabs__vertical",
+);
+
+$primary-tabs-border-bottom: solid 3px v.$N30;
+$secondary-tabs-border-radius: 5px;
+$tab-height: 39px;
+$vm-tabs-border: solid 1px v.$N40;
+
+vm-tabs {
+    display: flex;
+    flex-wrap: wrap;
+
+    .vm-tabs--item {
+        height: $tab-height;
+        display: flex;
+        align-items: center;
+        column-gap: 10px;
+        font-size: 16px;
+        position: relative;
+        text-align: center;
+
+        &.vm-tabs--item__active {
+            font-weight: 700;
+        }
+
+        &:focus,
+        &:hover {
+            color: v.$navy !important;
+            outline: none;
+            text-decoration: none;
+        }
+    }
+}
+
+.#{map.get($tab-types, "primary")} {
+    border-bottom: $primary-tabs-border-bottom;
+    column-gap: 10px;
+
+    .vm-tabs--item {
+        color: v.$N50;
+        padding: 0 20px;
+        top: 3px;
+
+        &.vm-tabs--item__active {
+            border-bottom: solid 3px v.$brand-primary;
+            color: v.$navy;
+        }
+    }
+}
+
+.#{map.get($tab-types, "secondary")} {
+    border-bottom: $vm-tabs-border;
+    column-gap: 5px;
+
+    .vm-tabs--item {
+        border: $vm-tabs-border;
+        border-top-left-radius: $secondary-tabs-border-radius;
+        border-top-right-radius: $secondary-tabs-border-radius;
+        padding: 0 25px;
+        top: 1px;
+
+        &.vm-tabs--item__active {
+            border-bottom-color: v.$white;
+            color: v.$navy;
+        }
+
+        &:not(.vm-tabs--item__active) {
+            background-color: #eff2f7;
+            color: v.$DN10;
+        }
+    }
+}
+
+.#{map.get($tab-types, "vertical")} {
+    height: 100%;
+    width: 270px;
+    display: block;
+    border-right: $vm-tabs-border;
+
+    .vm-tabs--item {
+        height: 45px;
+        width: 100%;
+        border: $vm-tabs-border;
+        border-right: none;
+        color: v.$navy;
+        padding: 0 22px;
+
+        &:focus,
+        &:hover {
+            background-color: v.$lighter-gray;
+        }
+
+        &:not(:first-of-type) {
+            border-top: none;
+        }
+
+        &.vm-tabs--item__active {
+            background-color: #ebf6f3;
+            box-shadow: inset 5px 0px 0px v.$brand-primary;
+        }
+    }
+}
+
+@each $type, $class in $tab-types {
+    vm-tabs[#{$type}] {
+        @extend .#{$class};
+    }
+}

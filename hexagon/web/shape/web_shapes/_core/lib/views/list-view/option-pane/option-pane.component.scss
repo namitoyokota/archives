@@ -1,0 +1,41 @@
+.settings-title {
+  font-size: 22px;
+  margin: 12px 12px 10px 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #c1c2c5;
+  display: flex;
+  align-items: center;
+
+  .rest-btn {
+      font-size: 14px;
+      text-decoration: underline;
+      cursor: pointer;
+      justify-self: flex-end;
+      white-space: nowrap;
+  }
+}
+
+hxgn-common-expansion-panel {
+  margin-bottom: 10px;
+
+  ::ng-deep .header{
+      background: #fff !important;
+      border: none !important;
+  }
+
+  ::ng-deep hxgn-common-expansion-panel-content {
+      padding-left: 42px;
+      padding-right: 10px;
+      display: flex;
+  }
+}
+
+hxgn-common-expansion-panel-title {
+  display: grid;
+  grid-template-columns: 20px auto;
+  grid-column-gap: 10px;
+
+  span {
+      font-size: 1.3em;
+  }
+}

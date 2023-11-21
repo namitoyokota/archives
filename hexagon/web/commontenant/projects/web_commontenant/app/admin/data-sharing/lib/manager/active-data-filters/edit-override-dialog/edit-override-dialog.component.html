@@ -1,0 +1,30 @@
+<div class="dialog-pane">
+    <div class="header-pane">
+        <h2>
+            <hxgn-commonlocalization-translate-v1 [token]='tokens.edit'>
+            </hxgn-commonlocalization-translate-v1>
+            <hxgn-commonlocalization-translate-v1 skeletonWidth="120px" [token]='data.capability.nameToken'>
+            </hxgn-commonlocalization-translate-v1>
+            <hxgn-commonlocalization-translate-v1 [token]='tokens.overridesFor'>
+            </hxgn-commonlocalization-translate-v1>           
+            {{data.config.ownerName}}
+        </h2>
+        <img class="close-btn" (click)="close()" src="assets/commontenant-core/x_dialog.png" />
+    </div>
+
+    <div class="content-pane">
+        <hxgn-commontenant-sharing-preset (sharingCriteriaChange)="setCriteria($event)" [sharingCriteria]="data.config.criteria[0]" [capability]="data.capability"
+            [isOverride]="true" [readOnlyCriteria]="data.global"></hxgn-commontenant-sharing-preset>
+    </div>
+
+    <div class="footer-pane">
+        <button class="hxgn-btn-secondary" (click)="close()">
+            <hxgn-commonlocalization-translate-v1 [token]='tokens.cancel' [ignoreSkeleton]="true">
+            </hxgn-commonlocalization-translate-v1>
+        </button>
+        <button [disabled]="!currentOverride" class="hxgn-btn-primary" (click)="save()">
+            <hxgn-commonlocalization-translate-v1 [token]='tokens.complete' [ignoreSkeleton]="true">
+            </hxgn-commonlocalization-translate-v1>
+        </button>
+    </div>
+</div>

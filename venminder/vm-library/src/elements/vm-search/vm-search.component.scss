@@ -1,0 +1,41 @@
+@use "../../styles/variables" as v;
+
+vm-search {
+    height: 40px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    background-color: v.$white;
+    border: solid 1px v.$N40;
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 0 10px;
+
+    &:focus-within {
+        border-color: v.$brand-primary;
+    }
+
+    &.vm-search__disabled,
+    &.vm-search__disabled .vm-search--input {
+        background-color: v.$N10;
+        cursor: not-allowed;
+    }
+
+    .vm-search--icon {
+        position: relative;
+        top: 1px;
+    }
+
+    .vm-search--input {
+        height: 100%;
+        width: 100%;
+        border: none;
+        outline: none;
+        padding: 0;
+
+        &::placeholder {
+            color: v.$N50;
+        }
+    }
+}

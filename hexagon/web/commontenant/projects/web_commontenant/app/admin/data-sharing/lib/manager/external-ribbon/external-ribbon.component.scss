@@ -1,0 +1,41 @@
+:host {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+
+mat-slide-toggle {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+button, .option {
+    min-height: 43px;
+}
+
+button {
+    max-width: 260px;
+    width: calc((100vw / 4) - 100px);
+    justify-content: flex-start;
+    align-items: center;
+    text-align: start;
+    font-size: 14px;
+    display: flex;
+    margin-right: 10px;
+
+    img {
+        height: 24px;
+        margin-right: 10px;
+    }
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+
+    &:first-child {
+        border-right: 1px solid #afb0b2;
+        padding-right: 20px;
+    }
+}

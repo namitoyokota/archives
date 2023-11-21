@@ -1,0 +1,7 @@
+<template>
+    <require from="./vm-button.component.css"></require>
+
+    <button type="button" class.bind="buttonClasses" click.delegate="onClick($event)" disabled.bind="isDisabled">
+        <slot></slot>
+    </button>
+</template>

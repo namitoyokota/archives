@@ -1,0 +1,5 @@
+<div [@slideIn] (@slideIn.done)="showPulse($event)">
+    <div class="pulse-pane" [@pulse]="showAnimation" (@pulse.done)="showAnimation = 'hidden'">
+        <ng-content select="hxgn-commonnotifications-item"></ng-content>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+﻿@import "shared-from-dcdev/core-styles/stylesheets/_variables.scss";
+
+assessment-section-subheader {
+  .subheader-pane {
+    display: flex;
+    border: thin solid lightGray;
+
+    &.show-space {
+      margin-top: 20px;
+    }
+
+    .subheader-text {
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 19px;
+      padding: 10px 20px;
+    }
+  }
+}

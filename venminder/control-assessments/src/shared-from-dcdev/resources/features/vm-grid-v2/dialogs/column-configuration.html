@@ -1,0 +1,15 @@
+﻿<template>
+    <require from="./column-configuration.scss"></require>
+
+    <div repeat.for="column of columns" class="column-config-item">
+        <div if.bind="!column.ViewLocked">
+            <vm-checkbox name="checkbox-${column.View.ColumnId}"
+                         checked.bind="column.View.Visible">
+                ${ column.ColumnHeaderText }
+            </vm-checkbox>
+        </div>
+        <div if.bind="column.ViewLocked" class="item-title">
+            ${ column.ColumnHeaderText }
+        </div>
+    </div>
+</template>

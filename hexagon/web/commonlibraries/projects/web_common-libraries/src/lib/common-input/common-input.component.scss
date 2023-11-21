@@ -1,0 +1,24 @@
+:host {
+    display: inline-grid;
+    grid-template-columns: auto fit-content(20px);
+    align-items: center;
+    border: 1px solid  #adafb2 !important;
+    grid-column-gap: 5px;
+    box-sizing: border-box;
+    padding-right: 5px;
+}
+
+:host:hover, :host:focus-within {
+    border: 1px solid #62b4ff !important;
+}
+
+:host ::ng-deep input {
+    border: none !important;
+    padding-right: 0 !important;
+}
+
+.tool-bar-pane {
+    display: grid;
+    grid-column-gap: 4px;
+    grid-auto-flow: column;
+}

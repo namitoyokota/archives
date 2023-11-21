@@ -1,0 +1,84 @@
+.about-button {
+    height: 30px;
+    width: 130px;
+
+    ::ng-deep .mat-button-wrapper {
+        position: relative;
+        bottom: 3px;
+    }
+}
+
+.dialog-container {
+    width: 100%;
+    height: 100%;
+    background-image: url("^assets/branding/Connect-LiveShare_About_NoShadow.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: flex-end;
+
+    .content-container {
+        height: 280px;
+        width: 358px;
+        padding: 140px 30px 210px 0;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+
+        .about-text {
+            width: 100%;
+            height: 160px;
+            margin-bottom: 13px;
+            overflow-y: auto;
+
+            p {
+                padding-right: 10px;
+                margin-top: 0;
+                line-height: 1.2;
+            }
+        }
+
+        .about-text::-webkit-scrollbar {
+            width: 6px;
+            background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
+            border-radius: 4px;
+            border: 0.5px solid #bdbec0;
+        }
+
+        .about-text::-webkit-scrollbar-thumb {
+            height: 50px;
+            width: 5px;
+            background-color: #808285;
+            border-radius: 4px;
+        }
+
+        .logo-btn-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .oss-notice-row {
+            margin-top: 5px;
+            text-align: right;
+
+            a {
+                color: #335ca5 !important;
+            }
+        }
+
+        .version-number-row {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .mb-0 {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.dialog-container-admin {
+    background-image: url("^assets/branding/Connect-Administrator_About_NoShadow.svg") !important;
+}

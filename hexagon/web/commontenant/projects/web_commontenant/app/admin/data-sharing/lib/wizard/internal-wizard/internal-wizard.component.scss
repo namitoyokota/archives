@@ -1,0 +1,76 @@
+:host {
+    position: relative;
+    display: flex;
+}
+
+.step-pane {
+    display: flex;
+    max-width: 882px;
+    max-height: 540px;
+    width: calc(100vw - 150px);
+    height: calc(100vh - 150px);
+}
+
+.single-btn-pane {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.two-btn-pane {
+    display: flex;
+    justify-content: space-between;
+}
+
+.save-step {
+    display: flex;
+    flex-direction: column;
+
+    .btn-group {
+        button {
+            margin-left: 10px;
+        }
+    }
+}
+
+.loading {
+    position: absolute;
+    z-index: 9;
+    background-color: rgba(255,255,255,.75);
+    width: calc(100% + 48px);
+    height: calc(100% + 48px);
+    top: -24px;
+    left: -24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: not-allowed;
+}
+
+.confirm-button-pane {
+    padding-top:20px;
+}
+
+.confirm-pane {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    row-gap: 10px;
+    max-width: 355px;
+
+    .title {
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+    .msg {
+        color: #ADAEB1;
+        font-size: 15px;
+        line-height: 22px;
+    }
+
+    .confirm-btn-pane {
+        display: flex;
+        justify-content: flex-end;
+        column-gap: 10px;
+    }
+}

@@ -1,0 +1,16 @@
+.vm-alert-demo {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 50px;
+    row-gap: 30px;
+
+    .vm-alert-demo--item {
+        display: flex;
+        flex-direction: column;
+        row-gap: 15px;
+
+        .vm-alert-demo--item-title {
+            text-transform: capitalize;
+        }
+    }
+}

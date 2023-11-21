@@ -1,0 +1,162 @@
+:host {
+  display: grid;
+  grid-template-rows: 47px 1fr 38px;
+  grid-row-gap: 15px;
+  width: 970px;
+  height: calc(100vh - 115px);
+  transition: width 0.25s ease;
+  max-height: 625px;
+  pointer-events: all;
+
+  &.saving {
+      cursor: wait;
+      pointer-events: none;
+  }
+
+}
+
+.title {
+  display: grid;
+  grid-template-columns: auto 45px;
+  align-items: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+
+  span {
+    font-weight: bold;
+  }
+}
+
+.error-msg {
+  display:flex;
+	width: 100%;
+	font-size: 12px;
+	color: #F29E25;
+}
+
+.close-btn {
+  height: 47px;
+  width: 47px;
+  background-image: url('assets/commonmap-core/images/admin/cancel.png');
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.close-btn:hover {
+  background-image: url('assets/commonmap-core/images/admin/cancel-hover.png');
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 475px 450px;
+  grid-column-gap: 20px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  grid-row: auto;
+}
+
+.left-side {
+  display: grid;
+  grid-template-rows: auto auto;
+  border-right: 1px solid #babbbe;
+
+  .step-content {
+    width: 400px;
+    box-sizing: border-box;
+  }
+
+
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 40px auto;
+  grid-template-rows: 52px auto;
+  grid-column-gap: 15px;
+
+
+  .step-count {
+    grid-row:1 /span 2;
+
+    div {
+      background-color: #62B4FF;
+      height: 35px;
+      width: 35px;
+      border-radius: 50%;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      margin-top:5px;
+    }
+  }
+
+  .step-title {
+    align-self:center;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+}
+.actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.label {
+  width: 100%;
+  position: relative;
+  font-size: 14px;
+  padding-bottom: 5px;
+}
+
+.layer-explanation {
+  display: grid;
+  grid-template-columns: 160px auto;
+  grid-template-rows: auto;
+  padding-top: 15px;
+  align-items: center;
+
+  .layer-type {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .layer-type-text {
+    display:grid;
+    grid-template-columns: 15px auto;
+    grid-template-rows: 50px;
+    font-weight:bold;
+    font-size:16px;
+    align-items:center;
+  }
+
+  .layer-type-bullet {
+    height: 8px;
+    width: 8px;
+    background-color: #62B4FF;
+    border-radius: 50%
+  }
+}
+.layer-explanation-icon {
+  background-image: url('assets/commonmap-core/images/admin/layer-explanation-small.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size:contain;
+  width: 183px;
+  height: 208px;
+}
+
+.input-name {
+  display: flex;
+}
+
+.right-side {
+
+  .step-content {
+    width: 375px;
+    box-sizing: border-box;
+  }
+}
+

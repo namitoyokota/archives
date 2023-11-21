@@ -1,0 +1,62 @@
+<div class="setup-pane">
+    <span class="title">
+        <hxgn-commonlocalization-translate-v1 [token]='tokens.internalDataSharingSetup'></hxgn-commonlocalization-translate-v1>
+    </span>
+    <span class="note">
+        <hxgn-commonlocalization-translate-v1 [token]='tokens.internalDataSharingSetupMsg'></hxgn-commonlocalization-translate-v1>
+    </span>
+
+    <div class="graphic"></div>
+
+    <mat-radio-group [ngModel]="filterByGroups" class="option-pane">
+        
+        <!-- Default internal settings -->
+        <div class="option" (click)="filterByGroups = null" [class.selected]="filterByGroups === null">
+            <mat-radio-button [value]="null"></mat-radio-button>
+            <img src="assets/commontenant-core/Share-All-Icon.svg" />
+            <div class="description-pane">
+                <span class="option-title">
+                    <hxgn-commonlocalization-translate-v1 [token]='tokens.defaultInternalSettingAll'></hxgn-commonlocalization-translate-v1>
+                </span>
+
+                <span class="option-description">
+                    <hxgn-commonlocalization-translate-v1 [token]='tokens.defaultInternalSettingAllMsg'></hxgn-commonlocalization-translate-v1>
+                </span>
+            </div>
+        </div>
+
+        <!-- Filter all  internally -->
+        <div class="option" (click)="filterByGroups = false" [class.selected]="filterByGroups === false">
+            <mat-radio-button [value]="false"></mat-radio-button>
+            <img src="assets/commontenant-core/filter-all-icon.svg" />
+            <div class="description-pane">
+                <span class="option-title">
+                    <hxgn-commonlocalization-translate-v1 [token]='tokens.filterAllInternally'></hxgn-commonlocalization-translate-v1>
+                </span>
+
+                <span class="option-description">
+                    <hxgn-commonlocalization-translate-v1 [token]='tokens.filterAllInternallyMsg'></hxgn-commonlocalization-translate-v1>
+                </span>
+            </div>
+        </div>
+
+        <!-- Fillter internally by groups -->
+        <div class="option" (click)="filterByGroups = true" [class.selected]="filterByGroups">
+            <mat-radio-button [value]="true"></mat-radio-button>
+            <img src="assets/commontenant-core/internal-network-graphic.svg" />
+            <div class="description-pane">
+                <span class="option-title">
+                    <hxgn-commonlocalization-translate-v1 [token]='tokens.filterInternallyByGroups'></hxgn-commonlocalization-translate-v1>
+                </span>
+
+                <span class="option-description">
+                    <hxgn-commonlocalization-translate-v1 [token]='tokens.filterInternallyByGroupsMsg'></hxgn-commonlocalization-translate-v1>
+                </span>
+            </div>
+        </div>
+    </mat-radio-group>
+
+    <button [disabled]="filterByGroups === null" (click)="startWizard.emit(filterByGroups)" class="hxgn-btn-primary">
+        <hxgn-commonlocalization-translate-v1 [token]='tokens.continue'></hxgn-commonlocalization-translate-v1>
+    </button>
+</div>

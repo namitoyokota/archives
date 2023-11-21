@@ -1,0 +1,62 @@
+<ng-container *ngIf="icon; else fallback">
+  <ng-container *ngFor="let i of icon?.iconStack;trackBy: trackByFn">
+    <div class="img" *ngIf="(getIconUrl$(i) | async) as iconUrl; else error"
+      [class.flip-h]="i.options.flipH && !i.options.flipV"
+      [class.flip-v]="i.options.flipV && !i.options.flipH"
+      [class.flip-h-v]="i.options.flipV && i.options.flipH"
+      [style.width.px]="scaledValue(i.options.scaleSize.x)"
+      [style.height.px]="scaledValue(i.options.scaleSize.y)"
+      [style.top.px]="scaledValue(i.options.point.y)"
+      [style.left.px]="scaledValue(i.options.point.x)"
+      [style.background-image]="'url(' + UrlHelper.mapMediaUrl(iconUrl) + ')'">
+    </div>
+
+    <!-- Primitive icon is not found -->
+    <ng-template #error>
+      <div class="img error"
+        [class.flip-h]="i.options.flipH && !i.options.flipV"
+        [class.flip-v]="i.options.flipV && !i.options.flipH"
+        [class.flip-h-v]="i.options.flipV && i.options.flipH"
+        [style.width.px]="scaledValue(i.options.scaleSize.x)"
+        [style.height.px]="scaledValue(i.options.scaleSize.y)"
+        [style.top.px]="scaledValue(i.options.point.y)"
+        [style.left.px]="scaledValue(i.options.point.x)">
+      </div>
+    </ng-template>
+  </ng-container>
+</ng-container>
+
+<!-- Fallback icon -->
+<ng-template #fallback>
+  <ng-container *ngIf="fallbackIcon; else loading">
+    <div class="fallback-icon" [style.background-image]="'url(' + fallbackIcon + ')'"></div>
+  </ng-container>
+</ng-template>
+
+<!-- Fallback icon is loading -->
+<ng-template #loading>
+  <mat-spinner [diameter]="size"></mat-spinner>
+</ng-template>
+
+<ng-container *ngIf="editable && iconRules.length">
+  <div class="edit-btn" #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="priorityDropdown">
+    <img src="assets/commonkeywords-core/images/choose-new-icon.svg" />
+  </div>
+
+  <mat-menu class="hxgn-commonkeywords-icon-menu" #priorityDropdown="matMenu" xPosition="before" hidden>
+    <div class="content">
+        <span class="title">{{title}}</span>
+        <span class="subtitle">{{subtitle}}</span>
+        <div class="icon-list">
+            <div *ngFor="let iconRule of iconRules" class="icon" (click)="updateKeywords(iconRule.rule)">
+              <hxgn-commonkeywords-icon
+                [size]="50" [icon]="iconRule.icon"
+                [fallbackIcon]="fallbackIcon" >
+              </hxgn-commonkeywords-icon>
+              <span class="friendly-name">{{iconRule.rule.friendlyName}}</span>
+            </div>
+        </div>
+    </div>
+  </mat-menu>
+</ng-container>
+

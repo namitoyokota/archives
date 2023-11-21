@@ -1,0 +1,34 @@
+<!-- Title -->
+<div class="title-container">
+    <span class="title">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.shapeHistory" skeletonWidth="95px">
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+    <img src="assets/shapes/images/x_dialog.png" (click)="close()" height="14" width="14" />
+</div>
+
+<!-- History List -->
+<hxgn-common-infinite-scroll-pane
+    [disableLoad]="disableLoad"
+    [itemMinHeight]="itemMinHeight"
+    [itemCount]="shapeHistory.length"
+    (loadPage)="getShapeHistoryPageAsync($event)"
+>
+    <!-- Not Loading -->
+    <ng-container  *ngIf="!shapesLoading; else loading">
+        <ng-container *ngFor="let history of shapeHistory">
+            <div class="history-item" *ngIf="history.operations.length">
+                <hxgn-shapes-history-item [operations]="history.operations" [concise]="true" >
+                </hxgn-shapes-history-item>
+                <div class="time-since">{{history.timestampDate | commonTimeSince: refreshToggle | async}}</div>
+            </div>
+        </ng-container>
+    </ng-container>
+
+    <!-- Loading -->
+    <ng-template #loading>
+        <div class="loading-pane">
+            <mat-spinner></mat-spinner>
+        </div>
+    </ng-template>
+</hxgn-common-infinite-scroll-pane>

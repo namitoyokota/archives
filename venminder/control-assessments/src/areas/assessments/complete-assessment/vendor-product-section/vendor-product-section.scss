@@ -1,0 +1,30 @@
+﻿@import "shared-from-dcdev/core-styles/stylesheets/_variables.scss";
+
+vendor-product-section {
+  .vendor-section-panel {
+    min-height: 200px;
+    border-radius: 10px;
+    margin: 0;
+  }
+
+  .vendor-panel-header {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 800;
+    border-bottom: solid 1px #e7eaec;
+    padding: 20px;
+  }
+
+  .vendor-panel-body {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    padding: 0 20px;
+
+    .input-pane {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}

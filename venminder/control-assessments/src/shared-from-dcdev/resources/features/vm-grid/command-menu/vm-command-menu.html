@@ -1,0 +1,13 @@
+<template>
+    <require from="./vm-command-menu.scss"></require>
+    <div class="vm-grid-command-container">
+        <div class="vm-grid-command-item" click.trigger="selectCommandItem(commandItem)" repeat.for="commandItem of menuState.data.commandItems">
+            <div if.bind="commandItem.IconClass">
+                <i class="${commandItem.Prefix || 'fas'} ${commandItem.IconClass}"></i>${commandItem.Text}
+            </div>
+            <div else>
+                ${commandItem}
+            </div>
+        </div>
+    </div>
+</template>

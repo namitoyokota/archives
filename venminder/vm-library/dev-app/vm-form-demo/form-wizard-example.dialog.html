@@ -1,0 +1,51 @@
+<template>
+    <vm-form-wizard class="save-file-wizard">
+      <div slot="header">
+        <h2>Example Dialog</h2>
+      </div>
+      <div slot="nav">
+          <button repeat.for="step of steps"
+            click.delegate="select($index)"
+            class="${ $index === stepIndex ? '--current-step' : '' }">
+            ${ step.name }
+          </button>
+      </div>
+      <div slot="body">
+        <div repeat.for="step of steps" show.bind="$index === stepIndex">
+            <h4>Is this valid? ${ step.valid }</h4>
+            <vm-form model.bind="step.model" rules.bind="step.rules" get.to-view="setValid($index)">
+                <vm-form-field name="firstName">
+                    <label>First Name</label>
+                    <input class="vm-input" value.bind="step.model.firstName" />
+                </vm-form-field>
+                <vm-form-field name="lastName">
+                    <label>Last Name</label>
+                    <input class="vm-input" value.bind="step.model.lastName" />
+                </vm-form-field>
+                <vm-form-field name="email">
+                    <label>Email</label>
+                    <input class="vm-input" value.bind="step.model.email" />
+                </vm-form-field>
+                <vm-form-field name="nickname">
+                    <label>Nickname</label>
+                    <input class="vm-input" value.bind="step.model.nickname" />
+                </vm-form-field>
+            </vm-form>
+        </div>
+      </div>
+      <div slot="footer">
+        <div class="footer-navigation">
+          <vm-button secondary click.bind="prevHandler" is-disabled.to-view="stepIndex === 0">
+            <i class="fa fa-chevron-left"> </i>Back</i>
+          </vm-button>
+          <vm-button secondary click.bind="nextHandler" is-disabled.to-view="stepIndex > steps.length - 1">
+            Next <i class="fa fa-chevron-right"></i>
+          </vm-button>
+        </div>
+        <vm-button primary click.bind="saveHandler" is-disabled.to-view="!wizardValid">
+            Save
+        </vm-button>
+      </div>
+    </vm-form-wizard>
+  </template>
+  

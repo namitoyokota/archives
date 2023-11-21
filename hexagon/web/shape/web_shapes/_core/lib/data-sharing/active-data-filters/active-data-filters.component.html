@@ -1,0 +1,17 @@
+<!-- Low Active Data Filters -->
+<hxgn-shapes-low-active-data-filter *ngIf="settings.currentLevel === RestrictionLevels.low">
+</hxgn-shapes-low-active-data-filter>
+
+<!-- Medium Active Data Filters -->
+<hxgn-shapes-medium-active-data-filter *ngIf="settings.currentLevel === RestrictionLevels.medium ||
+    settings.currentLevel === RestrictionLevels.high"
+    [global]="filterLevel(settings.globalRedaction, RestrictionLevels.medium)"
+    [showLowFilters]="settings.currentLevel === RestrictionLevels.medium"
+    [overridden]="filterLevel(settings.overriddenRedaction, RestrictionLevels.medium)" >
+</hxgn-shapes-medium-active-data-filter>
+
+<!-- High Active Data Filters -->
+<hxgn-shapes-high-active-data-filter *ngIf="settings.currentLevel === RestrictionLevels.high"
+    [global]="filterLevel(settings.globalFilters, RestrictionLevels.high)"
+    [overrides]="filterLevel(settings.overriddenFilters, RestrictionLevels.high)" >
+</hxgn-shapes-high-active-data-filter>

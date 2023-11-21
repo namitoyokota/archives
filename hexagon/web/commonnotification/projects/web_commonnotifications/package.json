@@ -1,0 +1,8 @@
+{
+    "name": "@galileo/web_commonnotifications",
+    "version": "13.1.2",
+    "peerDependencies": { },
+    "dependencies": {
+        "@galileo/platform_commonnotifications": "^1.0.1"
+    }
+}

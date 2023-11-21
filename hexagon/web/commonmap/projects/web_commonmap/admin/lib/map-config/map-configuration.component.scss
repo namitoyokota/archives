@@ -1,0 +1,78 @@
+:host {
+    position: relative;
+    // display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+
+.map-config-page {
+    position:relative;
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.admin-comp-selector {
+    position:relative;
+    width: 300px;
+    padding-bottom: 10px;
+}
+
+.admin-comp-button {
+    display: grid;
+    grid-template-columns: max-content 17px;
+    cursor: pointer;
+    font-weight: bold;
+
+    .dropdown-arrow {
+        align-self:center;
+        background-image: url('assets/commonmap-core/images/admin/dropdown-arrow.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 7px;
+        width: 12px;
+        margin-left: 5px;
+    }
+    
+    
+}
+.admin-comp-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    padding: 5px 10px;
+    justify-content: space-between;
+    width: 315px;
+}
+
+.admin-comp-card {
+    display:flex;
+    flex-direction: column;
+    width: 140px;
+    height: 90px;
+    box-sizing: border-box;
+}
+.admin-comp {
+    position:relative;
+    width: 100%;
+    height: calc(100% - 44px);
+}
+
+.map-config-page {
+    position:relative;
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+
+
+
+

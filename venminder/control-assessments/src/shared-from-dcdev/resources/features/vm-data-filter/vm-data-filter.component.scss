@@ -1,0 +1,112 @@
+﻿@import "../../../core-styles/stylesheets/_variables.scss";
+
+$vm-data-filter-border: solid 1px $N40;
+$vm-data-filter-footer-height: 68px;
+$vm-data-filter-font-size: 16px;
+$vm-data-filter-height: 678px;
+$vm-data-filter-width: 372px;
+
+.vm-data-filter-container {
+  font-size: $vm-data-filter-font-size;
+  height: $vm-data-filter-height;
+  width: $vm-data-filter-width;
+
+  .vm-breadcrumb-button {
+    button {
+      .actionable-item {
+        font-size: $vm-data-filter-font-size;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .vm-checkbox-label {
+    &::before {
+      top: 5px;
+    }
+
+    &::after {
+      top: 4px;
+    }
+  }
+
+  .vm-data-filter-body {
+    height: calc($vm-data-filter-height - $vm-data-filter-footer-height);
+    padding: 10px;
+
+    .vm-data-filter-group-title {
+      display: flex;
+      column-gap: 5px;
+
+      .vm-data-filter-group-count {
+        background-color: $purple;
+        border-radius: 50px;
+        color: #fff;
+        font-size: 12px;
+        font-weight: 700;
+        margin-top: 15px;
+        padding: 0 8px;
+        height: 22px;
+        line-height: 22px;
+      }
+    }
+
+    > div {
+      padding-left: 15px;
+
+      > div:first-child {
+        display: flex;
+        cursor: pointer;
+        font-weight: 700;
+        line-height: 50px;
+        padding-right: 20px;
+
+        i {
+          transition: transform .3s ease-in-out;
+
+          &.data-filter-group-expanded {
+            transform: rotate(90deg);
+          }
+        }
+
+        div:last-child {
+          margin-left: auto;
+        }
+      }
+
+      border-bottom: 1px solid $N30;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .vm-data-filter-group-container {
+        height: 0px;
+        min-height: 0px;
+        overflow-y: hidden;
+
+        .vm-data-filter-group-items {
+          max-height: 200px;
+          overflow-y: auto;
+
+          > div {
+            margin-bottom: 2px;
+          }
+        }
+
+        .vm-data-filter-group-clear {
+          line-height: 50px;
+          margin-top: -10px;
+        }
+      }
+    }
+  }
+
+  .vm-data-filter-footer {
+    border-top: $vm-data-filter-border;
+    font-weight: 400;
+    height: $vm-data-filter-footer-height;
+    line-height: $vm-data-filter-footer-height;
+    padding: 0 25px;
+  }
+}

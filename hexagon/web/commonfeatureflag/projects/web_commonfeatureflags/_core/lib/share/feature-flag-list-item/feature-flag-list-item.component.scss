@@ -1,0 +1,117 @@
+:host {
+    display: grid;
+    grid-template-columns: 60px auto;
+    border-bottom: 1px solid #C3C4C7;
+
+    &:last-of-type {
+        border: none;
+    }
+}
+
+.locked-pane {
+    display: flex;
+    border-right: 0;
+    padding-left: 10px;
+
+    .icon {
+        max-width: 10px;
+        margin-left: 30px;
+        margin: auto;
+    }
+}
+
+.remove-icon {
+    width: 18px;
+    height: 18px;
+    align-self: center;
+    margin: auto;
+
+    &:hover {
+        opacity: 0.5;
+        cursor: pointer;
+    }
+}
+
+.lock-button,
+.unlock-button,
+.hardlock-button,
+.hardunlock-button {
+    display: flex;
+    border-right: 1px solid #C3C4C7;
+
+    .icon {
+        height: 20px;
+        margin: auto;
+        align-self: center;
+        margin-right: 22px;
+    }
+}
+
+.lock-button:hover,
+.unlock-button:hover {
+    cursor: pointer;
+}
+
+.lock-button {
+    background: #d3d3d3;
+}
+
+.unlock-button {
+    background: #CADFF2;
+}
+
+.hardlock-button {
+    background: #f5f5f5;
+
+    .icon {
+        opacity: .3;
+    }
+}
+
+.content {
+    display: grid;
+    grid-template-columns: 50px auto;
+    grid-template-rows: repeat(2, min-content);
+    column-gap: 10px;
+    row-gap: 5px;
+    padding: 10px;
+}
+
+.strike {
+    text-decoration: line-through;
+}
+
+mat-slide-toggle {
+    grid-row: 1 / span 2;
+    align-self: center;
+    justify-self: center;
+}
+
+.title-pane {
+    display: grid;
+    grid-template-columns: auto min-content;
+    column-gap: 10px;
+
+    .flag-title {
+        font-weight: bold;
+    }
+
+    .date {
+        white-space: nowrap;
+        font-weight: 550;
+    }
+}
+
+.description-pane {
+    display: grid;
+    grid-template-columns: auto min-content;
+    column-gap: 10px;
+
+    .flag-description {
+        font-size: 14px;
+    }
+}
+
+.hide-text {
+    opacity: .5;
+}

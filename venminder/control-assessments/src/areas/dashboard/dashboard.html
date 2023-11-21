@@ -1,0 +1,22 @@
+﻿<template>
+  <require from="./dashboard.scss"></require>
+
+  <div slot="content" id="ca-dashboard">
+    <!-- Header -->
+    <div class="header-pane">
+      <div class="header-navigation">
+        <vm-breadcrumbs></vm-breadcrumbs>
+        <vm-header
+          text="Assessments By Venminder"
+          show-border.bind="false"
+        ></vm-header>
+      </div>
+      <vm-tabs primary></vm-tabs>
+    </div>
+
+    <!-- Main Content -->
+    <div class="list-pane">
+      <router-view></router-view>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,53 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.select-element {
+    display: flex;
+    flex-direction: column;
+
+    .sub-text {
+        font-size: 0.8em;
+    }
+}
+
+.item-pane {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    padding-right: 10px;
+}
+
+.double-line {
+    height: 48px;
+}
+
+.double-line ::ng-deep .mat-checkbox-inner-container {
+    margin-top: 5px;
+}
+
+mat-checkbox {
+    height: 24px;
+    margin-bottom: 4px;
+}
+
+mat-checkbox,
+mat-radio-group {
+    padding: 6px;
+}
+
+.override {
+    background-color: #62b4ff;
+    color: #fff;
+    border-radius: 8px;
+}
+
+.contact-pane,
+.media {
+    justify-content: flex-start;
+}

@@ -1,0 +1,12 @@
+.template-list {
+  .template-layout {
+    display: grid;
+    grid-template-rows: min-content auto;
+    row-gap: 20px;
+
+    .header {
+      display: flex;
+      justify-content: right;
+    }
+  }
+}

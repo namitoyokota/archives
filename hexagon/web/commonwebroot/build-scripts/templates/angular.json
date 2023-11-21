@@ -1,0 +1,206 @@
+{
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "version": 1,
+    "newProjectRoot": "projects",
+    "projects": {
+        "web_layoutBuilder-adapter": {
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:ng-packagr",
+                    "options": {
+                        "project": "projects/web_layout-builder-adapter/ng-package.json",
+                        "tsConfig": "projects/web_layout-builder-adapter/tsconfig.lib.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "projects/web_layout-builder-adapter/tsconfig.lib.prod.json"
+                        }
+                    }
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "karmaConfig": "projects/web_layout-builder-adapter/karma.conf.js",
+                        "main": "projects/web_layout-builder-adapter/src/test.ts",
+                        "tsConfig": "projects/web_layout-builder-adapter/tsconfig.spec.json"
+                    }
+                }
+            },
+            "prefix": "lib",
+            "projectType": "library",
+            "root": "projects/web_layout-builder-adapter",
+            "sourceRoot": "projects/web_layout-builder-adapter/src"
+        },
+        "web_layoutBuilder-common": {
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:ng-packagr",
+                    "options": {
+                        "project": "projects/web_layout-builder-common/ng-package.json",
+                        "tsConfig": "projects/web_layout-builder-common/tsconfig.lib.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "projects/web_layout-builder-common/tsconfig.lib.prod.json"
+                        }
+                    }
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "karmaConfig": "projects/web_layout-builder-common/karma.conf.js",
+                        "main": "projects/web_layout-builder-common/src/test.ts",
+                        "tsConfig": "projects/web_layout-builder-common/tsconfig.spec.json"
+                    }
+                }
+            },
+            "prefix": "lib",
+            "projectType": "library",
+            "root": "projects/web_layout-builder-common",
+            "sourceRoot": "projects/web_layout-builder-common/src"
+        },
+        "ThinClient": {
+            "root": "",
+            "sourceRoot": "src",
+            "projectType": "application",
+            "prefix": "app",
+            "schematics": {
+                "@schematics/angular:component": {
+                    "style": "scss"
+                }
+            },
+            "architect": {
+                "build": {
+                    "builder": "@angular-builders/custom-webpack:browser",
+                    "options": {
+                        "customWebpackConfig": {
+                            "path": "./webpack.config.js"
+                        },
+                        "aot": true,
+                        "outputPath": "dist/ThinClient/buildnumber",
+                        "index": "src/index.html",
+                        "main": "src/main.ts",
+                        "polyfills": "src/polyfills.ts",
+                        "tsConfig": "src/tsconfig.app.json",
+                        "assets": [
+                            {
+                                "glob": "**/*",
+                                "input": "src/assets/",
+                                "output": "/assets/"
+                            },
+                            {
+                                "glob": "favicon.ico",
+                                "input": "src/",
+                                "output": "/"
+                            },
+                            <% assetsImports %>
+                        ],
+                        "styles": [
+                            "src/styles.scss",
+                            "node_modules/leaflet/dist/leaflet.css",
+                            "node_modules/@galileo/web_common-libraries/assets/common-libraries/themes/themes.scss"
+                        ],
+                        "scripts": []
+                    },
+                    "configurations": {
+                        "production": {
+                            "budgets": [
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb"
+                                }
+                            ],
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
+                                }
+                            ],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "namedChunks": false,
+                            "aot": true,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true
+                        }
+                    }
+                },
+                "serve": {
+                    "builder": "@angular-builders/custom-webpack:dev-server",
+                    "options": {
+                        "browserTarget": "ThinClient:build"
+                    },
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "ThinClient:build:production"
+                        }
+                    }
+                },
+                "extract-i18n": {
+                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "ThinClient:build"
+                    }
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "main": "src/test.ts",
+                        "polyfills": "src/polyfills.ts",
+                        "tsConfig": "src/tsconfig.spec.json",
+                        "karmaConfig": "src/karma.conf.js",
+                        "styles": [
+                            "src/styles.scss"
+                        ],
+                        "scripts": [],
+                        "assets": [
+                            {
+                                "glob": "**/*",
+                                "input": "src/assets/",
+                                "output": "/assets/"
+                            },
+                            {
+                                "glob": "favicon.ico",
+                                "input": "src/",
+                                "output": "/"
+                            }
+                        ]
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-eslint/builder:lint",
+                    "options": {
+                      "lintFilePatterns": [
+                        "src/**/*.ts",
+                        "src/**/*.html"
+                      ]
+                    }
+                }
+            }
+        },
+        "ThinClient-e2e": {
+            "root": "e2e/",
+            "projectType": "application",
+            "architect": {
+                "e2e": {
+                    "builder": "@angular-devkit/build-angular:protractor",
+                    "options": {
+                        "protractorConfig": "e2e/protractor.conf.js",
+                        "devServerTarget": "ThinClient:serve"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "ThinClient:serve:production"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "defaultProject": "ThinClient",
+    "cli": {
+        "defaultCollection": "@angular-eslint/schematics"
+    }
+}

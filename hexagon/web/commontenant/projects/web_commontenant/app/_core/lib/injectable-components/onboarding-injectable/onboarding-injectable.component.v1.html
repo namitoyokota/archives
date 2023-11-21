@@ -1,0 +1,14 @@
+<div class="note-container">
+    <span class="note">
+        <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]="tokens.note">
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+    <span class="msg">
+        <hxgn-commonlocalization-translate-v1 skeletonWidth="150px" [token]="tokens.onboardingMsg">
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+</div>
+<hxgn-commontenant-tenant-config *ngIf="(tenant$ | async) as tenant" [tenant]="tenant"
+    [industryGroups]="industryGroups$ | async" [displayTabs]="[tab.organizationInfo, tab.featureFlags]"
+    (tenantUpdated)="updateTenant($event)" (iconChange)="setNewIcon($event)" >
+</hxgn-commontenant-tenant-config>

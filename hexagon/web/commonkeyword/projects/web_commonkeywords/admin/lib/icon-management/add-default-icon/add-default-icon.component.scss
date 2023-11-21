@@ -1,0 +1,63 @@
+:host {
+    background-color: #F2F2F2;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1.3fr 120px 1fr;
+    grid-row-gap: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.info-diagram-pane {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.info-diagram {
+    background-image: url('assets/commonkeywords-core/images/no-group-icon.png');
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: contain;
+    max-width: 776px;
+    max-height: 233px;
+    width: 100%;
+    height: 100%;
+}
+
+.action-pane {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .group-msg {
+        font-size: 26px;
+        font-weight: bold;
+        color: #5E5E5E;
+    }
+
+    .directions-msg {
+        font-size: 18px;
+        color: #616062;
+        font-style: italic;
+        margin-top: 15px;
+    }
+
+    button {
+        margin-top: 15px;
+        width: 200px;
+    }
+}
+
+.note-pane {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .msg {
+        display: grid;
+        grid-template-columns: 28px 344px;
+        grid-column-gap: 10px;
+    }
+}

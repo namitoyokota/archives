@@ -1,0 +1,411 @@
+<!-- Handles creation object -->
+<ng-container *ngIf="isCreation || isReopen || association; else updateHandler">
+    <ng-container *ngIf="isCreation || isReopen; else associationHandler">
+        <div class="history-item-container" [class.concise]="concise">
+            <div class="item-image-container">
+                <div class="item-image item-image-creation"></div>
+            </div>
+            <div class="item-text">
+                <span *ngIf="isCreation">
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.alarmCreated" skeletonWidth="85px">
+                    </hxgn-commonlocalization-translate-v1>
+                </span>
+                <span *ngIf="isReopen">
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.alarmReopened" skeletonWidth="100px">
+                    </hxgn-commonlocalization-translate-v1>
+                </span>
+            </div>
+            <div class="created-alarm-container">
+                <div class="created-alarm-card">
+                    <hxgn-alarms-priority [priority]="createdAlarm?.priority"></hxgn-alarms-priority>
+                    <div class="created-alarm-card-content">
+                        <hxgn-alarms-icon [alarm]="createdAlarm"></hxgn-alarms-icon>
+                        <div class="alarm-info">
+                            <div class="alarm-title ellipsis">{{createdAlarm?.title}}</div>
+                            <ng-container *ngIf="!createdAlarm?.isRedacted(restrictIds.location); else locationRedacted">
+                                <div class="alarm-location ellipsis" *ngIf="createdAlarm?.location?.formattedAddress">
+                                    {{createdAlarm?.location?.formattedAddress}}</div>
+                                <div class="alarm-cross-street" *ngIf="createdAlarm?.location?.crossStreet1">
+                                    <img src="assets/alarms-core/images/cross-street_17x24.png" height="18"
+                                        width="13" />
+                                    <span class="ellipsis">
+                                        {{createdAlarm?.location?.crossStreet1}} /
+                                        {{createdAlarm?.location?.crossStreet2}}
+                                    </span>
+                                </div>
+                            </ng-container>
+                            <ng-template #locationRedacted>
+                                <div class="redacted">
+                                    <img src="assets/alarms-core/images/redaction-icon.svg" height="17" width="13" />
+                                    <span class="bold">
+                                        <hxgn-commonlocalization-translate-v1 [token]="tokens.location"
+                                            skeletonWidth="55px">
+                                        </hxgn-commonlocalization-translate-v1>
+                                    </span>
+                                </div>
+                            </ng-template>
+                        </div>
+                        <hxgn-common-properties *ngIf="createdAlarm?.properties?.size > 0"
+                            [properties]="createdAlarm?.properties">
+                        </hxgn-common-properties>
+                    </div>
+                </div>
+                <div class="created-contact-card" *ngIf="createdAlarm?.primaryContact?.firstName">
+                    <ng-container
+                        *ngIf="!createdAlarm?.isRedacted(restrictIds.primaryContact); else primaryContactRedacted">
+                        <hxgn-common-contact-v2 [contact]="createdAlarm?.primaryContact">
+                        </hxgn-common-contact-v2>
+                    </ng-container>
+                    <ng-template #primaryContactRedacted>
+                        <div class="redacted">
+                            <img src="assets/alarms-core/images/redaction-icon.svg" height="17" width="13" />
+                            <span class="bold">
+                                <hxgn-commonlocalization-translate-v1 [token]="tokens.primaryContact"
+                                    skeletonWidth="55px">
+                                </hxgn-commonlocalization-translate-v1>
+                            </span>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    <ng-template #associationHandler>
+        <div class="history-item-container" [class.concise]="concise">
+            <div class="item-image-container">
+                <div class="item-image item-image-association"></div>
+            </div>
+            <div class="item-text">
+                <span>
+                    <ng-container *ngIf="assetTitle; else deviceAssociation">
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.assetAssociationAdded"
+                            skeletonWidth="165px">
+                            "{{assetTitle}}"
+                        </hxgn-commonlocalization-translate-v1>
+                    </ng-container>
+                    <ng-template #deviceAssociation>
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.deviceAssociationAdded"
+                            skeletonWidth="175px">
+                            "{{deviceTitle}}"
+                        </hxgn-commonlocalization-translate-v1>
+                    </ng-template>
+                </span>
+            </div>
+        </div>
+    </ng-template>
+</ng-container>
+
+<!-- Handles alarm updates -->
+<ng-template #updateHandler>
+    <div class="history-item-container" [class.concise]="concise" *ngFor="let operation of operations; let i = index">
+
+        <!-- Prevents duplicate image icons when there are more than one operations of the same type back to back. -->
+        <div class="item-image-container"
+            *ngIf="i === 0 || (i > 0 && operations[i].propertyName !== operations[i - 1].propertyName); else placeholder">
+            <div class="item-image item-image-{{operation.propertyName.toLowerCase()}}"></div>
+            <div class="connector" *ngIf="showConnector(i)"></div>
+        </div>
+        <ng-template #placeholder>
+            <div class="placeholder">
+                <div class="connector" *ngIf="showConnector(i)"></div>
+            </div>
+        </ng-template>
+        <ng-container [ngSwitch]="operation.propertyName">
+
+            <!-- Handles Attachments -->
+            <div *ngSwitchCase="operationProperties.attachments" class="attachments-container">
+                <div class="item-text" [class.redacted]="operation.redact">
+                    <img src="assets/alarms-core/images/redaction-icon.svg" height="17" width="13"
+                        *ngIf="operation.redact" />
+                    <span *ngIf="!operation.redact">{{operation.value.length}}</span>
+                    <span>
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.attachments" skeletonWidth="80px">
+                        </hxgn-commonlocalization-translate-v1>
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.added" skeletonWidth="40px">
+                        </hxgn-commonlocalization-translate-v1>
+                    </span>
+                </div>
+                <div class="deleted-attachments spacing-top" *ngIf="deletedMediaList.length && !operation.redact">
+                    {{deletedMediaList.length}}
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.attachmentsNoLongerAvailable"
+                        skeletonWidth="205px">
+                    </hxgn-commonlocalization-translate-v1>
+                </div>
+                <hxgn-common-media-grid *ngIf="!operation.redact && mediaList.length && fetcher" class="spacing-top"
+                    [mediaList]="mediaList" [fetcher]="fetcher">
+                </hxgn-common-media-grid>
+            </div>
+
+            <!-- Handles IsManaged -->
+            <div *ngSwitchCase="operationProperties.isManaged" class="item-text">
+                <span>
+                    <hxgn-commonlocalization-translate-v1 *ngIf="operation.value" [token]="tokens.alarmManagedExternal"
+                        skeletonWidth="255px">
+                    </hxgn-commonlocalization-translate-v1>
+                    <hxgn-commonlocalization-translate-v1 *ngIf="!operation.value" [token]="tokens.alarmManagedConnect"
+                        skeletonWidth="275px">
+                    </hxgn-commonlocalization-translate-v1>
+                </span>
+            </div>
+
+            <!-- Handles Keywords -->
+            <div *ngSwitchCase="operationProperties.keywords" class="keywords-container"
+                [class.spacing-top]="!concise && i > 0 && operations[i - 1].propertyName === operations[i].propertyName">
+                <div class="item-text redacted" *ngIf="operation.redact; else keywordsNotRedacted">
+                    <img src="assets/alarms-core/images/redaction-icon.svg" height="17" width="13" />
+                    <span>
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.keywords" skeletonWidth="50px">
+                        </hxgn-commonlocalization-translate-v1>
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.changed" skeletonWidth="50px">
+                        </hxgn-commonlocalization-translate-v1>
+                    </span>
+                </div>
+                <ng-template #keywordsNotRedacted>
+                    <div *ngFor="let value of operation.value; let j = index" class="item-text"
+                        [class.spacing-top]="!concise && j > 0" [class.spacing-top-double]="concise && j > 0">
+                        <span>
+                            <hxgn-commonlocalization-translate-v1 [token]="tokens.keyword" skeletonWidth="50px">
+                            </hxgn-commonlocalization-translate-v1>
+                            <span>&nbsp;"{{value}}"</span>
+                            <span *ngIf="operation.operator === changeOperator.insertEach; else removeEach">
+                                <hxgn-commonlocalization-translate-v1 [token]="tokens.added" skeletonWidth="40px">
+                                </hxgn-commonlocalization-translate-v1>
+                            </span>
+                            <ng-template #removeEach>
+                                <hxgn-commonlocalization-translate-v1 [token]="tokens.removed" skeletonWidth="55px">
+                                </hxgn-commonlocalization-translate-v1>
+                            </ng-template>
+                        </span>
+                    </div>
+                </ng-template>
+            </div>
+
+            <!-- Handles Location  -->
+            <div *ngSwitchCase="operationProperties.location" class="item-text">
+                <ng-container *ngIf="!operation.redact; else itemLocationRedacted">
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.location" skeletonWidth="50px">
+                    </hxgn-commonlocalization-translate-v1>
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.changedTo" skeletonWidth="70px">
+                    </hxgn-commonlocalization-translate-v1>
+                    <span>&nbsp;{{operation.value.formattedAddress}}</span>
+                    <span>&nbsp;({{operation.value.crossStreet1}} / {{operation.value.crossStreet2}})</span>
+                </ng-container>
+                <ng-template #itemLocationRedacted>
+                    <div class="redacted">
+                        <img src="assets/alarms-core/images/redaction-icon.svg" height="17" width="13" />
+                        <span>
+                            <hxgn-commonlocalization-translate-v1 [token]="tokens.location" skeletonWidth="50px">
+                            </hxgn-commonlocalization-translate-v1>
+                            <hxgn-commonlocalization-translate-v1 [token]="tokens.changed" skeletonWidth="55px">
+                            </hxgn-commonlocalization-translate-v1>
+                        </span>
+                    </div>
+                </ng-template>
+            </div>
+
+            <!-- Handles Primary Contact -->
+            <div *ngSwitchCase="operationProperties.primaryContact" class="primary-contact-container">
+                <div class="item-text" [class.redacted]="operation.redact">
+                    <img *ngIf="operation.redact" src="assets/alarms-core/images/redaction-icon.svg" height="17"
+                        width="13" />
+                    <span>
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.primaryContact" skeletonWidth="95px">
+                        </hxgn-commonlocalization-translate-v1>
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.updated" skeletonWidth="50px">
+                        </hxgn-commonlocalization-translate-v1>
+                    </span>
+                </div>
+                <hxgn-common-contact-v2 *ngIf="!operation.redact" class="spacing-top" [contact]="operation.value"
+                    [showTitle]="false">
+                </hxgn-common-contact-v2>
+            </div>
+
+            <!-- Handles Priority -->
+            <div *ngSwitchCase="operationProperties.priority" class="item-text priority"
+                [ngClass]="['priority-' + operation.value.toString()]" [class.priority-redacted]="operation.redact">
+                <span>
+                    <hxgn-commonlocalization-translate-v1 skeletonWidth="25px" [token]="tokens.priority">
+                    </hxgn-commonlocalization-translate-v1>
+                </span>
+                <span>
+                    <hxgn-commonlocalization-translate-v1 *ngIf="!operation.redact; else redacted"
+                        [token]="tokens.changedTo" skeletonWidth="70px">
+                        "{{operation.value}}"
+                    </hxgn-commonlocalization-translate-v1>
+                    <ng-template #redacted>
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.changed" skeletonWidth="50px">
+                        </hxgn-commonlocalization-translate-v1>
+                    </ng-template>
+                </span>
+            </div>
+
+            <!-- Handles Properties -->
+            <div *ngSwitchCase="operationProperties.properties"
+                [class.spacing-top]="!concise && i > 0 && operations[i - 1].propertyName === operations[i].propertyName">
+
+                <div *ngFor="let value of operation.value | keyvalue; let j = index" class="item-text"
+                    [class.spacing-top]="!concise && j > 0" [class.spacing-top-double]="concise && j > 0"
+                    [class.redacted]="operation.redact">
+                    <img src="assets/alarms-core/images/redaction-icon.svg" height="17" width="13"
+                        *ngIf="operation.redact" />
+                    <span>
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.property" skeletonWidth="50px">
+                        </hxgn-commonlocalization-translate-v1>
+
+                        <!-- Property create/remove -->
+                        <ng-container
+                            *ngIf="operation.operator === changeOperator.insertEach || operation.operator === changeOperator.removeEach; else propertyUpdated">
+                            <span *ngIf="!operation.redact">&nbsp;"{{value.key}}: {{value.value}}"</span>
+                            <span *ngIf="operation.operator === changeOperator.insertEach; else removeEach">
+                                <hxgn-commonlocalization-translate-v1 [token]="tokens.added" skeletonWidth="40px">
+                                </hxgn-commonlocalization-translate-v1>
+                            </span>
+                            <ng-template #removeEach>
+                                <hxgn-commonlocalization-translate-v1 [token]="tokens.removed" skeletonWidth="55px">
+                                </hxgn-commonlocalization-translate-v1>
+                            </ng-template>
+                        </ng-container>
+
+                        <!-- Property update -->
+                        <ng-template #propertyUpdated>
+                            <ng-container *ngIf="!operation.redact; else propertyRedacted">
+                                <span>&nbsp;"{{value.key}}"</span>
+                                <hxgn-commonlocalization-translate-v1 [token]="tokens.value" skeletonWidth="30px">
+                                </hxgn-commonlocalization-translate-v1>
+                                <hxgn-commonlocalization-translate-v1 [token]="tokens.changedTo" skeletonWidth="70px">
+                                </hxgn-commonlocalization-translate-v1>
+                                <span>&nbsp;"{{value.value}}"</span>
+                            </ng-container>
+                            <ng-template #propertyRedacted>
+                                <hxgn-commonlocalization-translate-v1 [token]="tokens.changed" skeletonWidth="50px">
+                                </hxgn-commonlocalization-translate-v1>
+                            </ng-template>
+                        </ng-template>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Handles Remarks -->
+            <div *ngSwitchCase="operationProperties.remarks" class="remarks-container"
+                [class.spacing-top]="!concise && i > 0 && operations[i - 1].propertyName === operations[i].propertyName">
+                <div class="item-text" [class.redacted]="operation.redact">
+                    <img src="assets/alarms-core/images/redaction-icon.svg" height="17" width="13"
+                        *ngIf="operation.redact" />
+                    <span>
+                        <hxgn-commonlocalization-translate-v1 *ngIf="operation.value.length > 1; else remark"
+                            [token]="tokens.remarks" skeletonWidth="50px">
+                        </hxgn-commonlocalization-translate-v1>
+                        <ng-template #remark>
+                            <hxgn-commonlocalization-translate-v1 [token]="tokens.remark" skeletonWidth="45px">
+                            </hxgn-commonlocalization-translate-v1>
+                        </ng-template>
+                        <hxgn-commonlocalization-translate-v1 *ngIf="operation.operator === changeOperator.insertEach"
+                            [token]="tokens.added" skeletonWidth="40px">
+                        </hxgn-commonlocalization-translate-v1>
+                        <hxgn-commonlocalization-translate-v1 *ngIf="operation.operator === changeOperator.removeEach"
+                            [token]="tokens.removed" skeletonWidth="55px">
+                        </hxgn-commonlocalization-translate-v1>
+                    </span>
+                </div>
+                <ng-container *ngIf="!operation.redact">
+                    <div class="remark" *ngFor="let remark of operation.value">
+                        <span class="remark-author">
+                            {{remark.authorFirstName}} {{remark.authorLastName}}:
+                        </span>
+                        <span class="remark-text">
+                            {{remark.text}}
+                        </span>
+                    </div>
+                </ng-container>
+            </div>
+
+            <!-- Handles Reported Time -->
+            <div *ngSwitchCase="operationProperties.reportedTime" class="item-text">
+                <span>
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.alarmReported" skeletonWidth="90px">
+                    </hxgn-commonlocalization-translate-v1>
+                </span>
+            </div>
+
+            <!-- Handles Title -->
+            <div *ngSwitchCase="operationProperties.title" class="item-text">
+                <span>
+                    <hxgn-commonlocalization-translate-v1 skeletonWidth="25px" [token]="tokens.title">
+                    </hxgn-commonlocalization-translate-v1>
+                </span>
+                <span>
+                    <hxgn-commonlocalization-translate-v1 *ngIf="!operation.redact; else redacted"
+                        [token]="tokens.changedTo" skeletonWidth="70px">
+                        "{{operation.value}}"
+                    </hxgn-commonlocalization-translate-v1>
+                    <ng-template #redacted>
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.changed" skeletonWidth="50px">
+                        </hxgn-commonlocalization-translate-v1>
+                    </ng-template>
+                </span>
+            </div>
+
+            <!-- Handles Type -->
+            <div *ngSwitchCase="operationProperties.type" class="item-text" [class.redacted]="operation.redact">
+                <img src="assets/alarms-core/images/redaction-icon.svg" height="17" width="13"
+                    *ngIf="operation.redact" />
+                <span>
+                    <hxgn-commonlocalization-translate-v1 skeletonWidth="25px" [token]="tokens.type">
+                    </hxgn-commonlocalization-translate-v1>
+                    <hxgn-commonlocalization-translate-v1 *ngIf="!operation.redact; else typeRedacted"
+                        [token]="tokens.changedTo" skeletonWidth="70px">
+                        "{{operation.value}}"
+                    </hxgn-commonlocalization-translate-v1>
+                    <ng-template #typeRedacted>
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.changed" skeletonWidth="50px">
+                        </hxgn-commonlocalization-translate-v1>
+                    </ng-template>
+                </span>
+            </div>
+
+            <!-- Handles Hyperlinks -->
+            <div *ngSwitchCase="operationProperties.hyperlinks" class="hyperlinks-container"
+                [class.spacing-top]="!concise && i > 0 && operations[i - 1].propertyName === operations[i].propertyName">
+                <div class="item-text redacted" *ngIf="operation.redact; else hyperlinksNotRedacted">
+                    <img src="assets/alarms-core/images/redaction-icon.svg" height="17" width="13" />
+                    <span>
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.hyperlinks" skeletonWidth="50px">
+                        </hxgn-commonlocalization-translate-v1>
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.changed" skeletonWidth="50px">
+                        </hxgn-commonlocalization-translate-v1>
+                    </span>
+                </div>
+                <ng-template #hyperlinksNotRedacted>
+                    <div *ngFor="let value of operation.value; let j = index" class="item-text"
+                        [class.spacing-top]="!concise && j > 0" [class.spacing-top-double]="concise && j > 0">
+                        <span>
+                            <hxgn-commonlocalization-translate-v1 [token]="tokens.hyperlink" skeletonWidth="50px">
+                            </hxgn-commonlocalization-translate-v1>
+                            <span>&nbsp;"{{value.text}}"</span>
+                            <ng-container *ngIf="operation.operator === changeOperator.insertEach">
+                                <hxgn-commonlocalization-translate-v1 [token]="tokens.added" skeletonWidth="40px">
+                                </hxgn-commonlocalization-translate-v1>
+                            </ng-container>
+                            <ng-container *ngIf="operation.operator === changeOperator.updateEach">
+                                <hxgn-commonlocalization-translate-v1 [token]="tokens.updated" skeletonWidth="50px">
+                                </hxgn-commonlocalization-translate-v1>
+                            </ng-container>
+                            <ng-container *ngIf="operation.operator === changeOperator.removeEach">
+                                <hxgn-commonlocalization-translate-v1 [token]="tokens.removed" skeletonWidth="55px">
+                                </hxgn-commonlocalization-translate-v1>
+                            </ng-container>
+                        </span>
+                    </div>
+                </ng-template>
+            </div>
+
+            <!-- Handles default -->
+            <div *ngSwitchDefault class="item-text">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.alarmUpdated" skeletonWidth="85px">
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+        </ng-container>
+
+        <div class="connector" *ngIf="showConnector(i)"></div>
+    </div>
+</ng-template>

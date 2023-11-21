@@ -1,0 +1,34 @@
+<div class="settings-title">
+  <hxgn-commonlocalization-translate-v1 skeletonWidth="75" [token]="tokens.settings"></hxgn-commonlocalization-translate-v1>
+
+  <span *ngIf="showResetToDefault" (click)="reset()" class="rest-btn">
+      <hxgn-commonlocalization-translate-v1 skeletonWidth="75" [token]="tokens.reset"></hxgn-commonlocalization-translate-v1>
+  </span>
+</div>
+
+<div (click)="$event.stopPropagation();" class="filter-menu">
+
+  <!-- Filters -->
+  <hxgn-shapes-filter [filter]="activeFilter" (filterChange)="setActiveFilter($event)"></hxgn-shapes-filter>
+
+  <!-- Map Syncing -->
+  <hxgn-common-expansion-panel *ngIf="showMapSync" panelState="expanded">
+      <hxgn-common-expansion-panel-title>
+          <img src="assets/shapes/images/map-sync-menu.svg" />
+          <span>
+              <hxgn-commonlocalization-translate-v1 skeletonWidth="75" [token]="tokens.mapSyncing"></hxgn-commonlocalization-translate-v1>
+          </span>
+      </hxgn-common-expansion-panel-title>
+      <hxgn-common-expansion-panel-content>
+          <div>
+              <mat-slide-toggle (toggleChange)="toggleMapSync()" [(ngModel)]="enabledMapSyncing">
+                  <hxgn-commonlocalization-translate-v1 skeletonWidth="75" [token]="tokens.syncWithMap"></hxgn-commonlocalization-translate-v1>
+              </mat-slide-toggle>
+          </div>
+      </hxgn-common-expansion-panel-content>
+  </hxgn-common-expansion-panel>
+
+  <!-- Sorting -->
+  <hxgn-shapes-sorting [sortBy]="sortBy" (sortByChange)="setSortOption($event)"></hxgn-shapes-sorting>
+
+</div>

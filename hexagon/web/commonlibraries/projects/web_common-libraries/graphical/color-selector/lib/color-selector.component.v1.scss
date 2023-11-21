@@ -1,0 +1,42 @@
+.selection-pane {
+    border: 1px solid #ADAFB2;
+    padding: 0 10px;
+    height: 30px;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: min-content auto min-content;
+    align-items: center;
+    column-gap: 10px;
+    text-align: center;
+    background-color: #f7f7f7;
+    cursor: pointer;
+
+    &.disabled {
+        pointer-events: none;
+        background-color: #eee;
+        border: none;
+
+        hxgn-common-color-item-v1,
+        .selected-color
+        {
+            opacity: 0.2;
+        }
+    }
+}
+
+.selected-color {
+    display: flex;
+    column-gap: 5px;
+    overflow: hidden;
+}
+
+// Css to put on mat menu for color selection.
+::ng-deep .color-selector-v1-menu {
+    margin-top: -1px;
+    margin-left: -1px;
+    box-shadow: none !important;
+
+    .mat-menu-content {
+        padding: 0 !important;
+    }
+}

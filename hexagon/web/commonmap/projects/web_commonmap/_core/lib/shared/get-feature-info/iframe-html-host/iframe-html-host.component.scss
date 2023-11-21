@@ -1,0 +1,43 @@
+:host {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.iframe-container {
+    height: 100%;
+    width: 100%;
+}
+
+.iframe {
+    width: 100%;
+    border: unset !important;
+}
+
+.no-layer-info {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    width: 100%;
+    height: 200px;
+    
+    .content {
+        display: grid;
+        grid-template-rows: 100px 30px;
+        align-items: center;
+        justify-items: center;
+        width: 100%;
+    
+        .no-layer-info-icon {
+            display: flex;
+            height: 80px;
+            width: 80px;
+        }
+        
+        .no-layer-info-text {
+            justify-self:center;
+            font-size: 16px;
+        }
+    }
+}
+

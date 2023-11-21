@@ -1,0 +1,42 @@
+<div class="action-icon" cdkOverlayOrigin #origin="cdkOverlayOrigin" (click)="popover.open($event)">
+</div>
+<hxgn-common-popover #popover [origin]="origin" [menuMode]="true" width="300px" [position]="popoverPosition">
+    <div class="menu-content">
+        <div class="property-header">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.additionalInformation" skeletonWidth="150px">
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+        <div class="table-container" [class.table-container-empty]="dataSource.data.length === 0">
+            <table mat-table [dataSource]="dataSource" matSort matSortActive="name" matSortDirection="asc"
+                (click)="$event.stopPropagation()">
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.name" [ignoreSkeleton]="true">
+                        </hxgn-commonlocalization-translate-v1>
+                    </th>
+                    <td mat-cell *matCellDef="let property;">{{property.name}}</td>
+                </ng-container>
+
+                <!-- Details Column -->
+                <ng-container matColumnDef="details">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.details" [ignoreSkeleton]="true">
+                        </hxgn-commonlocalization-translate-v1>
+                    </th>
+                    <td mat-cell *matCellDef="let property;">{{property.details}}</td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <div class="no-properties" *ngIf="dataSource.data.length === 0">
+                <span>
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.noProperties">
+                    </hxgn-commonlocalization-translate-v1>
+                </span>
+            </div>
+        </div>
+    </div>
+</hxgn-common-popover>

@@ -1,0 +1,16 @@
+<div class="branding-pane">
+    <div class="gradient"></div>
+    <span>
+        <hxgn-commonlocalization-translate-v1 *ngIf="title" [token]="title" ignoreSkeleton="true" class="title">
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+    <img *ngIf="!title" src="assets/Connect-LiveShare_Slideout.svg" height="15" width="218" />
+</div>
+<div class="cmd-pane">
+    <div [title]='tTokens.help' class="help-btn-container"
+        *ngIf="(user | claimGuard$v1: layoutManagerCapabilityId:layoutManagerClaims.mainProductAccess) && showUserHelp">
+        <img (click)="openUserHelp()" class="help-btn" src="assets/icons/help-menu.png" />
+    </div>
+    <tenant-menu [user]="user"></tenant-menu>
+    <img (click)="openAboutDialog()" [title]='tTokens.about' class="logo" src="assets/icons/hexagon-bug.png" />
+</div>

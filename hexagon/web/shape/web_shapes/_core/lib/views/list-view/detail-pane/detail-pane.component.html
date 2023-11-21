@@ -1,0 +1,58 @@
+<!-- Filtering Type -->
+<div *ngIf="shape?.filteringType && !shape?.isRedacted(RestrictIds.filteringType)" class="bar">
+  <span>
+    <hxgn-commonlocalization-translate-v1 [token]="tokens.typeDetail" [customInterpolation]="true">
+      <ng-template let-token="token">
+        <span class="val">{{shape?.filteringType}}</span>
+      </ng-template>
+    </hxgn-commonlocalization-translate-v1>
+  </span>
+</div>
+
+<!-- Redacted Properties Bar -->
+<hxgn-commontenant-redacted-bar *ngIf="redactedPropertyTokens?.length"
+  [translationTokens]="redactedPropertyTokens" >
+</hxgn-commontenant-redacted-bar>
+
+<!-- Primary Contact -->
+<hxgn-common-contact-v2 *ngIf="shape?.primaryContact && !shape?.isRedacted(RestrictIds.primaryContact)"
+  [contact]="shape?.primaryContact">
+</hxgn-common-contact-v2>
+
+<!-- Description -->
+<ng-container *ngIf="shape?.description && !shape?.isRedacted(RestrictIds.description)">
+  <!-- Divider -->
+  <div class="divider"></div>
+
+  <!-- Shape Description -->
+  <hxgn-common-description [description]="shape?.description">
+  </hxgn-common-description>
+</ng-container>
+
+<!-- Linked Data -->
+<ng-container *featureFlag="FeatureFlags.shapeAssociations">
+  <hxgn-commonassociation-linked-data-v1 *ngIf="linkedDataList?.length"
+    [linkedDataList]="linkedDataList" [componentNameMap]="componentNameMap">
+  </hxgn-commonassociation-linked-data-v1>
+</ng-container>
+
+<!-- Property Bag -->
+<hxgn-common-properties *ngIf="shape?.properties && !shape?.isRedacted(RestrictIds.properties)"
+  [properties]="shape?.properties">
+</hxgn-common-properties>
+
+<!-- Hyperlinks -->
+<ng-container *featureFlag="FeatureFlags.hyperlinks">
+  <hxgn-common-hyperlinks *ngIf="shape?.hyperlinks?.length && !shape?.isRedacted(RestrictIds.hyperlinks)"
+    [links]="shape?.hyperlinks">
+  </hxgn-common-hyperlinks>
+</ng-container>
+
+<!-- History -->
+<hxgn-shapes-history [shape]="shape" [contextId]="contextId">
+</hxgn-shapes-history>
+
+<!-- Keywords -->
+<hxgn-common-keywords *ngIf="enableKeywords && shape?.keywords?.length && !shape?.isRedacted(RestrictIds.keywords)"
+    [keywords]="shape?.keywords">
+</hxgn-common-keywords>

@@ -1,0 +1,44 @@
+<!-- Show Selected -->
+<hxgn-commontenant-active-data-filter-item *ngIf="!showEverything()" [level]="RestrictionLevels.medium">
+    <hxgn-commontenant-active-data-filter-item-section>
+
+        <!-- Title -->
+        <hxgn-commontenant-active-data-filter-item-section-title>
+            <hxgn-commonlocalization-translate-v1 [token]='tokens.dontShareSubsections'>
+            </hxgn-commonlocalization-translate-v1>
+        </hxgn-commontenant-active-data-filter-item-section-title>
+
+        <!-- Text -->
+        <hxgn-commontenant-active-data-filter-item-section-text>
+            <ng-container *ngFor="let item of allRestrictions?.restrictions; let i = index;">
+                <div class="d-inline-block" *ngIf="dontShow(item.content.restrictId)">
+
+                    <!-- Redacted Property Name -->
+                    <ng-container [ngSwitch]="item.content.restrictId">
+                        <hxgn-commonlocalization-translate-v1 *ngSwitchCase="RestrictIds.filteringType"
+                            [token]='tokens.type'>
+                        </hxgn-commonlocalization-translate-v1>
+                        <hxgn-commonlocalization-translate-v1 *ngSwitchCase="RestrictIds.description"
+                            [token]='tokens.description'>
+                        </hxgn-commonlocalization-translate-v1>
+                        <hxgn-commonlocalization-translate-v1 *ngSwitchCase="RestrictIds.keywords"
+                            [token]="tokens.keywords">
+                        </hxgn-commonlocalization-translate-v1>
+                        <hxgn-commonlocalization-translate-v1 *ngSwitchCase="RestrictIds.primaryContact"
+                            [token]="tokens.primaryContact">
+                        </hxgn-commonlocalization-translate-v1>
+                    </ng-container>
+
+                    <!-- Add comma if not last element -->
+                    <span class="spacing-right" *ngIf="i !== (allRestrictions?.restrictions.length - 1)">,</span>
+
+                </div>
+            </ng-container>
+        </hxgn-commontenant-active-data-filter-item-section-text>
+
+    </hxgn-commontenant-active-data-filter-item-section>
+</hxgn-commontenant-active-data-filter-item>
+
+<!-- Show Everything -->
+<hxgn-shapes-low-active-data-filter *ngIf="showEverything() && showLowFilters">
+</hxgn-shapes-low-active-data-filter>

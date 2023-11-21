@@ -1,0 +1,10 @@
+<div class="edit-pane" (click)="editIcon()">
+    <hxgn-commonkeywords-composite-icon *ngIf="compositeIcon" [icon]="compositeIcon" 
+        size="80"></hxgn-commonkeywords-composite-icon>
+    <div class="edit-icon"></div>
+</div>
+
+
+<div *ngIf="!compositeIcon"  class="loading-pane">
+    <mat-spinner diameter="35"></mat-spinner>
+</div>

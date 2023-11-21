@@ -1,0 +1,117 @@
+<div class="tabs" [class.no-menu]="!showSlideOutMenu()">
+    <img *ngIf="showSlideOutMenu() && !showCloseMenuIcon()" (click)="toggleMainMenu()" class="main-menu-btn "
+        src="assets/icons/main-menu-icon.png" />
+    <img *ngIf="showSlideOutMenu() && showCloseMenuIcon()" (click)="toggleMainMenu()" class="main-menu-btn "
+        src="assets/icons/close.png" />
+
+    <hxgn-common-tabs theme="dark" (click)="setSelectedTab(selectedTabIndex)">
+        <mat-tab-group [selectedIndex]="selectedTabIndex" disableRipple="true"
+            (selectedIndexChange)="setSelectedTab($event)">
+
+            <!-- Layout manager tabs -->
+            <mat-tab *ngFor="let tab of tabList">
+                <ng-template mat-tab-label>
+                    <div> {{tab.name}} </div>
+                </ng-template>
+            </mat-tab>
+
+            <!-- Custom tabs -->
+            <mat-tab *ngFor="let tab of customTabs">
+                <ng-template mat-tab-label>
+                    <div> {{tab?.title}} </div>
+                </ng-template>
+            </mat-tab>
+        </mat-tab-group>
+    </hxgn-common-tabs>
+
+    <!-- Toolbar -->
+    <div class="toolbar">
+
+        <!-- Help Btn -->
+        <div [title]="tTokens.help" id="help-btn-container">
+            <img (click)="openHelp()" class="help-btn" src="assets/icons/help-menu.png" />
+        </div>
+
+        <!-- Chat Btn -->
+        <ng-container *ngIf="isMainWindow">
+            <div class="border-right">
+                <hxgn-commonconversations-chat-btn-v1></hxgn-commonconversations-chat-btn-v1>
+            </div>
+        </ng-container>
+
+        <!-- Channel Btn -->
+        <ng-container *ngIf="isMainWindow">
+            <div class="toolbar-btn border-right">
+                <hxgn-commonconversations-channel-btn-v1 ></hxgn-commonconversations-channel-btn-v1>
+            </div>
+        </ng-container>
+
+        <!-- Notifications btn -->
+        <ng-container *ngIf="isMainWindow">
+            <div class="border-right">
+                <hxgn-commonnotifications-btn-v1 [contextId]="getCurrentContextId()"></hxgn-commonnotifications-btn-v1>
+            </div>
+        </ng-container>
+
+        <!-- Tenant menu -->
+        <tenant-menu [user]="user" class="border-right">
+        </tenant-menu>
+        
+        <!-- About Btn -->
+        <img class="logo" [title]="tTokens.about" src="assets/icons/hexagon-bug.png" (click)="openAboutDialog()" />
+    </div>
+</div>
+<div class="content">
+
+    <div *ngIf="showDeprecationBanner" class="update-banner">
+        <div class="warn-icon"></div>
+
+        <span>
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.warningViewingDeprecatedVersionOfThisPage">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+
+        <button mat-raised-button (click)="dismissDeprecationBanner()">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.dismiss">
+            </hxgn-commonlocalization-translate-v1>
+        </button>
+
+        <button mat-raised-button color="primary" (click)="reloadPage()">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.reloadPage">
+            </hxgn-commonlocalization-translate-v1>
+        </button>
+        
+    </div>
+
+    <div *ngIf="showExpirationBanner" class="update-banner">
+        <div class="warn-icon"></div>
+
+        <span>
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.warningViewingDeprecatedVersionOfThisPage">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+        
+        <button mat-raised-button color="primary" (click)="reloadPage()">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.reloadPage">
+            </hxgn-commonlocalization-translate-v1>
+        </button>
+    </div>
+
+    <!-- Layout manager workspace renderer -->
+    <hxgn-layout-compiler-render *ngFor="let viewTab of selectedViewTabs; trackBy:trackElement" [screenId]="screen?.id"
+        [workspaceId]="workspaceId" [tab]="viewTab" [isMenuOpen]="showCloseMenuIcon()"
+        [class.hidden]="selectedViewTab === null || selectedViewTab?.id !== viewTab?.id">
+    </hxgn-layout-compiler-render>
+
+    <!-- Custom renderer -->
+    <div *ngFor="let customTab of customTabs; trackBy:trackElement"
+        class="custom-tab" [attr.id]="customTab.id"
+        [class.hidden]="!selectedCustomTabId  || selectedCustomTabId !== customTab.id">
+    </div>
+
+    <!-- Custom overlay renderer -->
+    <div *ngIf="customOverlays?.length " class="overlay-pane">
+        <div *ngFor="let overlay of customOverlays" class="overlay" 
+            [attr.id]="overlay.id" [style.z-index]="overlay.zIndex"></div>
+    </div>
+</div>

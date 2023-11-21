@@ -1,0 +1,480 @@
+@use '@angular/material' as mat;
+@import "@angular/material/theming";
+@import "themes-palettes";
+@import "themes-common";
+@include mat.core();
+
+@function hxgn-light-theme() {
+    @return (
+        primary: $primary-palette,
+        accent: $accent-palette,
+        warn: $warn-palette,
+        foreground: $foreground-palette,
+        background: $background-palette,
+        is-dark: false
+    );
+}
+
+$hxgn-light-theme: hxgn-light-theme();
+@include mat.all-component-themes($hxgn-light-theme);
+
+.dark-theme {
+    $mat-dark-theme: mat.define-dark-theme($dark-primary-palette, $dark-accent-palette, $dark-warn-palette);
+    @include mat.all-component-themes($mat-dark-theme);
+}
+
+@mixin font-stack {
+    font-family: "Segoe UI", SegoeUI, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
+
+@mixin hxgn-button {
+    @include font-stack;
+    height: 30px;
+    max-width: 230px;
+    min-width: 130px;
+    border-radius: 0;
+    box-shadow: 0px 1px 1px #00000033;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 16px;
+    margin-bottom: 1px;
+    overflow: hidden;
+    padding: 0 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.hxgn-btn-primary {
+    @include hxgn-button;
+    background-color: $hxgn-primary-blue;
+    border: $hxgn-primary-blue;
+    color: $white;
+
+    &:focus,
+    &:hover {
+        background-color: $hxgn-border-blue;
+        cursor: pointer;
+        outline: none;
+    }
+
+    &:disabled {
+        background-color: $hxgn-primary-disabled-background !important;
+        border: none;
+        box-shadow: none;
+        color: $hxgn-primary-disabled-color;
+        cursor: not-allowed;
+    }
+}
+
+.hxgn-btn-secondary {
+    @include hxgn-button;
+    background-color: $hxgn-secondary-background;
+    border: solid 1px $hxgn-secondary-border;
+    color: $hxgn-secondary-color;
+
+    &:focus,
+    &:hover {
+        background-color: $hxgn-secondary-hover-disabled;
+        cursor: pointer;
+        outline: none;
+    }
+
+    &:disabled {
+        background-color: $hxgn-secondary-hover-disabled;
+        border: none;
+        box-shadow: none;
+        color: $hxgn-secondary-disabled-color;
+        cursor: not-allowed;
+    }
+}
+
+.hxgn-btn-selected {
+    @include hxgn-button;
+    background-color: $hxgn-selected-background !important;
+    border: solid 1px $hxgn-border-blue !important;
+    color: $hxgn-secondary-color !important;
+    pointer-events: none;
+
+    &:focus,
+    &:hover {
+        outline: none;
+    }
+}
+
+.hxgn-ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display:inline-block;
+}
+
+body,
+html {
+    @include font-stack();
+    padding: 0;
+    margin: 0;
+}
+
+h1 {
+    font-size: 26px !important;
+    font-weight: normal !important;
+}
+
+h2 {
+    font-size: 20px !important;
+    font-weight: normal !important;
+}
+
+label {
+    font-size: 16px !important;
+}
+
+p,
+table {
+    font-size: 14px !important;
+}
+
+a.in-system {
+    color: inherit !important;
+}
+
+a:not(.in-system) {
+    color: $hxgn-primary-blue !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+}
+
+a:visited:not(.in-system) {
+    color: #a3638f !important;
+}
+
+textarea {
+    @include font-stack();
+    resize: none;
+    border: 1px solid $hxgn-line-grey !important;
+    font-size: 13px !important;
+    padding: 8px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="password"] {
+    @include font-stack();
+    resize: none;
+    border: 1px solid $hxgn-line-grey;
+    font-size: 13px;
+    padding: 8px;
+}
+
+textarea:focus,
+textarea:hover,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="number"]:hover {
+    border-color: $hxgn-highlight-blue !important;
+    outline: none;
+}
+
+input[type="text"]:hover,
+input[type="password"]:hover,
+input[type="number"]:hover {
+    border-color: $hxgn-highlight-blue;
+    outline: none;
+}
+
+textarea::placeholder,
+input[type="text"]::placeholder,
+input[type="password"]::placeholder,
+input[type="number"]::placeholder {
+    color: #9b9b9b;
+}
+
+input[disabled],
+input[disabled]:hover {
+    background: $hxgn-tab-grey !important;
+    border: 1px solid $hxgn-tab-grey !important;
+    color: #bcbec0 !important;
+}
+
+input::-ms-clear {
+    display: none;
+}
+
+tag-input {
+    tag {
+        @include font-stack;
+        background-color: #fff !important;
+        border: 1px solid #a6a8ab;
+        border-radius: 4px !important;
+        letter-spacing: normal !important;
+        line-height: 26px !important;
+        box-sizing: border-box !important;
+        cursor: default !important;
+        margin: 0.2rem !important;
+
+        &:hover {
+            box-shadow: none !important;
+        }
+
+        .tag-wrapper {
+            grid-column-gap: 5px;
+        }
+
+        delete-icon {
+            &:hover {
+                transform: none !important;
+                cursor: pointer;
+            }
+
+            span {
+                border-left: 1px solid #a6a8ab;
+                padding-left: 5px;
+
+                svg {
+                    vertical-align: middle !important;
+                    height: 100% !important;
+                }
+            }
+        }
+    }
+}
+
+.mat-ripple-element {
+    display: none !important;
+}
+
+// Radio overrides
+
+.mat-radio-inner-circle {
+    background-color: $hxgn-primary-blue !important;
+}
+
+.mat-radio-outer-circle {
+    background: #fff;
+    border-color: #afafaf !important;
+}
+
+.mat-radio-disabled .mat-radio-outer-circle {
+    background: $hxgn-tab-grey !important;
+    border-color: $hxgn-tab-grey !important;
+}
+
+// Button overrides
+
+.mat-raised-button {
+    line-height: 32px !important;
+    padding: 0 15px !important;
+    border-radius: 1px !important;
+}
+
+.mat-raised-button:not(.mat-primary) {
+    background-color: #f7f7f7;
+    border: 1px solid #afafaf;
+    color: #333;
+}
+
+.mat-raised-button:hover:not(.mat-primary) {
+    background-color: $hxgn-tab-grey !important;
+    border: 1px solid #afafaf !important;
+}
+
+.mat-raised-button:not(.mat-primary):not([disabled]).mat-button-selected {
+    background-color: $hxgn-row-blue !important;
+    border: 1px solid $hxgn-border-blue !important;
+}
+
+.mat-raised-button:not(.mat-primary)[disabled] {
+    background-color: $hxgn-tab-grey !important;
+    color: #c0c0c0 !important;
+}
+
+.mat-raised-button.mat-primary {
+    background-color: $hxgn-primary-blue;
+}
+
+.mat-raised-button.mat-primary:hover:not([disabled]) {
+    background-color: $hxgn-border-blue;
+    border-color: $hxgn-primary-blue;
+}
+
+.mat-raised-button.mat-primary[disabled] {
+    background-color: #a8c3df;
+    border-color: #a8c3df;
+    color: #dde3e8;
+}
+
+// Menu overrides
+
+.mat-menu-panel {
+    overflow: hidden !important;
+    background: #fff !important;
+    max-width: 480px !important;
+    min-height: 0 !important;
+    border: solid 1px #d4d4d4;
+    border-radius: 3px !important;
+    box-shadow: 0px 2px 6px #00000029 !important;
+}
+
+.mat-menu-dark {
+    background-color: #666 !important;
+    border-radius: 2px !important;
+    color: #fff;
+
+    .mat-menu-content {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+}
+
+// Checkbox overrides
+
+.mat-checkbox-frame {
+    border-color: #afafaf !important;
+    border-radius: 0px !important;
+    border-width: 1px !important;
+}
+
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
+.mat-checkbox-checked.mat-accent .mat-checkbox-background,
+.mat-pseudo-checkbox-checked,
+.mat-pseudo-checkbox-indeterminate,
+.mat-accent .mat-pseudo-checkbox-checked,
+.mat-accent .mat-pseudo-checkbox-indeterminate {
+    background-color: $hxgn-primary-blue !important;
+}
+
+mat-checkbox:hover:not(.mat-checkbox-disabled)
+    .mat-checkbox-frame
+    .mat-checkbox-indeterminate.mat-accent
+    .mat-checkbox-background {
+    border-color: $hxgn-primary-blue !important;
+}
+
+.mat-checkbox-disabled .mat-checkbox-inner-container,
+.mat-checkbox-disabled .mat-checkbox-frame {
+    background: $hxgn-tab-grey !important;
+    border-color: $hxgn-tab-grey !important;
+}
+
+.mat-checkbox-inner-container {
+    background-color: #fff;
+}
+
+// Tool tip overrides
+
+.mat-tooltip-error {
+    color: #242425 !important;
+    background: #fff8e1 !important;
+    font-size: 14px !important;
+    border: 2px solid #f9c833 !important;
+}
+
+.state-menu-pos {
+    width: 180px;
+    left: 60px;
+    position: relative;
+    border-radius: 1px !important;
+}
+
+.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: $hxgn-primary-blue;
+}
+
+// Slider overrides
+.mat-slider-track-fill {
+    background-color: $hxgn-primary-blue !important;
+}
+
+.mat-slider-thumb-container .mat-slider-thumb {
+    background-color: $hxgn-primary-blue !important;
+    border: none !important;
+    height: 14px !important;
+    width: 14px !important;
+    bottom: -8px !important;
+}
+
+.mat-slider.mat-slider-horizontal .mat-slider-track-wrapper {
+    height: 5px !important;
+}
+
+.mat-slider-thumb-label {
+    background-color: $hxgn-primary-blue !important;
+}
+
+.mat-slider-thumb-label-text {
+    color: #fff !important
+}
+
+// Material Overrides
+.mat-button,
+.mat-checkbox,
+.mat-dialog-title,
+.mat-expansion-panel-content,
+.mat-expansion-panel-header,
+.mat-form-field,
+.mat-menu-item,
+.mat-option,
+.mat-radio-button,
+.mat-raised-button,
+.mat-select,
+.mat-slide-toggle-content,
+.mat-slider-thumb-label-text,
+.mat-tab-group,
+.mat-tab-label,
+.mat-tab-link,
+.mat-table,
+.mat-tooltip {
+    @include font-stack();
+}
+
+/*Dragula css*/
+/* in-flight clone */
+.gu-mirror {
+    position: fixed !important;
+    margin: 0 !important;
+    z-index: 9999 !important;
+    opacity: 1;
+    pointer-events: none;
+    cursor: grabbing !important;
+}
+/* high-performance display:none; helper */
+.gu-hide {
+    left: -9999px !important;
+    cursor: grabbing !important;
+}
+/* added to mirrorContainer (default = body) while dragging */
+.gu-unselectable {
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+    cursor: grabbing !important;
+}
+/* added to the source element while its mirror is dragged */
+.gu-transit {
+    display: none !important;
+    cursor: grabbing !important;
+}
+
+.dialog-reset .mat-dialog-container {
+    box-shadow: 4px 4px rgba(0, 0, 0, 0.35);
+    padding: 0;
+    border-radius: 0;
+}
+
+/** removes the padding from a mat-dialog */
+.no-padding-dialog .mat-dialog-container {
+    padding: 0;
+    overflow: hidden;
+}
+
+/** allows overflow in a mat-dialog */
+.visible-overflow-dialog .mat-dialog-container {
+    overflow: visible;
+}
+
+.layer-panel-dialog .mat-dialog-container {
+    padding: 10px;
+    display: flex;
+}

@@ -1,0 +1,72 @@
+:host {
+    display: grid;
+    grid-template-columns: fit-content(20px) fit-content(100%);
+    grid-column-gap: 10px;
+
+    mat-menu {
+        position: absolute;
+    }
+}
+
+.menu-btn {
+    display: grid;
+    grid-template-columns: minmax(0, 100%) 17px;
+    grid-column-gap: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    overflow: hidden;
+
+    .tenant-name {
+        font-size: 16px;
+        font-weight: bold;
+        border-bottom: 3px solid #40cc5e;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .multiple {
+        border-bottom-color: #9374bd;
+    }
+
+    img {
+        align-self: center;
+    }
+}
+
+.selection-pane {
+    width: 336px;
+    display: grid;
+    grid-row-gap: 4px;
+
+    .menu-item {
+        display: grid;
+        grid-template-columns: 22px calc(100% - 35px);
+        grid-column-gap: 5px;
+
+        &.read-only {
+            padding: 4px 12px;
+        }
+    }
+
+    mat-checkbox {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 4px 12px;
+    }
+
+    mat-checkbox ::ng-deep .mat-checkbox-label,
+    mat-checkbox ::ng-deep .mat-checkbox-layout {
+        width: calc(100% - 20px);
+    }
+
+    .mat-checkbox-disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+}
+
+.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

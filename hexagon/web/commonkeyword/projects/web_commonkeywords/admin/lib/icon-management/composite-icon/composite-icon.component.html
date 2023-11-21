@@ -1,0 +1,29 @@
+<div class="pane" [style.width.px]="size" [style.height.px]="size"
+    [class.empty]="!icon?.iconStack.length">
+
+    <ng-container *ngFor="let i of icon?.iconStack">
+      <div class="img" *ngIf="getIconUrl(i) as iconUrl; else error"
+        [class.flip-h]="i.options.flipH && !i.options.flipV"
+        [class.flip-v]="i.options.flipV && !i.options.flipH"
+        [class.flip-h-v]="i.options.flipV && i.options.flipH"
+        [style.width.px]="scaledValue(i.options.scaleSize.x)"
+        [style.height.px]="scaledValue(i.options.scaleSize.y)"
+        [style.top.px]="scaledValue(i.options.point.y)"
+        [style.left.px]="scaledValue(i.options.point.x)"
+        [style.background-image]="'url(' + iconUrl + ')'">
+      </div>
+
+      <!-- Primitive icon is not found -->
+      <ng-template #error>
+        <div class="img error"
+          [class.flip-h]="i.options.flipH && !i.options.flipV"
+          [class.flip-v]="i.options.flipV && !i.options.flipH"
+          [class.flip-h-v]="i.options.flipV && i.options.flipH"
+          [style.width.px]="scaledValue(i.options.scaleSize.x)"
+          [style.height.px]="scaledValue(i.options.scaleSize.y)"
+          [style.top.px]="scaledValue(i.options.point.y)"
+          [style.left.px]="scaledValue(i.options.point.x)">
+        </div>
+      </ng-template>
+    </ng-container>
+</div>

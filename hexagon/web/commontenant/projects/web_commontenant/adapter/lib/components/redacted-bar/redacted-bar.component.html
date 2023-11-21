@@ -1,0 +1,14 @@
+<img src="assets/commontenant-core/locked_14x17.png" height="17" width="14" />
+<div class="items">
+    <ng-container *ngFor="let token of translationTokens; let i = index;">
+        <span class="item">
+            <hxgn-commonlocalization-translate-v1 skeletonWidth="75px" [token]="token">
+            </hxgn-commonlocalization-translate-v1>
+            <ng-container *ngIf="(i + 1) !== translationTokens.length">, </ng-container>
+        </span>
+    </ng-container>
+    <span class="not-available">
+        <hxgn-commonlocalization-translate-v1 skeletonWidth="75px" [token]="tokens.notAvailable">
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+</div>

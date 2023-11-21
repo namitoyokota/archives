@@ -1,0 +1,17 @@
+<hxgn-common-dropdown-v2 [disabled]="disabled" [value]="activeLineWeight" (selectionChange)="selectedWeightChange($event)">
+
+    <hxgn-common-dropdown-trigger-v2>
+        <ng-container *ngTemplateOutlet="weight_item; context: {weight: activeLineWeight}"></ng-container>
+    </hxgn-common-dropdown-trigger-v2>
+
+    <hxgn-common-dropdown-item-v2 *ngFor="let lineWeight of lineWeights" [value]="lineWeight">
+        <ng-container *ngTemplateOutlet="weight_item; context: {weight: lineWeight}"></ng-container>
+    </hxgn-common-dropdown-item-v2>
+
+</hxgn-common-dropdown-v2>
+
+
+<!-- Template for item -->
+<ng-template let-weight="weight" #weight_item>
+    <div class="weight" [style.height.px]="weight"></div>
+</ng-template>

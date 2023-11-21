@@ -1,0 +1,55 @@
+:host {
+  padding: 20px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 380px) auto;
+  grid-template-rows: 46px auto min-content;
+  overflow: hidden;
+  position: relative;
+}
+
+.tabs {
+  background-color: #eceeee;
+  border: 1px solid #afb0b2;
+  grid-column: 1 / span 3;
+}
+
+hxgn-shapes-list,
+hxgn-shapes-editor {
+  overflow: hidden;
+}
+
+hxgn-shapes-list,
+hxgn-shapes-editor,
+hxgn-shapes-map-preview {
+  box-sizing: border-box;
+  border: 1px solid #b8babc;
+  border-right: none;
+}
+
+hxgn-shapes-map-preview {
+  border-right: 1px solid #b8babc;
+}
+
+.command-pane {
+  display: flex;
+  justify-content: flex-end;
+  column-gap: 10px;
+  grid-column: 1 / span 3;
+  padding-top: 15px;
+}
+
+.loading-pane {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffffff6b;
+  z-index: 1000; // Float above the map and map controls
+}

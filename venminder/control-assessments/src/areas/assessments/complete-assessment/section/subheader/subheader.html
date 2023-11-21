@@ -1,0 +1,7 @@
+﻿<template>
+  <require from="./subheader.scss"></require>
+
+  <div class="subheader-pane" class.bind="!isFirst ? 'show-space' : ''">
+    <span class="subheader-text">${model.value}</span>
+  </div>
+</template>

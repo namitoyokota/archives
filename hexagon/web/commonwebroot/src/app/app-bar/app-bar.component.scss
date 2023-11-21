@@ -1,0 +1,58 @@
+:host {
+    background-color: #242425; 
+    height: 50px;
+    width: 100%;
+    display: grid;
+    overflow: hidden;
+    grid-template-columns: auto min-content;
+}
+
+.branding-pane {
+    display: flex;
+    align-items: center;
+
+    .gradient {
+        width: 7px;
+        height: 50px;
+        background: linear-gradient(#bad97a,#00953a);
+        margin-right: 10px;
+    }
+}
+
+.cmd-pane {
+    display: flex;
+    align-items: center;
+
+    tenant-menu {
+        border-right: 1px solid #fff;
+        margin-right: 10px;
+    }
+
+    .logo {
+        cursor: pointer;
+        padding-right: 20px;
+    }
+}
+
+.help-btn-container {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    border-right: 1px solid #e0e0e0;
+    border-left: 1px solid #e0e0e0;
+    justify-content: center;
+}
+
+.help-btn {
+    justify-self: center;
+    align-self: center;
+    cursor: pointer;
+    width: 26px;
+    height: 26px;
+}
+
+.title {
+    font-size: 23px;
+    color: #fff;
+    padding-left: 5px;
+}

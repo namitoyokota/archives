@@ -1,0 +1,29 @@
+:host {
+    height: 210px;
+    width: 520px;
+
+    display: grid;
+    grid-template-columns: min-content auto;
+    column-gap: 20px;
+}
+
+.content {
+    display: grid;
+    grid-template-rows: min-content auto min-content;
+    row-gap: 20px;
+
+    .title {
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 27px;
+    }
+
+    .message {
+        overflow-wrap: anywhere;
+    }
+
+    .btn-pane {
+        display: flex;
+        justify-content: flex-end;
+    }
+}

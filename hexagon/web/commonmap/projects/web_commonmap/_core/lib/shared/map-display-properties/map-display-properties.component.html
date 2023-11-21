@@ -1,0 +1,61 @@
+﻿<div class="display-properties-group">
+    <div class="preset-property colors-group">
+        <div class="title">
+            <hxgn-commonlocalization-translate-v1  class="title"
+                [token]="tokens.highlightColorsTitle">
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+        <div class="color-btns-group">
+            <hxgn-commonlocalization-translate-v1  class="label"
+                [token]="tokens.lineColorLabel">
+            </hxgn-commonlocalization-translate-v1>
+            <hxgn-commonlocalization-translate-v1  class="label"
+                [token]="tokens.fillColorLabel">
+            </hxgn-commonlocalization-translate-v1>
+            <hxgn-common-color-picker-button class="color-btn"
+                [defaultColor]="highlightLineColor"
+                [showOpacity]="true"
+                [showHexColor]="true"
+                (selectedColor)=setHighlightLineColor($event)>
+            </hxgn-common-color-picker-button>
+            <hxgn-common-color-picker-button class="color-btn"
+                [defaultColor]="highlightFillColor"
+                [showOpacity]="true"
+                [showHexColor]="true"
+                (selectedColor)=setHighlightFillColor($event)>
+            </hxgn-common-color-picker-button>
+        </div>
+    </div>
+    <div class="preset-properties colors-group">
+        <div class="group-title">
+            <hxgn-commonlocalization-translate-v1  class="title"
+                [token]="tokens.selectionColorsTitle">
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+        <div class="color-btns-group">
+            <hxgn-commonlocalization-translate-v1  class="label"
+                [token]="tokens.lineColorLabel">
+            </hxgn-commonlocalization-translate-v1>
+            <hxgn-commonlocalization-translate-v1  class="label"
+                [token]="tokens.fillColorLabel">
+            </hxgn-commonlocalization-translate-v1>
+            <hxgn-common-color-picker-button class="color-btn"
+                [defaultColor]="selectionLineColor"
+                [showOpacity]="true"
+                [showHexColor]="true"
+                (selectedColor)=setSelectionLineColor($event)>
+            </hxgn-common-color-picker-button>
+            <hxgn-common-color-picker-button class="color-btn"
+                [defaultColor]="selectionFillColor"
+                [showOpacity]="true"
+                [showHexColor]="true"
+                (selectedColor)=setSelectionFillColor($event)>
+            </hxgn-common-color-picker-button>
+        </div>
+    </div>
+</div>
+<div *ngIf="!colorsSystemDefaults" class="reset-to-default" (click)="resetToDefault()">
+    <hxgn-commonlocalization-translate-v1
+       [token]="tokens.resetToDefaultLabel">
+    </hxgn-commonlocalization-translate-v1>
+</div>

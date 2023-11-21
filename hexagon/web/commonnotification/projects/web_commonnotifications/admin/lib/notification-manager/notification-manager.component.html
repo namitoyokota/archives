@@ -1,0 +1,335 @@
+<div class="groups-container" [class.loading]="settingsLoading">
+    <div class="label" ellipsisTooltip>
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.notificationsVisibility" skeletonWidth="110px">
+        </hxgn-commonlocalization-translate-v1>
+    </div>
+    <div class="groups-buttons">
+        <button class="hxgn-btn-secondary" [class.hxgn-btn-selected]="visibleByAllUsers && !settingsLoading"
+            (click)="toggleVisibility(true)">
+            <img *ngIf="settingsLoading || !visibleByAllUsers"
+                src="assets/commonnotifications-core/images/visibility-all-users_inactive.svg" width="19" height="15" />
+            <img *ngIf="visibleByAllUsers && !settingsLoading"
+                src="assets/commonnotifications-core/images/visibility-all-users_active.svg" width="19" height="15" />
+            <span class="btn-text">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.visibleByAllUsers" [ignoreSkeleton]="true">
+                </hxgn-commonlocalization-translate-v1>
+            </span>
+        </button>
+        <button class="hxgn-btn-secondary" [class.hxgn-btn-selected]="!visibleByAllUsers"
+            (click)="toggleVisibility(false)">
+            <img *ngIf="visibleByAllUsers" src="assets/commonnotifications-core/images/visibility-groups_inactive.svg"
+                width="21" height="19" />
+            <img *ngIf="!visibleByAllUsers" src="assets/commonnotifications-core/images/visibility-groups_active.svg"
+                width="21" height="19" />
+            <span>
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.visibleByGroups" [ignoreSkeleton]="true">
+                </hxgn-commonlocalization-translate-v1>
+            </span>
+            <span *ngIf="!visibleByAllUsers" class="manage" (click)="openManageGroupsDialog()">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.manage" [ignoreSkeleton]="true">
+                </hxgn-commonlocalization-translate-v1>
+            </span>
+        </button>
+    </div>
+</div>
+<div class="ribbon" [class.loading]="settingsLoading">
+    <div class="preset-content">
+        <div class="label last-label" ellipsisTooltip>
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.notificationPreset" skeletonWidth="95px">
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+        <div class="custom-dropdown" #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="dropdownItems">
+            <div class="dropdown-value">
+                <img *ngIf="visibleByAllUsers && selectedSettingsPreset?.isDefault" class="default-option"
+                    src="assets/commonnotifications-core/images/star_for_button.png" height="14" width="15" />
+                <span class="ellipsis">{{selectedSettingsPreset?.presetName}}</span>
+            </div>
+            <img src="assets/commonnotifications-core/images/dropdown-arrow.png" />
+        </div>
+        <mat-menu class="custom-dropdown-items" #dropdownItems="matMenu" xPosition="before" hidden>
+            <div class="custom-dropdown-items-container">
+                <hxgn-commonnotifications-settings-item *ngFor="let preset of settingsPresets" [settings]="preset"
+                    [isSelected]="selectedSettingsPreset?.preset === preset.preset" [showDefault]="visibleByAllUsers"
+                    (click)="setSelectedSettings(preset.preset)">
+                </hxgn-commonnotifications-settings-item>
+            </div>
+        </mat-menu>
+        <div class="button-group">
+            <button class="hxgn-btn-secondary" (click)="openEditPresetDialog()">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.edit" [ignoreSkeleton]="true">
+                </hxgn-commonlocalization-translate-v1>
+            </button>
+            <div class="group-trigger" cdkOverlayOrigin #origin="cdkOverlayOrigin" (click)="popover.open()">
+                <img src="assets/commonnotifications-core/images/dropdown-arrow.png" />
+            </div>
+            <hxgn-common-popover #popover [origin]="origin" [menuMode]="true" [position]="popoverPosition">
+                <hxgn-common-menu-item [disabled]="selectedSettingsPreset?.isDefault" [token]="tokens.delete"
+                    (click)="deleteSettings()">
+                </hxgn-common-menu-item>
+            </hxgn-common-popover>
+        </div>
+        <button class="hxgn-btn-secondary" (click)="openCreatePresetDialog()">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.createNew" [ignoreSkeleton]="true">
+            </hxgn-commonlocalization-translate-v1>
+        </button>
+        <ng-container *ngIf="visibleByAllUsers; else manageDefaults">
+            <button class="hxgn-btn-secondary" [class.hxgn-btn-selected]="selectedSettingsPreset?.isDefault"
+                (click)="setDefaultSettingsAsync()">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.setAsDefault" [ignoreSkeleton]="true">
+                </hxgn-commonlocalization-translate-v1>
+            </button>
+        </ng-container>
+        <ng-template #manageDefaults>
+            <div class="manage-defaults" (click)="openManageGroupsDialog()">
+                <img src="assets/commonnotifications-core/images/star_for_button.png" width="19" height="18" />
+                <span>
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.manageDefaults">
+                    </hxgn-commonlocalization-translate-v1>
+                </span>
+            </div>
+        </ng-template>
+    </div>
+    <div class="divider"></div>
+    <div class="max-to-display-container">
+        <div class="label" ellipsisTooltip>
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.maxToDisplay" skeletonWidth="75px">
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+        <hxgn-common-input-v2>
+            <input [(ngModel)]="maxToDisplay" type="number" min="1" max="8" (input)="handleMaxToDisplayInput($event)"
+                (click)="$event.target.select()" />
+        </hxgn-common-input-v2>
+    </div>
+</div>
+<div class="content-container">
+    <div class="content">
+        <div class="notifications-settings-container">
+            <div class="capabilities-list">
+                <div class="capability" *ngFor="let capability of capabilities; trackBy: trackByCapabilityId"
+                    (click)="setSelectedCapability(capability)" [class.selected]="selectedCapability === capability">
+                    <div class="capability-icon-container">
+                        <div class="capability-icon" [style.background-image]="'url(' + capability.iconPath + ')'">
+                        </div>
+                    </div>
+                    <div class="capability-name">
+                        <span>
+                            <hxgn-commonlocalization-translate-v1 [token]="capability.nameToken" skeletonWidth="35px">
+                            </hxgn-commonlocalization-translate-v1>
+                        </span>
+                    </div>
+                    <mat-slide-toggle [(ngModel)]="capability.enabled" (click)="$event.stopPropagation()"
+                        (change)="updateDisabledCapabilities(capability.id)">
+                    </mat-slide-toggle>
+                    <div class="selected-bar"></div>
+                </div>
+            </div>
+            <div class="loading-container" *ngIf="capabilitiesLoading; else loadingComplete">
+                <mat-spinner diameter="80"></mat-spinner>
+            </div>
+            <ng-template #loadingComplete>
+                <div class="table-container">
+                    <table mat-table [dataSource]="tableData$">
+
+                        <!-- Show Notifications Column -->
+                        <ng-container matColumnDef="showNotifications">
+                            <th mat-header-cell *matHeaderCellDef>
+                                <div class="show-notifications-header">
+                                    <hxgn-commonlocalization-translate-v1 [token]="tokens.showNotifications"
+                                        skeletonWidth="160px">
+                                    </hxgn-commonlocalization-translate-v1>
+                                </div>
+                            </th>
+                            <td mat-cell *matCellDef="let data;">
+                                <ng-container *ngIf="!data.isHeaderRow; else headerRow">
+                                    <mat-checkbox [(ngModel)]="data.isEnabled" (change)="criteriaUpdated = true">
+                                        <hxgn-commonlocalization-translate-v1 [token]="data.nameToken"
+                                            skeletonWidth="40px">
+                                        </hxgn-commonlocalization-translate-v1>
+                                    </mat-checkbox>
+                                </ng-container>
+                                <ng-template #headerRow>
+                                    <mat-checkbox [checked]="getHeaderRowState(data.type) === headerRowStates.enabled"
+                                        [indeterminate]="getHeaderRowState(data.type) === headerRowStates.indeterminate"
+                                        (change)="toggleSubtypesEnabled(data.type, $event)">
+                                        <hxgn-commonlocalization-translate-v1 [token]="data.nameToken"
+                                            skeletonWidth="40px">
+                                        </hxgn-commonlocalization-translate-v1>
+                                    </mat-checkbox>
+                                </ng-template>
+                            </td>
+                        </ng-container>
+
+                        <!-- Display Order Column -->
+                        <ng-container matColumnDef="displayOrder">
+                            <th mat-header-cell *matHeaderCellDef class="standard-column">
+                                <div class="header-with-icon">
+                                    <img src="assets/commonnotifications-core/images/display-order-icon.svg" height="32"
+                                        width="38" />
+                                    <span>
+                                        <hxgn-commonlocalization-translate-v1 [token]="tokens.displayOrder"
+                                            skeletonWidth="90px">
+                                        </hxgn-commonlocalization-translate-v1>
+                                    </span>
+                                </div>
+                            </th>
+                            <td mat-cell *matCellDef="let data;">
+                                <ng-container *ngIf="!data.isHeaderRow">
+                                    <div class="center-table-content">
+                                        <hxgn-common-input-v2>
+                                            <input type="number" [(ngModel)]="data.uiSettings.displayOrder"
+                                                (input)="handleDisplayOrderInput($event)"
+                                                (click)="$event.target.select()" />
+                                        </hxgn-common-input-v2>
+                                    </div>
+                                </ng-container>
+                            </td>
+                        </ng-container>
+
+                        <!-- Duration Column -->
+                        <ng-container matColumnDef="duration">
+                            <th mat-header-cell *matHeaderCellDef class="standard-column">
+                                <div class="header-with-icon">
+                                    <img src="assets/commonnotifications-core/images/duration-icon.svg" height="31"
+                                        width="27" />
+                                    <span>
+                                        <hxgn-commonlocalization-translate-v1 [token]="tokens.duration"
+                                            skeletonWidth="55px">
+                                        </hxgn-commonlocalization-translate-v1>
+                                    </span>
+                                </div>
+                            </th>
+                            <td mat-cell *matCellDef="let data;">
+                                <ng-container *ngIf="!data.isHeaderRow">
+                                    <div class="center-table-content">
+                                        <hxgn-common-dropdown-v2 class="duration-dropdown"
+                                            [(ngModel)]="data.uiSettings.toastDuration"
+                                            (selectionChange)="criteriaUpdated = true">
+                                            <hxgn-common-dropdown-item-v2 *ngFor="let duration of durations"
+                                                [value]="duration.value">
+                                                <span *ngIf="duration.value !== -1">
+                                                    <ng-container *ngIf="duration.value % 60 === 0; else notDivisible">
+                                                        {{duration.value / 60}}
+                                                    </ng-container>
+                                                    <ng-template #notDivisible>
+                                                        {{duration.value}}
+                                                    </ng-template>
+                                                </span>
+                                                <span>
+                                                    <hxgn-commonlocalization-translate-v1 [token]="duration.token">
+                                                    </hxgn-commonlocalization-translate-v1>
+                                                </span>
+                                            </hxgn-common-dropdown-item-v2>
+                                        </hxgn-common-dropdown-v2>
+                                    </div>
+                                </ng-container>
+                            </td>
+                        </ng-container>
+
+                        <!-- Animation Column -->
+                        <ng-container matColumnDef="animation">
+                            <th mat-header-cell *matHeaderCellDef class="standard-column">
+                                <div class="header-with-icon">
+                                    <img src="assets/commonnotifications-core/images/animation-icon.svg" height="22"
+                                        width="50" />
+                                    <span>
+                                        <hxgn-commonlocalization-translate-v1 [token]="tokens.animation"
+                                            skeletonWidth="65px">
+                                        </hxgn-commonlocalization-translate-v1>
+                                    </span>
+                                </div>
+                            </th>
+                            <td mat-cell *matCellDef="let data;">
+                                <ng-container *ngIf="!data.isHeaderRow">
+                                    <div class="center-table-content">
+                                        <mat-slide-toggle [(ngModel)]="data.uiSettings.animation"
+                                            (change)="criteriaUpdated = true">
+                                        </mat-slide-toggle>
+                                    </div>
+                                </ng-container>
+                            </td>
+                        </ng-container>
+
+                        <!-- Audio Column -->
+                        <ng-container matColumnDef="audio">
+                            <th mat-header-cell *matHeaderCellDef class="standard-column">
+                                <div class="header-with-icon">
+                                    <img src="assets/commonnotifications-core/images/audio-icon.svg" height="24"
+                                        width="26" />
+                                    <span>
+                                        <hxgn-commonlocalization-translate-v1 [token]="tokens.audio"
+                                            skeletonWidth="35px">
+                                        </hxgn-commonlocalization-translate-v1>
+                                    </span>
+                                </div>
+                            </th>
+                            <td mat-cell *matCellDef="let data;">
+                                <ng-container *ngIf="!data.isHeaderRow">
+                                    <div class="center-table-content">
+                                        <mat-slide-toggle [(ngModel)]="data.uiSettings.audio"
+                                            (change)="criteriaUpdated = true">
+                                        </mat-slide-toggle>
+                                    </div>
+                                </ng-container>
+                            </td>
+                        </ng-container>
+
+                        <!-- Audio File Column -->
+                        <ng-container matColumnDef="audioFile">
+                            <th mat-header-cell *matHeaderCellDef>
+                                <div class="header-with-icon">
+                                    <img src="assets/commonnotifications-core/images/audio-file-icon.svg" height="29"
+                                        width="22" />
+                                    <span>
+                                        <hxgn-commonlocalization-translate-v1 [token]="tokens.audioFile"
+                                            skeletonWidth="65px">
+                                        </hxgn-commonlocalization-translate-v1>
+                                    </span>
+                                </div>
+                            </th>
+                            <td mat-cell *matCellDef="let data;">
+                                <ng-container *ngIf="!data.isHeaderRow">
+                                    <div class="audio-file-container">
+                                        <hxgn-common-dropdown-v2 [(ngModel)]="data.uiSettings.audioFile"
+                                            (selectionChange)="criteriaUpdated = true">
+                                            <hxgn-common-dropdown-item-v2 *ngFor="let audioFile of audioFiles"
+                                                [value]="audioFile.value">
+                                                <span>
+                                                    <hxgn-commonlocalization-translate-v1 [token]="audioFile.token">
+                                                    </hxgn-commonlocalization-translate-v1>
+                                                </span>
+                                            </hxgn-common-dropdown-item-v2>
+                                        </hxgn-common-dropdown-v2>
+                                        <div class="play-button" (click)="playSound(data.uiSettings.audioFile)">
+                                            <img src="assets/commonnotifications-core/images/play-button-icon.svg"
+                                                height="11" width="9" />
+                                            <span ellipsisTooltip>
+                                                <hxgn-commonlocalization-translate-v1 [token]="tokens.play"
+                                                    [ignoreSkeleton]="true">
+                                                </hxgn-commonlocalization-translate-v1>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                            [ngClass]="{ 'header-row': row.isHeaderRow }">
+                        </tr>
+                    </table>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+    <div class="buttons-row">
+        <button class="hxgn-btn-secondary" [disabled]="!hasUnsavedChanges()" (click)="discardChangesAsync()">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.discardChanges" [ignoreSkeleton]="true">
+            </hxgn-commonlocalization-translate-v1>
+        </button>
+        <button class="hxgn-btn-primary" [disabled]="!hasUnsavedChanges()" (click)="saveChangesAsync()">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.saveChanges" [ignoreSkeleton]="true">
+            </hxgn-commonlocalization-translate-v1>
+        </button>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="search-pane" #searchPane>
+    <hxgn-common-input-v2>
+        <input
+            type="text"
+            [(ngModel)]="location.formattedAddress"
+            (ngModelChange)="updateAddress()"
+            [placeholder]="tTokens.enterAddress"
+            (keyup.enter)="search()"
+        />
+    </hxgn-common-input-v2>
+
+    <button class="hxgn-btn-primary" #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="menu"
+        (click)="search()" [disabled]="!location.formattedAddress?.trim() || isLoading" >
+        <ng-container *ngIf="isLoading">
+            <div class="loading-pane">
+                <mat-spinner [diameter]="18"></mat-spinner>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="!isLoading">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.search" [ignoreSkeleton]="true">
+            </hxgn-commonlocalization-translate-v1>
+        </ng-container>
+    </button>
+
+    <mat-menu class="hxgn-common-map-dropdown-items" #menu="matMenu" xPosition="before" (closed)="resetSearch()">
+        <div class="items-container" [style.width.px]="searchPane.offsetWidth">
+            <div class="item" *ngFor="let location of locationOptions" (click)="select(location)">
+                <img src="assets/commonmap-core/images/admin/address-suggestion-icon.svg" />
+                <span>{{location.formattedAddress}}</span>
+            </div>
+        </div>
+    </mat-menu>
+</div>

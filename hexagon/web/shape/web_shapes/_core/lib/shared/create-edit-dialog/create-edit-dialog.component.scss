@@ -1,0 +1,27 @@
+:host {
+  display: grid;
+  grid-template-columns: 400px auto;
+  grid-template-rows: auto min-content;
+  row-gap: 15px;
+  height: 100%;
+  overflow: hidden;
+}
+
+hxgn-shapes-editor {
+  overflow: hidden;
+  border: 1px solid #b8babc;
+}
+
+hxgn-shapes-map-preview {
+  border: 1px solid #b8babc;
+  border-left: none;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.btn-pane {
+  display: flex;
+  justify-content: flex-end;
+  column-gap: 10px;
+  grid-column: 1 / span 2;
+}

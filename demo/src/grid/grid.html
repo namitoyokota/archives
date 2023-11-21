@@ -1,0 +1,206 @@
+<template>
+  <require from="./grid.css"></require>
+  <require from="../layout.css"></require>
+
+  <div class="demo-pane">
+    <div if.bind="thumbnailMode" class="thumbnail-pane-grid">
+      <div class="left-pane">
+        <div
+          class="thumbnail-box-grid border border-primary background-secondary"
+        ></div>
+        <div
+          class="thumbnail-box-grid border border-primary background-success"
+        ></div>
+      </div>
+
+      <div
+        class="thumbnail-box-grid border border-primary background-danger"
+      ></div>
+    </div>
+
+    <h3>Grid Template Columns</h3>
+
+    <div class="example-pane background-warning">
+      <div class="header-pane">
+        <span class="text-danger">grid-template-columns: auto 100px;</span>
+      </div>
+
+      <div class="grid-container template-columns-100">
+        <div class="box border border-primary background-secondary">
+          rest of space
+        </div>
+        <div class="box border border-primary background-secondary">100px</div>
+      </div>
+    </div>
+
+    <div class="example-pane background-warning">
+      <div class="header-pane">
+        <span class="text-danger">grid-template-columns: 1fr 100px;</span>
+      </div>
+
+      <div class="grid-container template-columns-fr">
+        <div class="box border border-primary background-secondary">
+          rest of space
+        </div>
+        <div class="box border border-primary background-secondary">100px</div>
+      </div>
+    </div>
+
+    <div class="example-pane background-warning">
+      <div class="header-pane">
+        <span class="text-danger">grid-template-columns: 1fr min-content;</span>
+      </div>
+
+      <div class="grid-container template-columns-min">
+        <div class="box border border-primary background-secondary">
+          rest of space
+        </div>
+        <div class="box border border-primary background-secondary">50px</div>
+      </div>
+    </div>
+
+    <div class="example-pane background-warning">
+      <div class="header-pane">
+        <span class="text-danger">grid-template-columns: 1fr 2fr;</span>
+      </div>
+
+      <div class="grid-container template-columns-fr-2">
+        <div class="box border border-primary background-secondary">1/3</div>
+        <div class="box border border-primary background-secondary">2/3</div>
+      </div>
+    </div>
+
+    <div class="example-pane background-warning">
+      <div class="header-pane">
+        <span class="text-danger">grid-template-columns: 2fr 1fr 1fr;</span>
+      </div>
+
+      <div class="grid-container template-columns-fr-3">
+        <div class="box border border-primary background-secondary">1/2</div>
+        <div class="box border border-primary background-secondary">1/4</div>
+        <div class="box border border-primary background-secondary">1/4</div>
+      </div>
+    </div>
+
+    <div class="example-pane background-warning">
+      <div class="header-pane">
+        <span class="text-danger">grid-template-columns: repeat(2, 1fr);</span>
+      </div>
+
+      <div class="grid-container template-columns-fr-even-2">
+        <div class="box border border-primary background-secondary">1/2</div>
+        <div class="box border border-primary background-secondary">1/2</div>
+      </div>
+    </div>
+
+    <div class="example-pane background-warning">
+      <div class="header-pane">
+        <span class="text-danger">grid-template-columns: repeat(5, 1fr);</span>
+      </div>
+
+      <div class="grid-container template-columns-fr-even-5">
+        <div class="box border border-primary background-secondary">1/5</div>
+        <div class="box border border-primary background-secondary">1/5</div>
+        <div class="box border border-primary background-secondary">1/5</div>
+        <div class="box border border-primary background-secondary">1/5</div>
+        <div class="box border border-primary background-secondary">1/5</div>
+      </div>
+    </div>
+
+    <hr />
+    <h3>Grid Template Rows</h3>
+
+    <div class="example-pane background-warning">
+      <div class="header-pane">
+        <span class="text-danger">grid-template-rows: min-content auto;</span>
+        <span>height: 200px;</span>
+      </div>
+
+      <div class="grid-container set-height template-rows-min">
+        <div class="box border border-primary background-secondary">50px</div>
+        <div class="box border border-primary background-secondary">
+          rest of space (150px)
+        </div>
+      </div>
+    </div>
+
+    <div class="example-pane background-warning">
+      <div class="header-pane">
+        <span class="text-danger">grid-template-rows: repeat(2, 1fr);</span>
+        <span>height: 200px;</span>
+      </div>
+
+      <div class="grid-container set-height template-rows-even">
+        <div class="box border border-primary background-secondary">
+          1/2 (100px)
+        </div>
+        <div class="box border border-primary background-secondary">
+          1/2 (100px)
+        </div>
+      </div>
+    </div>
+
+    <hr />
+    <h3>Gaps</h3>
+
+    <div class="example-pane background-warning">
+      <div class="header-pane">
+        <span class="text-danger">column-gap: 10px;</span>
+      </div>
+
+      <div
+        class="grid-container background-danger template-columns-fr-3 column-gap"
+      >
+        <div class="box border border-primary background-secondary">1/2</div>
+        <div class="box border border-primary background-secondary">1/4</div>
+        <div class="box border border-primary background-secondary">1/4</div>
+      </div>
+    </div>
+
+    <div class="example-pane background-warning">
+      <div class="header-pane">
+        <span class="text-danger">grid-template-rows: auto min-content;</span>
+        <span>height: 200px;</span>
+      </div>
+
+      <div
+        class="grid-container background-danger set-height template-rows-auto-min row-gap"
+      >
+        <div class="box border border-primary background-secondary">
+          rest of space (150px)
+        </div>
+        <div class="box border border-primary background-secondary">50px</div>
+      </div>
+    </div>
+
+    <hr />
+    <h3>Justify Content</h3>
+
+    <div class="example-pane background-warning">
+      <div class="header-pane">
+        <span class="text-danger">justify-content: center;</span>
+        <span>width: 100%;</span>
+      </div>
+
+      <div class="grid-container background-danger justify-center">
+        <div class="box border border-primary background-secondary">50px</div>
+      </div>
+    </div>
+
+    <hr />
+    <h3>Align Items</h3>
+
+    <div class="example-pane background-warning">
+      <div class="header-pane">
+        <span class="text-danger">align-items: center;</span>
+        <span>height: 200px;</span>
+      </div>
+
+      <div class="grid-container background-danger set-height align-center">
+        <div class="box border border-primary background-secondary">
+          height: 50px
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

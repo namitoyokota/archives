@@ -1,0 +1,7 @@
+<div class="btn" [class.active]="isActive">
+    <ng-container *ngIf="!isActive">
+        <div *ngIf="unseenCount$ | async as notificationCount" class="count-pane">
+            <span>{{notificationCount | maxNumber: 99}}</span>
+        </div>
+    </ng-container>
+</div>

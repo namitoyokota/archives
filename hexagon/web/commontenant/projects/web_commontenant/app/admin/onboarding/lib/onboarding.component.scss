@@ -1,0 +1,62 @@
+@import "./common-variables.scss";
+
+:host {
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    display: grid;
+    grid-template-columns: 350px auto;
+    grid-template-rows: 22px auto 36px;
+    column-gap: 15px;
+    row-gap: 10px;
+    margin: 20px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.title {
+    font-size: 20px;
+}
+
+.sub-title {
+    font-size: 16px;
+}
+
+hxgn-commontenant-step-pane {
+    grid-row: 2 / span 2;
+}
+
+.btn-pane {
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+
+    button {
+        margin-left: 10px;
+
+        &.reset {
+            position: absolute;
+            left: 0;
+            margin-left: 0;
+        }
+    }
+}
+
+// Portal host must have an id
+#portal-pane {
+    border: $common-border;
+    overflow: hidden;
+}
+
+.loading-pane {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.8);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadein 0.5s;
+}

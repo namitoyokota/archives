@@ -1,0 +1,24 @@
+<div mat-dialog-title>
+    <hxgn-commonlocalization-translate-v1 [token]='tokens.uploadLicencingFile' skeletonWidth="75px">
+    </hxgn-commonlocalization-translate-v1>
+    <div (click)="close(null)" class="close-btn"></div>
+</div>
+<mat-dialog-content>
+    <div style="padding-top: 5px;">
+        <hxgn-commonlicensing-upsert-server-entity-v1 [serverEntity]="serverEntity"
+            (serverEntityChange)="serverEntity = $event">
+        </hxgn-commonlicensing-upsert-server-entity-v1>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button class="hxgn-btn-secondary" style="margin-right: 10px;" (click)="close(null)">
+        <hxgn-commonlocalization-translate-v1 [token]='tokens.cancel' [ignoreSkeleton]="true">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+
+    <button class="hxgn-btn-primary" (click)="close(serverEntity)" [disabled]="!isValid()">
+        <hxgn-commonlocalization-translate-v1 [token]='tokens.save' [ignoreSkeleton]="true">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+</mat-dialog-actions>

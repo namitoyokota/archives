@@ -1,0 +1,95 @@
+<!-- Action Pane -->
+<div class="action-pane">
+    <!-- Search -->
+    <button mat-stroked-button (click)="toggleSearchMode()">Search</button>
+
+    <!-- Months -->
+    <button mat-stroked-button (click)="toggleMonthsMode()">Filter By Month</button>
+
+    <!-- Filter -->
+    <button mat-stroked-button (click)="toggleFilterMode()">Filter</button>
+</div>
+
+<!-- Search -->
+<div class="search-pane" *ngIf="displaySearch">
+    <mat-form-field class="search-form">
+        <input matInput placeholder="Search" [(ngModel)]="searchString" (input)="updateSearch()" />
+    </mat-form-field>
+</div>
+
+<!-- Months -->
+<div class="months-pane" *ngIf="displayMonths">
+    <button *ngFor="let month of months" mat-raised-button [color]="isActiveMonth(month) ? 'accent' : ''" (click)="switchMonth(month)">
+        {{ month }}
+    </button>
+</div>
+
+<!-- Filter -->
+<div class="filter-pane" *ngIf="displayFilter">
+    <!-- Category -->
+    <button
+        *ngFor="let category of categories"
+        mat-raised-button
+        [color]="isActiveFilter(category) ? 'primary' : ''"
+        (click)="toggleFilter(category)"
+    >
+        {{ category }}
+    </button>
+
+    <!-- Clear Filter -->
+    <button *ngIf="!isFilterEmpty()" mat-raised-button color="warn" (click)="clearFilter()">Clear</button>
+
+    <!-- Show All -->
+    <button *ngIf="isFilterEmpty()" mat-raised-button color="warn" (click)="disableFilter()">Show All</button>
+</div>
+
+<!-- Expense Table -->
+<div class="expense-table">
+    <!-- Headings -->
+    <div class="expense heading">
+        <div class="expense-date">Date</div>
+        <div class="expense-category">Category</div>
+        <div class="expense-company">Company</div>
+        <div class="expense-description">Description</div>
+        <div class="expense-cost">Cost</div>
+    </div>
+
+    <hr />
+
+    <!-- List of Expenses -->
+    <div class="expense" *ngFor="let expense of filteredExpenses">
+        <div class="expense-date">
+            {{ expense.date }}
+        </div>
+        <div class="expense-category">{{ expense.category }}</div>
+        <div class="expense-company">{{ expense.company }}</div>
+        <div class="expense-description">{{ expense.description }}</div>
+        <div class="expense-cost">{{ expense.cost }}</div>
+    </div>
+
+    <hr />
+
+    <!-- Category Totals -->
+    <ng-container *ngFor="let total of categoryTotals | keyvalue">
+        <div class="category-total" *ngIf="isActiveFilter(total.key)">
+            <!-- Category -->
+            <span>{{ total.key }}</span>
+
+            <!-- Budget -->
+            <span class="budget-value">
+                <ng-container *ngIf="hasBudget(total.key)"> ({{ getBudget(total.key) }}) </ng-container>
+            </span>
+
+            <!-- Cost -->
+            <span>{{ formatCost(total.value) }}</span>
+        </div>
+    </ng-container>
+
+    <hr />
+
+    <!-- Total -->
+    <div class="total-expense">
+        <span class="total-title">Total</span>
+        <span>{{ formatCost(totalExpense) }}</span>
+    </div>
+</div>

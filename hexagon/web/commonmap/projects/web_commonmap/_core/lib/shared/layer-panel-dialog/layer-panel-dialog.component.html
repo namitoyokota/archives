@@ -1,0 +1,15 @@
+﻿<div class="layer-panel-container">
+    <hxgn-commonmap-layer-panel-layers #layerPanel
+        [mapPreset]="mapPreset"
+        [layerCollections]="layerCollections"
+        [allowLayerReorder]="allowLayerReorder"
+        [notification]="layerPanelNotification"
+        [isPresetOverridden]="isPresetOverridden">
+    </hxgn-commonmap-layer-panel-layers>
+</div>
+<div class="actions">
+    <button (click)="closeLayerPanelDialog()" class="hxgn-btn-secondary">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.layerPanelCloseBtnLabel">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+</div>

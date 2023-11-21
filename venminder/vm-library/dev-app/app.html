@@ -1,0 +1,23 @@
+<template>
+    <require from="./app.css"></require>
+
+    <div class="app">
+        <nav class="app--nav">
+            <a
+                class="app--nav-item ${nav.isActive ? 'app--nav-item__active' : ''}"
+                repeat.for="nav of router.navigation"
+                href.bind="nav.href"
+            >
+                ${nav.title}
+            </a>
+        </nav>
+
+        <div class="app--content">
+            <vm-breadcrumbs></vm-breadcrumbs>
+            <vm-header text.to-view="activeNavTitle"></vm-header>
+            <router-view></router-view>
+        </div>
+    </div>
+
+    <vm-context-menu></vm-context-menu>
+</template>

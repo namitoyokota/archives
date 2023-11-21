@@ -1,0 +1,6 @@
+<div *ngIf='(paneState$ | async); else notSelected'  
+   (click)="closePane()" class="option-pane-btn selected"></div>
+
+<ng-template #notSelected>
+    <div (click)="openPane()" class="option-pane-btn"></div>
+</ng-template>

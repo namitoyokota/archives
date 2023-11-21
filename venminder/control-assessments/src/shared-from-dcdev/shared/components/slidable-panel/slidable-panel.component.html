@@ -1,0 +1,26 @@
+﻿<template>
+    <require from="./slidable-panel.component.scss"></require>
+
+    <div if.bind="panelState.open" class="vm-slidable-panel-container" click.delegate="close($event)">
+        <div class="vm-slidable-panel-wrapper" style.bind="style.menu" ref="panelElement">
+            <div class="panel-header">
+                <div>
+                    <div class="panel-title">${panelState.title}</div>
+                    <div class="panel-sub-title-container" repeat.for="sub of viewableSubTitles">
+                        <div>${sub.title}:</div>
+                        <div>${sub.value}</div>
+                    </div>
+                </div>
+                <div click.delegate="close($event)" class="panel-control"><i class="fas fa-times panel-control"></i></div>
+            </div>
+            <div class="panel-content ${panelContentClass}">
+                <compose view-model.bind="panelState.component" model.bind="panelState"></compose>
+            </div>
+            <div class="panel-footer">
+                <div>
+                    &nbsp;
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

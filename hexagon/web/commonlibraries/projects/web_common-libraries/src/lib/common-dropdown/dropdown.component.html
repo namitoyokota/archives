@@ -1,0 +1,38 @@
+<mat-select #matselect disableOptionCentering="true" [multiple]="multiple" [required]="required" [disabled]="disabled"
+            [compareWith]="compareWith || defaultCompareWithFn" [placeholder]="placeholder"
+            [value]="value" (selectionChange)="selectionChanged($event)" (openedChange)="openedChanged($event)"
+            panelClass="{{ horizontalList ? 'mat-primary horizontal-list' : 'mat-primary' }}"
+            [class.button-only]="buttonOnly" [class.custom-button]="value?.selectedImgSrc" [class.toggled-on]="toggledOn" [attr.data-name]="name">
+  <mat-select-trigger *ngIf="customTriggerMode">
+    <ng-content select="hxgn-common-dropdown-trigger"></ng-content>
+  </mat-select-trigger>
+  <mat-select-trigger *ngIf="toggleButtonMode">
+    <button class="mat-button" (click)="toggleClicked($event)">
+      <ng-content select="hxgn-common-dropdown-toggle-button"></ng-content>
+    </button>
+  </mat-select-trigger>
+  <mat-select-trigger *ngIf="!customTriggerMode && !toggleButtonMode && !buttonOnly && value?.selectedImgSrc">
+    <img src="{{ value.selectedImgSrc }}" />
+  </mat-select-trigger>
+  <mat-option *ngIf="dropdownTitle" disabled="disabled" class="filter-option">
+    {{ dropdownTitle }}
+  </mat-option>
+  <mat-option [value]="customDropdownItem.value || i" *ngFor="let customDropdownItem of customDropdownItems; let i = index" (click)="customDropdownItem.onClick()"
+              [style.width]="customDropdownItem.width" [style.height]="customDropdownItem.height">
+    <ng-container [ngTemplateOutlet]="customDropdownItem.content"></ng-container>
+  </mat-option>
+  <ng-container *ngIf="!customDropdownItems.length">
+    <mat-option *ngFor="let dropdownItem of dropdownItems; let i = index" [value]="dropdownItem.value" (click)="dropdownItem.onClick && dropdownItem.onClick()"
+                [style.width]="dropdownItem.width" [style.height]="dropdownItem.height">
+      <img src="{{ dropdownItem.iconPath || dropdownItem.selectedImgSrc }}" />
+      <mat-checkbox *ngIf="checkboxes && !multiple" color="primary" [checked]="selectedIndex === i" (change)="selectedIndex = i">{{ dropdownItem.text }}</mat-checkbox>
+      <span *ngIf="!checkboxes || multiple">{{ dropdownItem.text }}</span>
+    </mat-option>
+  </ng-container>
+  <ng-container *ngIf="!customDropdownItems.length && !dropdownItems">
+    <mat-option *ngFor="let item of items; let i = index" [value]="item">
+      <mat-checkbox *ngIf="checkboxes && !multiple" color="primary" [checked]="selectedIndex === i" (change)="selectedIndex = i">{{ item }}</mat-checkbox>
+      <span *ngIf="!checkboxes || multiple">{{ item }}</span>
+    </mat-option>
+  </ng-container>
+</mat-select>

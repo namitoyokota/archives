@@ -1,0 +1,14 @@
+<div class="filter-label">
+    <hxgn-commonlocalization-translate-v1 [token]="tokens.filters" skeletonWidth="35px">
+    </hxgn-commonlocalization-translate-v1>
+</div>
+<hxgn-common-dropdown-v2 [(value)]="selectedStatusType" (selectionChange)="filterChange($event)">
+    <hxgn-common-dropdown-item-v2 *ngFor="let status of statusTypes | keyvalue" [value]="status.key">
+        <hxgn-commonlocalization-translate-v1 [token]='status.value'>
+        </hxgn-commonlocalization-translate-v1>
+    </hxgn-common-dropdown-item-v2>
+    <hxgn-common-dropdown-item-v2 *ngFor="let cv of customValues | keyvalue" [value]="cv.key">
+        <hxgn-commonlocalization-translate-v1 [token]='cv.value'>
+        </hxgn-commonlocalization-translate-v1>
+    </hxgn-common-dropdown-item-v2>
+</hxgn-common-dropdown-v2>

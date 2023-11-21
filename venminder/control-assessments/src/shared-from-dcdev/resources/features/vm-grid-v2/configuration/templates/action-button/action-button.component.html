@@ -1,0 +1,10 @@
+<template>
+  <vm-button
+    size.to-view="button.size"
+    type.to-view="button.type"
+    is-disabled.to-view="button.isDisabled"
+    click.call="onClick()"
+  >
+  <span innerhtml.bind="button.text | sanitizeHTML"></span>
+</vm-button>
+</template>

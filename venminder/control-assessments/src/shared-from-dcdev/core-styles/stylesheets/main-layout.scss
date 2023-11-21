@@ -1,0 +1,261 @@
+﻿
+// VENMINDER VARIABLES
+@import '_variables.scss';
+
+// BASIC LAYOUT FORMATTING FOR CLIENT EXPERIENCE
+
+.container-fluid {
+    padding-top:15px;
+}
+
+
+// Page Header Banners
+.header-icon {
+    height: 95px;
+    position: absolute;
+
+    @media screen and (max-width:1192px) {
+        position: initial;
+        margin-bottom: -20px;
+    }
+}
+
+.banner-title {
+    font-size: 2.6em;
+    font-family: 'Segoe UI Light', 'Segoe UI Light', sans-serif;
+
+        @media (min-width: 992px) {
+            margin-left:-8%;
+        }
+}
+
+@mixin banner-settings ($banner-color) {
+    background-color: $banner-color;
+
+    div.fa-stack {
+        position: absolute;
+        left: 0;
+        margin-top: -13px;
+        margin-left: 20px;
+
+        @media (max-width: 767px) {
+            position: inherit;
+            margin-bottom:-18px;
+        }
+    }
+
+    .fa-stack-2x {
+        color: darken($banner-color, 15%);
+    }
+
+    @media (max-width: 767px) {
+        text-align: center;
+    }
+}
+
+.green-blue-banner {
+    @include banner-settings($green-blue);
+}
+
+.green-banner {
+    @include banner-settings($green);
+}
+
+.yellow-banner {
+    @include banner-settings($yellow);
+}
+
+.teal-banner {
+    @include banner-settings($teal);
+}
+
+.purple-banner {
+    @include banner-settings($purple);
+}
+
+
+/*Task and Notification widget styling*/
+.sidebar-container ul.nav-tabs li a {
+    border: none;
+    padding: 12px 10px;
+    margin: 0;
+    border-radius: 0;
+    background: $teal;
+    color: #fff;
+    text-align: center;
+    border-right: 1px solid $teal;
+}
+
+/* Delete Modal Styling */
+.delete-modal {
+    background-repeat: no-repeat;
+    background-size: 600px 600px;
+    background-color: $brand-danger;
+    /*background-image: url('../images/standards/DangerBG.png');*/
+    color: #fff;
+}
+
+.m-t-n-xxl {
+    margin-top: -70px;
+}
+
+.extraWarn {
+    padding: 15px;
+    margin-bottom: 20px;
+    /*border: 1px solid transparent;*/
+    border-radius: 4px;
+    /*border-color: #e60000;*/
+    background-color: #f2dede;
+    color: $brand-danger;
+}
+
+.logo-img {
+    max-height: 60px;
+    max-width: 400px;
+}
+
+.logo-img-preview {
+    display: block;
+    width: 100%;
+    //max-height: 40px;
+    max-width: 200px;
+    height: auto;
+}
+
+.navbar-top-links li a.btn-circle {
+    min-height: initial;
+    padding: 6px 0 6px 0;
+}
+
+.navbar-static-top {
+    z-index: 3;
+}
+
+.nav-second-level li a {
+    padding: 7px 10px 7px 10px;
+    padding-left: 52px;
+}
+
+.nav > li.active > a {
+    color: initial;
+}
+
+.exchange-menu {
+    background: linear-gradient(90deg,#115293 0%,#184675 50%,#213952 100%);
+
+    img {
+        width: 165px;
+    }
+}
+
+.navbar-default {
+    width: $nav-menu-width;
+
+    .showInNarrow {
+        display: none;
+    }
+
+    .header-logo {
+        padding: 25px;
+        margin: 25px 25px;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        background: url('../images/logo/venminder-logo.png') no-repeat;
+        background-size: contain !important;
+
+        &.exchange-logo {
+            padding: 30px;
+            background: url('../images/logo/venminder_exchange_white.png') no-repeat;
+        }
+    }
+
+    .nav_clientname_bg {
+        background-color: $nav-clientname-bg;
+        padding: 10px 20px;
+    }
+
+    .nav-item-divider {
+        margin: 5px 10px;
+        height: 1px;
+        background-color: $nav-text-color;
+    }
+
+    @media screen and (max-width:75em) {
+        width: $nav-menu-width-narrow;
+        z-index: 1002;
+
+        .header-logo {
+            width: 70px;
+            margin: 20px 0px 20px 5px;
+            padding: 10px;
+            background: url('../images/logo/venminder_logo_icon.png') no-repeat;
+            background-size: contain !important;
+
+            &.exchange-logo {
+                padding: 15px;
+                margin-left: 15px;
+                background: url('../images/logo/exchange_logo_icon.png') no-repeat;
+            }
+        }
+
+        .nav li {
+            white-space: nowrap;
+            z-index: 1003;
+
+            .hideInNarrow {
+                display: none !important;
+            }
+
+            a.showInNarrow {
+                display: initial;
+            }
+
+            a {
+                display: initial;
+                padding: 15px;
+                line-height: 45px;
+
+                i {
+                    font-size: 1.33em;
+                    width: 25px;
+                }
+
+                span {
+                    display: none;
+                    background-color: $nav-item-hover;
+                    margin-left: 1px;
+                    padding-left: 10px;
+                    width: 160px;
+                    color: $white;
+                }
+            }
+
+            ul.nav-second-level.showInNarrow {
+                position: absolute;
+                top: 45px;
+                left: 50px;
+                padding: 0;
+
+                li a {
+                    padding: 0 10px 0 30px;
+                    width: 160px;
+                    display: inline-block;
+                }
+            }
+
+            &:hover {
+                a span, ul.nav-second-level.showInNarrow {
+                    display: inline-block;
+                }
+            }
+        }
+
+        .nav_clientname_bg {
+            display: none;
+        }
+    }
+}
+
+.dropdown-menu-no-margin {
+    margin-top: -10px !important;
+}

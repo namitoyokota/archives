@@ -1,0 +1,7 @@
+.leaflet-container.pointer-cursor-enabled {
+    cursor:default;
+}
+
+.leaflet-container.grabbing-cursor-enabled {
+    cursor:grabbing;
+}

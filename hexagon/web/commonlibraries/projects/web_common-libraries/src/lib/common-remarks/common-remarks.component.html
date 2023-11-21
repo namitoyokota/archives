@@ -1,0 +1,47 @@
+<div class="header">
+    <span class="title">
+        <hxgn-commonlocalization-translate-v1 skeletonWidth="75px" [token]="tokens.remarks"></hxgn-commonlocalization-translate-v1>
+    </span>
+    <div class="view-all-btn" *ngIf="remarks?.length > 1"
+        (click)="viewAll = !viewAll">
+        <span *ngIf="!viewAll">
+            <hxgn-commonlocalization-translate-v1 skeletonWidth="75px" [token]="tokens.viewAll"></hxgn-commonlocalization-translate-v1>
+        </span>
+        <span *ngIf="viewAll">
+            <hxgn-commonlocalization-translate-v1 skeletonWidth="75px" [token]="tokens.viewLess"></hxgn-commonlocalization-translate-v1>
+        </span>
+    </div>
+
+</div>
+<div>
+    <ng-container *ngIf="!viewAll && remarks?.length">
+        <div class="item" *ngFor="let remark of [remarks[0]]">
+            <div>{{remark.text}}</div>
+            <div class="footer" [class.no-name]="!remark.authorFirstName && !remark.authorLastName">
+                <ng-container *ngIf="remark.authorFirstName || remark.authorLastName">
+                    <hxgn-common-initials [firstName]="remark.authorFirstName"
+                    [lastName]="remark.authorLastName"></hxgn-common-initials>
+                    <span class="name">{{remark.authorFirstName}} {{remark.authorLastName}}</span>
+                </ng-container>
+    
+                <span class="time-since">
+                    {{remark.createdTime | commonTimeSince: refreshToggle | async}}
+                </span>
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="viewAll">
+        <div class="item" *ngFor="let remark of remarks">
+            <div>{{remark.text}}</div>
+            <div class="footer">
+                    <hxgn-common-initials [firstName]="remark.authorFirstName"
+                        [lastName]="remark.authorLastName"></hxgn-common-initials>
+                    <span class="name">{{remark.authorFirstName}} {{remark.authorLastName}}</span>
+                    <span class="time-since">
+                        {{remark.createdTime | commonTimeSince | async}}
+                    </span>
+            </div>
+        </div>
+    </ng-container>
+</div>

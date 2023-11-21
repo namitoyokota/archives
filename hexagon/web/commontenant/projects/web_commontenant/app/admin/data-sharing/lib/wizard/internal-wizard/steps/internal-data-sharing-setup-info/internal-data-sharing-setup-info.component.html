@@ -1,0 +1,49 @@
+<hxgn-commontenant-wizard-step-layout [stepTitle]="tTokens.internalDataSharingSetup"
+    [layoutType]="'Simple'" [actionPaneRef]="actionPaneRef" [descriptionHeaderPaneRef]="descriptionHeaderPaneRef">
+    <hxgn-commontenant-wizard-step-layout-content>
+
+        <div *ngIf="filterByGroups" class="step-pane four-steps">
+            <hxgn-commontenant-step-icon [stepTitle]="tTokens.dataTypes" stepNumber=1
+                imageUrl="assets/commontenant-core/data-types-icon.svg">
+            </hxgn-commontenant-step-icon>
+            <div class="step-connection"></div>
+            <hxgn-commontenant-step-icon [stepTitle]="tTokens.defaultPresets" stepNumber=2
+                imageUrl="assets/commontenant-core/global-filter-icon.svg">
+            </hxgn-commontenant-step-icon>
+            <div class="step-connection"></div>
+            <hxgn-commontenant-step-icon [stepTitle]="tTokens.internalFiltering" stepNumber=3
+                imageUrl="assets/commontenant-core/internal-network-graphic.svg">
+            </hxgn-commontenant-step-icon>
+            <div class="step-connection"></div>
+            <hxgn-commontenant-step-icon [stepTitle]="tTokens.applyPresets" stepNumber=4
+                imageUrl="assets/commontenant-core/receive-data.svg">
+            </hxgn-commontenant-step-icon>
+        </div>
+
+        <div *ngIf="!filterByGroups" class="step-pane three-steps">
+            <hxgn-commontenant-step-icon [stepTitle]="tTokens.dataTypes" stepNumber=1
+                imageUrl="assets/commontenant-core/data-types-icon.svg">
+            </hxgn-commontenant-step-icon>
+            <div class="step-connection"></div>
+            <hxgn-commontenant-step-icon [stepTitle]="tTokens.defaultPresets" stepNumber=2
+                imageUrl="assets/commontenant-core/global-filter-icon.svg">
+            </hxgn-commontenant-step-icon>
+            <div class="step-connection"></div>
+            <hxgn-commontenant-step-icon [stepTitle]="tTokens.applyPresets" stepNumber=3
+                imageUrl="assets/commontenant-core/receive-data.svg">
+            </hxgn-commontenant-step-icon>
+        </div>
+
+        <span class="msg">
+            <hxgn-commonlocalization-translate-v1 [token]='tokens.internalSharingInfoMsg'>
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+        <span class="msg continue">
+            <hxgn-commonlocalization-translate-v1 [token]='tokens.dataSharingContinueNotice'>
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+    </hxgn-commontenant-wizard-step-layout-content>
+</hxgn-commontenant-wizard-step-layout>
+
+<hxgn-commontenant-info-popover [msg]="tTokens.infoButtonMessage">
+</hxgn-commontenant-info-popover>

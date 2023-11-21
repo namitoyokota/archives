@@ -1,0 +1,15 @@
+<template>
+    <require from="./vm-checkbox-picklist.component.css"></require>
+
+    <vm-checkbox name="vmPicklistSelectAllCheckbox" checked.two-way="allSelected" change.call="toggleAllSelected()">Select All</vm-checkbox>
+    <div class="vm-checklist-picklist--item" repeat.for="item of model">
+        <vm-checkbox
+            name.bind="getCheckboxName(item.display, $index)"
+            model.one-way="item"
+            checked.two-way="selectedItems"
+            change.call="handleChange($event, $index)"
+        >
+            ${item.display}
+        </vm-checkbox>
+    </div>
+</template>

@@ -1,0 +1,21 @@
+:host {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    box-sizing: border-box;
+}
+
+.option-pane-btn {
+    width: 100%;
+    height: calc(100% + 1px);
+    background-image: url('^assets/settings-icon.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+
+    &.selected {
+        background-image: url('^assets/settings-icon-selected.svg');
+        background-color: #fff;
+        border-left: 1px solid #C4C5C7;
+    }
+}

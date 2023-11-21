@@ -1,0 +1,29 @@
+{
+    "featureModules": [
+        {
+            "entryPointId": "@galileo/web_commonnotifications/_core",
+            "chunkId": "@hxgn/commonnotifications",
+            "module": "CommonnotificationsCoreModule"
+        },
+        {
+            "entryPointId": "@galileo/web_commonnotifications/admin",
+            "chunkId": "@hxgn/commonnotifications/admin/notificationmanager",
+            "module": "NotificationManagerModule"
+        }
+        
+    ],
+    "adminFeatureRouting": [
+        {
+            "path": "notificationManager",
+            "data": {
+                "adminComponent": "@hxgn/commonnotifications/admin/notificationmanager/v1",
+                "adminId": "@hxgn/commonnotifications/admin/notificationmanager",
+                "adminTitle": "commonNotification-manager.component.notificationManager",
+                "claim": "uiNotificationManagerAccess",
+                "capabilityId": "@hxgn/commonnotifications"
+            },
+            "canActivate": ["ClaimGuard$v1", "OnboardingGuard$v1"],
+            "canDeactivate": ["DirtyGuard$v1"]
+        }
+    ]
+}

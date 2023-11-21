@@ -1,0 +1,32 @@
+$overlayBgColor: #000000;
+$overlayOpacity: .3;
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  &.overlay-boxify {
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: opacity 0.35s, visibility 0s 0.35s;
+    transition: opacity 0.35s, visibility 0s 0.35s;
+
+    &.fadein {
+      visibility: visible;
+      opacity: $overlayOpacity;
+      -webkit-transition: opacity 0.35s;
+      transition: opacity 0.35s;
+    }
+
+    &.open {
+      visibility: visible;
+    }
+  }
+
+  &.overlay-boxify-bg {
+    background-color: $overlayBgColor;
+  }
+}

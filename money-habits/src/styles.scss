@@ -1,0 +1,26 @@
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+
+    display: flex;
+    justify-content: center;
+    background-color: #264653;
+    color: white;
+}
+
+h1 {
+    margin: 0 !important;
+}
+
+.mat-expansion-panel {
+    background-color: #2a9d8f !important;
+}
+
+.mat-mdc-table {
+    background-color: #fcf6bd !important;
+}

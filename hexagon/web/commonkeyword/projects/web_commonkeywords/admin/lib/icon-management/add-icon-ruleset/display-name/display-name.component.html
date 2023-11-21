@@ -1,0 +1,10 @@
+<hxgn-common-input-v2 [isValid]="validateFriendlyName()">
+    <input [(ngModel)]="keywordNode.friendlyName" type="text" [placeholder]="tTokens.displayName"
+        (input)="onFriendlyNameChange()" />
+</hxgn-common-input-v2>
+<mat-checkbox [(checked)]="isKeyword" (change)="addToKeywordsChange($event)">
+    <span>
+        <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]='tokens.addToKeywords'>
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+</mat-checkbox>

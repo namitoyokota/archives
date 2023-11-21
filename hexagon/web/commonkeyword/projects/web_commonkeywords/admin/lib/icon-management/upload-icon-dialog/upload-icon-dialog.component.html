@@ -1,0 +1,133 @@
+<div class="dialog-title">
+    <hxgn-commonlocalization-translate-v1 skeletonWidth="100px" [token]='tokens.uploadNewIcon'>
+    </hxgn-commonlocalization-translate-v1>
+    <img (click)="close()" src="assets/commonkeywords-core/images/x_dialog.png" height="18" width="18" />
+</div>
+
+<div class="content">
+
+    <!-- Step 1 : Upload SVG File-->
+    <div class="upload-pane">
+        <div class="step-number">
+            <span>1</span>
+        </div>
+        <div class="step-1">
+            <div class="step-title">
+                <hxgn-commonlocalization-translate-v1 skeletonWidth="100px" [token]='tokens.fileUpload'>
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+            <hxgn-common-file-upload
+                [acceptedExtensions]="'.svg'"
+                [btnText]="tTokens.chooseImage"
+                [displayButton]="true"
+                [displayFile]="true"
+                [displayIcon]="false"
+                [dragAndDrop]="true"
+                [dragAndDropText]="tTokens.dragDropImage"
+                [uploadMultiple]="false"
+                (fileSelected)="upload($event)" >
+            </hxgn-common-file-upload>
+            <div *ngIf="errorMsg" class="error-msg">
+                {{errorMsg}}
+                <img
+                    (click)="errorMsg = ''"
+                    class="close-btn"
+                    src="assets/commonkeywords-core/images/x_dialog.png"
+                    height="15" width="15"
+                />
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 2 : Provide Icon Information-->
+    <div class="info-pane">
+        <div class="step-number">
+            <span>2</span>
+        </div>
+
+        <div class="step-2">
+            <div class="step-title">
+                <hxgn-commonlocalization-translate-v1 skeletonWidth="100px" [token]='tokens.iconSettings'>
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+
+            <div class="input-pane">
+
+                <!-- Name Input-->
+                <div class="name-input">
+                    <div class="label">
+                        <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]='tokens.name'>
+                        </hxgn-commonlocalization-translate-v1>
+                    </div>
+                    <hxgn-common-input-v2 [isValid]="!!newIcon.name && !invalidNames.includes(newIcon.name)">
+                        <input
+                            type="text"
+                            [placeholder]="tTokens.name"
+                            [(ngModel)]="newIcon.name"
+                            (input)="validate()"
+                        />
+                    </hxgn-common-input-v2>
+                </div>
+
+                <!-- Capability Input-->
+                <div class="capability-input">
+                    <div class="label">
+                        <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]='tokens.dataType'>
+                        </hxgn-commonlocalization-translate-v1>
+                    </div>
+                    <hxgn-common-dropdown-v2 [disabled]="!capabilityList.length" [(value)]="selectedCapability" (selectionChange)="selectCapability($event.value)">
+                        <hxgn-common-dropdown-item-v2 *ngFor="let capability of capabilityList" [value]="capability">
+                            <hxgn-commonlocalization-translate-v1 [token]='capability.nameToken' [ignoreSkeleton]="true">
+                            </hxgn-commonlocalization-translate-v1>
+                        </hxgn-common-dropdown-item-v2>
+                    </hxgn-common-dropdown-v2>
+                </div>
+
+                <!-- Base Height Input-->
+                <div class="height-input">
+                    <div class="label">
+                        <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]='tokens.baseHeight'>
+                        </hxgn-commonlocalization-translate-v1>
+                    </div>
+                    <hxgn-common-input-v2>
+                        <input
+                            type="number"
+                            [(ngModel)]="newIcon.baseHeight"
+                            (input)="validate()"
+                        />
+                    </hxgn-common-input-v2>
+                </div>
+
+                <!-- Base Width Input-->
+                <div class="width-input">
+                    <div class="label">
+                        <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]='tokens.baseWidth'>
+                        </hxgn-commonlocalization-translate-v1>
+                    </div>
+                    <hxgn-common-input-v2>
+                        <input
+                            type="number"
+                            [(ngModel)]="newIcon.baseWidth"
+                            (input)="validate()"
+                        />
+                    </hxgn-common-input-v2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="btns">
+    <button class="hxgn-btn-secondary" (click)="close()">
+        <hxgn-commonlocalization-translate-v1 [ignoreSkeleton]="true" [token]='tokens.cancel'>
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+    <button class="hxgn-btn-primary" [disabled]="isLoading || !isValid" (click)="save()">
+        <hxgn-commonlocalization-translate-v1 [ignoreSkeleton]="true" [token]='tokens.upload'>
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+</div>
+
+<div *ngIf="isLoading" class="loading">
+    <mat-spinner></mat-spinner>
+</div>

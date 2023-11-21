@@ -1,0 +1,70 @@
+
+.title {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+hxgn-common-expansion-panel {
+    grid-template-rows: 46px auto !important;
+    border: 1px solid #afb0b2 !important;
+    width: initial !important;
+}
+
+hxgn-common-expansion-panel:not(:last-of-type) {
+    margin-bottom: 15px;
+}
+
+hxgn-common-expansion-panel ::ng-deep .header {
+    border-top: none !important;
+    background: #f2f3f3 !important;
+}
+
+hxgn-common-expansion-panel-header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.filter-pane {
+    display: flex;
+    align-items: center;
+
+    span {
+        font-size: 18px;
+    }
+}
+
+.btn-link {
+    text-decoration: underline;
+    font-size: 15px;
+}
+
+.btn-link:hover {
+    color: #5c5c5c;
+}
+
+.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+    cursor: default !important;
+}
+
+.btn-edit {
+    background-color: #62b4ff;
+    color: #fff;
+    border-radius: 6px;
+    padding: 9px;
+    font-size: 15px;
+    display: flex;
+
+    .edit {
+        text-decoration: underline;
+        margin-left: 5px;
+        white-space: nowrap;
+    }
+}
+
+.btn-edit:hover {
+    background-color: #2f9cff;
+}

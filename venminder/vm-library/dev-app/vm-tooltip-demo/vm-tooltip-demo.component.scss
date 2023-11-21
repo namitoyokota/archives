@@ -1,0 +1,6 @@
+.vm-tooltip-demo {
+    display: grid;
+    grid-template-columns: repeat(2, min-content);
+    gap: 50px;
+    white-space: nowrap;
+}

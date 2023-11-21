@@ -1,0 +1,27 @@
+:host {
+    display:flex;
+    width: 100%;
+    height: 100%;
+}
+
+hxgn-commontenant-wizard-step-layout-content {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    padding: 15px 0;
+    box-sizing: border-box;
+}
+
+hxgn-commontenant-wizard-step-layout-description {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 0 15px 0 0;
+
+    hxgn-commontenant-info-popover {
+        position: absolute;
+        bottom: 0;
+        left: calc(50% - 11px);
+    }
+}

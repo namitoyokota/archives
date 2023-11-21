@@ -1,0 +1,25 @@
+<div class="coord-system">
+    <div class="layer-property">
+        <div class="label">
+            <hxgn-commonlocalization-translate-v1
+                [token]="tokens.coordSystemLabel"
+                [skeletonWidth]="'60px'">
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+        <hxgn-common-dropdown-v2 #crs (selectionChange)="setCRS($event)" [value]="selectedCoordSys"
+            placeholder="{{ transStrings[tokens.coordSystemPlaceholder] }}">
+            <hxgn-common-dropdown-item-v2 *ngFor="let crs of supportedCoordSystems; let i = index"
+                [value]="crs">
+                {{supportedCoordSystems[i]}}
+            </hxgn-common-dropdown-item-v2>
+        </hxgn-common-dropdown-v2>
+    </div>
+    <div class="small-checkbox-font swap-axes"  *ngIf="showSwapAxes">
+        <mat-checkbox [checked]="swapAxes" disableRipple="true"
+            (change)="setSwapAxes($event)">
+            <hxgn-commonlocalization-translate-v1
+                [token]="tokens.swapAxesLabel">
+            </hxgn-commonlocalization-translate-v1>
+        </mat-checkbox>
+    </div>
+</div>

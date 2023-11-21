@@ -1,0 +1,56 @@
+<!-- Settings Bar -->
+<div class="settings-bar">
+    <div class="header">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.comments" [ignoreSkeleton]="true">
+        </hxgn-commonlocalization-translate-v1>
+    </div>
+    <img class="search-icon" src="assets/common-libraries/images/search-bar-magnifying-glass.svg" />
+    <img class="settings-icon" src="assets/common-libraries/images/settings-icon.svg" />
+</div>
+
+<!-- Input Bar -->
+<div class="input-bar">
+    <div class="style-options" [class.selected]="(paneState$ | async)" (click)="triggerPane()">
+        <hxgn-common-post-style-menu (postStyleUpdate)="changePriority($event)"></hxgn-common-post-style-menu>
+    </div>
+
+    <div class="input-container">
+        <hxgn-common-input-v2>
+            <input type="text" [placeholder]="this.tTokens.typeCommentHere" [(ngModel)]="message"
+                (keyup.enter)="sendMessage()" />
+        </hxgn-common-input-v2>
+        <div class="send-btn" (click)="sendMessage()">
+            <img class="send-icon" src="assets/common-libraries/images/send-message-arrow.svg" />
+        </div>
+    </div>
+</div>
+
+<!-- Comment List -->
+<div *ngIf="remarks?.length" class="comment-list">
+    <div *ngFor="let remark of remarks" [class.no-author]="!remark?.authorFirstName && !remark?.authorLastName"
+        class="comment-card">
+        <hxgn-common-initials *ngIf="remark?.authorFirstName || remark?.authorLastName"
+            [firstName]="remark?.authorFirstName" [lastName]="remark?.authorLastName">
+        </hxgn-common-initials>
+        <div class="comment" [ngClass]="remark?.priority">
+            {{remark?.text}}
+        </div>
+        <div class="timestamp">
+            {{remark?.createdTime | date:'hh:mm:ss'}}
+        </div>
+    </div>
+</div>
+
+<!-- No Comments Indicator -->
+<div *ngIf="!remarks?.length" class="no-comments">
+    <img src="assets/common-libraries/images/no-comments-indicator.svg" />
+    <div class="title">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.noCommentsMade" skeletonWidth="50px">
+        </hxgn-commonlocalization-translate-v1>
+    </div>
+    <div class="description">
+        <hxgn-commonlocalization-translate-v1 class="normal" [token]="tokens.noCommentsDescription"
+            skeletonWidth="150px">
+        </hxgn-commonlocalization-translate-v1>
+    </div>
+</div>

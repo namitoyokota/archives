@@ -1,0 +1,82 @@
+<div class="header">
+    <span style="font-weight: bold;">Capability Name: </span> commonfeatureflags
+    <span style="font-weight: bold;">Capability Id: </span> @hxgn/commonfeatureflags
+</div>
+<div class="content">
+    <!-- <ng-container *ngIf="false">
+        <h1>Feature Flag Examples</h1>
+
+        <fieldset>
+            <legend>Example of HTML Flagging</legend>
+
+            <p *featureFlag="featureFlags.boldText; current currentEl" style="font-weight: bold;">
+                I should be bold!
+            </p>
+            <ng-template #currentEl>
+                <p>I should not be bold</p>
+            </ng-template>
+            
+            <p *featureFlag="featureFlags.newFeature">
+                I am a new feature!
+            </p>
+        </fieldset>
+
+        <fieldset>
+            <legend>Example of CSS Flagging</legend>
+            <span style="font-style: italic;">* See app.component.scss for pattern to follow</span>
+
+            <p class="msg-text" featureFlagStyle [flags]="featureFlags.redText" ffClass="ff-red-text">
+                This text is red when the "redText" feature flag is active
+            </p>
+        </fieldset>
+
+        <fieldset>
+            <legend>Example of Method Proxy</legend>
+            <span style="font-style: italic;">* See app.component.ts for code</span>
+                <br />
+            <button style="margin-top: 10px;" (click)="saySomething()">Say Something</button>
+        </fieldset>
+
+        <fieldset>
+            <legend>Example of Class Proxy</legend>
+            <span style="font-style: italic;">* See app.component.ts for code. Console has example of output from the class.</span>
+        </fieldset>
+
+        <fieldset>
+            <legend>Example of Proxy Component</legend>
+
+            <proxy-component-example></proxy-component-example>
+        </fieldset>
+
+        <fieldset>
+            <legend>Example of Simple If Statement</legend>
+
+            {{ifOnTestText}}
+        </fieldset>
+    </ng-container> -->
+
+
+    <!-- Global Editor -->
+    <!-- <div class="editor">
+        <hxgn-commonfeatureflags-global-editor (completed)="completed()">
+        </hxgn-commonfeatureflags-global-editor>
+    </div> -->
+
+    <!-- Tenant Editor -->
+    <!-- <div class="editor">
+        <hxgn-commonfeatureflags-tenant-editor [tenantId]="tenantId" (completed)="completed()">
+        </hxgn-commonfeatureflags-tenant-editor>
+    </div> -->
+
+    <!-- Groups Editor -->
+    <div>
+        <button (click)="discard()">discard changes</button>
+        <button (click)="save()">save</button>
+        <div>{{dirty}}</div>
+        <hxgn-commonfeatureflags-groups-menu #flagsEditor [tenantId]="tenantId" (cancel)="isDirty(false)" (dirty)="isDirty(true)">
+        </hxgn-commonfeatureflags-groups-menu>
+    </div>
+
+    <!-- <button (click)="openFeedbackDialog()">Open Feedback</button> -->
+    <!-- <button (click)="reset()">Reset</button> -->
+</div>

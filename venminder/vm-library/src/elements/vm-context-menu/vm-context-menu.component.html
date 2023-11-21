@@ -1,0 +1,9 @@
+<template>
+    <require from="./vm-context-menu.component.css"></require>
+
+    <div if.bind="menuState.isOpen" class="vm-context-menu--container" ref="contextMenuContainerRef">
+        <div class="vm-context-menu--wrapper" style.bind="menuStyle" ref="menuElementRef">
+            <compose view-model.bind="menuState.component" model.bind="menuState"></compose>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,26 @@
+:host {
+    display:flex;
+    position:relative;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items:center;
+}
+.map-marker {
+    height: 32px;
+    width: 32px;
+    padding: 4px;
+    border: 1px solid #c0c0c0;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #fff;
+    
+    img {
+        width: auto;
+        height: auto;
+        max-height: 24px;
+    }
+}

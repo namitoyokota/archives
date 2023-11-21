@@ -1,0 +1,37 @@
+<div class="card-title">
+    {{tenantName}}
+    <hxgn-commonlocalization-translate-v1 [token]="tokens.backup" ignoreSkeleton="true">
+    </hxgn-commonlocalization-translate-v1>
+</div>
+<div class="description">
+    {{pipeline.startTime | date:'MM/dd/y h:mm aa'}}
+</div>
+<div class="divider"></div>
+<div class="buttons-row">
+    <button class="hxgn-btn-secondary" *ngIf="canDelete && !hiddenActions.includes(action.delete)" (click)="delete()" [disabled]="running">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.delete" ignoreSkeleton="true">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+    <button class="hxgn-btn-secondary" *ngIf="!hiddenActions.includes(action.restore)" (click)="restore()" [disabled]="running">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.restore" ignoreSkeleton="true">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+    <ng-container *ngIf="pipeline.downloadUrl; else requestDownload">
+        <button class="hxgn-btn-primary" *ngIf="!hiddenActions.includes(action.download)" (click)="download()" [disabled]="running || downloadExpired"
+            [title]="(downloadExpired ? tTokens.expired : tTokens.expires) + ' ' + (pipeline.downloadExpires | date:'MM/dd/y h:mm aa')" >
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.download" ignoreSkeleton="true">
+            </hxgn-commonlocalization-translate-v1>
+            <span *ngIf="fileSize">
+                ({{fileSize}}
+                <hxgn-commonlocalization-translate-v1 [token]="fileSizeUnit" ignoreSkeleton="true">
+                </hxgn-commonlocalization-translate-v1>)
+            </span>
+        </button>
+    </ng-container>
+    <ng-template #requestDownload>
+        <button class="hxgn-btn-secondary" *ngIf="!hiddenActions.includes(action.download)" (click)="request()" [disabled]="running">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.requestDownload" ignoreSkeleton="true">
+            </hxgn-commonlocalization-translate-v1>
+        </button>
+    </ng-template>
+</div>

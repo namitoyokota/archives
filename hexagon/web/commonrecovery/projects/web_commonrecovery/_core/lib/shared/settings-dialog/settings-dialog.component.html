@@ -1,0 +1,30 @@
+<div mat-dialog-title>
+    <hxgn-commonlocalization-translate-v1 [token]="tokens.title" skeletonWidth="100px">
+    </hxgn-commonlocalization-translate-v1>
+</div>
+
+<mat-dialog-content>
+    <ng-container *ngIf="!isLoading; else loading">
+        <div class="item" *ngFor="let configuration of configurations | keyvalue">
+            <div class="header">
+                <hxgn-commonlocalization-translate-v1 [token]="configuration.key" skeletonWidth="100px">
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+            <hxgn-common-input-v2 class="input" [disabled]="true">
+                <input type="text" [value]="configuration.value" readonly />
+            </hxgn-common-input-v2>
+        </div>
+    </ng-container>
+    <ng-template #loading>
+        <div *ngIf="isLoading" class="loading-spinner">
+            <mat-spinner diameter="50"></mat-spinner>
+        </div>
+    </ng-template>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button class="hxgn-btn-secondary" (click)="close()">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.close" [ignoreSkeleton]="true">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+</mat-dialog-actions>

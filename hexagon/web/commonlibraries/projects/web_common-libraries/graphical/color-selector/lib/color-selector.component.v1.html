@@ -1,0 +1,26 @@
+
+<div class="selection-pane" [class.disabled]="disabled" [matMenuTriggerFor]="menu">
+    <hxgn-common-color-item-v1 [color]="activeColor" [colorType]="colorType"></hxgn-common-color-item-v1>
+    <div class="selected-color">
+        <span ellipsisTooltip>
+
+            <!-- Well known colors -->
+            <ng-container *ngIf="colorToken() as colorToken;else custom_color">
+                <hxgn-commonlocalization-translate-v1 [token]="colorToken">
+                </hxgn-commonlocalization-translate-v1>
+            </ng-container>
+
+            <!-- Custom Color -->
+            <ng-template #custom_color>
+                {{activeColor?.substring(0, 7)}}
+            </ng-template>
+        </span>
+        <span>{{opacity() | number:'1.0-0'}}%</span>
+    </div>
+    <img src="assets/common-libraries/images/dropdown-arrow.png" />
+</div>
+
+<mat-menu #menu="matMenu" class="color-selector-v1-menu">
+    <hxgn-common-color-grid-v1 (click)="$event.stopPropagation()" [activeColor]="activeColor" [colorType]="colorType"
+    (colorChange)="colorChange.emit($event)"></hxgn-common-color-grid-v1>
+</mat-menu>

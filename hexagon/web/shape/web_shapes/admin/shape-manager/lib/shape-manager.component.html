@@ -1,0 +1,38 @@
+<!-- Tabs -->
+<div class="tabs">
+  <hxgn-common-tabs>
+    <mat-tab-group>
+      <mat-tab [label]="tTokens.smartShapes"></mat-tab>
+    </mat-tab-group>
+  </hxgn-common-tabs>
+</div>
+
+<!-- Shape List -->
+<hxgn-shapes-list [shapes]="shapes$ | async" [activeShapeId]="(activeShape$ | async)?.id"
+  [dirtyShapeIds]="isDirtyIds$ | async" (activeShape)="startEditShape($event)"
+  (deletedShape)="shapeDeleted($event)" (resetShape)="discardSomeChanges($event)">
+</hxgn-shapes-list>
+
+<!-- Shape details/editor -->
+<hxgn-shapes-editor [shape]="activeShape$ | async" [isDirty]="isActiveShapeDirty$ | async" [readOnly]="(activeShape$ | async)?.isManaged"
+  (shapeUpdated)="shapeUpdated($event)" (resetShape)="discardSomeChanges($event)"></hxgn-shapes-editor>
+
+<!-- Map Preview -->
+<hxgn-shapes-map-preview [shape]="activeShape$ | async" [tenant]="activeTenant$ | async" (shapeUpdated)="shapeUpdated($event)"></hxgn-shapes-map-preview>
+
+<div class="command-pane">
+  <button [disabled]="(isDirty$ | async) === false" class="hxgn-btn-secondary"
+    (click)="discardChanges()">
+    <hxgn-commonlocalization-translate-v1 [token]="tokens.discardChanges" [ignoreSkeleton]="true">
+    </hxgn-commonlocalization-translate-v1>
+  </button>
+  <button [disabled]="(isDirty$ | async) === false || (disabledSave$ | async) === true" class="hxgn-btn-primary"
+    (click)="saveChangesAsync()">
+    <hxgn-commonlocalization-translate-v1 [token]="tokens.saveChanges" [ignoreSkeleton]="true">
+    </hxgn-commonlocalization-translate-v1>
+  </button>
+</div>
+
+<div *ngIf="isLoading" class="loading-pane">
+  <mat-spinner></mat-spinner>
+</div>

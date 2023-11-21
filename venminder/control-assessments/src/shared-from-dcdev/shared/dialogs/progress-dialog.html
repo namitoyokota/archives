@@ -1,0 +1,28 @@
+﻿<template>
+    <ux-dialog class="modal-dialog" style="opacity:1;">
+        <ux-dialog-header>
+            <div>
+                <button type="button" class="fa fa-close close au-target" click.delegate="cancel()" if.bind="model.allowCancel && isRunning" aria-hidden="true" au-target-id="306"></button>
+                <button type="button" class="fa fa-close close au-target" click.delegate="close()" if.bind="!isRunning" aria-hidden="true" au-target-id="306"></button>
+                <!--<button type="button" class="close" click.delegate="complete()" if.bind="!isRunning && hasCompleted"><span aria-hidden="true">×</span></button>-->
+                <h3>${model.dialogTitle}</h3>
+            </div>
+        </ux-dialog-header>
+        <ux-dialog-body>
+            <div id="downloadmodal" class="modal-body text-center">
+                <p class="${wasError ? 'text-danger' : ''}" innerhtml="${message | sanitizeHTML}"></p>
+                <div class="progress" if.bind="isRunning || hasCompleted">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="${workCompleted}" aria-valuemax="${totalWork}" css.bind="{width: percentComplete + '%'}">
+                        <span class="sr-only">${percentComplete}% Complete</span>
+                    </div>
+                </div>
+            </div>
+        </ux-dialog-body>
+        <ux-dialog-footer>
+            <button type="button" click.delegate="start()" class="btn btn-primary" if.bind="!isRunning && !hasCompleted && !wasCancelled">${model.startActionButtonTitle}</button>
+            <button type="button" click.delegate="complete()" class="btn btn-primary" if.bind="!isRunning && hasCompleted && !wasError && !wasCancelled">${model.closeActionButtonTitle}</button>
+            <button type="button" click.delegate="cancel()" class="btn btn-default" if.bind="model.allowCancel && isRunning">Cancel</button>
+            <button type="button" click.delegate="close()" class="btn btn-default" if.bind="(!isRunning && !hasCompleted) || wasError || wasCancelled">Close</button>
+        </ux-dialog-footer>
+    </ux-dialog>
+</template>

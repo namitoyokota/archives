@@ -1,0 +1,59 @@
+<hxgn-alarms-active-filter (delete)="deleteFilter()" (toggle)="toggleFilter()" [buttonType]="buttonType"
+    [toggleEnabled]="toggleEnabled">
+    <hxgn-common-expansion-panel-title>
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.dontShare">
+        </hxgn-commonlocalization-translate-v1>
+        <span class="property" style="margin-left: 5px;">
+            <hxgn-commonlocalization-translate-v1 [token]="propertyNameToken">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+    </hxgn-common-expansion-panel-title>
+    
+    <!-- Equals -->
+    <hxgn-common-chip endCapColor="#C1272D" *ngIf="operation.content.exactExcludeConfigurationOperand.length">
+        <span class="property">
+            <hxgn-commonlocalization-translate-v1 [token]="propertyNameToken">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+        <span class="operation">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.equalsAlt">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+        <div *ngFor="let item of operation.content.exactExcludeConfigurationOperand; let i = index;">
+            <div class="item" [class.no-delete]="!showDeleteChipButton()" (click)="deleteItemExactExclude(i)">
+
+                <ng-container>
+                    <span class="val truncate">{{item}}</span>
+                </ng-container>
+
+                <div class="del-btn" *ngIf="showDeleteChipButton()">
+                    <img src="assets/alarms-core/images/del-chip.png" />
+                </div>
+            </div>
+        </div>
+    </hxgn-common-chip>
+
+    <!-- Contains -->
+    <hxgn-common-chip endCapColor="#C1272D" *ngIf="operation.content.partialExcludeConfigurationOperand.length">
+        <span class="property">
+            <hxgn-commonlocalization-translate-v1 [token]="propertyNameToken">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+        <span class="operation">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.containsAlt">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+        <div *ngFor="let item of operation.content.partialExcludeConfigurationOperand; let i = index;">
+            <div class="item" [class.no-delete]="!showDeleteChipButton()" (click)="deleteItemPartialExclude(i)">
+
+                <ng-container>
+                    <span class="val truncate">{{item}}</span>
+                </ng-container>
+
+                <div class="del-btn" *ngIf="showDeleteChipButton()">
+                    <img src="assets/alarms-core/images/del-chip.png" />
+                </div>
+            </div>
+        </div>
+    </hxgn-common-chip>
+</hxgn-alarms-active-filter>

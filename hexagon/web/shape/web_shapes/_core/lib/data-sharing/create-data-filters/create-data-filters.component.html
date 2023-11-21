@@ -1,0 +1,23 @@
+<ng-container [ngSwitch]="displayFilterLevel">
+
+    <!-- Low Filter -->
+    <hxgn-shapes-low-filter *ngSwitchCase="RestrictionLevels.low">
+    </hxgn-shapes-low-filter>
+
+    <!-- Medium Filter -->
+    <hxgn-shapes-medium-filter *ngSwitchCase="RestrictionLevels.medium"
+        [isOverride]="settings.isOverride"
+        [redactionCriteria]="editableMediumRedaction"
+        [readOnlyRedactionCriteria]="readonlyMediumRedaction"
+        (changes)="onMediumFilterChange($event)" >
+    </hxgn-shapes-medium-filter>
+
+    <!-- High Filter -->
+    <hxgn-shapes-high-filter *ngSwitchCase="RestrictionLevels.high"
+        [filterCriteria]="editableHighFilters"
+        [isOverride]="settings.isOverride"
+        [readOnlyFilterCriteria]="readonlyHighFilters"
+        (filterChange)="onHighFilterChange($event)" >
+    </hxgn-shapes-high-filter>
+
+</ng-container>

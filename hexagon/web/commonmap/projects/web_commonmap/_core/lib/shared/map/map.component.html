@@ -1,0 +1,97 @@
+<div #mapDiv class="full-size">
+    <div class="full-size map" *ngIf="mapType==='leaflet' && mapDataLoaded && translationFinished && mapPreset" leaflet
+        [leafletOptions]="mapOptions" (leafletMapReady)="leafletMapReady($event)">
+        <div *ngFor="let l of getLeafletLayers()" [leafletLayer]="l">
+        </div>
+    </div>
+    <div class="map-controls-container" *ngIf="(settings.mapControls.displayLayerPanel || persistentEdit) && mapDataLoaded && mapPreset"
+        [class.top-right]="settings.mapControls.layerPanelLocation === LayerPanelControlPositions.TopRight"
+        [class.top-left]="settings.mapControls.layerPanelLocation === LayerPanelControlPositions.TopLeft">
+
+        <!-- Common Draw -->
+        <ng-container *featureFlag="FeatureFlags.FFDraw">
+            <div class="draw-container" *ngIf="drawActive">
+                <div class="draw-control" *ngIf="!showDrawToolbar && !persistentEdit">
+
+                    <div class="filter-mask" *ngIf="showFilterToolbar">
+                        <div class="filter-mask-intro">
+                            <img src="assets/commonmap-core/images/layout/map-filtered-indicator.svg" />
+                            <div *ngIf="canDraw()" class="filter-mask-intro-text">
+                                <span>
+                                    <hxgn-commonlocalization-translate-v1 [token]="tokens.mapFilteredBy">
+                                    </hxgn-commonlocalization-translate-v1>
+                                </span>
+                                <span class="bold">
+                                    <hxgn-commonlocalization-translate-v1 [token]="tokens.shapeFilter">
+                                    </hxgn-commonlocalization-translate-v1>
+                                </span>
+                            </div>
+                        </div>
+    
+                        <!-- Hides filter mast -->
+                        <ng-container *ngIf="canDraw()">
+                            <span *ngIf="(maskShown$ | async)" class="filter-mask-action" (click)="clearMask()">
+                                <hxgn-commonlocalization-translate-v1 [token]="tokens.hideFilterMask">
+                                </hxgn-commonlocalization-translate-v1>
+                            </span>
+                            <span *ngIf="(maskShown$ | async) !== true" class="filter-mask-action" (click)="showMask()">
+                                <hxgn-commonlocalization-translate-v1 [token]="tokens.showFilterMask">
+                                </hxgn-commonlocalization-translate-v1>
+                            </span>
+                            <div class="filter-mask-divider"></div>
+                        </ng-container>
+                        
+                        <!-- Clears shape on the map. -->
+                        <span class="filter-mask-action" (click)="clearGeometry()">
+                            <hxgn-commonlocalization-translate-v1 [token]="tokens.clearFilter">
+                            </hxgn-commonlocalization-translate-v1>
+                        </span>
+                    </div>
+    
+                    <!-- Draw button icon that activates the draw toolbar. -->
+                    <img *ngIf="canDraw() && settings?.mapControls?.showDrawControl" class="draw-btn" src="assets/commonmap-core/images/layout/enter_drawing_mode.svg"
+                        [title]="drawButtonTooltip"
+                        (click)="startDraw()" height="41" width="41" />
+                </div>
+    
+                <!-- Draw toolbar. Active once toolbar has been toggled. -->
+                <hxgn-commonmap-draw-toolbar *ngIf="(showDrawToolbar && canDraw()) || persistentEdit" 
+                    [digitizer]="digitizer"
+                    [persistentEdit]="persistentEdit"
+                    [toolbarTitle]="drawToolbarTitle"
+                    (done)="drawDone($event)"></hxgn-commonmap-draw-toolbar>
+    
+            </div>
+
+        </ng-container>
+        <div class="map-layer-panel" *ngIf="settings.mapControls.displayLayerPanel">
+            <hxgn-commonmap-layer-panel #layerPanel
+                [mapPreset]="mapPreset"
+                [layerCollections]="layerCollections$ | async"
+                [position]="settings.mapControls.layerPanelLocation"
+                [notification]="layerPanelNotification"
+                [displayOnDialog]="windowTooSmall"
+                [allowLayerReorder]="settings.mapControls.allowLayerReorder"
+                [isPresetOverridden]="isPresetOverridden">
+            </hxgn-commonmap-layer-panel>
+        </div>        
+	</div>
+    <div *ngIf="settings.mapControls.displayZoomControl && mapDataLoaded && mapPreset" class="btn-pane">
+        <div class="home-btn"
+            title="{{transStrings[tokens.setViewToHomeTooltip]}}"
+            (click)="setMapView()">
+            <img src="assets/commonmap-core/images/layout/map_home_button.svg" />
+        </div>
+    </div>
+    <ng-container *featureFlag="FeatureFlags.LayerInfoCmds">
+        <hxgn-commonmap-layer-props-cmd cdkDrag *ngIf="displayLayerPropsCmd"
+            [layerData]="layerPropsCmdLayerInfos"
+            [show]="displayLayerPropsCmd"
+            [map]="map"
+            [selectionSvc]="selectionSvc"
+            [point]="layerPropsCmdPoint"
+            [maxHeight]="maxLayerPropsHeight"
+            (closeDialog)="layerPropsCmdClose(true)">
+        </hxgn-commonmap-layer-props-cmd>
+    </ng-container>
+</div>

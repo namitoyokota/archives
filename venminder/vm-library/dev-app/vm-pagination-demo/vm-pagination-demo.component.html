@@ -1,0 +1,12 @@
+<template>
+    <require from="./vm-pagination-demo.component.css"></require>
+
+    <div class="vm-pagination-demo">
+        <template repeat.for="item of items">
+            <div if.bind="(($index + 1) > ((pager.currentPage - 1) * pageSize)) && (($index + 1) <= (pager.currentPage * pageSize))">
+                ${item}
+            </div>
+        </template>
+        <vm-pagination pager.bind="pager"></vm-pagination>
+    </div>
+</template>

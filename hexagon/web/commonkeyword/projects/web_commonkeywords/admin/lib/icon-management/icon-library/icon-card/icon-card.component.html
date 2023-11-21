@@ -1,0 +1,12 @@
+<div *ngIf="enableDelete" class="delete-btn" (click)="delete($event)"></div>
+<div class="icon-pane">
+    <div class="icon-background" [style.background-image]="'url(' + UrlHelper.mapMediaUrl(primitiveIcon?.url) + ')'"></div>
+</div>
+<div class="title-pane">
+    <ng-container *ngIf="primitiveIcon?.categoryToken === tokens.custom">
+        {{primitiveIcon?.nameToken}}
+    </ng-container>
+    <ng-container *ngIf="primitiveIcon?.categoryToken !== tokens.custom">
+        <hxgn-commonlocalization-translate-v1 [token]='primitiveIcon?.nameToken'></hxgn-commonlocalization-translate-v1>
+    </ng-container>
+</div>

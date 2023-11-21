@@ -1,0 +1,55 @@
+.dialog-pane {
+    max-width: 675px;
+    width: calc(100vw - 100px);
+    max-height: 575px;
+    height: calc(100vh - 100px);
+    position: relative;
+
+    display: grid;
+    grid-template-rows: 34px auto 38px;
+    grid-row-gap: 8px;
+
+    grid-template-rows: 34px minmax(10px, calc(100vh - 192px)) 38px;
+    overflow: hidden;
+}
+
+.header-pane {
+    display: grid;
+    grid-template-columns: auto 20px;
+    grid-column-gap: 20px;
+}
+
+.close-btn {
+    cursor: pointer;
+}
+
+h2 {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.content-pane {
+    overflow: hidden;
+}
+
+.footer-pane {
+    display: flex;
+    justify-self: flex-end;
+
+    button {
+        margin-left: 10px;
+    }
+}
+
+.loading-pane {
+    top: 0;
+    position: absolute;
+    background: #ffffffb8;
+    max-width: 675px;
+    width: calc(100vw - 100px);
+    max-height: 575px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

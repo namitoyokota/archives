@@ -1,0 +1,32 @@
+<div class="settings-item" *ngIf="settings">
+  <hxgn-shapes-filter [filter]="settings.filter" (filterChange)="setActiveFilter($event)"></hxgn-shapes-filter>
+</div>
+<div class="settings-item" *ngIf="settings">
+  <hxgn-shapes-sorting [sortBy]="settings.sortBy" (sortByChange)="setSortOption($event)"></hxgn-shapes-sorting>
+</div>
+
+<h3>
+  <hxgn-commonlocalization-translate-v1 [token]="tokens.additionalShapeSettings">
+  </hxgn-commonlocalization-translate-v1>
+</h3>
+
+<!-- Care expansion -->
+<div class="additional-settings-item">
+  <span>
+      <hxgn-commonlocalization-translate-v1 skeletonWidth="75px" [token]="tokens.enableCardExpansion">
+      </hxgn-commonlocalization-translate-v1>
+  </span>
+  <mat-slide-toggle [checked]="settings.enableCardExpansion" (change)="toggleCardExpansion($event)">
+  </mat-slide-toggle>
+</div>
+
+<!-- Keywords -->
+<div class="additional-settings-item">
+  <span>
+      <hxgn-commonlocalization-translate-v1 skeletonWidth="75px" [token]="tokens.enableKeywords">
+      </hxgn-commonlocalization-translate-v1>
+  </span>
+  <mat-slide-toggle [(checked)]="settings.enableKeywords && settings.enableCardExpansion"
+      [disabled]="!settings.enableCardExpansion" (change)="toggleKeywords($event)">
+  </mat-slide-toggle>
+</div>

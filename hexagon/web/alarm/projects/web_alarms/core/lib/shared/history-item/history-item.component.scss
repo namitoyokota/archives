@@ -1,0 +1,252 @@
+$priority-0-color: #e01827;
+$priority-1-color: #ff8429;
+$priority-2-color: #ebd444;
+$priority-3-color: #3474ff;
+$priority-redacted-color: #9ea0a3;
+
+:host {
+    width: 100%;
+    display: grid;
+    grid-template-rows: min-content;
+}
+
+.connector {
+    height: 25px;
+    width: 1px;
+    background-color: #c7c7c7;
+    justify-self: center;
+}
+
+.created-contact-card {
+    min-height: 83px;
+    display: flex;
+    align-items: center;
+    border: solid 1px #afafaf;
+    box-sizing: border-box;
+    padding: 0 15px;
+}
+
+.created-alarm-card {
+    min-height: 83px;
+    display: grid;
+    grid-template-columns: 5px 1fr;
+    column-gap: 10px;
+    border: solid 1px #afafaf;
+    box-sizing: border-box;
+    padding-right: 15px;
+
+    .created-alarm-card-content {
+        display: grid;
+        grid-template-columns: min-content 1fr min-content;
+        column-gap: 10px;
+        padding: 10px 0;
+
+        hxgn-common-properties {
+            align-self: center;
+        }
+
+        .alarm-info {
+            overflow: hidden;
+
+            .alarm-cross-street {
+                display: grid;
+                grid-template-columns: min-content 1fr;
+                column-gap: 8px;
+                align-items: center;
+                margin-top: 3px;
+            }
+
+            .alarm-location {
+                line-height: 19px;
+            }
+
+            .alarm-title {
+                font-size: 15px;
+                font-weight: 700;
+                line-height: 20px;
+            }
+        }
+    }
+
+    hxgn-alarms-priority {
+        width: 100%;
+    }
+}
+
+.created-alarm-container {
+    display: grid;
+    grid-column: 2;
+    gap: 8px;
+}
+
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.history-item-container {
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    column-gap: 8px;
+
+    .item-image-container {
+        display: grid;
+        grid-template-rows: min-content 1fr;
+
+        .connector {
+            height: 100% !important;
+        }
+
+        .item-image {
+            height: 24px;
+            width: 24px;
+            background-image: url("assets/alarms-core/images/icons/default-update-icon.svg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+
+            &.item-image-association {
+                background-image: url("assets/alarms-core/images/icons/association-icon.svg");
+            }
+
+            &.item-image-attachments {
+                background-image: url("assets/alarms-core/images/icons/attachments-icon.svg");
+            }
+
+            &.item-image-creation {
+                background-image: url("assets/alarms-core/images/icons/creation-icon.svg");
+            }
+
+            &.item-image-ismanaged {
+                background-image: url("assets/alarms-core/images/icons/alarm-management-icon.svg");
+            }
+
+            &.item-image-keywords {
+                background-image: url("assets/alarms-core/images/icons/keywords-icon.svg");
+            }
+
+            &.item-image-location {
+                background-image: url("assets/alarms-core/images/icons/location-icon.svg");
+            }
+
+            &.item-image-primarycontact {
+                background-image: url("assets/alarms-core/images/icons/primary-contact-icon.svg");
+            }
+
+            &.item-image-priority {
+                background-image: url("assets/alarms-core/images/icons/priority-icon.svg");
+            }
+
+            &.item-image-remarks {
+                background-image: url("assets/alarms-core/images/icons/remarks-icon.svg");
+            }
+
+            &.item-image-reportedtime {
+                background-image: url("assets/alarms-core/images/icons/reported-time-icon.svg");
+            }
+
+            &.item-image-title {
+                background-image: url("assets/alarms-core/images/icons/title-icon.svg");
+            }
+
+            &.item-image-hyperlinks {
+                background-image: url("assets/alarms-core/images/icons/hyperlinks-icon.svg");
+            }
+        }
+    }
+
+    .item-text {
+        width: fit-content;
+        bottom: 3px;
+        color: #141414;
+        font-size: 20px;
+        line-height: 27px;
+        position: relative;
+    }
+
+    .priority {
+        border-bottom: solid 3px $priority-3-color;
+        box-sizing: border-box;
+        padding-bottom: 3px;
+
+        &.priority-0 {
+            border-bottom-color: $priority-0-color;
+        }
+
+        &.priority-1 {
+            border-bottom-color: $priority-1-color;
+        }
+
+        &.priority-2 {
+            border-bottom-color: $priority-2-color;
+        }
+
+        &.priority-redacted {
+            border-bottom-color: $priority-redacted-color !important;
+        }
+    }
+
+    &.concise {
+        .connector {
+            height: 8px;
+        }
+
+        .item-image {
+            height: 32px !important;
+            width: 32px !important;
+        }
+
+        .item-text {
+            bottom: 0;
+            color: #333333;
+            font-size: 13px;
+            font-weight: 700;
+            line-height: 16px;
+            margin-top: 8px;
+        }
+
+        .placeholder {
+            width: 32px;
+        }
+    }
+}
+
+.placeholder {
+    width: 24px;
+    display: flex;
+    justify-content: center;
+
+    .connector {
+        height: 100% !important;
+    }
+}
+
+.redacted {
+    display: grid;
+    grid-template-columns: min-content auto;
+    column-gap: 5px;
+    align-items: center;
+
+    .bold {
+        font-weight: 700;
+    }
+}
+
+.remark {
+    font-size: 13px;
+    line-height: 17px;
+
+    .remark-author {
+        color: #345ea1;
+        font-weight: 700;
+    }
+}
+
+.spacing-top {
+    margin-top: 8px;
+}
+
+.spacing-top-double {
+    margin-top: 16px;
+}

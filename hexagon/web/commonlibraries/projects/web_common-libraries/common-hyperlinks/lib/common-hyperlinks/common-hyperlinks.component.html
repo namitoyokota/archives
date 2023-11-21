@@ -1,0 +1,31 @@
+<hxgn-common-expansion-panel panelState="expanded">
+
+    <!-- Title -->
+    <hxgn-common-expansion-panel-title>
+        <span>
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.hyperlinks" skeletonWidth="55px">
+            </hxgn-commonlocalization-translate-v1>
+            ({{entireList?.length}})
+        </span>
+    </hxgn-common-expansion-panel-title>
+    
+    <!-- Content -->
+    <hxgn-common-expansion-panel-content>
+        <div class="container">
+            <hxgn-common-links [hyperlinks]="displayList">
+            </hxgn-common-links>
+
+            <div *ngIf="entireList?.length > 3" class="show-all" (click)="toggleShowAll()">
+                <span *ngIf="!showAll">
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.showAllEntries" skeletonWidth="55px">
+                    </hxgn-commonlocalization-translate-v1>
+                </span>
+                <span *ngIf="showAll">
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.showLessEntries" skeletonWidth="55px">
+                    </hxgn-commonlocalization-translate-v1>
+                </span>
+            </div>
+        </div>
+    </hxgn-common-expansion-panel-content>
+
+</hxgn-common-expansion-panel>

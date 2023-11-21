@@ -1,0 +1,22 @@
+<template>
+    <vm-button secondary click.call="openDialog(false)">
+        <span>Open Dialog</span>
+    </vm-button>
+
+    <vm-button secondary click.call="openDialog(true)">
+        <span>Open Large Dialog</span>
+    </vm-button>
+
+    <vm-button secondary click.call="openDuotone('info')">
+        <span>Open Info Duotone</span>
+    </vm-button>
+    <vm-button secondary click.call="openDuotone('danger')">
+        <span>Open Danger Duotone</span>
+    </vm-button>
+    <vm-button secondary click.call="openDuotone('success')">
+        <span>Open Success Duotone</span>
+    </vm-button>
+    <vm-button secondary click.call="openDuotone('warning')">
+        <span>Open Warning Duotone</span>
+    </vm-button>
+</template>

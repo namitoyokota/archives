@@ -1,0 +1,42 @@
+@use "../../../styles/vm-dialog";
+
+vm-form-wizard {
+    .vm-form-wizard {
+        width: 80vw;
+        .vm-form-wizard--header {
+            h4,
+            h2 {
+                margin-top: 4px;
+                margin-bottom: 4px;
+            }
+        }
+
+        .vm-form-wizard-content {
+            display: flex;
+        }
+
+        .vm-form-wizard--nav {
+            border: vm-dialog.$vm-dialog-border;
+            border-top: 0;
+            border-bottom: 0;
+            border-left: 0;
+            padding-left: 0;
+            padding-right: 0;
+            display: flex;
+            [slot="nav"] {
+                min-width: 240px;
+                width: 100%;
+            }
+        }
+
+        .vm-form-wizard--body {
+            padding-left: calc(vm-dialog.$vm-dialog-padding / 2);
+            display: flex;
+            min-width: 0;
+            width: 100%;
+            [slot="body"] {
+                width: 100%;
+            }
+        }
+    }
+}

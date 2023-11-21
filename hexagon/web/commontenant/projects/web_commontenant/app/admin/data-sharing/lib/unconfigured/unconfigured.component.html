@@ -1,0 +1,49 @@
+<!-- UI to show if data sharing has never been shown before -->
+
+<div class="setup-pane">
+    <span class="title">
+        <hxgn-commonlocalization-translate-v1 [token]='tokens.dataSharingSetup'></hxgn-commonlocalization-translate-v1>
+    </span>
+    
+    <span class="message">
+        <hxgn-commonlocalization-translate-v1 [token]='tokens.dataSharingSetupMessage'></hxgn-commonlocalization-translate-v1>
+    </span>
+    
+    <div class="option-pane">
+        <div class="option" (click)="setupExternal.emit()">
+            <div class="external-graphic"></div>
+            <span class="title">
+                <hxgn-commonlocalization-translate-v1 [token]='tokens.externalDataSharing'></hxgn-commonlocalization-translate-v1>
+            </span>
+            <span class="note">
+                <hxgn-commonlocalization-translate-v1 [token]='tokens.externalDataSharingNote'></hxgn-commonlocalization-translate-v1>
+            </span>
+        </div>
+        
+        <div>
+            <div class="option" (click)="setupInternal.emit()">
+                <div class="internal-graphic"></div>
+                <span class="title">
+                    <hxgn-commonlocalization-translate-v1 [token]='tokens.internalDataSharing'></hxgn-commonlocalization-translate-v1>
+                </span>
+                <span class="note">
+                    <hxgn-commonlocalization-translate-v1 [token]='tokens.internalDataSharingNote'></hxgn-commonlocalization-translate-v1>
+                </span>
+            </div>
+
+            <div class="internal-setup-msg">
+                <div>
+                    <span class="title">
+                        <hxgn-commonlocalization-translate-v1 [token]='tokens.defaultInternalSettingAll'></hxgn-commonlocalization-translate-v1>
+                    </span>
+                </div>
+                
+                <span class="msg">
+                    <hxgn-commonlocalization-translate-v1 [token]='tokens.defaultInternalSettingAllMsg'></hxgn-commonlocalization-translate-v1>
+                </span>
+            </div>
+        </div>
+        
+
+    </div>
+</div>

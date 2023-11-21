@@ -1,0 +1,6 @@
+<div class="content" [style.background-color]="backgroundColor">
+    <hxgn-model-viewer-v1 [url]="url"></hxgn-model-viewer-v1>
+    <img (click)="close()" src="assets/common-libraries/images/close.png" />
+    <hxgn-common-color-picker-button [defaultColor]="backgroundColor" (selectedColor)="backgroundColor = $event">
+    </hxgn-common-color-picker-button>
+</div>

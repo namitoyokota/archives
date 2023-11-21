@@ -1,0 +1,27 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "target": "es2018",
+        "module": "esnext",
+        "esModuleInterop": true,
+        "declaration": true,
+        "typeRoots": ["./node_modules/@types"],
+        "removeComments": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "sourceMap": true,
+        "lib": ["es2018", "dom"],
+        "moduleResolution": "node",
+        "baseUrl": "src",
+        "resolveJsonModule": true,
+        "importHelpers": true,
+        "paths": {
+            "resources": [""]
+        },
+        "allowJs": false
+    },
+    "include": ["src", "dev-app"],
+    "atom": {
+        "rewriteTsconfig": false
+    }
+}

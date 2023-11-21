@@ -1,0 +1,2163 @@
+﻿// DEVELOPERS: IF YOU INTEND ON MAKING CHANGES, TALK TO PRODUCT TEAM (MARY). WE NEED TO UPDATE THE PROTOTYPE STYLESHEET TO MATCH.
+
+
+// RESET
+@import '_reset.scss';
+
+// THEME STYLES
+@import 'theme/style.scss';
+
+// VENMINDER VARIABLES
+@import '_variables.scss';
+
+// GOOGLE FONTS IMPORT
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:italic&display=swap');
+
+@import url('https://fonts.googleapis.com/css?family=Lato');
+@import url('https://fonts.googleapis.com/css?family=Lato:400italic');
+
+// COLORS AND FONTS
+
+.white {
+    color: $white;
+}
+
+.red {
+    color: $red;
+}
+
+.orange {
+    color: $orange;
+}
+
+.yellow {
+    color: $yellow;
+}
+
+.green {
+    color: $green;
+}
+
+.teal {
+    color: $teal;
+}
+
+.greenBlue {
+    color: $green-blue;
+}
+
+.darkGray {
+    color: $dark-gray;
+}
+
+.mediumGray {
+    color: $medium-gray;
+}
+
+.lightGray {
+    color: $light-gray;
+}
+
+/* Sets columns to the same height */
+
+.equal {
+    display: -webkit-flex;
+    display: flex;
+}
+
+//-- TODO: Remove the !important in our next css cleanup effort... DWHITTEN 6/4/2021
+// Headlines
+h1, h2, h3, h4, h5, h5, h7 {
+    font-family: $lato !important;
+    color: $navy;
+}
+
+.header-pdf-margin {
+    padding-left: 15px;
+}
+
+// BASIC FORMATTING
+
+body {
+    color: $navy;
+    font-family: $lato;
+    background-color: $N20;
+}
+
+/* Main layout styles starts */
+.client-body {
+    background-color: $N10;
+    position: relative;
+}
+.page-topbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: $nav-menu-width;
+    z-index: 1001;
+    background-color: $white;
+    box-shadow: 0 4px 6px -4px $N30, 0 4px 6px -2px $N40;
+
+    @media screen and (max-width:75em) {
+        left: 50px;
+    }
+}
+
+.vertical-menu {
+    /*width: $nav-menu-width;*/
+    background-color: $nav-background-color;
+}
+
+.navbar-top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    padding: 0 10px;
+    margin-bottom: 15px;
+
+    .navbar {
+        padding: 10px 10px 0 10px;
+    }
+}
+
+.main-content {
+    display: flex;
+    background-color: $N10;
+}
+
+.page-content {
+    padding: calc(70px + 24px) calc(24px / 2) 60px calc(24px / 2);
+    width: calc(100% - $nav-menu-width);
+    
+    @media screen and (max-width:75em) {
+        width: calc(100% - $nav-menu-width-narrow - calc(24px / 2));
+    }
+    .widget-box {
+        padding-bottom: 10px;
+    }
+}
+
+.footer-content {
+    clear: both;
+    color: $dark-gray;
+    line-height: 60px;
+    background-color: $light;
+
+    .nav-spacer {
+        background-color: $nav-background-color;
+        width: $nav-menu-width;
+        float: left;
+        height: 60px;
+
+        @media screen and (max-width:75em) {
+            width: 50px;
+        }
+    }
+
+    footer {
+        float: left;
+    }
+
+    label {
+        font-weight: normal;
+        color: $medium-gray;
+    }
+}
+
+.d-flex {
+    display: flex;
+}
+/* Main layout styles ends */
+
+.required-text {
+    color: $teal;
+    font-style: italic;
+}
+
+.content-background {
+    background-color: $white;
+}
+
+.strong {
+    font-weight: bold;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.italic {
+    font-style: italic;
+}
+
+a {
+    color: $brand-primary;
+    text-decoration: none;
+
+    /*&:hover, &:focus {
+        color: #18856B !important;
+        text-decoration: underline;
+    }*/
+
+    &:focus {
+        outline: 5px auto -webkit-focus-ring-color;
+        outline-offset: -2px;
+    }
+}
+
+.modal-xl {
+    width: 1100px;
+}
+
+//currently makes the icons hover green
+.hoverIcon:hover,
+.hoverIcon:focus {
+    color: $green;
+}
+
+
+// Modal CONFIRM styles
+
+.modal-confirm {
+    color: #434e65;
+    width: 525px;
+}
+
+.modal-confirm .modal-content {
+    padding: 20px;
+    border-radius: 5px;
+    border: none;
+}
+
+.modal-confirm .modal-header {
+    background: $green;
+    border-bottom: none;
+    position: relative;
+    text-align: center;
+    margin: -20px -20px 0;
+    border-radius: 5px 5px 0 0;
+    padding: 35px;
+}
+
+.modal-confirm h4 {
+    text-align: center;
+    font-size: 36px;
+    margin: 10px 0;
+}
+
+.modal-confirm .form-control, .modal-confirm .btn {
+    min-height: 40px;
+    border-radius: 3px;
+}
+
+.modal-confirm .close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: $body-bg;
+    text-shadow: none;
+    opacity: 0.5;
+}
+
+.modal-confirm .close:hover {
+    opacity: 0.8;
+}
+
+.modal-confirm .icon-box {
+    color: $body-bg;
+    width: 95px;
+    height: 95px;
+    display: inline-block;
+    border-radius: 50%;
+    z-index: 9;
+    border: 5px solid $body-bg;
+    padding: 15px;
+    text-align: center;
+}
+
+.modal-confirm .icon-box i {
+    font-size: 64px;
+    margin: -4px 0 0 -4px;
+}
+
+.modal-confirm.modal-dialog {
+    margin-top: 80px;
+}
+
+.modal-confirm .btn span {
+    margin: 1px 3px 0;
+    float: left;
+}
+
+.errorBorder {
+    border: $red solid 1px !important;
+}
+
+.error > input[type=text]:not(.noError), .error > input[type=number]:not(.noError), .error > input[type=radio]:not(.noError), .error > textarea:not(.noError), .error > select:not(.noError), .error.containerBorder, .error > span.dropDown {
+    border: $red solid 1px !important;
+}
+
+
+// SITE HEADER STYLES
+
+ul.header-dropdown-style {
+    background-color: #fff;
+    color: $navy;
+
+    li.divider {
+        background-color: $navy-light;
+    }
+}
+
+.navbar-fixed-top, .navbar-static-top {
+    padding: 20px;
+}
+
+.headerLogo {
+    width: auto;
+}
+
+.navbar-brand {
+    padding: 0;
+}
+
+ul.headerMenu {
+    position: relative;
+    z-index: 2;
+}
+
+ul.headerMenu a:hover, ul.headerMenu a:active {
+    color: #FFF !important;
+}
+
+.navbar {
+    margin-bottom: 0;
+}
+
+.header-menu-button {
+    background-color: $gray-blue;
+    color: $white;
+
+    &:active {
+        color: $white;
+    }
+
+    &:visited {
+        color: $white;
+    }
+
+    &:hover {
+        color: $white;
+    }
+
+    &:focus {
+        color: $white;
+    }
+}
+
+span.menuBadge {
+    line-height: 13px;
+    padding: 2px 5px;
+    position: absolute;
+    right: 2px;
+    top: -5px;
+    border-radius: 50px;
+}
+
+.app-menu-bar {
+    display: none;
+}
+/*@media (max-width: 769px) {*/
+@media (min-width: 992px) {
+    .app-menu-bar {
+        display: block;
+    }
+}
+
+
+
+// BREADCRUMBS
+
+.breadcrumb > li + li:before {
+    content: "\2771\00a0";
+}
+
+
+// FORM STYLES
+
+.form-horizontal .control-label {
+    text-align: left;
+}
+
+.phone-type-width {
+    width: 100px;
+}
+
+
+/*Phone Number Form Field*/
+.phone-number .phone::after {
+    content: "-";
+    position: absolute;
+    right: 5px;
+    color: $black;
+    border: 0px solid;
+    top: 5px;
+}
+
+.phone-number .col-xs-4 {
+    width: 75px;
+}
+
+.phone-number .col-xs-3 {
+    width: 65px;
+}
+
+.phone-number .col-xs-3,
+.phone-number .col-xs-4 {
+    padding-left: 0;
+}
+
+.phone-number .ext::after {
+    content: "x";
+    position: absolute;
+    right: 5px;
+    color: $black;
+    border: 0px solid;
+    top: 5px;
+}
+
+// SCROLL TO TOP
+
+.back-to-top {
+    cursor: pointer;
+    position: fixed;
+    bottom: 10px;
+    left: 20px;
+    display: none;
+    z-index: 1002;
+}
+
+
+.business-unit-banner {
+    position: fixed;
+    top: 0;
+    right: 15px;
+    z-index: 10000;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    display: inline-flex;
+}
+
+.business-unit-banner-tooltip {
+    z-index: 10001;
+}
+
+// Tabs
+
+/*Custom Color Tabs styling*/
+
+/*Custom Color Tabs styling*/
+
+//aka what seems to be our Most Used Classes
+
+.fixedht_50 {
+    height: 50px;
+
+    @media screen and (max-width:60em) {
+        height: auto;
+    }
+}
+
+.fixedht_100 {
+    height: 100px;
+
+    @media screen and (max-width:60em) {
+        height: auto;
+    }
+}
+
+.fixedht_125 {
+    height: 125px;
+
+    @media screen and (max-width:60em) {
+        height: auto;
+    }
+}
+
+.fixedht_150 {
+    height: 150px;
+
+    @media screen and (max-width:60em) {
+        height: auto;
+    }
+}
+
+.fixedht_190 {
+    height: 190px;
+
+    @media screen and (max-width:60em) {
+        height: auto;
+    }
+}
+
+.fixedht_200 {
+    height: 200px;
+
+    @media screen and (max-width:60em) {
+        height: auto;
+    }
+}
+
+.fixedht_225 {
+    height: 225px;
+
+    @media screen and (max-width:75em) {
+        height: auto;
+    }
+}
+
+.fixedht_250 {
+    height: 250px;
+}
+
+.fixedht_300 {
+    height: 300px;
+
+    @media screen and (max-width:75em) {
+        height: auto;
+    }
+}
+
+.fixedht_350 {
+    height: 350px;
+
+    @media screen and (max-width:75em) {
+        height: auto;
+    }
+}
+
+.fixedht_400 {
+    height: 400px;
+
+    @media screen and (max-width:75em) {
+        height: auto;
+    }
+}
+
+.fixedht_425 {
+    height: 425px;
+}
+
+.fixedht_450 {
+    height: 450px;
+
+    @media screen and (max-width:75em) {
+        height: auto;
+    }
+}
+
+.fixedht_455 {
+    height: 455px;
+
+    @media screen and (max-width:75em) {
+        height: auto;
+    }
+}
+
+.fixedht_500 {
+    height: 500px;
+
+    @media screen and (max-width:75em) {
+        height: auto;
+    }
+}
+
+
+.fixedht_550 {
+    height: 550px;
+}
+
+.fixedht_560 {
+    height: 560px;
+    /*@media screen and (max-width:300px){
+            height: auto;
+}*/
+}
+
+.fixedht_650 {
+    height: 650px;
+}
+
+.overflow {
+    overflow-y: scroll;
+}
+
+.text-overflow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.cue {
+    border: $teal dashed 1px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.cursor-movable {
+    cursor: move;
+}
+
+.ulNone {
+    list-style: none;
+}
+
+.noWrap {
+    white-space: nowrap;
+}
+
+.vmiddle {
+    vertical-align: middle;
+}
+
+.horiz-list {
+    padding-left: 0px;
+    display: inline-block;
+}
+
+.noPadding {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+li.noBorder {
+    border: 0px $white solid;
+}
+
+.table.no-border tr td, .table.no-border tr th {
+    border-width: 0;
+}
+
+.table.vtable tr td, .table.vtable tr th {
+    vertical-align: middle;
+}
+
+.widgetHeader {
+    /*margin-top:20px;
+    margin-bottom:20px;*/
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+
+.paddingLnone {
+    padding-left: 0px;
+
+    @media screen and (max-width:75em) {
+        padding-left: 15px;
+    }
+}
+
+.paddingRnone {
+    padding-right: 0px;
+
+    @media screen and (max-width:75em) {
+        padding-right: 15px;
+    }
+}
+
+.checkboxWidth {
+    width: 5px !important;
+}
+
+//These are to update the font awesome glyph sizes (rather than add to FA stylesheet)
+.fa-6x {
+    font-size: 6em;
+}
+
+.fa-7x {
+    font-size: 7em;
+}
+
+.fa-8x {
+    font-size: 8em;
+}
+
+//Purple footer
+.bg-purple {
+    background-color: $purple;
+    color: $white;
+    .activeFilter {
+        background: darken($purple, 10%);
+    }
+}
+
+//Teal footer
+.bg-teal {
+    background-color: $teal;
+    color: $white;
+    .activeFilter {
+        background: darken($teal, 5%);
+    }
+}
+
+.bg-ltgray {
+    background: lighten($gray, 5%);
+}
+
+.text-primary {
+    color: $green;
+}
+
+.text-darkgray {
+    color: $gray-blue;
+}
+
+.text-purple {
+    color: $purple;
+}
+
+.text-teal {
+    color: $teal;
+}
+
+.btn-greenBlue {
+    background-color: $green-blue;
+    border-color: $green-blue;
+    color: $white;
+
+    &:hover,
+    &:active {
+        color: $white !important;
+        background-color: darken($green-blue, 10%);
+        border-color: darken($green-blue, 12%);
+    }
+
+    &:focus {
+        color: $white !important;
+    }
+}
+
+.btn-yellow {
+    background-color: $yellow;
+    border-color: $yellow;
+    color: $white;
+
+    &:hover,
+    &:active {
+        color: $white !important;
+        background-color: darken($yellow, 10%);
+        border-color: darken($yellow, 12%);
+    }
+
+    &:focus {
+        color: $white !important;
+    }
+}
+
+.btn-teal {
+    background-color: $teal;
+    border-color: $teal;
+    color: $white;
+
+    &:hover,
+    &:active {
+        color: $white !important;
+        background-color: darken($teal, 10%);
+        border-color: darken($teal, 12%);
+    }
+
+    &:focus {
+        color: $white !important;
+    }
+}
+
+.text-yellow {
+    color: $yellow;
+}
+
+.text-white {
+    color: $white;
+}
+
+.text-greenblue {
+    color: $green-blue;
+}
+
+.text-wrap-anywhere {
+    overflow-wrap: anywhere;
+}
+
+.panel-gray {
+    border-color: $N30;
+
+    & > .panel-heading {
+        color: $black;
+        background-color: $N30;
+        border-color: $N30;
+    }
+}
+
+.panel-greenblue {
+    border-color: $green-blue;
+
+    & > .panel-heading {
+        color: $white;
+        background-color: $green-blue;
+        border-color: $green-blue;
+    }
+}
+
+.panel-primary {
+    border-color: $green;
+}
+
+.panel-primary > .panel-heading {
+    background-color: $green;
+    border-color: $green;
+}
+
+.panel-purple {
+    border-color: $purple;
+
+    & > .panel-heading {
+        color: $white;
+        background-color: $purple;
+        border-color: $purple;
+    }
+
+    & > .panel-footer {
+        color: $white;
+        background-color: $purple;
+        border-color: $purple;
+    }
+}
+
+.border {
+    border: 1px solid #e3e3e3;
+}
+
+.noBorder {
+    border: none;
+}
+
+.headerPanel {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+
+.bg-gray {
+    background-color: #f4f4f4;
+}
+
+.bg-gray-md {
+    background-color: #e9e9e9;
+}
+
+.bg-gray-dk {
+    background-color: #dddddd;
+}
+
+.label-orange {
+    background-color: $brand-warning;
+    color: #FFFFFF;
+}
+
+.text-orange {
+    color: $brand-warning;
+}
+//For the Popovers
+.popover {
+    width: 650px;
+}
+
+.fixedWidth_50 {
+    width: 50px;
+
+    @media screen and (max-width:60em) {
+        width: auto;
+    }
+}
+
+.fixedWidth_75 {
+    width: 75px;
+
+    @media screen and (max-width:60em) {
+        width: auto;
+    }
+}
+
+.fixedWidth_100 {
+    width: 100px;
+
+    @media screen and (max-width:60em) {
+        width: auto;
+    }
+}
+
+.fixedWidth_150 {
+    width: 150px;
+
+    @media screen and (max-width:60em) {
+        width: auto;
+    }
+}
+
+.fixedWidth_200 {
+    width: 200px;
+
+    @media screen and (max-width:60em) {
+        width: auto;
+    }
+}
+
+.fixedWidth_250 {
+    width: 250px;
+}
+
+.fixedWidth_300 {
+    width: 300px;
+
+    @media screen and (max-width:60em) {
+        width: auto;
+    }
+}
+
+.fixedWidth_400 {
+    width: 400px;
+}
+
+.fixedWidth_450 {
+    width: 450px;
+
+    @media screen and (max-width:60em) {
+        width: auto;
+    }
+}
+//Makes the header bar stats animate
+.timer {
+    /*width: 200px;*/
+    margin: 10px auto;
+    text-align: center;
+    display: block;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.timer1 {
+    @extend .timer;
+}
+
+.timer2 {
+    @extend .timer;
+}
+
+.timer3 {
+    @extend .timer;
+}
+
+.timer4 {
+    @extend .timer;
+}
+
+.help {
+    width: 200px;
+    margin: 10px auto;
+    text-align: center;
+    display: block;
+    font-size: 14px;
+
+    @media screen and (max-width:300px) {
+        margin: 20px auto;
+        width: 150px;
+        background-color: red !important;
+    }
+}
+
+/* Venminder Checkbox Buttons */
+.checkbox {
+    padding-left: 20px;
+    margin: 0px;
+}
+
+.checkbox label {
+    display: inline-block;
+    position: relative;
+    padding-left: 1px;
+}
+
+.checkbox label::before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    left: 0;
+    top: 3px;
+    margin-left: -20px;
+    border: 1px solid $medium-gray;
+    border-radius: 3px;
+    background-color: #fff;
+    -webkit-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
+    -o-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
+    transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
+}
+
+.checkbox label::after {
+    display: inline-block;
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    left: 0;
+    top: 0;
+    margin-left: -20px;
+    padding-left: 1px;
+    padding-top: 2px;
+    font-size: 11px;
+    color: $dark-gray;
+}
+
+.checkbox input[type="checkbox"] {
+    opacity: 0;
+}
+
+.checkbox input[type="checkbox"]:focus + label::before {
+    /*outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;*/
+}
+
+.checkbox input[type="checkbox"]:checked + label::after {
+    font-family: "Font Awesome 5 Pro";
+    font-weight: 400;
+    content: "\f00c";
+}
+
+.checkbox input[type="checkbox"]:disabled + label {
+    opacity: 0.65;
+}
+
+.checkbox input[type="checkbox"]:disabled + label::before {
+    background-color: $light-gray;
+    cursor: not-allowed;
+}
+
+.checkbox.checkbox-circle label::before {
+    border-radius: 50%;
+}
+
+.checkbox.checkbox-inline {
+    margin-top: 0;
+}
+
+.checkbox.checkbox-stacked {
+    margin-bottom: 5px;
+
+    &:last-child {
+        margin-bottom: 0px;
+    }
+}
+
+.checkbox-primary input[type="checkbox"]:checked + label::before {
+    background-color: $green;
+    border-color: $green;
+}
+
+.checkbox-primary input[type="checkbox"]:checked + label::after {
+    color: $white;
+}
+/* Venminder Radio Buttons */
+.radio {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.radio label {
+    display: inline-block;
+    position: relative;
+    padding-left: 0px;
+}
+
+.radio label::before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    left: 0;
+    top: 3px;
+    margin-left: -20px;
+    border: 1px solid $medium-gray;
+    border-radius: 50%;
+    background-color: $white;
+    -webkit-transition: border 0.15s ease-in-out;
+    -o-transition: border 0.15s ease-in-out;
+    transition: border 0.15s ease-in-out;
+}
+
+.radio label::after {
+    display: inline-block;
+    position: absolute;
+    content: " ";
+    width: 13px;
+    height: 13px;
+    left: 0px;
+    top: 3px;
+    margin-left: -20px;
+    border-radius: 50%;
+    border: 4px solid $green;
+    background-color: $dark-gray;
+    -webkit-transform: scale(0, 0);
+    -ms-transform: scale(0, 0);
+    -o-transform: scale(0, 0);
+    transform: scale(0, 0);
+    -webkit-transition: -webkit-transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
+    -moz-transition: -moz-transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
+    -o-transition: -o-transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
+    transition: transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
+}
+
+.radio input[type="radio"] {
+    opacity: 0;
+}
+
+.radio input[type="radio"]:focus + label::before {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+}
+
+.radio input[type="radio"]:checked + label::after {
+    -webkit-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    -o-transform: scale(1, 1);
+    transform: scale(1, 1);
+}
+
+.radio input[type="radio"]:disabled + label {
+    opacity: 0.65;
+}
+
+.radio input[type="radio"]:disabled + label::before {
+    cursor: not-allowed;
+}
+
+
+.radio.radio-stacked {
+    margin-bottom: 5px;
+
+    &:last-child {
+        margin-bottom: 0px;
+    }
+}
+
+
+.radio-primary input[type="radio"] + label::after {
+    background-color: $green;
+}
+
+.radio-primary input[type="radio"]:checked + label::before {
+    border-color: $green;
+}
+
+.radio-primary input[type="radio"]:checked + label::after {
+    background-color: $white;
+}
+/* New Radios */
+
+$radioSize: 12px;
+$radioBorder: #D1D7E3;
+
+.radio {
+    margin: 5px 0;
+    display: block;
+    cursor: pointer;
+
+    input {
+        display: none;
+
+        & + label {
+            line-height: 14px;
+            height: $radioSize;
+            /*padding-left: $radioSize;*/
+            display: inline-block;
+            position: relative;
+
+
+            &:not(:empty) {
+                /*padding-left: $radioSize + 8;*/
+            }
+
+            &:before,
+            &:after {
+                content: '';
+                width: $radioSize;
+                height: $radioSize;
+                background: #fff;
+                display: block;
+                border-radius: 50%;
+                left: 0;
+                top: 0;
+                position: absolute;
+            }
+
+            &:before {
+                background: $radioBorder;
+                transition: background .2s ease, transform .4s cubic-bezier(.175, .885, .32, 2);
+            }
+
+            &:after {
+                background: #fff !important;
+                border: 4px solid #fff;
+                transform: scale(.78);
+                transition: transform .6s cubic-bezier(.175, .885, .32, 1.4);
+            }
+        }
+
+        &:checked + label {
+            &:before {
+                transform: scale(1.04);
+                background: $green;
+            }
+
+            &:after {
+                transform: scale(.4);
+                border: 3px solid $green;
+                transition: transform .3s ease;
+            }
+        }
+    }
+
+    &:hover {
+        input {
+            & + label {
+                &:before {
+                    transform: scale(.92);
+                }
+
+                &:after {
+                    transform: scale(.74);
+                }
+            }
+
+            &:checked + label {
+                &:after {
+                    transform: scale(1);
+                }
+            }
+        }
+    }
+}
+
+.radio-span {
+    margin: 16px 0;
+    display: block;
+    cursor: pointer;
+
+    input {
+        display: none;
+
+        & + span {
+            line-height: $radioSize;
+            height: $radioSize;
+            padding-left: $radioSize;
+            display: block;
+            position: relative;
+
+            &:not(:empty) {
+                padding-left: $radioSize + 8;
+            }
+
+            &:before,
+            &:after {
+                content: '';
+                width: $radioSize;
+                height: $radioSize;
+                display: block;
+                border-radius: 50%;
+                left: 0;
+                top: 0;
+                position: absolute;
+            }
+
+            &:before {
+                background: $radioBorder;
+                transition: background .2s ease, transform .4s cubic-bezier(.175, .885, .32, 2);
+            }
+
+            &:after {
+                background: #fff;
+                transform: scale(.78);
+                transition: transform .6s cubic-bezier(.175, .885, .32, 1.4);
+            }
+        }
+
+        &:checked + span {
+            &:before {
+                transform: scale(1.04);
+                background: $green;
+            }
+
+            &:after {
+                transform: scale(.4);
+                transition: transform .3s ease;
+            }
+        }
+    }
+
+    &:hover {
+        input {
+            & + span {
+                &:before {
+                    transform: scale(.92);
+                }
+
+                &:after {
+                    transform: scale(.74);
+                }
+            }
+
+            &:checked + span {
+                &:after {
+                    transform: scale(.4);
+                }
+            }
+        }
+    }
+}
+
+.radio.radio-inline {
+    margin-top: 0;
+    margin-bottom: 0;
+    display: inline-block;
+}
+
+/* Venminder Actions Dropdown */
+.btn-custom-action-primary {
+    background-color: $white;
+    color: $green;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-radius: 0;
+    border: 2px solid $green;
+    padding: 4px 7px;
+
+    &:hover {
+        background-color: $green;
+        border: 2px solid $green;
+        color: $white;
+    }
+}
+
+.open > .btn-custom-action-primary.dropdown-toggle:hover,
+.open > .btn-custom-action-primary.dropdown-toggle:focus,
+.open > .btn-custom-action-primary.dropdown-toggle.focus {
+    background-color: darken($green, 6.5%);
+    border-color: darken($green, 6.5%);
+    color: #fff;
+}
+
+
+ul.dropdown-menu-custom-primary {
+    background-color: $green;
+    color: #fff;
+    border-radius: 0;
+    box-shadow: 0;
+}
+
+ul.dropdown-menu-custom-primary li a {
+    margin: 0;
+    border-radius: 0;
+    padding: 3px 12px;
+}
+
+ul.dropdown-menu-custom-primary li a:hover {
+    background-color: darken($green, 6.5%);
+    color: #fff !important;
+}
+
+.scrollbar {
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-right: 3px;
+}
+
+.formStyle input[type=text].phoneInput, .formStyle input[type=number].phoneInput {
+    text-align: center;
+    width: 60px;
+}
+
+.modal-body {
+    overflow: hidden;
+}
+
+/*this is on the HDR Guide*/
+.table > thead > tr > td.grayCell, .table > thead > tr > th.grayCell, .table > thead > tr.grayCell > td, .table > thead > tr.grayCell > th, .table > tbody > tr > td.grayCell, .table > tbody > tr > th.grayCell, .table > tbody > tr.grayCell > td, .table > tbody > tr.grayCell > th, .table > tfoot > tr > td.grayCell, .table > tfoot > tr > th.grayCell, .table > tfoot > tr.grayCell > td, .table > tfoot > tr.grayCell > th grayCell {
+    background-color: $medium-gray;
+    color: $white;
+    font-weight: bold;
+}
+
+.SLA-bg {
+    background-image: url('../images/SLA/backgroundSLA.png');
+    background-repeat: no-repeat;
+    background-position: top right;
+}
+
+.strike {
+    text-decoration: line-through;
+}
+
+//for the Oversight Automation Pairing table
+.border-left-Pairing {
+    border-left: 2px solid $medium-gray;
+}
+
+.border-right-Pairing {
+    border-right: 2px solid $medium-gray;
+}
+
+.p-b-5 {
+    padding-bottom: 5px;
+}
+
+//This is from Vendor Onboarding, but Admin Panel needs it too
+/* Top row no border */
+.no-borderTop {
+    border-top: 2px solid $body-bg;
+}
+
+.no-border {
+    border: none !important;
+}
+/* Background Colors */
+.bg-info {
+    background-color: $brand-info
+}
+
+.bg-warning {
+    background-color: $yellow
+}
+
+.bg-danger {
+    background-color: $red
+}
+
+.bg-orange {
+    background-color: $orange
+}
+/* Inner Addon - this puts icons inside of inputs for searches or other fields */
+.right-inner-addon {
+    position: relative;
+}
+
+.right-inner-addon input {
+    padding-right: 30px;
+}
+
+.right-inner-addon i {
+    position: absolute;
+    right: 0px;
+    padding: 10px 12px;
+    pointer-events: none;
+}
+
+.box {
+    border-radius: 3px;
+    padding: 10px 25px;
+    text-align: center;
+    display: block;
+    margin: 10px 0px 60px;
+    height: 350px;
+    background-color: #fff;
+}
+
+.box-green {
+    border: 5px $green solid;
+}
+
+.box-disabled {
+    border: 5px $light-gray solid;
+}
+
+.box-greenBlue {
+    border: 5px $green-blue solid;
+}
+
+.box-yellow {
+    border: 5px $yellow solid;
+}
+
+.box-teal {
+    border: 5px $teal solid;
+}
+//experimenting. 3/5
+//styles for the solid block boxes
+.solidbox {
+    border-radius: 23px;
+    padding: 10px 25px;
+    text-align: center;
+    display: block;
+    margin: 10px 0px 60px;
+    height: 350px;
+    width: 270px;
+}
+
+.solidbox-greenBlue {
+    border: 5px lighten($green-blue, 3%) solid;
+    background-color: lighten($green-blue, 3%);
+}
+
+.solidbox-yellow {
+    border: 5px lighten($yellow, 3%) solid;
+    background-color: lighten($yellow, 3%);
+}
+
+.solidbox-teal {
+    border: 5px lighten($teal, 3%) solid;
+    background-color: lighten($teal, 3%);
+}
+
+.solidbox-green {
+    border: 5px lighten($green, 3%) solid;
+    background-color: lighten($green, 3%);
+}
+
+.solidbox-disabled {
+    border: 5px lighten($medium-gray, 3%) solid;
+    background-color: lighten($medium-gray, 3%);
+}
+
+.right-arrowBG {
+    width: 0;
+    height: 0;
+    border-left: 55px solid lighten($green-blue, 3%);
+    border-top: 60px solid transparent;
+    border-bottom: 60px solid transparent;
+    position: relative;
+    left: 225px;
+    top: -210px;
+    z-index: 3;
+
+    @media (max-width: 1260px) {
+        display: none;
+    }
+}
+
+.right-arrowYellow {
+    width: 0;
+    height: 0;
+    border-left: 55px solid lighten($yellow, 3%);
+    border-top: 60px solid transparent;
+    border-bottom: 60px solid transparent;
+    position: relative;
+    left: 225px;
+    top: -210px;
+    z-index: 3;
+
+    @media (max-width: 1260px) {
+        display: none;
+    }
+}
+
+.right-arrowTeal {
+    width: 0;
+    height: 0;
+    border-left: 55px solid lighten($teal, 3%);
+    border-top: 60px solid transparent;
+    border-bottom: 60px solid transparent;
+    position: relative;
+    left: 225px;
+    top: -210px;
+    z-index: 3;
+
+    @media (max-width: 1260px) {
+        display: none;
+    }
+}
+
+.info > h2 {
+    font-size: 26px;
+    font-weight: bold;
+    line-height: 10px;
+}
+
+.info > p {
+    padding-top: 50px;
+}
+
+.info > button {
+    margin-top: 20px;
+    width: 100px;
+    font-weight: bold;
+}
+
+.box-icon {
+    height: 90px;
+    margin-bottom: 20px;
+}
+/* Rule Builder Button widths */
+.rule-button {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 82%;
+    text-align: left;
+}
+
+.rule-button-readonly {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    text-align: left;
+}
+
+.parent-btn {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.complex-option-scroller {
+    overflow-y: auto;
+    max-height: 190px;
+}
+
+/*Fancy Tabs - Originated on Vendor Onboarding, referenced by Incident Management and Vendor Portal*/
+@mixin transition($property: all, $duration: 0.45s, $ease: cubic-bezier(0.65,0,.076,1)) {
+    transition: $property $duration $ease;
+}
+
+.fancyTab {
+    text-align: center;
+    padding: 15px 0;
+    background-color: #eee;
+    box-shadow: 0 0 0 1px #ddd;
+    top: 15px;
+    transition: top .2s;
+}
+
+.fancyTab.active {
+    top: 0;
+    transition: top .2s;
+}
+
+.fancyTab a {
+    font-size: 1em;
+    font-weight: 300;
+    transition: .2s;
+    color: #333;
+}
+
+.fancyTabs {
+    border-bottom: 1px solid #ddd;
+    margin: 15px 0 0;
+}
+
+li.fancyTab {
+    width: 12.5%;
+}
+
+li.fancyTab.tabs-9 {
+    width: 11.1%;
+}
+
+li.fancyTab a {
+    padding-top: 15px;
+    top: -15px;
+    padding-bottom: 0;
+}
+
+li.fancyTab.active a {
+    padding-top: inherit;
+}
+
+.fancyTab .fa {
+    font-size: 20px;
+    width: 100%;
+    padding: 15px 0 5px;
+    color: #666;
+}
+
+.fancyTab.active .fa {
+    color: $teal;
+}
+
+.fancyTab a:focus {
+    outline: none;
+}
+
+.nav-tabs > li.fancyTab.active > a,
+.nav-tabs > li.fancyTab.active > a:focus,
+.nav-tabs > li.fancyTab.active > a:hover {
+    border-width: 0;
+}
+
+.nav-tabs > li.fancyTab:hover {
+    background-color: #f9f9f9;
+    box-shadow: 0 0 0 1px #ddd;
+}
+
+.nav-tabs > li.fancyTab.active:hover {
+    background-color: #fff;
+    box-shadow: 1px 1px 0 1px #fff, 0 0px 0 1px #ddd, -1px 1px 0 0px #ddd inset;
+}
+
+.nav-tabs > li.fancyTab:hover a {
+    border-color: transparent;
+}
+
+.nav.nav-tabs .fancyTab a[data-toggle="tab"] {
+    background-color: transparent;
+    border-bottom: 0;
+}
+
+.nav-tabs > li.fancyTab:hover a {
+    border-right: 1px solid transparent;
+}
+
+.nav-tabs > li.fancyTab > a {
+    margin-right: 0;
+    border-top: 0;
+    padding-bottom: 30px;
+    margin-bottom: -30px;
+}
+
+.nav-tabs > li.fancyTab {
+    margin-right: 0;
+    margin-bottom: 0;
+}
+
+.nav-tabs > li.fancyTab:last-child a {
+    border-right: 1px solid transparent;
+}
+
+.nav-tabs > li.fancyTab.active:last-child {
+    border-right: 0px solid #ddd;
+    box-shadow: 0px 2px 0 0px #fff, 0px 0px 0 1px #ddd;
+}
+
+.fancyTab:last-child {
+    box-shadow: 0 0 0 1px #ddd;
+}
+
+.tabs .nav-tabs li.fancyTab.active a {
+    box-shadow: none;
+    top: 0;
+}
+
+
+.fancyTab.active {
+    background: #fff;
+    box-shadow: 1px 1px 0 1px #fff, 0 0px 0 1px #ddd, -1px 1px 0 0px #ddd inset;
+    padding-bottom: 30px;
+}
+
+.arrow-down {
+    display: none;
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 22px solid #ddd;
+    position: absolute;
+    top: -1px;
+    z-index: 1;
+    left: calc(50% - 20px);
+}
+
+.arrow-down-inner {
+    width: 0;
+    height: 0;
+    border-left: 18px solid transparent;
+    border-right: 18px solid transparent;
+    border-top: 12px solid #fff;
+    position: absolute;
+    top: -22px;
+    left: -18px;
+}
+
+.fancyTab.active .arrow-down {
+    display: block;
+}
+
+@media (max-width: 1200px) {
+
+    .fancyTab .fa {
+        /*font-size: 36px;*/
+    }
+
+    .fancyTab .hidden-xs {
+        /*font-size: 18px;*/
+    }
+}
+
+
+@media (max-width: 992px) {
+
+
+    .fancyTab .fa {
+        /*font-size: 33px;*/
+    }
+
+    .fancyTab .hidden-xs {
+        font-size: 12px;
+        font-weight: normal;
+    }
+}
+
+
+@media (max-width: 768px) {
+
+    .fancyTab > a {
+        font-size: 12px;
+    }
+
+    .nav > li.fancyTab > a {
+        padding: 15px 0;
+        margin-bottom: inherit;
+    }
+
+    .fancyTab .fa {
+        font-size: 14px;
+    }
+
+    .nav-tabs > li.fancyTab > a {
+        border-right: 1px solid transparent;
+        padding-bottom: 0;
+    }
+
+    .fancyTab.active .fa {
+        color: #333;
+    }
+}
+/* Fixes checkbox multi-select not showing*/
+.bootstrap-select.btn-group.show-tick .dropdown-menu li.selected a span.check-mark {
+    color: $green;
+}
+/* Doc Collection Icon */
+.fa-doc-collection {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background-image: url('../images/SoftwareBannerIcons/doc-collection-primary.svg');
+    background-size: 12px 12px;
+    margin: 2px 0 0 2px;
+}
+
+.active .fa-doc-collection,
+.product-table tr.active td .fa-doc-collection {
+    background-image: url('../images/SoftwareBannerIcons/doc-collection-white.svg');
+}
+
+/* Fixes Google Chart tooltip flickering */
+svg > g > g:last-child {
+    pointer-events: none
+}
+
+@media (min-width: 1200px) {
+    .headerLogo {
+        height: 40px;
+        margin-top: -5px;
+    }
+}
+
+@media (max-width: 1199px) and (min-width: 992px) {
+    .headerLogo {
+        height: 28.5px;
+        margin: -15px 0px 0px 22px;
+    }
+}
+
+@media only screen and (max-width: 990px) {
+    .headerLogo {
+        height: 28.5px;
+    }
+}
+
+.border-warning {
+    border-color: $red;
+}
+
+.btn-danger {
+    background-color: $red;
+    border-color: $red;
+    color: #FFFFFF;
+}
+
+.btn-purple {
+    background-color: $purple;
+    border-color: $purple;
+    color: #FFFFFF;
+}
+
+.btn-purple:hover {
+    background-color: #563b7e;
+    border-color: #563b7e;
+    color: #FFFFFF;
+}
+.badge{
+    background-color: #D1DADE;
+    color: #5E5E5E;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    padding-bottom: 4px;
+    padding-left: 6px;
+    padding-right: 6px;
+    text-shadow: none;
+}
+.badge-dkgray{
+    background-color: gray;
+    color: #FFFFFF;
+}
+.badge-danger {
+    background-color: $red;
+}
+
+.badge-primary {
+    background-color: $green;
+}
+
+.badge-purple {
+	background-color: $purple;
+	color: #fff;
+}
+
+.input-danger {
+    background-color: rgba(230, 0, 0, 0.2) !important;
+    border: 1px solid $red;
+}
+
+.img-md {
+    height: 100%;
+    width: 75px;
+}
+
+.dd-messageVD {
+    color: $teal;
+}
+
+.workflow-button {
+    min-width: 70px;
+}
+
+// ELA Rating Colors - Pulled from analysis-patch.scss
+
+.text-rating-red {
+    color: $R5;
+}
+
+.text-rating-orange {
+    color: $R4;
+}
+
+.text-rating-yellow {
+    color: $R3;
+}
+
+.text-rating-green {
+    color: $R1;
+}
+
+.text-rating-gray {
+    color: $N50;
+}
+
+.score-bg-red {
+    background-color: $R5;
+    color: #fff;
+}
+
+.score-bg-orange {
+    background-color: $R4;
+    color: #502B1E;
+}
+
+.score-bg-yellow {
+    background-color: $R3;
+    color: #533F03;
+}
+
+.score-bg-green {
+    background-color: $R1;
+    color: #fff;
+}
+
+.score-bg-grey {
+    background-color: $N30;
+    color: $N50;
+}
+
+/* updated the alert colors to be WCAG compliant for contrast */
+
+.alert-info {
+    color: $navy;
+    background-color: #DCECFC;
+}
+
+.alert-info .alert-link {
+    color: #002752;
+}
+
+.alert-warning {
+    color: #533F03;
+    background-color: #FFF3CD;
+}
+
+.alert-warning .alert-link {
+    color: #533f03;
+}
+
+.alert-danger {
+    color: #721C24;
+    background-color: #FDE1E0;
+}
+
+.alert-danger .alert-link {
+    color: #491217;
+}
+
+.text-disabled {
+    color: #d4d4d4;
+}
+
+// Widget CSS
+.widget-box {
+    margin-bottom: 20px;
+    background-color: $white;
+    border: 0;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px 0 $N30, 0 6px 10px 0 $N40;
+
+    .widget-body {
+        .fixedht_455 {
+            @media screen and (max-width:75em) {
+                height: 455px;
+            }
+        }
+    }
+
+    .widget-header {
+        padding: 10px;
+        border-bottom: 1px solid $light-gray;
+        color: $navy;
+    }
+
+    .widget-footer {
+        background-color: $N20;
+
+        .widget-footer-pill {
+            background-color: $white;
+            padding: 5px 8px;
+            color: $navy;
+            text-transform: uppercase;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .widget-footer-item {
+            background-color: $N20;
+            padding: 0 10px 20px 10px;
+            text-align: center;
+            cursor: pointer;
+
+            &.widget-footer-active {
+                background: rgba($N40, .25);
+
+                .widget-footer-pill {
+                    background-color: $brand-primary;
+                    color: $white;
+                }
+            }
+        }
+    }
+}
+
+.search-box {
+    border: 1px solid $medium-gray;
+    background-color: $white;
+    display: flex;
+    border-radius: 4px;
+
+    .search-box-icon {
+        padding: 10px 10px 0px 10px;
+    }
+
+    .search-box-input {
+        border: none;
+        box-shadow: none;
+        background: none;
+        padding-left: 0px;
+
+        &:focus {
+            border: none;
+        }
+    }
+
+    .vmAutoComplete {
+        width: 100%;
+    }
+}
+
+.control-assessments-bg {
+    color: #172b4A;
+    background-color: $N20;
+    margin-bottom: 3px;
+    border-radius: 0 0 4px 0;
+}
+
+.control-assessments-center {
+    text-align: center;
+
+    img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 400px;
+    }
+}
+
+.breakWord {
+    word-wrap: break-word;
+}
+
+.margin-10px-left-and-right {
+    margin: 0px 10px 0px 10px;
+}
+
+/*Risk Level Colors********/
+.risk-level-nan {
+    color: $purple;
+}
+
+.risk-level-lm {
+    color: $green;
+}
+
+.risk-level-mh {
+    color: $teal;
+}
+
+.risk-level-l {
+    color: $yellow;
+}
+
+.risk-level-m {
+    color: $orange;
+}
+
+.risk-level-h {
+    color: $red;
+}
+/**************************/
+

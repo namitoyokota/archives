@@ -1,0 +1,23 @@
+<div class="contact-container">
+    <div class="title" *ngIf="showTitle">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.primaryContact" skeletonWidth="105px">
+        </hxgn-commonlocalization-translate-v1>
+    </div>
+    <div class="contact">
+        <hxgn-common-initials [firstName]="contact?.firstName" [lastName]="contact?.lastName">
+        </hxgn-common-initials>
+        <div class="contact-info">
+            <div class="contact-name">{{contact?.firstName}} {{contact?.lastName}}</div>
+            <div class="contact-title" *ngIf="contact?.title">({{contact?.title}})</div>
+        </div>
+    </div>
+</div>
+<div class="icons-container">
+    <div *ngIf="contact?.email" class="icon email-icon" #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="emailIcon">
+    </div>
+    <mat-menu #emailIcon="matMenu" hidden>
+        <a class="menu-email in-system" href="mailto:{{contact?.email}}">{{contact?.email}}</a>
+    </mat-menu>
+    <!-- Placeholder for chat functionality. Does not currently do anything. -->
+    <!-- <div class="icon chat-icon"></div> -->
+</div>

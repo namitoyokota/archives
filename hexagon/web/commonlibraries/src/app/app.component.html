@@ -1,0 +1,502 @@
+<!-- <div style="width: 370px;height: 200px; margin:50px">
+  <hxgn-common-color-selector-v1 [activeColor]="activeColor" [colorType]="'Line'" (colorChange)="activeColor = $event"></hxgn-common-color-selector-v1>
+  <hxgn-common-line-weight-v1 [activeLineWeight]="activeLineWeight" (lineWeightChange)="activeLineWeight = $event"></hxgn-common-line-weight-v1>
+  <hxgn-common-line-type-v1 [activeLineType]="activeLineType" (lineTypeChange)="activeLineType = $event"></hxgn-common-line-type-v1>
+  <hxgn-common-properties [properties]="propertyListV2"></hxgn-common-properties>
+</div> -->
+
+<!-- <hxgn-common-card style="width: 300px;border: 1px solid red;">
+  <hxgn-common-card-icon>ICON</hxgn-common-card-icon>
+  <hxgn-common-card-title>TITLE TITLE TITLE</hxgn-common-card-title>
+</hxgn-common-card>
+
+<hxgn-common-card [isEditable]="true" style="width: 300px;border: 1px solid red;">
+  <hxgn-common-card-icon>ICON</hxgn-common-card-icon>
+  <hxgn-common-card-title>TITLE TITLE TITLE</hxgn-common-card-title>
+</hxgn-common-card>
+
+<hxgn-common-card [isEditable]="true" headerTitle="Incident Closed" style="width: 300px;border: 1px solid red;">
+  <hxgn-common-card-icon>ICON</hxgn-common-card-icon>
+  <hxgn-common-card-title>TITLE TITLE TITLE</hxgn-common-card-title>
+  <hxgn-common-card-action-pane>
+    <div style="background-image: url('https://dev.hxgnconnect.com/webroot/assets/incidents-core/images/action_menu_icon.png');width: 100%; background-repeat: no-repeat; background-position: center; cursor: pointer; height: 26px;"></div>
+  </hxgn-common-card-action-pane>
+</hxgn-common-card>
+
+<hxgn-common-card headerTitle="Incident Closed" style="width: 300px;border: 1px solid red;">
+  <hxgn-common-card-icon>ICON</hxgn-common-card-icon>
+  <hxgn-common-card-title>TITLE TITLE TITLE</hxgn-common-card-title>
+  <hxgn-common-card-action-pane>
+    <div style="background-image: url('https://dev.hxgnconnect.com/webroot/assets/incidents-core/images/action_menu_icon.png');width: 100%; background-repeat: no-repeat; background-position: center; cursor: pointer; height: 26px;"></div>
+  </hxgn-common-card-action-pane>
+</hxgn-common-card> -->
+
+<!-- <div style="height: 400px; width: 400px; display: flex; align-items: center; justify-content: center;">
+    <hxgn-common-color-picker-button [presetColors]="['#000000', '#cccccc']">
+    </hxgn-common-color-picker-button>
+</div> -->
+
+<!-- <div [autoTestId]="'abc-123'">I AM A TEST</div>
+
+<div style="height: 400px; width: 400px; display: flex; align-items: center; justify-content: center;">
+  <mat-checkbox  style="margin-right: 10px;" [checked]="showOpacityAndHex" (change)="toggleShowOpacityAndHex($event)">Show Opacity and hex</mat-checkbox>
+  <hxgn-common-color-picker-button *ngIf="showOpacityAndHex"
+    [showOpacity]="true"
+    [showHexColor]="true">
+  </hxgn-common-color-picker-button>
+  <hxgn-common-color-picker-button [autoTestId]="'efg'" *ngIf="!showOpacityAndHex"
+    [showOpacity]="false"
+    [showHexColor]="false">
+  </hxgn-common-color-picker-button>
+</div>
+<div style="height: 400px; width: 400px; display: flex; align-items: center; justify-content: center;">
+  <hxgn-common-color-selector-v1 style="margin-left: 40px" [activeColor]="activeColor" [colorType]="'Line'" (colorChange)="activeColor = $event"></hxgn-common-color-selector-v1>
+</div> -->
+
+<!-- <hxgn-common-card style="width: 300px;border: 1px solid red;">
+    <hxgn-common-card-icon>ICON</hxgn-common-card-icon>
+    <hxgn-common-card-title>TITLE TITLE TITLE</hxgn-common-card-title>
+</hxgn-common-card>
+
+<hxgn-common-card headerTitle="Incident Closed" style="width: 300px;border: 1px solid red;">
+    <hxgn-common-card-icon>ICON</hxgn-common-card-icon>
+    <hxgn-common-card-title>TITLE TITLE TITLE</hxgn-common-card-title>
+    <hxgn-common-card-action-pane>Y</hxgn-common-card-action-pane>
+</hxgn-common-card> -->
+<!-- <div style="height: 100vh;">
+  <hxgn-common-main-menu [user]="user" [isAdminMenu]="false">
+    <hxgn-common-open-user-profile (click)="log()"></hxgn-common-open-user-profile>
+    <hxgn-common-main-menu-section>
+      Admin Section
+      <hxgn-common-main-menu-item>
+        Admin Home
+      </hxgn-common-main-menu-item>
+      <hxgn-common-main-menu-item>
+        Layout Manager
+      </hxgn-common-main-menu-item>
+      <hxgn-common-main-menu-item>
+        Map Configuration
+      </hxgn-common-main-menu-item>
+    </hxgn-common-main-menu-section>
+    <hxgn-common-main-menu-section>
+      Developer Tools
+      <hxgn-common-main-menu-item>
+        Testbeds
+        <hxgn-common-main-menu-item>Alarms</hxgn-common-main-menu-item>
+        <hxgn-common-main-menu-item>Dashboard</hxgn-common-main-menu-item>
+        <hxgn-common-main-menu-item>Incidents</hxgn-common-main-menu-item>
+        <hxgn-common-main-menu-item>Tenants</hxgn-common-main-menu-item>
+      </hxgn-common-main-menu-item>
+    <hxgn-common-main-menu-item>
+        Configurations
+    </hxgn-common-main-menu-item>
+    </hxgn-common-main-menu-section>
+  </hxgn-common-main-menu>
+</div> -->
+<!-- <div>
+  <hxgn-common-tabs>
+
+  </hxgn-common-tabs>
+</div> -->
+<!-- <div>
+  <hxgn-common-chip (removed)="echo('removed')"
+                    [removable]="true"
+                    [endCapColor]="ChipColor.Low"
+                    [backgroundColor]="ChipColor.Selected">
+                    Date range: 4/4/2016 - 4/5/2016
+  </hxgn-common-chip>
+
+  <hxgn-common-chip style="margin-left: 10px;"
+                    (removed)="echo('removed')"
+                    [removable]="false"
+                    [endCapEnabled]="false"
+                    disabled
+                    [endCapColor]="ChipColor.Low"
+                    [backgroundColor]="ChipColor.Gray">
+                    Priorities greater than: 3
+  </hxgn-common-chip>
+
+  <br />
+
+  <hxgn-common-expansion-panel>
+    <hxgn-common-expansion-panel-header>Header</hxgn-common-expansion-panel-header>
+    <hxgn-common-expansion-panel-content>
+      <hxgn-common-chip></hxgn-common-chip>
+      <h1>Common Expansion Panel</h1>
+      <h2>Common Expansion Panel</h2>
+      <h3>Common Expansion Panel</h3>
+      <h4>Common Expansion Panel</h4>
+      <h5>Common Expansion Panel</h5>
+    </hxgn-common-expansion-panel-content>
+  </hxgn-common-expansion-panel>
+
+  <br />
+
+  <mat-checkbox class="example-margin">Checked</mat-checkbox>
+  <mat-checkbox [disabled]="true" class="example-margin">Checked</mat-checkbox>
+
+  <mat-radio-group>
+    <mat-radio-button value="1">Option 1</mat-radio-button>
+    <mat-radio-button [disabled]="true" value="2">Option 2</mat-radio-button>
+  </mat-radio-group>
+
+  <div style="display: grid; grid-template-columns: repeat(6, min-content); column-gap: 10px; padding: 25px;">
+    <button class="hxgn-btn-primary">Button</button>
+    <button class="hxgn-btn-primary">Long Button Text that Should Wrap Eventually</button>
+    <button class="hxgn-btn-primary" disabled>Button</button>
+    <button class="hxgn-btn-secondary">Button</button>
+    <button class="hxgn-btn-secondary" disabled>Button</button>
+    <button class="hxgn-btn-selected">Button</button>
+  </div>
+</div> -->
+
+<!-- <button class="hxgn-btn-primary" (click)="openConfirm()">Confirm Something</button> -->
+
+<div style="padding: 25px; display: grid; grid-template-columns: repeat(2, 300px); column-gap: 10px;">
+  <!-- <hxgn-common-dropdown-v2 (selectionChange)="echo($event)" [multiple]="true">
+      <hxgn-common-dropdown-item-v2>Test 1</hxgn-common-dropdown-item-v2>
+      <hxgn-common-dropdown-item-v2>Test 2</hxgn-common-dropdown-item-v2>
+  </hxgn-common-dropdown-v2> -->
+  <!-- <hxgn-common-dropdown-v2 (selectionChange)="echo($event)" [disabled]="true">
+</hxgn-common-dropdown-v2> -->
+  <hxgn-common-input-v2 [showClearBtn]="false" [isSearchBox]="true">
+    <input placeholder="Enter your name" value="This is a test" type="text" (searchClicked)="searchClicked()" />
+  </hxgn-common-input-v2>
+  <hxgn-common-input-v2 [isValid]="true" [isSearchBox]="true">
+    <input placeholder="Enter your name" [value]="88" type="number" (searchClicked)="searchClicked()" />
+  </hxgn-common-input-v2>
+  <hxgn-common-input-v2 [isSearchBox]="true">
+    <input placeholder="Enter your name" type="text" (searchClicked)="searchClicked()" />
+  </hxgn-common-input-v2>
+  <hxgn-common-input-v2 disabled="true">
+    <input placeholder="Enter your name" type="text" (searchClicked)="searchClicked()" />
+  </hxgn-common-input-v2>
+</div>
+<!-- <div>
+  <h1>Header 1</h1>
+  <h2>Header 2</h2>
+  <label>Label</label>
+  <p>Some longer text</p>
+  <a href="">This is a link</a> <br />
+  <a href="">This is a link</a> <br />
+  <a href="" class="in-system">In system</a>
+</div>
+<div>
+  <textarea placeholder="Enter text here" style="height: 200px; width: 350px;"></textarea>
+</div>
+<div>
+  <input placeholder="Enter label name" type="text" />
+</div>
+<br />
+<div>
+  <input [disabled]="true" placeholder="Enter label name" type="text" />
+</div>
+<br />
+<div>
+  <input type="number" />
+</div> -->
+<!-- <div>
+  <mat-slider thumbLabel>
+  </mat-slider>
+</div> -->
+
+<!-- <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+<br />
+<mat-progress-bar mode="indeterminate"></mat-progress-bar>
+<br />
+<mat-spinner></mat-spinner> -->
+
+<!-- <hxgn-common-datepicker
+  class="calendar"
+  [max]="max"
+  [min]="min"
+  [(date)]="date"
+  (dateChange)="log()" 
+  (error)="log($event)" >
+</hxgn-common-datepicker> -->
+
+<!-- <hxgn-common-input (click)="log()" class="input" [isSearchBox]="true">
+  <input type="text" [disabled]="true">
+</hxgn-common-input> -->
+
+<!-- <div style="width: 300px; height: 120px; margin:20px;">
+    <hxgn-common-file-upload
+        btnText="Browse Files" dragAndDropText='Drag and drop files here'
+        [uploadMultiple]="true" [dragAndDrop]="true"
+        [acceptedExtensions]="'.mp4'" [displayFile]="true"
+        [displayButton]="true" [displayIcon]="true"
+        [filename]="filename"
+        (fileSelected)="addFile($event)" >
+    </hxgn-common-file-upload>
+</div> -->
+
+<!-- <div style="width: 300px; height: 200px; margin:20px;">
+  <hxgn-common-file-list [files]="files" [uploadingFilename]="uploadingFile" (removeFile)="echo($event)">
+  </hxgn-common-file-list>
+</div> -->
+
+<!-- <div style="width: 350px; height: 150px;margin:20px;">
+  <hxgn-common-filter-pane-v2 searchText="this is a test"></hxgn-common-filter-pane-v2>
+  <hxgn-common-filter-operation-v2 [operation]="filterOperationV2" [propertyList]="propertyListV2">
+  </hxgn-common-filter-operation-v2>
+</div> -->
+
+<!-- <div style="display: grid; grid-template-columns: repeat(2, 200px); padding: 10px;">
+    <hxgn-common-contact-v2 style="padding: 10px; border-right: solid 1px #BDBDBD;" [contact]="contact"></hxgn-common-contact-v2>
+    <hxgn-common-cross-street style="padding: 10px;" crossStreet1="401 something" crossStreet2="9990 something else"></hxgn-common-cross-street>
+</div> -->
+
+<!-- <div style="width: 200px; padding: 40px;">
+    <hxgn-common-address address="5112 Barnes Dr."></hxgn-common-address>
+</div> -->
+
+<!-- <div style="width: 400px; padding: 40px;">
+  <hxgn-common-remarks [remarks]="remarks"></hxgn-common-remarks>
+  <hxgn-common-description description="ANSI/AWWA C502 Compliant. Rated working pressure shall be 200 psig, test pressure shall be 400 psig.">
+    </hxgn-common-description>
+</div> -->
+
+<!-- <div style="width: 480px; padding: 10px; align-self: flex-end;">
+    <div style="width: 100%; height: 54px; display: flex; align-items: center; justify-content: flex-end;">
+        <hxgn-common-properties [properties]="properties">
+        </hxgn-common-properties>
+    </div>
+</div> -->
+
+<!-- <hxgn-common-card [isSelected]="cardSelected" [showStatusPane]="true" [style.width]="'200px'"
+    title="10-40 SHOTS FIRED IN AREA" (cardClicked)="cardSelected = !cardSelected" [expandedPane]="expandedpane">
+  
+    <hxgn-common-card-icon>
+        <div class="border-color"></div>
+        <div class="icon"></div>
+    </hxgn-common-card-icon>
+
+    <hxgn-common-card-status-pane>
+      <span>Type: Fire Station</span>
+    </hxgn-common-card-status-pane>
+
+    <hxgn-common-card-pre-content>
+      I am pre content
+    </hxgn-common-card-pre-content>
+
+    <hxgn-common-card-pre-content>
+      I am POST content
+    </hxgn-common-card-pre-content>
+
+    <hxgn-common-card-status-content>
+      <span>Managed internally</span>
+    </hxgn-common-card-status-content>
+
+  </hxgn-common-card> -->
+
+<!-- <div style="width: 350px; height: 600px;margin:20px;">
+  <hxgn-common-card [isSelected]="cardSelected"
+    title="10-40 SHOTS FIRED IN AREA" (cardClicked)="cardSelected = !cardSelected" [expandedPane]="expandedpane">
+  
+    <hxgn-common-card-icon>
+        <div class="border-color"></div>
+        <div class="icon"></div>
+    </hxgn-common-card-icon>
+
+    <hxgn-common-card-status-pane>
+      <span>Type: Fire Station</span>
+    </hxgn-common-card-status-pane>
+
+    <hxgn-common-card-pre-content>
+      I am pre content
+    </hxgn-common-card-pre-content>
+
+    <hxgn-common-card-pre-content>
+      I am POST content
+    </hxgn-common-card-pre-content>
+
+  </hxgn-common-card>
+
+  <ng-template #expandedpane>
+        <div style="height: 50px;display: flex;">I am the expanded content area</div>
+</ng-template>
+
+</div> -->
+<!-- <div  style="width: 400px; margin: 40px; border:1px solid #ccc;">
+    <hxgn-common-keywords [keywords]="['test', 'component', 'keywords', 'another', 'keyword', 'longer', 'wrap', 'test']"></hxgn-common-keywords>
+</div> -->
+<!-- <div  style="width: 400px; margin: 40px; border:1px solid #ccc;">
+    <hxgn-common-list-steps [listSteps]="steps"></hxgn-common-list-steps>
+</div>  -->
+<!-- <hxgn-common-contact-v2 style="width: 200px; padding: 30px" [contact]="contact"></hxgn-common-contact-v2> -->
+<!-- <hxgn-common-infinite-scroll-pane #container style="height: 500px" [scrollUp]="true"
+    [itemMinHeight]="16" [scrollToBottom]="scrollToBottom" [itemCount]="chunk?.length" (loadPage)="loadItems($event)" [disableLoad]="loadComplete" class="list">
+    <span class="help" *ngFor="let i of chunk.slice().reverse()">
+        {{ i }}
+    </span>
+</hxgn-common-infinite-scroll-pane> -->
+
+
+<!-- <button (click)="scrollToBottom.next()">scroll to bottom</button> -->
+<!-- <div style="width: 24px;">
+
+
+<hxgn-common-tooltip-name [showDelay]="3000" [hideDelay]="4000" name="'Testsdfjsdklfjsfdlfkjsdlkfjsldkfjsldkfj'"></hxgn-common-tooltip-name>
+</div> -->
+
+<!-- <button class="hxgn-btn-primary" (click)="openUnsavedChanges()">Prompt Unsaved Changes</button> -->
+<!-- <div style="width: 400px; margin: 40px; border:1px solid #ccc;">
+  <hxgn-common-media [media]="mediaList" [fetcher]="fetcher">
+  </hxgn-common-media>
+</div> -->
+<!-- <div style="width: 400px; margin: 40px; border:1px solid #ccc;">
+  <hxgn-common-media-grid [mediaList]="mediaList" [fetcher]="fetcher" (sizeChange)="log('Media grid size changed')">
+  </hxgn-common-media-grid>
+</div> -->
+<!-- <hxgn-common-color-picker-button></hxgn-common-color-picker-button> -->
+
+<!-- <div class="popovers">
+    <button class="hxgn-btn-secondary" (click)="popoverOne.open()" cdkOverlayOrigin #originOne="cdkOverlayOrigin">
+        Menu Popover
+    </button>
+    <hxgn-common-popover #popoverOne [origin]="originOne" [menuMode]="true">
+        <div>
+            Really really really really really long content test
+        </div>
+    </hxgn-common-popover>
+    
+    <button class="hxgn-btn-secondary" (click)="popoverTwo.open()" cdkOverlayOrigin #originTwo="cdkOverlayOrigin">
+        Popover w/ Backdrop
+    </button>
+    <hxgn-common-popover #popoverTwo [origin]="originTwo" backdrop="rgba(0,0,0,0.3)">
+        <span>
+            Really really really really really long content test
+        </span>
+    </hxgn-common-popover>
+
+    <button class="hxgn-btn-secondary" (click)="popoverThree.open()" cdkOverlayOrigin #originThree="cdkOverlayOrigin">
+        Popover w/ Dismiss
+    </button>
+    <hxgn-common-popover #popoverThree [origin]="originThree" [showDismiss]="true" [disableClose]="true">
+        <span>
+            Really really really really really long content test
+        </span>
+    </hxgn-common-popover>
+    
+    <button class="hxgn-btn-secondary" (click)="popoverFour.open()" cdkOverlayOrigin #originFour="cdkOverlayOrigin">
+        Popover w/ Personalization
+    </button>
+    <hxgn-common-popover #popoverFour [origin]="originFour" [showDismiss]="true" userPersonalization="kljsdfkldfj">
+        <span>
+            Really really really really really long content test
+        </span>
+    </hxgn-common-popover>
+</div> -->
+
+<!-- <div style="height: 100vh; display: flex; align-items: center; justify-content: center;">
+    <button class="hxgn-btn-secondary" (click)="popoverOne.open()" cdkOverlayOrigin #originOne="cdkOverlayOrigin">
+        Popover w/ Position
+    </button>
+    <hxgn-common-popover #popoverOne [origin]="originOne" position="above-left" [menuMode]="true">
+        <hxgn-common-menu-item imgSrc="assets/common-libraries/images/delete-filter.svg"
+            token="commonlibraries-main.component.dismiss">
+        </hxgn-common-menu-item>
+        <hxgn-common-menu-item [disabled]="true" imgSrc="assets/common-libraries/images/document-generic.png"
+            token="commonlibraries-main.component.dismiss">
+        </hxgn-common-menu-item>
+        <hxgn-common-menu-item
+            token="commonlibraries-main.component.dismiss">
+        </hxgn-common-menu-item>
+        <hxgn-common-menu-item imgSrc="assets/common-libraries/images/dropdown-arrow.png"
+            token="commonlibraries-main.component.dismiss">
+        </hxgn-common-menu-item>
+    </hxgn-common-popover>
+    <button class="hxgn-btn-secondary" (click)="popoverTwo.open()" cdkOverlayOrigin #originTwo="cdkOverlayOrigin">
+        Popover w/ Position
+    </button>
+    <hxgn-common-popover #popoverTwo [origin]="originTwo" position="above-right" [menuMode]="true">
+        <div style="height: 1000px; width: 1500px;" (click)="$event.stopPropagation()">
+            Really really really really really long content test
+        </div>
+    </hxgn-common-popover>
+    <button class="hxgn-btn-secondary" (click)="popoverThree.open()" cdkOverlayOrigin #originThree="cdkOverlayOrigin">
+        Popover w/ Position
+    </button>
+    <hxgn-common-popover #popoverThree [origin]="originThree" position="below-left" height="1000px" width="1000px">
+        <div>
+            Really really really really really long content test
+        </div>
+    </hxgn-common-popover>
+    <button class="hxgn-btn-secondary" (click)="popoverFour.open()" cdkOverlayOrigin #originFour="cdkOverlayOrigin">
+        Popover w/ Position
+    </button>
+    <hxgn-common-popover #popoverFour [origin]="originFour" position="below-right" [isShown]="true" userPersonalization="kldkldsjkl">
+        <div>
+            Really really really really really long content test
+        </div>
+    </hxgn-common-popover>
+    <button class="hxgn-btn-secondary" (click)="popoverFive.open()" cdkOverlayOrigin #originFive="cdkOverlayOrigin">
+        Popover w/ Position
+    </button>
+    <hxgn-common-popover #popoverFive [origin]="originFive" position="left-above">
+        <div style="width: 1000px;">
+            Really really really really really long content test
+        </div>
+    </hxgn-common-popover>
+    <button class="hxgn-btn-secondary" (click)="popoverSix.open()" cdkOverlayOrigin #originSix="cdkOverlayOrigin">
+        Popover w/ Position
+    </button>
+    <hxgn-common-popover #popoverSix [origin]="originSix" position="left-below">
+        <div>
+            Really really really really really long content test
+        </div>
+    </hxgn-common-popover>
+    <button class="hxgn-btn-secondary" (click)="popoverSeven.open()" cdkOverlayOrigin #originSeven="cdkOverlayOrigin">
+        Popover w/ Position
+    </button>
+    <hxgn-common-popover #popoverSeven [origin]="originSeven" position="right-above">
+        <div style="width: 1000px;">
+            Really really really really really long content test
+        </div>
+    </hxgn-common-popover>
+    <button class="hxgn-btn-secondary" (click)="popoverEight.open()" cdkOverlayOrigin #originEight="cdkOverlayOrigin">
+        Popover w/ Position
+    </button>
+    <hxgn-common-popover #popoverEight [origin]="originEight" position="right-below">
+        <div>
+            Really really really really really long content test
+        </div>
+    </hxgn-common-popover>
+</div> -->
+
+<!-- <tag-input theme="minimal" [(ngModel)]='texts'></tag-input> -->
+
+<!-- <hxgn-common-timepicker
+  [style.width]="'500px'"
+  (timeChange)="echo($event)">
+</hxgn-common-timepicker> -->
+
+<!-- Hyperlinks Section for Card Details -->
+<!-- <div style="width: 350px; padding: 20px;">
+  <hxgn-common-hyperlinks [links]="links">
+  </hxgn-common-hyperlinks>
+</div> -->
+
+<!-- UI to edit hyperlinks (row version) -->
+<!-- <div style="height: 200px; width: 300px; padding: 20px;">
+  <hxgn-common-create-hyperlinks [hyperlinks]="links" (listChanged)="updateLinks($event)">
+  </hxgn-common-create-hyperlinks>
+</div> -->
+
+<!-- UI to edit hyperlinksc (column version) -->
+<!-- <div style="height: 150px; width: 500px; padding: 20px;">
+  <hxgn-common-create-hyperlinks [hyperlinks]="links" [displayColumns]="true" (listChanged)="updateLinks($event)">
+  </hxgn-common-create-hyperlinks>
+</div> -->
+
+<!-- <div style="height: 500px; width: 400px; margin: 20px; border: 1px solid #c2c3c3">
+  <hxgn-common-remarks [user]="user" [remarks]="remarks" (listUpdated)="updateRemarks($event)"></hxgn-common-remarks>
+</div> -->
+
+<!-- Error Dialog-->
+<!-- <button class="hxgn-btn-secondary" (click)="openErrorDialog()">Open Error Dialog</button> -->
+
+<!-- <div style="width: 350px; height: 150px; margin:20px;">
+  <hxgn-common-post-style-menu [dynamicPosition]="false" (postStyleUpdate)="postStyleUpdate($event)">
+  </hxgn-common-post-style-menu>
+</div> -->

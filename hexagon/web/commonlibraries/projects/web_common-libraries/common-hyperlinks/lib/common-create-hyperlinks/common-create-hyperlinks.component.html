@@ -1,0 +1,49 @@
+<div class="container" [class.display-columns]="displayColumns">
+
+    <div class="add-container">
+        <!-- URL to be added -->
+        <div class="new-item" [class.vertical-items]="displayColumns">
+            <!-- Name Input -->
+            <hxgn-common-input-v2 [disabled]="disabled">
+                <input type="text"
+                    [(ngModel)]="currentLink.text"
+                    [attr.placeholder]="tTokens.title"
+                    (keyup.enter)="add()"
+                />
+            </hxgn-common-input-v2>
+
+            <!-- URL Input -->
+            <hxgn-common-input-v2 [disabled]="disabled" [isValid]="urlIsValid">
+                <input type="text"
+                    [(ngModel)]="currentLink.href"
+                    [attr.placeholder]="tTokens.url"
+                    (keyup.enter)="add()"
+                    (ngModelChange)="validateUrl($event)"
+                />
+            </hxgn-common-input-v2>
+        </div>
+
+        <!-- Add Button -->
+        <button class="add-btn hxgn-btn-primary"
+            [disabled]="!urlIsValid || !currentLink.text || !currentLink.href"
+            (click)="add()"
+        >
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.add" [ignoreSkeleton]="true">
+            </hxgn-commonlocalization-translate-v1>
+        </button>
+    </div>
+
+    <!-- List of URLs -->
+    <hxgn-common-links *ngIf="hyperlinks?.length"
+        [hyperlinks]="hyperlinks"
+        [readonly]="disabled"
+        (listChanged)="update($event)" >
+    </hxgn-common-links>
+
+    <!-- No URLs Message -->
+    <div *ngIf="!hyperlinks?.length" class="empty-list">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.noLinksExist" skeletonWidth="50px">
+        </hxgn-commonlocalization-translate-v1>
+    </div>
+
+</div>

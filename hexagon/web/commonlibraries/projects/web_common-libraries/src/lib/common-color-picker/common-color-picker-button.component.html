@@ -1,0 +1,12 @@
+<div class="pick-color-btn" [style.background-color]="defaultColor" cdkOverlayOrigin #origin="cdkOverlayOrigin"
+    (click)="popover.open()">
+</div>
+<hxgn-common-popover #popover [origin]="origin" [menuMode]="true">
+    <hxgn-common-color-picker class="picker"
+        [defaultColor]="defaultColor"
+        [presetColors]="presetColors"
+        [showOpacity]="showOpacity"
+        [showHexColor]="showHexColor"
+        (selectedColor)="colorChanged($event)">
+    </hxgn-common-color-picker>
+</hxgn-common-popover>

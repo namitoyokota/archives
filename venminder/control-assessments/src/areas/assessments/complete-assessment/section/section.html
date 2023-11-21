@@ -1,0 +1,71 @@
+﻿<template>
+  <require from="./section.scss"></require>
+  <require from="./subheader/subheader"></require>
+  <require from="./control/control"></require>
+
+  <div class="panel panel-default assessment-section-panel">
+    <!-- Header -->
+    <div class="panel-header assessment-panel-header">
+      <!-- Name -->
+      <div class="section-name-pane">
+        <span>${model.sectionTitle}</span>
+      </div>
+
+      <!-- Dropdown -->
+      <div class="section-rating-pane">
+        <!-- Dropdown -->
+        <vm-dropdown
+          class="section-rating"
+          display-text.to-view="selectedRating.displayText"
+          value.bind="selectedRating"
+          placeholder-text="Select Rating"
+          is-disabled.to-view="disableRating"
+        >
+          <vm-dropdown-item
+            repeat.for="item of sectionRatings"
+            is-selected.to-view="item.isSelected"
+            value.one-time="item.id"
+            on-selection.call="ratingSelected($event)"
+          >
+            <div innerHtml.bind="item.displayText"></div>
+          </vm-dropdown-item>
+        </vm-dropdown>
+
+        <!-- Recalculate Button-->
+        <vm-button
+          is-disabled.bind="disableRating"
+          click.delegate="recalculateRating()"
+          tertiary
+        >
+          Recalculate
+        </vm-button>
+
+        <!-- Error Message: Not Filled -->
+        <span if.bind="ratingErrorMsg" class="danger">${ratingErrorMsg}</span>
+
+        <!-- Error Message: Calculation -->
+        <span repeat.for="error of model.errors" class="danger">${error}</span>
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div class="panel-body assessment-panel-body">
+      <div repeat.for="item of controlsAndSubheaders">
+        <!-- Subheader Control -->
+        <assessment-section-subheader
+          if.bind="item.type === 'subheader'"
+          model.bind="item.model"
+          is-first.bind="$first"
+        ></assessment-section-subheader>
+
+        <!-- All Other Controls -->
+        <assessment-section-control
+          if.bind="item.type === 'control'"
+          item.bind="item.model"
+          section-id.bind="model.id"
+          is-first.bind="$first || subheaderIndexes.includes($index - 1)"
+        ></assessment-section-control>
+      </div>
+    </div>
+  </div>
+</template>

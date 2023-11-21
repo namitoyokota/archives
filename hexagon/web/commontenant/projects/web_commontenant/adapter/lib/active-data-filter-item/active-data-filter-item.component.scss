@@ -1,0 +1,51 @@
+$low-color: #8cc63f;
+$medium-color: #ead618;
+$high-color: #c1272d;
+
+:host {
+  border-top: 1px solid #d5d7d8;
+  display: grid;
+  grid-template-columns: 5px 20px auto;
+  grid-column-gap: 15px;
+
+  ::ng-deep hxgn-commontenant-active-data-filter-item-section .item {
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
+}
+
+.bar {
+  background-color: #ccc;
+}
+
+.bar--low {
+  background-color: $low-color;
+}
+
+.bar--medium {
+  background-color: $medium-color;
+}
+
+.bar--high {
+  background-color: $high-color;
+}
+
+.level-icon,
+.text-pane {
+  margin-top: 10px;
+}
+
+.text-pane {
+  display: flex;
+  flex-direction: column;
+}
+
+:host hxgn-commontenant-active-data-filter-item-section:not(:first-child) {
+  margin-top: 10px;
+}
+
+:host ::ng-deep hxgn-commontenant-active-data-filter-item-section-title {
+  font-weight: bold;
+  margin-right: 5px;
+  font-size: 1.05em;
+}

@@ -1,0 +1,39 @@
+<hxgn-commontenant-active-data-filter-item [level]="RestrictionLevels.high" *ngIf="masterList">
+    <hxgn-commontenant-active-data-filter-item-section *ngFor="let restriction of masterList">
+
+        <!-- Title -->
+        <hxgn-commontenant-active-data-filter-item-section-title>
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.dontShare">
+            </hxgn-commonlocalization-translate-v1>
+            <span>
+                <hxgn-commonlocalization-translate-v1 [token]="getPropertyToken(restriction.content.restrictId)">
+                </hxgn-commonlocalization-translate-v1>
+            </span>
+        </hxgn-commontenant-active-data-filter-item-section-title>
+
+        <!-- Exact Exclude -->
+        <hxgn-commontenant-active-data-filter-item-section-text *ngIf="restriction.content.exactExcludeConfigurationOperand.length">
+            <hxgn-commonlocalization-translate-v1 class="bold" [token]="tokens.equals">
+            </hxgn-commonlocalization-translate-v1>
+            <div class="spacing-left d-inline">
+                <span class="uppercase" *ngFor="let val of restriction.content.exactExcludeConfigurationOperand; let i = index;">
+                    <span>{{val}}</span>
+                    <ng-container *ngIf="i !== (restriction.content.exactExcludeConfigurationOperand.length - 1)">,</ng-container>
+                </span>
+            </div>
+        </hxgn-commontenant-active-data-filter-item-section-text>
+
+        <!-- Partial Exclude -->
+        <hxgn-commontenant-active-data-filter-item-section-text *ngIf="restriction.content.partialExcludeConfigurationOperand.length">
+            <hxgn-commonlocalization-translate-v1 class="bold" [token]="tokens.contains">
+            </hxgn-commonlocalization-translate-v1>
+            <div class="spacing-left d-inline">
+                <span class="uppercase" *ngFor="let val of restriction.content.partialExcludeConfigurationOperand; let i = index;">
+                    <span>{{val}}</span>
+                    <ng-container *ngIf="i !== (restriction.content.partialExcludeConfigurationOperand.length - 1)">,</ng-container>
+                </span>
+            </div>
+        </hxgn-commontenant-active-data-filter-item-section-text>
+
+    </hxgn-commontenant-active-data-filter-item-section>
+</hxgn-commontenant-active-data-filter-item>

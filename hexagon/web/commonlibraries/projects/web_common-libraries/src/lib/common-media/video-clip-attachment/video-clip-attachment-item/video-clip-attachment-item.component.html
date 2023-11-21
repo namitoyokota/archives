@@ -1,0 +1,13 @@
+<div class="item" [class.loading]="!media.uri" [class.not-playable]="!isPlayable(media)">
+    <hxgn-common-media-video-clip-player *ngIf="isPlayable(media) && (media.uri || media.url)" [media]="media"
+        [fetcher]="fetcher">
+    </hxgn-common-media-video-clip-player>
+
+    <div class="info-pane">
+        <div class="title">{{media.name}}</div>
+        <a *ngIf="media.uri" [attr.href]="(media.url ?? media.uri) | sanitizeUrl" [download]="media.name">
+            <img *ngIf="isPlayable(media)" src="assets/common-libraries/images/download-white.png" />
+            <img *ngIf="!isPlayable(media)" src="assets/common-libraries/images/download-grey.png" />
+        </a>
+    </div>
+</div>

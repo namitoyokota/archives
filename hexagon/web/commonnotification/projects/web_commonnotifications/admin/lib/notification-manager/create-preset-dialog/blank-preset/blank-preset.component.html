@@ -1,0 +1,45 @@
+<div class="content">
+    <div class="step">
+        <div class="step-number">
+            <span>2</span>
+        </div>
+        <div class="step-content">
+            <div class="step-title">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.presetName" skeletonWidth="115px">
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+            <hxgn-common-input-v2>
+                <input [(ngModel)]="presetName" type="text" maxlength="1000"
+                    [placeholder]="tTokens.presetNamePlaceholder" />
+            </hxgn-common-input-v2>
+        </div>
+    </div>
+    <div class="step">
+        <div class="step-number">
+            <span>3</span>
+        </div>
+        <div class="step-content">
+            <div class="step-title">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.notificationDescription" skeletonWidth="315px">
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+            <textarea [(ngModel)]="presetDescription" maxlength="1000"
+                [placeholder]="tTokens.notificationDescriptionPlaceholder">
+            </textarea>
+        </div>
+    </div>
+</div>
+<div class="buttons-row">
+    <button class="hxgn-btn-secondary" (click)="cancel.emit()">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.cancel" [ignoreSkeleton]="true">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+    <button class="hxgn-btn-secondary" (click)="back.emit()">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.back" [ignoreSkeleton]="true">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+    <button class="hxgn-btn-primary" (click)="createPreset()" [disabled]="!presetName">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.createPreset" [ignoreSkeleton]="true">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+</div>

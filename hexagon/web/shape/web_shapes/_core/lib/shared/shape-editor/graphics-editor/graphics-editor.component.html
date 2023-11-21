@@ -1,0 +1,40 @@
+<!-- Line type selection -->
+<div class="item">
+  <span class="field-name">
+    <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]="tokens.lineType">
+    </hxgn-commonlocalization-translate-v1>
+  </span>
+  <hxgn-common-line-type-v1 [activeLineType]="graphics?.lineType" [disabled]="readOnly" (lineTypeChange)="setLineType($event)">
+  </hxgn-common-line-type-v1>
+</div>
+
+<!-- Line weight selection -->
+<div class="item">
+  <span class="field-name">
+    <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]="tokens.lineWidth">
+    </hxgn-commonlocalization-translate-v1>
+  </span>
+  <hxgn-common-line-weight-v1 [activeLineWeight]="graphics?.lineWeight" [disabled]="readOnly" (lineWeightChange)="setLineWeight($event)">
+  </hxgn-common-line-weight-v1>
+</div>
+
+<!-- Line Color -->
+<div class="item">
+  <span class="field-name">
+    <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]="tokens.lineColor">
+    </hxgn-commonlocalization-translate-v1>
+  </span>
+  <hxgn-common-color-selector-v1 [activeColor]="graphics?.lineColor" [disabled]="readOnly" (colorChange)="setLineColor($event)"
+    [colorType]="colorType.line"></hxgn-common-color-selector-v1>
+</div>
+
+<!-- Fill Color -->
+<div class="item">
+  <span class="field-name">
+    <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]="tokens.fillColor">
+    </hxgn-commonlocalization-translate-v1>
+  </span>
+  <hxgn-common-color-selector-v1 [activeColor]="graphics?.fillColor" [disabled]="readOnly"
+    (colorChange)="setFillColor($event)" [colorType]="colorType.fill">
+  </hxgn-common-color-selector-v1>
+</div>

@@ -1,0 +1,64 @@
+<template>
+    <require from="./vm-badge-demo.component.css"></require>
+
+    <div class="vm-badge-demo">
+        <div class="vm-badge-demo--column">
+            <label>Primary</label>
+            <vm-badge primary repeat.for="num of testNumbers">${num}</vm-badge>
+        </div>
+
+        <div class="vm-badge-demo--column">
+            <label>Secondary</label>
+            <vm-badge secondary repeat.for="num of testNumbers">${num}</vm-badge>
+        </div>
+    </div>
+
+    <div class="vm-badge-demo">
+        <div class="vm-badge-demo--column">
+            <label>Success</label>
+            <vm-badge success>Success</vm-badge>
+        </div>
+
+        <div class="vm-badge-demo--column">
+            <label>Info</label>
+            <vm-badge info>Info</vm-badge>
+        </div>
+
+        <div class="vm-badge-demo--column">
+            <label>Warning</label>
+            <vm-badge warning>Warning</vm-badge>
+        </div>
+
+        <div class="vm-badge-demo--column">
+            <label>Danger</label>
+            <vm-badge danger>Danger</vm-badge>
+        </div>
+    </div>
+
+    <div class="vm-badge-demo">
+        <div class="vm-badge-demo--column">
+            <label>Low</label>
+            <vm-badge low>Low</vm-badge>
+        </div>
+
+        <div class="vm-badge-demo--column">
+            <label>Low-Moderate</label>
+            <vm-badge lowModerate>Low-Moderate</vm-badge>
+        </div>
+
+        <div class="vm-badge-demo--column">
+            <label>Medium</label>
+            <vm-badge medium>Medium</vm-badge>
+        </div>
+
+        <div class="vm-badge-demo--column">
+            <label>High</label>
+            <vm-badge high>High</vm-badge>
+        </div>
+
+        <div class="vm-badge-demo--column">
+            <label>Severe</label>
+            <vm-badge severe>Severe</vm-badge>
+        </div>
+    </div>
+</template>

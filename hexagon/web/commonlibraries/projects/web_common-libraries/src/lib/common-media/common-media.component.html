@@ -1,0 +1,15 @@
+<hxgn-common-media-attachment-tab [mediaList]="mediaMap" (selectionChange)="onSelectionChange($event)">
+</hxgn-common-media-attachment-tab>
+<ng-container [ngSwitch]="selectedTab">
+    <hxgn-common-media-image-attachment *ngSwitchCase="attachmentTab.images"
+        [mediaList]="mediaMap.get(attachmentTab.images)" [fetcher]="fetcher">
+    </hxgn-common-media-image-attachment>
+
+    <hxgn-common-media-video-clip-attachment *ngSwitchCase="attachmentTab.videoClips"
+        [mediaList]="mediaMap.get(attachmentTab.videoClips)" [fetcher]="fetcher">
+    </hxgn-common-media-video-clip-attachment>
+
+    <hxgn-common-media-other-attachment *ngSwitchCase="attachmentTab.other"
+        [mediaList]="mediaMap.get(attachmentTab.other)" [fetcher]="fetcher">
+    </hxgn-common-media-other-attachment>
+</ng-container>

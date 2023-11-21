@@ -1,0 +1,42 @@
+<hxgn-common-expansion-panel panelState="expanded">
+
+    <!-- Title -->
+    <hxgn-common-expansion-panel-title>
+        <ng-content select="hxgn-common-expansion-panel-title"></ng-content>
+    </hxgn-common-expansion-panel-title>
+
+    <!-- Header -->
+    <hxgn-common-expansion-panel-header>
+        <ng-container [ngSwitch]="buttonType">
+
+            <!-- Delete Button -->
+            <img *ngSwitchCase="ActiveFilterButtonType.delete"
+                src="assets/shapes/images/x_grey_in_circle.png"
+                (click)="onDelete($event)"
+            />
+
+            <!-- Edit Button -->
+            <span *ngSwitchCase="ActiveFilterButtonType.edit"
+                class="btn--edit"
+                (click)="onEdit($event)"
+            >
+                <hxgn-commonlocalization-translate-v1 skeletonWidth="75px" [token]="tokens.edit">
+                </hxgn-commonlocalization-translate-v1>
+            </span>
+
+            <!-- Toggle Button -->
+            <mat-slide-toggle *ngSwitchCase="ActiveFilterButtonType.toggle"
+                [(checked)]="toggleEnabled"
+                (click)="onToggleClick($event)"
+                (change)="onToggle($event.checked)" >
+            </mat-slide-toggle>
+
+        </ng-container>
+    </hxgn-common-expansion-panel-header>
+
+    <!-- Content -->
+    <hxgn-common-expansion-panel-content>
+        <ng-content select="hxgn-common-chip"></ng-content>
+    </hxgn-common-expansion-panel-content>
+
+</hxgn-common-expansion-panel>

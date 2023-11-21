@@ -1,0 +1,11 @@
+﻿<template>
+    <div if.bind="value.length"
+         aubs-tooltip="text.bind: formatListTooltip(context.Row[context.Column.ColumnName]); position.bind: 'left'; disabled.bind: disableListTooltip(context.Row[context.Column.ColumnName], context.Column.ColumnValueConverter);">
+        <ul if.bind="!delimitedText" class="list-unstyled">
+            <li repeat.for="val of value.slice(0, maxDisplayLength)">${val}</li>
+            <li if.bind="maxDisplayLength < value.length">&hellip;</li>
+        </ul>
+        <span else innerhtml.bind="delimitedText | sanitizeHTML"></span>
+    </div>
+    <div else>&mdash;</div>
+</template>

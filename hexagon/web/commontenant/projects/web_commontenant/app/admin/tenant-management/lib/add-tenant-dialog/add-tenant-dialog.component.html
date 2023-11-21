@@ -1,0 +1,296 @@
+<div mat-dialog-title>
+    <hxgn-commonlocalization-translate-v1 [token]="tokens.addOrganization" skeletonWidth="195px">
+    </hxgn-commonlocalization-translate-v1>
+    <div (click)="close()" class="close-btn"></div>
+</div>
+<mat-dialog-content *ngIf="currentPage === 1">
+    <div class="content-container">
+        <div class="content-pane pane-border">
+            <!-- Page 1 > Step 1 -->
+            <div class="step">
+                <div class="step-count-container">
+                    <div class="step-count">1</div>
+                </div>
+                <div class="step-content-container">
+                    <div class="step-title">
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.nameOrganization" skeletonWidth="215px"
+                            ellipsisTooltip>
+                        </hxgn-commonlocalization-translate-v1>
+                    </div>
+                    <div class="form-container">
+                        <label class="has-required" ellipsisTooltip>
+                            <span class="required">*</span>
+                            <hxgn-commonlocalization-translate-v1 [token]="tokens.enterOrganizationName"
+                                skeletonWidth="130px">
+                            </hxgn-commonlocalization-translate-v1>
+                        </label>
+                        <hxgn-common-input-v2>
+                            <input type="text" [(ngModel)]="tenant.name" />
+                        </hxgn-common-input-v2>
+                    </div>
+                    <div class="form-container">
+                        <label class="has-required" ellipsisTooltip>
+                            <span class="required">*</span>
+                            <hxgn-commonlocalization-translate-v1 [token]="tokens.enterAbbreviation"
+                                skeletonWidth="130px">
+                            </hxgn-commonlocalization-translate-v1>
+                        </label>
+                        <hxgn-common-input-v2>
+                            <input type="text" [(ngModel)]="tenant.abbreviation" minlength="2" maxlength="4" />
+                        </hxgn-common-input-v2>
+                    </div>
+                </div>
+            </div>
+            <!-- Page 1 > Step 2 -->
+            <div class="step">
+                <div class="step-count-container">
+                    <div class="step-count">2</div>
+                </div>
+                <div class="step-content-container">
+                    <div class="step-title">
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.defineCulture" skeletonWidth="165px"
+                            ellipsisTooltip>
+                        </hxgn-commonlocalization-translate-v1>
+                    </div>
+                    <div class="form-container">
+                        <label class="has-required" ellipsisTooltip>
+                            <span class="required">*</span>
+                            <hxgn-commonlocalization-translate-v1 [token]="tokens.enterCulture" skeletonWidth="140px">
+                            </hxgn-commonlocalization-translate-v1>
+                        </label>
+                        <hxgn-common-dropdown-v2 [(ngModel)]="tenant.culture">
+                            <hxgn-common-dropdown-item-v2 *ngFor="let langToken of languageTokens | keyvalue"
+                                [value]="langToken.key">
+                                <span>{{langToken.value}}</span>
+                            </hxgn-common-dropdown-item-v2>
+                        </hxgn-common-dropdown-v2>
+                    </div>
+                </div>
+            </div>
+            <!-- Page 1 > Step 3 -->
+            <div class="step">
+                <div class="step-count-container">
+                    <div class="step-count">3</div>
+                </div>
+                <div class="step-content-container">
+                    <div class="step-title">
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.uploadIcon" skeletonWidth="235px"
+                            ellipsisTooltip>
+                        </hxgn-commonlocalization-translate-v1>
+                    </div>
+                    <hxgn-common-file-upload #iconUpload acceptedExtensions=".jpg, .png, .JPG, .PNG"
+                        [btnText]="tTokens.chooseImage" [displayFile]="true"
+                        [dragAndDropText]="tTokens.dragAndDropImage" (fileSelected)="setNewIcon($event)">
+                    </hxgn-common-file-upload>
+                </div>
+            </div>
+        </div>
+        <!-- Page 1 > Step 4 -->
+        <div class="content-pane">
+            <div class="step industries-step">
+                <div class="step-count-container">
+                    <div class="step-count">4</div>
+                </div>
+                <div class="step-content-container industries-content-container">
+                    <div class="step-title">
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.selectIndustries" skeletonWidth="145px"
+                            ellipsisTooltip>
+                        </hxgn-commonlocalization-translate-v1>
+                    </div>
+                    <div class="form-container">
+                        <label class="has-required" ellipsisTooltip>
+                            <span class="required">*</span>
+                            <hxgn-commonlocalization-translate-v1 [token]="tokens.addIndustries" skeletonWidth="140px">
+                            </hxgn-commonlocalization-translate-v1>
+                        </label>
+                        <div class="industries-container">
+                            <hxgn-common-expansion-panel *ngFor="let sector of sectors | keyvalue"
+                                panelState="expanded">
+                                <hxgn-common-expansion-panel-title>
+                                    <span ellipsisTooltip>
+                                        <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]="sector.key">
+                                        </hxgn-commonlocalization-translate-v1>
+                                    </span>
+                                </hxgn-common-expansion-panel-title>
+                                <hxgn-common-expansion-panel-content>
+                                    <div class="industry" *ngFor="let industry of getIndustryListSorted(sector.value)">
+                                        <mat-checkbox [checked]="tenant.industryIds.includes(industry.id)"
+                                            (change)="updateSelectedIndustries(industry.id)">
+                                            <div class="checkbox-content">
+                                                <div class="icon">
+                                                    <img [src]="industry.iconUrl" />
+                                                </div>
+                                                <span ellipsisTooltip>
+                                                    <hxgn-commonlocalization-translate-v1 skeletonWidth="100px"
+                                                        [token]="industry.nameToken">
+                                                    </hxgn-commonlocalization-translate-v1>
+                                                </span>
+                                            </div>
+                                        </mat-checkbox>
+                                    </div>
+                                </hxgn-common-expansion-panel-content>
+                            </hxgn-common-expansion-panel>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-content *ngIf="currentPage === 2">
+    <div class="content-container" style="grid-template-columns: 340px 440px;">
+        <div class="content-pane pane-border">
+            <!-- Page 2 > Step 5 -->
+            <div class="step">
+                <div class="step-count-container">
+                    <div class="step-count">5</div>
+                </div>
+                <div class="step-content-container">
+                    <div class="step-title">
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.setOrganizationLocation"
+                            skeletonWidth="235px" ellipsisTooltip>
+                        </hxgn-commonlocalization-translate-v1>
+                    </div>
+                    <div class="form-container">
+                        <label class="has-required" ellipsisTooltip>
+                            <span class="required">*</span>
+                            <hxgn-commonlocalization-translate-v1 [token]="tokens.cityName" skeletonWidth="50px">
+                            </hxgn-commonlocalization-translate-v1>
+                        </label>
+                        <hxgn-common-input-v2>
+                            <input type="text" [(ngModel)]="tenant.city" />
+                        </hxgn-common-input-v2>
+                    </div>
+                    <div class="form-container">
+                        <label class="has-required" ellipsisTooltip>
+                            <span class="required">*</span>
+                            <hxgn-commonlocalization-translate-v1 [token]="tokens.stateName" skeletonWidth="60px">
+                            </hxgn-commonlocalization-translate-v1>
+                        </label>
+                        <hxgn-common-input-v2>
+                            <input type="text" [(ngModel)]="tenant.state" />
+                        </hxgn-common-input-v2>
+                    </div>
+                    <div class="form-container">
+                        <label class="has-required" ellipsisTooltip>
+                            <span class="required">*</span>
+                            <hxgn-commonlocalization-translate-v1 [token]="tokens.countryName" skeletonWidth="75px">
+                            </hxgn-commonlocalization-translate-v1>
+                        </label>
+                        <hxgn-common-input-v2>
+                            <input type="text" [(ngModel)]="tenant.country" />
+                        </hxgn-common-input-v2>
+                    </div>
+                </div>
+            </div>
+            <!-- Page 2 > Step 6 -->
+            <div class="step">
+                <div class="step-count-container">
+                    <div class="step-count">6</div>
+                </div>
+                <div class="step-content-container">
+                    <div class="step-title">
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.enterContactEmailAddress"
+                            skeletonWidth="120px" ellipsisTooltip>
+                        </hxgn-commonlocalization-translate-v1>
+                    </div>
+                    <div class="form-container">
+                        <label class="has-required" ellipsisTooltip>
+                            <span class="required">*</span>
+                            <hxgn-commonlocalization-translate-v1 [token]="tokens.contactEmailAddress"
+                                skeletonWidth="50px">
+                            </hxgn-commonlocalization-translate-v1>
+                        </label>
+                        <hxgn-common-input-v2 [isValid]="emailIsValid()">
+                            <input type="text" [(ngModel)]="tenant.contactAddress" />
+                        </hxgn-common-input-v2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page 2 > Step 7 -->
+        <div class="content-pane">
+            <div class="step">
+                <div class="step-count-container">
+                    <div class="step-count">7</div>
+                </div>
+                <div class="step-content-container">
+                    <div class="step-title">
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.enterLicenseData" skeletonWidth="50px"
+                            ellipsisTooltip>
+                        </hxgn-commonlocalization-translate-v1>
+                    </div>
+                    <div class="form-container">
+                        <label class="has-required" ellipsisTooltip>
+                            <span class="required">*</span>
+                            <hxgn-commonlocalization-translate-v1 [token]="tokens.uploadLicensingFile"
+                                skeletonWidth="50px">
+                            </hxgn-commonlocalization-translate-v1>
+                        </label>
+                        <hxgn-commonlicensing-upsert-server-entity-v1 [serverEntity]="tenant.licenseData"
+                            (serverEntityChange)="tenant.licenseData = $event">
+                        </hxgn-commonlicensing-upsert-server-entity-v1>
+                    </div>
+                </div>
+            </div>
+            <!-- Page 2 > Step 8 -->
+            <div class="step">
+                <div class="step-count-container">
+                    <div class="step-count">8</div>
+                </div>
+                <div class="step-content-container network-list">
+                    <div class="step-title">
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.addNetworks" skeletonWidth="50px"
+                            ellipsisTooltip>
+                        </hxgn-commonlocalization-translate-v1>
+                    </div>
+                    <hxgn-commontenant-network-list [activeNetworks]="tenant.dataSharingNetworks"
+                        (selectedNetworks)="updateNetworks($event)">
+                    </hxgn-commontenant-network-list>
+                </div>
+            </div>
+        </div>
+    </div>
+</mat-dialog-content>
+<div *ngIf="currentPage === 3">
+    <div class="map-step">
+        <!-- Page 3 > Step 9 -->
+        <div class="step">
+            <div class="step-count-container">
+                <div class="step-count">9</div>
+            </div>
+            <div>
+                <div class="step-title">
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.setOrganizationLocation" skeletonWidth="50px"
+                        ellipsisTooltip>
+                    </hxgn-commonlocalization-translate-v1>
+                </div>
+                <hxgn-commontenant-tenant-map [tenant]="tenant" [isNew]="true" (mapDataChanged)="updateMapData($event)">
+                </hxgn-commontenant-tenant-map>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Action Pane -->
+<mat-dialog-actions align="end">
+    <button class="hxgn-btn-secondary" (click)="close()">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.cancel" [ignoreSkeleton]="true">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+    <button class="hxgn-btn-secondary" (click)="goBack()" *ngIf="currentPage !== 1">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.previousStep" [ignoreSkeleton]="true">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+
+    <button class="hxgn-btn-primary" *ngIf="currentPage !== 3"
+        [disabled]="(currentPage === 1) ? !validatePageOne() : !validatePageTwo()" (click)="goForward()">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.nextStep" [ignoreSkeleton]="true">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+
+    <button class="hxgn-btn-primary" *ngIf="currentPage === 3" (click)="save()">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.save" [ignoreSkeleton]="true">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+</mat-dialog-actions>

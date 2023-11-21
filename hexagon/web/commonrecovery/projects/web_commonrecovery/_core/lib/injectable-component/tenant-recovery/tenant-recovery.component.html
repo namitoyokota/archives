@@ -1,0 +1,40 @@
+<div *ngIf="dataLoaded" class="page-container">
+    <div class="header">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.backupFiles">
+        </hxgn-commonlocalization-translate-v1>
+    </div>
+
+    <div class="backups">
+        <hxgn-commonrecovery-pipeline-card-list [pipelines]="backups" [tenantId]="activeTenantId"
+            [running]="!canRun" [hiddenActions]="[action.delete, action.restore]" >
+        </hxgn-commonrecovery-pipeline-card-list>
+    </div>
+
+    <div class="header">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.recoveryJobs">
+        </hxgn-commonlocalization-translate-v1>
+    </div>
+
+    <div class="recoveries">
+        <div class="table-container">
+            <hxgn-commonrecovery-pipeline-table [hiddenColumns]="[pipelineColumn.organization]" [pipelines]="pipelines$ | async">
+            </hxgn-commonrecovery-pipeline-table>
+        </div>
+    </div>
+
+    <div class="buttons-pane">
+        <button class="hxgn-btn-secondary" (click)="openSettings()">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.settings" ignoreSkeleton="true">
+            </hxgn-commonlocalization-translate-v1>
+        </button>
+
+        <button class="hxgn-btn-primary" [disabled]="!canRun" (click)="backupOrganization()">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.backupOrganization" ignoreSkeleton="true">
+                </hxgn-commonlocalization-translate-v1>
+        </button>
+    </div>
+</div>
+
+<div *ngIf="!dataLoaded" class="loading-pane">
+    <mat-spinner></mat-spinner>
+</div>

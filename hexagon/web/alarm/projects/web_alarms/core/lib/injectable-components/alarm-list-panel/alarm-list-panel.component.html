@@ -1,0 +1,40 @@
+<hxgn-common-expansion-panel panelState="expanded">
+    <hxgn-common-expansion-panel-title>
+        <span>
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.alarms" skeletonWidth="40px">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+        ({{(alarms$ | async)?.length}})
+    </hxgn-common-expansion-panel-title>
+    <hxgn-common-expansion-panel-content>
+        <div class="alarm-list">
+            <hxgn-alarms-list-filter [alarmIds]="settings.alarmIds$ | async"
+                (filteredAlarmsIds)="setFilterAlarmIds($event)"
+                (filteredStatus)="filteredStatus = $event"></hxgn-alarms-list-filter>
+
+            <div class="filter-status">
+                <span>
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.showing" skeletonWidth="40px">
+                        {{(alarms$ | async)?.length}}
+                    </hxgn-commonlocalization-translate-v1>
+                </span>
+                <span>
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.resultsWithFilter" skeletonWidth="85px">
+                        "{{filteredStatus}}"
+                    </hxgn-commonlocalization-translate-v1>
+                </span>
+            </div>
+
+            <div class="alarms-container">
+                <hxgn-alarms-mini-card *ngFor="let alarm of (pagedAlarms$ | async)" [alarm]="alarm">
+                </hxgn-alarms-mini-card>
+
+                <span *ngIf="(pagedAlarms$ | async)?.length < (alarms$ | async)?.length"
+                    (click)="loadPage()" class="show-more-btn">
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.showMoreAlarms" skeletonWidth="85px">
+                    </hxgn-commonlocalization-translate-v1>
+                </span>
+            </div>
+        </div>
+    </hxgn-common-expansion-panel-content>
+</hxgn-common-expansion-panel>

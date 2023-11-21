@@ -1,0 +1,25 @@
+{
+    "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+    "dest": "../../dist/web_commonmap",
+    "lib": {
+        "entryFile": "src/public-api.ts"
+    },
+    "assets": [
+        "assets",
+        "build-definition.json"
+    ],
+    "allowedNonPeerDependencies": [
+        "@types/leaflet",
+        "@types/leaflet.markercluster",
+        "leaflet",
+        "leaflet.markercluster",
+        "@asymmetrik/ngx-leaflet",
+        "@asymmetrik/ngx-leaflet-markercluster",
+        "@galileo/leaflet-with-header",
+        "@galileo/leaflet-draw",
+        "@galileo/leaflet-contextmenu",
+        "@galileo/leaflet-ajax",
+        "@galileo/leaflet-wfst",
+        "@turf/turf"
+    ]
+}

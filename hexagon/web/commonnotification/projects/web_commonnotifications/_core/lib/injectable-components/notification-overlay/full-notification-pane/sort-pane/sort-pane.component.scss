@@ -1,0 +1,105 @@
+:host {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, min-content);
+    gap: 10px;
+    padding: 15px 24px;
+    box-sizing: border-box;
+}
+
+.title {
+    color: #fff;
+    font-size: 16px;
+}
+
+.filter-btn {
+    height: 30px;
+    width: 100%;
+    background-color: #f7f7f7;
+    border: 1px solid #afafaf;
+    box-shadow: 0 1px 1px #00000033;
+    box-sizing: border-box;
+    color: #424242;
+    font-size: 13px;
+    font-weight: 17px;
+    padding-left: 7px;
+
+    display: grid;
+    grid-template-columns: auto 28px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.drop-down-btn {
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('assets/commonnotifications-core/images/dropdown-arrow.png')
+}
+
+::ng-deep .notification-filter-pane {
+    border-radius: 0 !important;
+    width:193px;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.menu {
+    width: 100%;
+}
+
+.filter-list {
+    display: flex;
+    flex-direction: column;
+
+    mat-checkbox {
+        margin-bottom: 4px;
+    }
+}
+
+.filter-option {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.showing-msg {
+    grid-column: 1 / span 2;
+    background-color :#C9D9EB;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.show-all-pane {
+    border-bottom: 1px solid #C0C0C0;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+}
+
+.capability-pane {
+    width: 100%;
+    display: grid;
+    grid-template-columns: min-content auto 11px;
+    column-gap: 5px;
+    overflow: hidden;
+    align-items: center;
+    cursor: pointer;
+}
+
+.drill-down-icon {
+    transform: rotate(-90deg);
+}
+
+.back-pane {
+    cursor: pointer;
+    grid-template-columns:11px auto;
+    column-gap: 5px;
+    margin-bottom: 5px;
+    display: grid;
+    align-items: center;
+
+    .back-icon {
+        transform: rotate(90deg);
+    }
+}

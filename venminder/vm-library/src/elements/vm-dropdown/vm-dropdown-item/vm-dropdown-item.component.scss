@@ -1,0 +1,30 @@
+@use "../../../styles/variables" as v;
+
+.vm-dropdown-item {
+    min-height: 40px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: v.$white;
+    border: none;
+    border-top: solid 1px v.$N20;
+    font-size: 16px;
+    outline: none !important;
+    padding-left: 13px;
+    text-align: left;
+
+    &:hover,
+    &:focus {
+        background-color: v.$N10;
+        cursor: pointer;
+    }
+
+    &:disabled {
+        opacity: 0.7;
+    }
+
+    &.vm-dropdown-item__selected {
+        background-color: v.$N20;
+        font-weight: 700;
+    }
+}

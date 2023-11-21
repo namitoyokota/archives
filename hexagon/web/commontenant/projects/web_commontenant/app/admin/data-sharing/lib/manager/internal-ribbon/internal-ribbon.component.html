@@ -1,0 +1,53 @@
+<div class="filter-by-pane">
+    <div *ngIf="filterByGroup" class="icon-pane">
+        <img src="assets/commontenant-core/filter-by-groups-icon.svg">
+        <span>
+            <hxgn-commonlocalization-translate-v1 [token]='tokens.filterByGroups'></hxgn-commonlocalization-translate-v1>
+        </span>
+    </div>
+
+    <div *ngIf="!filterByGroup" class="icon-pane">
+        <img src="assets/commontenant-core/edit-filter-all-icon.svg">
+        <span>
+            <hxgn-commonlocalization-translate-v1 [token]='tokens.filterAll'></hxgn-commonlocalization-translate-v1>
+        </span>
+    </div>
+
+    <div (click)="editAll.emit()" class="edit-btn">
+        <hxgn-commonlocalization-translate-v1 [token]='tokens.edit'></hxgn-commonlocalization-translate-v1>
+    </div>
+</div>
+
+<div class="button-pane">
+    <button (click)="editDataTypes.emit()" class="hxgn-btn-secondary">
+        <img src="assets/commontenant-core/define-data-types.png" />
+        <div>
+            <hxgn-commonlocalization-translate-v1 [token]='tokens.defineDataTypes'></hxgn-commonlocalization-translate-v1>
+        </div>
+        
+    </button>
+    
+    <button (click)="editPresets.emit()" class="hxgn-btn-secondary">
+        <img src="assets/commontenant-core/global-filter-levels-small.png" />
+        <div>
+            <hxgn-commonlocalization-translate-v1 [token]='tokens.internalSharingPresets'></hxgn-commonlocalization-translate-v1>
+        </div>
+    </button>
+    
+    <button *ngIf="filterByGroup" (click)="editSharingNetwork.emit()" class="hxgn-btn-secondary">
+        <img src="assets/commontenant-core/InternalFilterNetwork-icon2.svg" />
+        <div>
+            <hxgn-commonlocalization-translate-v1 [token]='tokens.internalFilteringNetwork'></hxgn-commonlocalization-translate-v1>
+        </div>
+    </button>
+</div>
+
+<div class="option-pane">
+    <!-- Hide this UI for now. It maybe use later. -->
+    <div *ngIf="false" class="option">
+        <mat-slide-toggle [checked]="shareAllData" (change)="shareAllDataChange.emit(!$event.checked)">
+            <hxgn-commonlocalization-translate-v1 [token]='tokens.shareAllDataInternally'></hxgn-commonlocalization-translate-v1>
+        </mat-slide-toggle>
+    </div>
+</div>
+

@@ -1,0 +1,63 @@
+
+<div class="title">
+    <span>{{toolbarTitle}}</span>
+</div>
+
+<!--
+    List of draw actions.
+    Only one can be selected at a time and the others become disabled.
+    All are disabled once drawing has been completed.
+-->
+<div class="draw-shape-pane">
+    <div class="shape-item" *ngFor="let shape of shapes"
+        [class.selected]="selectedShape && selectedShape === shape"
+        [class.disabled]="selectedShape || (geometry$ | async) !== null"
+        (click)="drawShape(shape)">
+
+        <div class="icon {{shape | lowercase}}" [title]="getTitle(shape)"></div>
+    </div>
+</div>
+<div class="action-pane">
+    <div class="actions">
+        <div class="draw-action undo" [class.disabled]="(canUndo$ | async) !== true" [title]="tTokens.undo"
+            (click)="undo()">
+        </div>
+        <div class="draw-action redo" [class.disabled]="(canRedo$ | async) !== true" [title]="tTokens.redo"
+            (click)="redo()">
+        </div>
+        <!-- Undo all is disabled until a shape is complete or if the active shape is a polygon that has drawn at least one line. -->
+        <div class="draw-action undo-all"
+            [class.disabled]="(canUndo$ | async) !== true" [title]="tTokens.startOver"
+            (click)="undoAll()">
+        </div>
+    </div>
+    <div class="draw-toolbar-action-divider"></div>
+    <div class="actions">
+        <!-- Cancels the active drawing. -->
+        <div class="toolbar-action" [class.disabled]="!!(geometry$ | async) !== true && !selectedShape" (click)="cancelDraw()">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.cancel">
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+        <!-- Closes toolbar. -->
+        <div *ngIf="!persistentEdit" class="toolbar-action" [class.disabled]="selectedShape === geometryType.line && !radius" (click)="completeDraw()">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.done">
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+    </div>
+</div>
+
+<!-- Show circle radius or line buffer -->
+<div *ngIf="selectedShape === geometryType.circle || selectedShape === geometryType.line" class="circle-pane">
+    <span>
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.drawRadius">
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+    <div class="radius-input">
+        <input [disabled]="!!(geometry$ | async) === false" [class.not-valid]="!validateRadius() && !!(geometry$ | async) === true"
+            (input)="limit()" (blur)="limit()" (keyup.enter)="setRadius()" [(ngModel)]="radius" step=".01" type="number" />
+    </div>
+    <span>
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.drawKm">
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+</div>

@@ -1,0 +1,64 @@
+@use "../../styles/variables" as v;
+
+$border-radius: 4px;
+
+vm-pagination {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px 0;
+
+    .vm-pagination {
+        height: 30px;
+        display: grid;
+        grid-template-columns: 40px 30px 80px 30px 40px;
+        align-items: center;
+        background-color: v.$white;
+        font-size: 16px;
+        line-height: 24px;
+
+        .vm-pagination--btn {
+            height: 100%;
+            width: 100%;
+            background-color: v.$white;
+            border: solid 1px v.$N40;
+            border-radius: 0;
+            outline: none;
+
+            &:first-of-type {
+                border-bottom-left-radius: $border-radius;
+                border-top-left-radius: $border-radius;
+            }
+
+            &:last-of-type {
+                border-bottom-right-radius: $border-radius;
+                border-top-right-radius: $border-radius;
+            }
+
+            &:not(:last-of-type) {
+                border-right: none;
+            }
+
+            &:focus,
+            &:hover {
+                background-color: v.$N20;
+                cursor: pointer;
+            }
+
+            &:disabled {
+                background-color: v.$N10;
+                color: rgba(115, 127, 146, 0.4);
+                cursor: not-allowed;
+            }
+        }
+
+        .vm-pagination--info {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: solid 1px v.$N40;
+            border-right: none;
+        }
+    }
+}

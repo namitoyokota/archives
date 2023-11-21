@@ -1,0 +1,28 @@
+{
+    "featureModules": [
+        {
+            "entryPointId": "@galileo/web_shapes/_core",
+            "chunkId": "@hxgn/shapes",
+            "module": "ShapesCoreModule"
+        },
+        {
+          "entryPointId": "@galileo/web_shapes/admin/shape-manager",
+          "chunkId": "@hxgn/shapes/admin/shape-manager",
+          "module": "ShapeManagerModule"
+        }
+    ],
+    "adminFeatureRouting": [
+      {
+        "path": "smartShapes/manager",
+        "data": {
+            "adminComponent": "@hxgn/shapes/admin/shape-manager/v1",
+            "adminId": "@hxgn/shapes/admin/shape-manager",
+            "adminTitle": "shape-manager.component.smartShapeManager",
+            "claim": "uiShapeManagerAccess",
+            "capabilityId": "@hxgn/shapes"
+        },
+        "canActivate": ["ClaimGuard$v1", "OnboardingGuard$v1"],
+        "canDeactivate": ["DirtyGuard$v1"]
+      }
+    ]
+}

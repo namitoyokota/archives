@@ -1,0 +1,29 @@
+:host {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #717171;
+
+    hxgn-common-dropdown-v2 {
+        width: 350px;
+    }
+}
+
+.onboarding-header {
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 39px;
+    margin-top: 30px;
+}
+
+.onboarding-intro {
+    width: 805px;
+    font-size: 24px;
+    font-style: italic;
+    line-height: 39px;
+    margin-bottom: 15px;
+    text-align: center;
+}

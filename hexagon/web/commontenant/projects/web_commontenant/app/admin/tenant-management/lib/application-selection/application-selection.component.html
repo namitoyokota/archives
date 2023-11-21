@@ -1,0 +1,18 @@
+<ng-container *ngIf="appStore.entity$ | async as apps; else loading">
+    <div class="application-view" *ngFor="let app of apps" [attr.title]="tTokens.get(app.descriptionToken)">
+        <img *ngIf="isSelected(app.id); else disabledIcon"
+            src="assets/commontenant-core/product-application-licensed.svg" width="20" height="20" />
+        <ng-template #disabledIcon>
+            <img src="assets/commontenant-core/product-application-unlicensed.svg" width="20" height="20" />
+        </ng-template>
+        <span ellipsisTooltip>
+            <hxgn-commonlocalization-translate-v1 [token]="app.nameToken" skeletonWidth="60px">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+    </div>
+</ng-container>
+<ng-template #loading>
+    <div style="height: 30px;height: 30px;">
+        <mat-spinner></mat-spinner>
+    </div>
+</ng-template>

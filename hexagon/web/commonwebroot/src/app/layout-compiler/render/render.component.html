@@ -1,0 +1,78 @@
+<div  *ngIf="tab" [class.expanded]="expandedBlockId" style="width:100%;height:100%;">
+    <ng-template #recursiveBlocks let-blocks="blocks" let-parent="parent">
+        <ng-container *ngFor="let block of blocks; let i = index;trackBy: trackByBlock">
+            <ng-template #blockTemplate let-view="view">
+                <div (contextmenu)="rightClick(block)"
+                    [@hideShowBaseStateAnimation]="!getBlockStateId(block.id)"
+                    id="{{(view?.viewSettings?.enablePortalFormatting) ? ('block_' + block.id): block.id }}"
+                    [class.flex-col]="block.type === BlockType.Row && block.blocks"
+                    [class.flex-row]="block.type === BlockType.Column && block.blocks"
+                    [class.portal-formatting]="view?.viewSettings?.enablePortalFormatting"
+                    [class.flex]="!block.blocks"
+                    [style.width]="block.width + '%'"
+                    [style.height]="block.height + '%'"
+                    [class.expanded-view]="block.id === expandedBlockId">
+                    {{createStateBlockMapping(block)}}
+
+                    <div *ngIf="view?.viewSettings?.enablePortalFormatting"
+                        class="portal-formatting-pane" [class.expanded-hidden]="expandedBlockId && block.id !== expandedBlockId" >
+                        <div class="portal-formatting-header" [class.no-options]="!view?.editorSettings?.showOptionPaneBtn">
+                            <span class="state-title"> {{view?.viewSettings.headerTitle}}</span>
+
+                            <!-- Portal for custom header -->
+                            <div class="custom-header" [attr.id]="'custom-header_' + block.id"></div>
+
+                            <!-- Option Btn -->
+                            <option-pane-btn *ngIf="baseContext?.screenId && view?.editorSettings?.showOptionPaneBtn" [contextId]="getContextId(block.id)"></option-pane-btn>
+                            
+                            <!-- Maximize Btn -->
+                            <div (click)="expandView(block.id)" class="full-screen-btn" [class.expanded-btn]="block.id === expandedBlockId"></div>
+                        </div>
+                        <ng-container [ngSwitch]="view?.viewStatus">
+                            <div *ngSwitchCase="ViewStatus.Enabled" id="{{block.id}}" class="flex view-block"></div>
+                            <div *ngSwitchDefault class="view-not-available">
+                                <hxgn-layout-view-not-available 
+                                    [viewStatus]="view?.viewStatus"
+                                    viewName="{{view?.editorSettings?.customViewName ? view?.editorSettings?.customViewName : view?.viewSettings?.headerTitle}}">
+                                </hxgn-layout-view-not-available>
+                            </div>
+                        </ng-container>
+                    </div>
+
+                    <ng-container *ngTemplateOutlet="recursiveBlocks; context:{blocks: block.blocks, parent: block} "></ng-container>
+                </div>
+            </ng-template>
+            <ng-container *ngTemplateOutlet="blockTemplate; context: {view: getView(block.id)}"></ng-container>
+
+            <!-- Set up divs for states -->
+            <ng-container *ngIf="block.states.length">
+                <ng-container *ngFor="let state of block.states">
+                    <div *ngIf="state.name !== 'BASESTATE' && getBlockStateId(block.id) === state.id"
+                         id="'state_'+{{state.id}}"
+                         [@enterSlideInAnimation]
+                         class="state-pane"
+                         [class.flex]="!block.blocks"
+                         [style.width]="block.width + '%'"
+                         [class.portal-formatting]="true"
+                         [style.height]="block.height + '%'"
+                         style="flex-grow:1;">
+                         
+                        <div class="portal-formatting-pane" style="grid-template-rows: 30px 100%;">
+                            <div class="state-header-pane">
+                                <span class="back-btn" (click)="clearSelectedState(state.id)">back to main view</span>
+                                <span class="state-title"> / {{state.name}}</span>
+                            </div>
+                            <div  [class.flex]="!block.blocks"
+                                [class.flex-col]="block.type === BlockType.Row && block.blocks"
+                                [class.flex-row]="block.type === BlockType.Column && block.blocks"
+                                class="grid-pane ">
+                                <ng-container *ngTemplateOutlet="recursiveBlocks; context:{blocks: state.blocks, parent: block} "></ng-container>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </ng-container>
+        </ng-container>
+    </ng-template>
+    <ng-container *ngTemplateOutlet="recursiveBlocks; context:{ blocks: tab.blocks, parent: block }"></ng-container>
+</div>

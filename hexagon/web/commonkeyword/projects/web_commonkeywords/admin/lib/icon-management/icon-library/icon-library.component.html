@@ -1,0 +1,91 @@
+<hxgn-common-tabs>
+    <mat-tab-group #iconTypeTabs (selectedTabChange)="setSelectedType($event.index)">
+        <mat-tab [label]="tTokens.groupIcons"></mat-tab>
+        <mat-tab [disabled]='disableModifiers' [label]="tTokens.modifierIcons"></mat-tab>
+    </mat-tab-group>
+</hxgn-common-tabs>
+
+<div class="search-pane">
+    <hxgn-common-input-v2 [isSearchBox]="true" [showClearBtn]="searchString.length" (clearText)="clearText()">
+        <input type="text"
+            [placeholder]="tTokens.searchIcons"
+            [(ngModel)]="searchString"
+            (input)="transformRawIconList()"
+        />
+    </hxgn-common-input-v2>
+</div>
+
+<div class="filter-pane">
+    <div class="showing">
+        <hxgn-commonlocalization-translate-v1 
+            ignoreSkeleton="true"
+            [token]="tokens.showing" >
+        </hxgn-commonlocalization-translate-v1>
+
+        <span class="selected">
+            <ng-container *ngIf="selectedCapabilities.length === capabilityList.length; else notAll">
+                <hxgn-commonlocalization-translate-v1 
+                    ignoreSkeleton="true"
+                    [token]="tokens.allIcons" >
+                </hxgn-commonlocalization-translate-v1>
+            </ng-container>
+
+            <ng-template #notAll>
+                <span *ngFor="let capability of selectedCapabilities; let i = index">
+                    <hxgn-commonlocalization-translate-v1
+                        ignoreSkeleton="true"
+                        [token]="capability.nameToken" >
+                    </hxgn-commonlocalization-translate-v1>
+
+                    <ng-container *ngIf="i !== selectedCapabilities.length - 1">,</ng-container>
+                </span>
+            </ng-template>
+        </span>
+    </div>
+
+    <div class="filter-btn" (click)="toggle()">
+        <hxgn-commonlocalization-translate-v1 
+            class="nowrap"
+            ignoreSkeleton="true"
+            [token]="tokens.filter" >
+        </hxgn-commonlocalization-translate-v1>
+        <div class="filter-icon"></div>
+    </div>
+</div>
+
+<div class="capability-list" [@expansionState] *ngIf="panelState === PanelState.Expanded">
+    <button *ngFor="let capability of capabilityList"
+        ngClass="{{selectedCapabilities.includes(capability) ? 'hxgn-btn-selected' : 'hxgn-btn-secondary'}}"
+        (click)="selectCapability(capability)" >
+
+        <hxgn-commonlocalization-translate-v1 
+            ignoreSkeleton="true"
+            [token]="capability.nameToken" >
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+</div>
+
+<div class="icon-library-pane" [class.loading-icons]="!this.translationTokensLoaded">
+    <ng-container *ngIf="this.translationTokensLoaded">
+        <div class="group-pane" *ngFor="let group of groupList; trackBy: groupTrackByFn">
+            <div class="title">
+                <hxgn-commonlocalization-translate-v1
+                    [token]='group'>
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+            <div class="icon-pane">
+                <hxgn-commonkeywords-icon-card
+                    *ngFor="let icon of this.groupIconMap.get(group); trackBy: iconTrackByFn"
+                    [class.selected]="isSelected(icon.id)"
+                    [enableDelete]="icon.categoryToken === tokens.custom"
+                    [primitiveIcon]="icon"
+                    (deleteIcon)="deleteIcon($event)"
+                    (click)="iconClicked.emit(icon)" >
+                </hxgn-commonkeywords-icon-card>
+
+                <div class="spacer" *ngFor="let spacer of getSpacerArray(this.groupIconMap.get(group).length)"></div>
+            </div>
+        </div>
+    </ng-container>
+    <mat-spinner *ngIf="!this.translationTokensLoaded"></mat-spinner>
+</div>

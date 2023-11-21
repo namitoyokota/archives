@@ -1,0 +1,17 @@
+:host {
+    height: 100%;
+    width: 447px;
+    display: flex;
+    flex-direction: column;
+
+    &.full-width {
+        width: 884px;
+    }
+}
+
+.intro-description {
+    height: 83px;
+    color: #999999;
+    font-size: 17px;
+    line-height: 23px;
+}

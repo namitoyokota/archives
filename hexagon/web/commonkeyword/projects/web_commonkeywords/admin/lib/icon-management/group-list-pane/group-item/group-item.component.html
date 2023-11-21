@@ -1,0 +1,38 @@
+<div class="item" [class.selected]="selected" [class.rename]="groupRenameValue !== null">
+    <ng-container *ngIf="groupRenameValue === null">
+        <div class="group-name" *ngIf="!hasUnsavedChanges;else unsavedChanges">
+            {{group.name}}
+        </div>
+
+        <ng-template #unsavedChanges>
+            <div class="group-name unsaved-changes">
+                {{group.name}}*
+            </div>
+        </ng-template>
+
+        <div class="item-count">{{(ruleStore.rules$(group.id) | async).length}}</div>
+
+        <div class="cmd-btn-pane">
+            <div class="cmd-btn" cdkOverlayOrigin #origin="cdkOverlayOrigin" (click)="popover.open($event)">
+            </div>
+            <hxgn-common-popover #popover [origin]="origin" [menuMode]="true" [position]="popoverPosition">
+                <hxgn-common-menu-item imgSrc="assets/commonkeywords-core/images/trash-icon.png" [token]="tokens.delete"
+                    (click)="delete.emit()">
+                </hxgn-common-menu-item>
+                <hxgn-common-menu-item imgSrc="assets/commonkeywords-core/images/rename-icon.png" [token]="tokens.rename"
+                    (click)="startRename()">
+                </hxgn-common-menu-item>
+            </hxgn-common-popover>
+        </div>
+    </ng-container>
+
+    <!-- UI for renaming a group -->
+    <div [hidden]="groupRenameValue === null">
+        <div class="new-group-pane">
+            <hxgn-common-input-v2>
+                <input #renameGroup [(ngModel)]="groupRenameValue" (keyup.enter)="endRename()" type="text" />
+            </hxgn-common-input-v2>
+            <img src="assets/commonkeywords-core/images/x_grey_in_circle.png" (click)="groupRenameValue = null" />
+        </div>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+:host {
+    &.has-notifications {
+        width: 55px;
+    }
+
+    &.large {
+        width: 62px;
+    }
+}
+
+.btn {
+    height: 36px;
+    width: 36px;
+    background-color: #000;
+    box-sizing: border-box;
+    border: 1px solid #4D4E4E;
+    border-radius: 50%;
+    cursor: pointer;
+    background-image: url('assets/commonnotifications-core/images/button-icon.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+
+    &.active {
+        background-color: #62A2DA;
+    }
+}
+
+.count-pane {
+    position: absolute;
+    background-color: #6D6E71;
+    border-radius: 6px;;
+    font-size: 12px;
+    color: #fff;
+    padding: 2px 6px;
+    left: 29px;
+    width: auto;
+    min-width:26px;
+    display: flex;
+    box-sizing: border-box;
+    top: 10px;
+
+    span {
+        text-align: center;
+        width: 100%;
+    }
+}

@@ -1,0 +1,38 @@
+<nb-card>
+    <!-- Header -->
+    <nb-card-header>
+        {{ title }}
+    </nb-card-header>
+
+    <!-- Body -->
+    <nb-card-body>
+        <div class="body-pane">
+            <span>{{ subtitle }}</span>
+
+            <div class="confirm-pane" *ngIf="confirm">
+                <div class="input-field">
+                    <span class="label">Enter 'Confirm' to Continue</span>
+                    <input
+                        type="text"
+                        nbInput
+                        fullWidth
+                        placeholder="Confirm"
+                        [(ngModel)]="confirmText"
+                        (keyup)="checkValid()"
+                        (keyup.enter)="yes()"
+                    />
+                </div>
+            </div>
+        </div>
+    </nb-card-body>
+
+    <!-- Footer -->
+    <nb-card-footer>
+        <div class="button-pane">
+            <button nbButton size="small" (click)="no()">Cancel</button>
+            <button nbButton size="small" [status]="buttonStatus" [disabled]="this.confirm && !this.isValid" (click)="yes()">
+                {{ buttonText }}
+            </button>
+        </div>
+    </nb-card-footer>
+</nb-card>

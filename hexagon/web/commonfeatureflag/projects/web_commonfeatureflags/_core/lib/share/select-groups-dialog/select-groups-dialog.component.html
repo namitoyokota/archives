@@ -1,0 +1,42 @@
+<div class="description-pane">
+    <div class="sidebar">
+        <div>
+            <img src="assets/commonfeatureflags-core/feature-flags-graphic.svg" />
+        </div>
+        <div>
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.mainMsg" skeletonWidth="100px" class="title">
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+        <div>
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.subMsg" skeletonWidth="100px" class="subtitle">
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div mat-dialog-title>
+        <div class="header">
+          <hxgn-commonlocalization-translate-v1 [token]="tokens.title" skeletonWidth="100px">
+          </hxgn-commonlocalization-translate-v1>
+        </div>
+    </div>
+      
+    <div class="content-pane">
+        <hxgn-commonidentity-group-list-v1 (selection)="addGroups($event)" [selectedGroup]="selectedGroups"
+            [multiselect]="true" [searchable]="true">
+        </hxgn-commonidentity-group-list-v1>
+    </div>
+      
+    <mat-dialog-actions align="end">
+        <button (click)="close()" class="hxgn-btn-secondary">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.cancel">
+            </hxgn-commonlocalization-translate-v1>
+        </button>
+        <button (click)="add()" class="hxgn-btn-primary">
+          <hxgn-commonlocalization-translate-v1 [token]="tokens.continue">
+          </hxgn-commonlocalization-translate-v1>
+        </button>
+    </mat-dialog-actions>
+</div>
+

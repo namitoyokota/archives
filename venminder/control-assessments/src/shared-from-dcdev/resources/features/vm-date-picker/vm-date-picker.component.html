@@ -1,0 +1,59 @@
+﻿<template>
+  <require from="./vm-date-picker.component.scss"></require>
+
+  <div class="date-picker-container actionable-item" click.delegate="deactivateMonthYearPopups()">
+    <div
+      if.bind="showPredefined"
+      class="date-range-options-container ${displayType == vmDatePickerDisplayTypes.Full ? 'padding-for-full-view': ''}"
+    >
+      <div
+        innerhtml.bind="getRangeOptionLabel(option) | sanitizeHTML"
+        class="date-picker-option-item"
+        repeat.for="option of rangeOptions"
+        click.trigger="selectDateRangeOption(option)"
+      ></div>
+    </div>
+    <div if.bind="showDateView" class="date-picker-view ${displayType == vmDatePickerDisplayTypes.Full ? 'container-border-right': ''}">
+      <div class="date-picker-month-navigation">
+        <vm-button secondary click.call="previousMonth()">
+          <span class="actionable-item">
+            <i class="fas fa-chevron-left"></i>
+          </span>
+        </vm-button>
+        <vm-button secondary click.call="toggleMonthPopup($event)">
+          <span class="actionable-item"> ${month} </span>
+          <div class="data-picker-year-month-container" if.bind="monthPopupActive">
+            <div class="date-picker-option-item" repeat.for="month of months" click.delegate="selectMonth(month.index)">${month.month}</div>
+          </div>
+        </vm-button>
+        <vm-button secondary click.call="nextMonth()">
+          <span class="actionable-item">
+            <i class="fas fa-chevron-right"></i>
+          </span>
+        </vm-button>
+        <vm-button secondary click.call="toggleYearPopup($event)">
+          <span class="actionable-item"> ${year} </span>
+          <div class="data-picker-year-month-container" if.bind="yearPopupActive">
+            <div class="date-picker-option-item" repeat.for="year of years" click.delegate="selectYear(year)">${year}</div>
+          </div>
+        </vm-button>
+      </div>
+      <div class="day-of-week-container">
+        <div repeat.for="day of daysOfWeek">${day}</div>
+      </div>
+      <div class="date-picker-week" repeat.for="week of weeks">
+        <div class="date-picker-day ${dayColor(day)}" repeat.for="day of week" click.delegate="selectDateRangeOption(null, day)">
+          ${formatDay(day)}
+        </div>
+      </div>
+      <div class="pull-right date-picker-footer" if.bind="showPredefined || allowDateRange">
+        <vm-button secondary click.call="resetDates()">
+          <span>Reset</span>
+        </vm-button>&nbsp;
+        <vm-button primary click.call="apply()" is-disabled.bind="!toDate">
+          <span>Apply</span>
+        </vm-button>
+      </div>
+    </div>
+  </div>
+</template>

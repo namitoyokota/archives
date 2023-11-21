@@ -1,0 +1,8 @@
+{
+    "name": "@galileo/web_alarms",
+    "version": "13.1.5",
+    "peerDependencies": { },
+    "dependencies": {
+        "tslib": "^2.0.0"
+    }
+}

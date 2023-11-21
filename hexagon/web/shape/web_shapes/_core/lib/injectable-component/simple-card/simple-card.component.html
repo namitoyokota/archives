@@ -1,0 +1,13 @@
+<ng-container *ngIf="(shape$ | async) as shape">
+  <div class="icon-pane">
+    <hxgn-shapes-icon [fillColor]="shape?.graphicsSettings?.fillColor" [lineColor]="shape?.graphicsSettings?.lineColor"
+      [lineType]="shape?.graphicsSettings?.lineType">
+    </hxgn-shapes-icon>
+  </div>
+  <div class="title-pane">
+    {{shape?.name}}
+  </div>
+  <div *ngIf="!shape.isRedacted(restrictIds.filteringType)">
+    {{shape?.filteringType}}
+  </div>
+</ng-container>

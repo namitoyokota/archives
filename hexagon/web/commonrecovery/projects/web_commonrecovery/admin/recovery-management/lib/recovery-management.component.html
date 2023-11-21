@@ -1,0 +1,31 @@
+<hxgn-common-tabs>
+    <mat-tab-group [selectedIndex]="selectedTab" (selectedTabChange)="handleTabChangeAsync()" disableRipple="true">
+        <!-- Global management tab -->
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.global" ignoreSkeleton="true">
+                </hxgn-commonlocalization-translate-v1>
+            </ng-template>
+        </mat-tab>
+
+        <!-- Organizations Management tab -->
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.organizations" ignoreSkeleton="true">
+                </hxgn-commonlocalization-translate-v1>
+            </ng-template>
+        </mat-tab>
+    </mat-tab-group>
+</hxgn-common-tabs>
+
+<ng-container *ngIf="selectedTab === managementTab.sysManagement; else orgManagement">
+    <hxgn-commonrecovery-global-management [pipelines]="globalPipelines$ | async" [childPipelines]="childPipelines$ | async"
+        [isLoading]="loadingGlobal" (expandChange)="expandIdChange($event)">
+    </hxgn-commonrecovery-global-management>
+</ng-container>
+
+<ng-template #orgManagement>
+    <hxgn-commonrecovery-organizations-management (selectChange)="tenantChange($event)"
+        [organizations]="organizations" [pipelines]="tenantPipelines$ | async" [loadedTenants]="loadedTenants">
+    </hxgn-commonrecovery-organizations-management>
+</ng-template>

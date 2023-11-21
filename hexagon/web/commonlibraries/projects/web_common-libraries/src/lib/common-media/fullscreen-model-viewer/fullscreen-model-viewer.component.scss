@@ -1,0 +1,43 @@
+.hxgn-common-fullscreen {
+  height: 85vh;
+  width: 85vw !important;
+  max-width: none !important;
+  position: relative !important;
+
+  .content {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: flex-end;
+
+    img {
+      height: 30px;
+      width: 30px;
+      margin-top: 15px;
+      margin-right: 15px;
+      cursor: pointer;
+      position: absolute;
+    }
+
+    hxgn-common-color-picker-button {
+      height: 30px;
+      width: 30px;
+      margin-top: 15px;
+      cursor: pointer;
+      position: absolute;
+      left: 15px;
+    }
+  }
+}
+
+.hxgn-common-fullscreen.mat-dialog-container {
+  max-width: none;
+  width: 100vw;
+  height: 100vh;
+}

@@ -1,0 +1,83 @@
+:host {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: #F4F4F4;
+}
+
+.setup-pane {
+    width: 100%;
+    height: 100%;
+    max-width: 630px;
+    max-height: 644px;
+    display: grid;
+    grid-template-rows: 35px min-content auto min-content 40px;
+    row-gap: 10px;
+}
+
+.title {
+    font-size: 26px;
+    font-weight: 700;  
+}
+
+.graphic {
+    background-image: url('assets/commontenant-core/internal-begin-graphic.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    max-height: 196px;
+}
+
+.note {
+    font-size: 16px;
+    color: #717171;
+   
+}
+
+.description-pane {
+    display: flex;
+    flex-direction: column;
+}
+
+.option {
+    background-color: #F7F7F7;
+    display:grid;
+    grid-template-columns: min-content 70px auto ;
+    column-gap: 8px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    padding: 8px;
+    box-sizing: border-box;
+    cursor: pointer;
+    border: 1px solid #F7F7F7; 
+
+    img {
+        width: 70px;
+    }
+
+    &.selected {
+        border: 1px solid #335CA5; 
+    }
+}
+
+.option-title {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.option-description {
+    margin-top: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #A1A1A1;
+}
+
+button {
+    justify-self: center;
+}
+
+mat-radio-button {
+    align-self: center;
+}

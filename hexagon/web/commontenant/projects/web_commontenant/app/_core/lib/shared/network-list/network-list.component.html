@@ -1,0 +1,46 @@
+<div class="network-container">
+
+    <!-- List of existing networks -->
+    <div class="checkbox-container">
+        <ng-container *ngIf="(loading$ | async) === true; else loaded">
+            <div class="loading-pane">
+                <mat-spinner></mat-spinner>
+            </div>
+            
+        </ng-container>
+
+        <ng-template #loaded>
+            <div class="networks" *ngIf="(networkStates | async).length">
+                <mat-checkbox *ngFor="let network of (networkStates | async); let i = index"
+                    [checked]="network.checked" (change)="handleChange(network)" >
+                    {{network.name}}
+                </mat-checkbox>
+            </div>
+            <div class="no-networks" *ngIf="!(networkStates | async).length">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.noNetworksExists" skeletonWidth="75px">
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+        </ng-template>
+
+    </div>
+
+    <!-- Warning message if network name already exists -->
+    <div class="warning" *ngIf="valid === false">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.uniqueNetworkNames" [ignoreSkeleton]="true">
+        </hxgn-commonlocalization-translate-v1>
+    </div>
+
+    <!-- Add new network bar -->
+    <div class="add-bar" [class.valid]="valid === false">
+        <hxgn-common-input-v2 [isValid]="valid">
+            <input [(ngModel)]="newNetwork" type="text" max="50"
+                [placeholder]="tTokens.addNetwork" 
+                (keyup.enter)="addNetwork()" (input)="capitalize()" />
+        </hxgn-common-input-v2>
+        <button class="hxgn-btn-primary" (click)="addNetwork()" [disabled]="!newNetwork.trim()">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.add" [ignoreSkeleton]="true">
+            </hxgn-commonlocalization-translate-v1>
+        </button>
+    </div>
+
+</div>

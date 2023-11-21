@@ -1,0 +1,234 @@
+:host {
+  display: grid;
+  grid-template-rows: min-content 1fr min-content;
+  row-gap: 10px;
+  height: 100%;
+
+  .hxgn-btn-secondary {
+    margin-right: 10px;
+  }
+
+  ::ng-deep .mat-dialog-title {
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    margin-bottom: 0;
+    display: flex !important;
+    justify-content: space-between;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  ::ng-deep .mat-dialog-content {
+    height: 100%;
+  }
+}
+
+.close-btn {
+  height: 35px;
+  width: 35px;
+  background-image: url("assets/commontenant-core/cancel.png");
+  cursor: pointer;
+  transition: all 0.5s ease;
+  background-position: bottom;
+}
+
+.close-btn:hover {
+  background-image: url("assets/commontenant-core/cancel-hover.png");
+}
+
+.content-container {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 15px;
+
+  .content-pane {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+    &.pane-border {
+      padding-right: 15px;
+      border-right: solid 1px #707070;
+    }
+  }
+
+  .left-column {
+    grid-column: 1;
+    padding-right: 30px;
+    border-right: solid 1px #707070;
+    flex-direction: column;
+  }
+
+  .right-column {
+    grid-column: 2;
+    padding-left: 30px;
+  }
+}
+
+.step {
+  display: flex;
+  width: 100%;
+
+  .step-content-container {
+    width: 87%;
+  }
+
+  .step-count-container {
+    background-color: #bfbfbf;
+    height: 32px;
+    width: 32px;
+    border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+
+    .step-count {
+      color: #fff;
+      font-size: 22px;
+      font-weight: 700;
+      position: relative;
+      bottom: 1px;
+    }
+  }
+
+  .network-list {
+    height: 180px;
+  }
+
+  .step-title {
+    font-size: 21px;
+    margin-bottom: 10px;
+  }
+}
+
+.form-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+
+  input {
+    text-overflow: ellipsis;
+  }
+
+  label {
+    display: block;
+    font-weight: 400;
+    margin-bottom: 0.3rem;
+    font-size: 12px !important;
+    line-height: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+  }
+}
+
+.has-required {
+  position: relative;
+  right: 15px;
+
+  .required {
+    color: #e13124;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 0;
+    position: relative;
+    top: 5px;
+    margin-right: 5px;
+  }
+}
+
+.icon {
+  height: 19px;
+  width: 19px;
+  padding: 4px;
+  border: 1px solid #c0c0c0;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #fff;
+
+  img {
+    width: auto;
+    height: auto;
+    max-height: 18px;
+  }
+}
+
+.image-upload-container {
+  display: flex;
+  align-items: center;
+
+  .image-preview-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: solid 1px #a8a8a8;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    padding: 4px;
+    margin-left: 10px;
+
+    .image-preview {
+      border-radius: 50%;
+      max-height: 50px;
+      max-width: 50px;
+      height: auto;
+      width: auto;
+    }
+  }
+}
+
+.industries-content-container {
+  margin-bottom: 0 !important;
+
+  .industries-container {
+    height: 360px;
+    border: solid 1px #a8a8a8;
+    overflow-y: auto;
+    width: 100%;
+
+    .industry {
+      border-top: solid 1px #a8a8a8;
+      height: 43px;
+      padding-left: 10px;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+
+      .checkbox-content {
+        display: grid;
+        grid-template-columns: min-content auto;
+        column-gap: 5px;
+        align-items: center;
+      }
+    }
+  }
+}
+
+.map-step {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+
+  .step {
+    display: grid;
+    grid-template-columns: min-content auto;
+    height: calc(100% - 38px);
+  }
+
+  hxgn-commontenant-tenant-map {
+    border: 1px solid #a8a8a8;
+    box-sizing: border-box;
+    display: flex;
+  }
+}
+
+hxgn-commonlicensing-upsert-server-entity-v1 {
+  width: 100%;
+}

@@ -1,0 +1,41 @@
+<div class="auth-params-section">
+    <div class='auth-info-section'>
+        <div class="auth-info-icon" #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="authParamsInfo"></div>
+        <mat-menu #authParamsInfo="matMenu" style="width:275px" xPosition="before">
+            <div class="auth-info-text" >
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.authParamsInfoText"></hxgn-commonlocalization-translate-v1>
+            </div>
+        </mat-menu>
+    </div>
+    <div class="section-header">
+        <hxgn-commonlocalization-translate-v1 
+            [token]="tokens.editCredentialsTitle">
+        </hxgn-commonlocalization-translate-v1>
+    </div>
+    <div class="authorization">
+        <div class="label">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.authClientIdLabel" [skeletonWidth]="'60px'">
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+        <div class="label">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.authClientSecretLabel" [skeletonWidth]="'60px'">
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+        <input type="text"
+            (input)="validateAuthClientId($event)"
+            (change)="setAuthClientId($event)"
+            placeholder="{{ transStrings[tokens.authClientIdPlaceholder] }}"
+            [(ngModel)]="authClientId.mapOption.value" />
+        <input type="password" 
+            (input)="validateAuthClientSecret($event)"
+            (change)="setAuthClientSecret($event)"
+            placeholder="{{ transStrings[tokens.authClientSecretPlaceholder] }}"
+            [(ngModel)]="authClientSecret.mapOption.value" />
+        <span class="error-msg" *ngIf="authClientId.isError || authClientSecret.isError">
+            <hxgn-commonlocalization-translate-v1 
+                [token]="authErrorToken"
+                [skeletonWidth]="'60px'">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+    </div>
+</div>

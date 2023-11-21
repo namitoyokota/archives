@@ -1,0 +1,5 @@
+<template>
+  <require from="./overlay-manager.scss"></require>
+  
+  <div class="overlay overlay-boxify overlay-boxify${ol.ControlID} ${ol.BgClass}" repeat.for="ol of overlays" css.bind="{ zIndex: ol.ZIndex }" click.trigger="closeOverlayFromClick(ol.ControlID)"></div>
+</template>

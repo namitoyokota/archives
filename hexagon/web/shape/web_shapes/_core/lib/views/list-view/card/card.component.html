@@ -1,0 +1,80 @@
+<hxgn-common-card [isEditable]="!shape?.isManaged && showActionPanel && currentTenantId === shape?.tenantId" [isSelected]="isSelected"
+  [wasExpanded]="wasExpanded && !isExpanded" [expandedPane]="expanded" [headerTitle]="headerTitle"
+  [expansionState]="getExpansionState()" (expansionStateChange)="toggleExpansionPanel($event)">
+
+  <!-- Title -->
+  <hxgn-common-card-title>
+    <div class="title-pane">
+      <span ellipsisTooltip>{{shape?.name}}</span>
+    </div>
+  </hxgn-common-card-title>
+
+  <!-- Icon -->
+  <hxgn-common-card-icon>
+    <hxgn-shapes-icon [fillColor]="shape?.graphicsSettings?.fillColor" [lineColor]="shape?.graphicsSettings?.lineColor"
+      [lineType]="shape?.graphicsSettings?.lineType">
+    </hxgn-shapes-icon>
+  </hxgn-common-card-icon>
+
+  <!-- Main Content -->
+  <hxgn-common-card-info-content>
+    <!-- Tenant name and icon -->
+    <hxgn-commontenant-name *ngIf="showTenantInfo" [tenantId]="shape?.tenantId"></hxgn-commontenant-name>
+  </hxgn-common-card-info-content>
+
+
+  <!-- Action menu -->
+  <hxgn-common-card-action-pane>
+    <ng-container *ngIf="showActionPanel">
+      <div class="action-button" [class.selected]="isSelected" cdkOverlayOrigin #origin="cdkOverlayOrigin"
+        (click)="popover.open($event)">
+        <hxgn-common-popover #popover [origin]="origin" [menuMode]="true" [position]="popoverPosition">
+
+          <!-- Create Channel -->
+          <hxgn-common-menu-item imgSrc="assets/shapes/images/create-channel-icon.svg" [token]="tokens.createChannel"
+            [disabled]="(actionsEnabled$ | async) === false" (click)="startChannel()">
+          </hxgn-common-menu-item>
+
+          <!-- Add to Channel -->
+
+          <hxgn-common-menu-item imgSrc="assets/shapes/images/create-channel-icon.svg"
+            [disabled]="(actionsEnabled$ | async) === false" [token]="tokens.addToChannel" (click)="addToChannel()">
+          </hxgn-common-menu-item>
+
+          <!-- Use as filter -->
+          <hxgn-common-menu-item *ngIf="!isShapeFilter" [token]="tokens.useAsFilter" (click)="useAsFilter()"
+            [disabled]="(actionsEnabled$ | async) === false" imgSrc="assets/shapes/images/use_as_filter.svg">
+          </hxgn-common-menu-item>
+
+          <hxgn-common-menu-item *ngIf="isShapeFilter" [token]="tokens.clearFilter" (click)="clearFilter()"
+            [disabled]="(actionsEnabled$ | async) === false" imgSrc="assets/shapes/images/clear_filter.svg">
+          </hxgn-common-menu-item>
+
+          <ng-container *ngIf="!shape.isManaged && shape.tenantId === currentTenantId">
+            <!-- Edit -->
+            <hxgn-common-menu-item [token]="tokens.editSmartShape" (click)="startEdit.emit(shape)"
+              [disabled]="(actionsEnabled$ | async) === false" imgSrc="assets/shapes/images/edit-shape.svg">
+            </hxgn-common-menu-item>
+
+            <!-- Delete -->
+            <hxgn-common-menu-item [token]="tokens.deleteSmartShape" (click)="deleteShape()"
+              [disabled]="(actionsEnabled$ | async) === false" imgSrc="assets/shapes/images/delete-shape.svg">
+            </hxgn-common-menu-item>
+          </ng-container>
+
+        </hxgn-common-popover>
+      </div>
+    </ng-container>
+  </hxgn-common-card-action-pane>
+
+  <!-- Status -->
+  <hxgn-common-card-status-content>
+    <hxgn-commonlocalization-translate-v1 [token]="tokens.managedInternally"></hxgn-commonlocalization-translate-v1>
+  </hxgn-common-card-status-content>
+</hxgn-common-card>
+
+<!-- Card Details -->
+<ng-template #expanded>
+  <hxgn-shapes-detail-pane [contextId]="contextId" [enableKeywords]="enableKeywords" [shape]="shape">
+  </hxgn-shapes-detail-pane>
+</ng-template>

@@ -1,0 +1,10 @@
+<#@ include file="..\..\..\..\..\CreateTypeScript.ttinclude" #>
+<#@ template debug="true" hostSpecific="true" language="C#" #>
+<#@ output extension="ts" #>
+
+import { AssessmentSectionControl } from "./assessment-section-control";
+import { SubHeader } from "../templates/sub-header";
+
+<#= GetClass<ControlAssessments.Business.Models.DTO.Assessment.AssessmentSection>(generateCreateFunction:true, leaveClassOpen: true) #>
+    errors: string[] = [];
+};

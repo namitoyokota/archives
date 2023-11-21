@@ -1,0 +1,10 @@
+<template>
+  <vm-tooltip pin.to-view="pin"
+              position.to-view="position"
+              show-tooltip.to-view="tooltip.isTooltipShown"
+              text.to-view="tooltip.tooltipText"
+              tooltip-id.to-view="tooltip.tooltipId"
+              mouseover.delegate="doMouseOver($event)">
+    <span>${tooltip.columnText}</span>
+  </vm-tooltip>
+</template>

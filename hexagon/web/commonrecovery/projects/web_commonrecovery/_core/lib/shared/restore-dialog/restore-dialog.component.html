@@ -1,0 +1,66 @@
+<div class="description-pane">
+    <div class="sidebar">
+        <img src="assets/commonrecovery-core/Restore.svg" />
+        <span>
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.title" skeletonWidth="100px" class="title">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+    </div>
+</div>
+
+<div class="content">
+    <div class="header">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.mainMsg" skeletonWidth="100px">
+        </hxgn-commonlocalization-translate-v1>
+    </div>
+
+    <div class="content-pane">
+        <div class="select-msg">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.selectCapabilities" skeletonWidth="300px">
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+
+        <mat-checkbox [checked]="allSelected()" (change)="selectAll($event)" [disabled]="isLoading">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.selectAll" skeletonWidth="85px">
+            </hxgn-commonlocalization-translate-v1>
+        </mat-checkbox>
+
+        <div class="capability-list">
+            <ng-container *ngIf="!isLoading; else loading">
+                <div class="item" *ngFor="let capability of capabilities">
+                    <mat-checkbox [checked]="isSelected(capability)" (change)="toggleCapabilityAsync($event, capability)">
+                        <hxgn-commonlocalization-translate-v1 [token]="getNameToken(capability)" ignoreSkeleton="true">
+                        </hxgn-commonlocalization-translate-v1>
+                    </mat-checkbox>
+                </div>
+            </ng-container>
+            <ng-template #loading>
+                <div *ngIf="isLoading" class="loading-spinner">
+                    <mat-spinner diameter="50"></mat-spinner>
+                </div>
+            </ng-template>
+        </div>
+
+        <div class="warning-message">
+            <img src="assets/commonrecovery-core/Warning-Icon.svg" />
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.subMsg" class="subtitle">
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+
+        <hxgn-common-input-v2 class="email-input">
+            <input type="text" [(ngModel)]="confirmString" [placeholder]="tTokens.confirmMsg" />
+        </hxgn-common-input-v2>
+    </div>
+
+    <mat-dialog-actions align="end">
+        <button (click)="close()" class="hxgn-btn-secondary">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.cancel" [ignoreSkeleton]="true">
+            </hxgn-commonlocalization-translate-v1>
+        </button>
+        <button (click)="confirm()" class="hxgn-btn-primary"
+            [disabled]="confirmString !== tTokens.title  || !selectedIds.length">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.confirm" [ignoreSkeleton]="true">
+            </hxgn-commonlocalization-translate-v1>
+        </button>
+    </mat-dialog-actions>
+</div>

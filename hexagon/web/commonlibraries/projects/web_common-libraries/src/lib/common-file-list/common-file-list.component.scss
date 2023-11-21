@@ -1,0 +1,57 @@
+:host {
+    width: 100%;
+    height: 100%;
+    display: grid;
+}
+
+.file-list {
+    border: 1px solid #ACADB0;
+    padding: 10px;
+    overflow-y: auto;
+
+    .file {
+        display: flex;
+        justify-content: space-between;
+        border-radius: 2px;
+        border: 1px solid #B2B2B2;
+        background-color: #f3f3f3;
+        padding: 4px 6px;
+        white-space: nowrap;
+        align-items: center;
+        margin-bottom: 8px;
+
+        .filename {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+
+        .delete-btn {
+            width: 12px;
+            cursor: pointer;
+        }
+    }
+
+    .file-uploading {
+        display: grid;
+        grid-template-columns: min-content auto;
+        column-gap: 8px;
+        align-items: center;
+    }
+
+    .no-files {
+        display: grid;
+        height: 100%;
+        align-content: center;
+        justify-content: center;
+        row-gap: 10px;
+
+        img {
+            justify-self: center;
+        }
+    }
+}
+
+.emptyBox {
+    background: #F8F8F8 0% 0% no-repeat padding-box;
+}

@@ -1,0 +1,123 @@
+<template>
+    <h2>Basic</h2>
+    Valid: ${ example.$valid }
+    <vm-form
+        model.bind="example"
+        rules.bind="rules"
+        get.bind="getFormInfo"
+        class="row"
+        >
+        <vm-form-field name="firstName" class="col-xs-6 col-md-3">
+            <label>First Name</label>
+            <input type="text" class="vm-input" value.bind="example.firstName" />
+        </vm-form-field>
+        <vm-form-field name="lastName"class="col-xs-6 col-md-3">
+            <label>Last Name</label>
+            <input type="text" class="vm-input" value.bind="example.lastName" />
+        </vm-form-field>
+        <vm-form-field name="email"class="col-xs-12 col-md-6">
+            <label>Email</label>
+            <input type="text" class="vm-input" value.bind="example.email" />
+        </vm-form-field>
+        <vm-form-field name="hasNickname" class="col-xs-12 col-md-6">
+            <vm-checkbox name="hasNickname" checked.two-way="example.hasNickname">Use Nickname</vm-checkbox>
+        </vm-form-field>
+        <vm-form-field
+            class="col-xs-12 col-md-6 col-md-offset-6"
+            show.bind="!!example.hasNickname"
+            name="nickname"
+            >
+            <label>Nickname</label>
+            <input type="text"
+                class="vm-input"
+                value.bind="example.nickname"
+            />
+        </vm-form-field>
+    </vm-form>
+    <vm-button is-disabled.bind="!example.$valid" primary>Submit</vm-button>
+    <h2>Dialog Wizard</h2>
+    <vm-button click.call="openWizard()" primary>Open Wizard</vm-button>
+    <h2>Nested Models</h2>
+    <vm-form
+        view-model.ref="nestedFormRef"
+        model.bind="nestedExample"
+        rules.bind="nestedRules"
+        >
+        <vm-form-field name="topLevelInput">
+            <label>Arbitrary Input</label>
+            <input type="test" class="vm-input" value.bind="nestedExample.topLevelInput" />
+        </vm-form-field>
+    </vm-form>
+    <h3>Nested Form #1</h3>
+    Valid: ${ nestedExample.firstNested.$valid }
+    <vm-form
+        model.bind="nestedExample.firstNested"
+        rules.bind="rules"
+        get.bind="nestedGet"
+        class="row"
+        >
+        <vm-form-field name="firstName" class="col-xs-6 col-md-3">
+            <label>First Name</label>
+            <input type="text" class="vm-input" value.bind="nestedExample.firstNested.firstName" />
+        </vm-form-field>
+        <vm-form-field name="lastName"class="col-xs-6 col-md-3">
+            <label>Last Name</label>
+            <input type="text" class="vm-input" value.bind="nestedExample.firstNested.lastName" />
+        </vm-form-field>
+        <vm-form-field name="email"class="col-xs-12 col-md-6">
+            <label>Email</label>
+            <input type="text" class="vm-input" value.bind="nestedExample.firstNested.email" />
+        </vm-form-field>
+        <vm-form-field name="hasNickname" class="col-xs-12 col-md-6">
+            <vm-checkbox name="firstNestedHasNickname" checked.two-way="nestedExample.firstNested.hasNickname">Use Nickname</vm-checkbox>
+        </vm-form-field>
+        <vm-form-field
+            class="col-xs-12 col-md-6 col-md-offset-6"
+            show.bind="!!nestedExample.firstNested.hasNickname
+            "
+            name="nickname"
+            >
+            <label>Nickname</label>
+            <input type="text"
+                class="vm-input"
+                value.bind="nestedExample.firstNested.nickname"
+            />
+        </vm-form-field>
+    </vm-form>
+    <h3>Nested Form #2</h3>
+    Valid: ${ nestedExample.secondNested.$valid }
+    <vm-form
+        model.bind="nestedExample.secondNested"
+        rules.bind="rules"
+        get.bind="nestedGet"
+        class="row"
+        >
+        <vm-form-field name="firstName" class="col-xs-6 col-md-3">
+            <label>First Name</label>
+            <input type="text" class="vm-input" value.bind="nestedExample.secondNested.firstName" />
+        </vm-form-field>
+        <vm-form-field name="lastName"class="col-xs-6 col-md-3">
+            <label>Last Name</label>
+            <input type="text" class="vm-input" value.bind="nestedExample.secondNested.lastName" />
+        </vm-form-field>
+        <vm-form-field name="email"class="col-xs-12 col-md-6">
+            <label>Email</label>
+            <input type="text" class="vm-input" value.bind="nestedExample.secondNested.email" />
+        </vm-form-field>
+        <vm-form-field name="hasNickname" class="col-xs-12 col-md-6">
+            <vm-checkbox name="secondNestedHasNickname" checked.two-way="nestedExample.secondNested.hasNickname">Use Nickname</vm-checkbox>
+        </vm-form-field>
+        <vm-form-field
+            class="col-xs-12 col-md-6 col-md-offset-6"
+            show.bind="!!nestedExample.secondNested.hasNickname"
+            name="nickname"
+            >
+            <label>Nickname</label>
+            <input type="text"
+                class="vm-input"
+                value.bind="nestedExample.secondNested.nickname"
+            />
+        </vm-form-field>
+    </vm-form>
+
+</template>

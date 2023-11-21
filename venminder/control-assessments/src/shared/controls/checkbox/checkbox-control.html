@@ -1,0 +1,88 @@
+﻿<template>
+  <require from="../controls.scss"></require>
+  <require from="./checkbox-control.scss"></require>
+
+  <div
+    class="shared-control-container checkbox-control-component"
+    class.bind="isFirst ? 'show-bar' : ''"
+  >
+    <!-- Gray Bar -->
+    <div if.bind="isFirst" class="gray-bar"></div>
+
+    <!-- Control -->
+    <div class="control-pane">
+      <div class="control checkbox-control-pane">
+        <!-- Title -->
+        <div class="left-pane">
+          <!-- Control Name -->
+          <span>${model.name}</span>
+
+          <!-- Error Message -->
+          <span if.bind="model.errorMsg" class="danger">${model.errorMsg}</span>
+        </div>
+
+        <!-- Checkboxes -->
+        <div class="right-pane">
+          <div
+            repeat.for="option of model.answerOptions"
+            class="checkbox-item"
+            class.bind="!model.isEditable ? 'checkbox-with-input' : ''"
+          >
+            <!-- Checkbox -->
+            <vm-checkbox
+              name.bind="generateGuid()"
+              model.bind="option.id.toString()"
+              checked.bind="model.answers"
+              is-disabled.bind="!model.isEditable"
+              change.call="selectedAnswerChanged()"
+            >
+              <span if.bind="model.isEditable" class="name"
+                >${option.name}</span
+              >
+            </vm-checkbox>
+
+            <!-- Option Title -->
+            <input
+              if.bind="!model.isEditable"
+              type="text"
+              class="vm-input"
+              value.bind="option.name"
+              change.delegate="answerOptionsChanged()"
+            />
+
+            <!-- Delete Option Button -->
+            <vm-button
+              if.bind="!model.isEditable"
+              secondary
+              click.delegate="deleteOption(option.id)"
+            >
+              <i class="fa fa-trash"></i>
+            </vm-button>
+          </div>
+
+          <!-- Add Option Button -->
+          <vm-button
+            if.bind="!model.isEditable"
+            class="add-option-button"
+            small
+            tertiary
+            click.delegate="addOption()"
+          >
+            <i class="fa fa-plus"></i>
+            <span>Add an option</span>
+          </vm-button>
+        </div>
+      </div>
+
+      <!-- Arrow Button -->
+      <div
+        if.bind="model.isEditable && !model.isSingleControlEdit"
+        class="expand-pane"
+      >
+        <button class="expand-button" click.delegate="caretButtonClicked()">
+          <i class="fa fa-angle-right fa-lg"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</template>

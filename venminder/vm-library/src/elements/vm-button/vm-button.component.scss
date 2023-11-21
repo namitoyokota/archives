@@ -1,0 +1,196 @@
+@use "sass:map";
+@use "../../styles/variables" as v;
+
+$vm-btn-border-radius: 5px;
+$vm-btn-font-size: 16px;
+$vm-btn-size: 40px;
+$vm-btn-size-sm: 25px;
+
+@mixin vm-btn-basics {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
+
+@mixin vm-btn {
+    @include vm-btn-basics();
+    height: $vm-btn-size;
+    column-gap: 10px;
+    border: solid 1px;
+    border-radius: $vm-btn-border-radius;
+    font-size: $vm-btn-font-size;
+    padding: 0 15px;
+
+    &:disabled {
+        opacity: 0.4;
+    }
+
+    i {
+        line-height: 25px;
+    }
+}
+
+@mixin vm-btn-reset {
+    @include vm-btn-basics();
+    background-color: transparent;
+    border: none;
+}
+
+@mixin vm-btn-tertiary {
+    @include vm-btn-reset();
+    width: fit-content;
+    column-gap: 5px;
+    font-size: 13px;
+    padding: 0;
+
+    &:focus,
+    &:hover:not(:disabled) {
+        *:not(i) {
+            text-decoration: underline;
+        }
+    }
+
+    &:disabled {
+        opacity: 0.65;
+    }
+}
+
+vm-button[approve] button,
+.vm-btn__approve {
+    @include vm-btn();
+    background-color: v.$success;
+    border-color: v.$success;
+    color: v.$white;
+
+    &:focus,
+    &:hover:not(:disabled) {
+        background-color: v.$success-hover;
+        border-color: v.$success-hover;
+    }
+}
+
+vm-button[deny] button,
+.vm-btn__deny {
+    @include vm-btn();
+    background-color: v.$danger;
+    border-color: v.$danger;
+    color: v.$white;
+
+    &:focus,
+    &:hover:not(:disabled) {
+        background-color: v.$danger-hover;
+        border-color: v.$danger-hover;
+    }
+}
+
+vm-button[icon] button,
+.vm-btn__icon {
+    @include vm-btn-reset();
+    height: $vm-btn-size;
+    width: $vm-btn-size;
+    justify-content: center;
+    border-radius: $vm-btn-border-radius;
+    color: v.$navy;
+    font-size: $vm-btn-font-size;
+
+    &:focus,
+    &:hover:not(:disabled) {
+        background-color: v.$N30;
+    }
+
+    &:disabled {
+        opacity: 0.4;
+    }
+}
+
+vm-button[primary] button,
+.vm-btn__primary {
+    @include vm-btn();
+    background-color: v.$brand-primary;
+    border-color: v.$brand-primary;
+    color: v.$white;
+
+    &:focus,
+    &:hover:not(:disabled) {
+        background-color: v.$brand-primary-hover;
+        border-color: v.$brand-primary-hover;
+    }
+}
+
+vm-button[secondary] button,
+.vm-btn__secondary {
+    @include vm-btn();
+    background-color: v.$white;
+    border-color: v.$N40;
+    color: v.$navy;
+
+    &:focus,
+    &:hover:not(:disabled) {
+        background-color: v.$N30;
+    }
+}
+
+vm-button[tertiary] button,
+.vm-btn__tertiary {
+    @include vm-btn-tertiary();
+    color: v.$brand-primary;
+
+    &:focus,
+    &:hover:not(:disabled) {
+        color: v.$brand-primary-hover;
+    }
+}
+
+vm-button[tertiaryNavy] button,
+.vm-btn__tertiary-navy {
+    @include vm-btn-tertiary();
+    color: v.$navy;
+}
+
+vm-button[large] button,
+.vm-btn__lg {
+    padding: 0 40px;
+}
+
+vm-button[small] button,
+.vm-btn__sm {
+    height: $vm-btn-size-sm;
+    border-radius: 4px;
+    font-size: 12px;
+    padding: 0 12px;
+
+    i {
+        line-height: 12px;
+    }
+
+    &.vm-btn__icon {
+        width: $vm-btn-size-sm;
+    }
+}
+
+vm-button[small][icon] button {
+    width: $vm-btn-size-sm;
+}
+
+vm-button[xxl] button,
+.vm-btn__xxl {
+    height: 55px;
+    font-size: 19px;
+    padding: 0 200px;
+
+    i {
+        line-height: 29px;
+    }
+}

@@ -1,0 +1,86 @@
+:host {
+    display: inline-grid;
+    grid-template-columns: auto fit-content(20px);
+    border: 1px solid #adafb2 !important;
+    box-sizing: border-box;
+    height: 30px;
+
+    ::ng-deep .mat-form-field-flex,
+    ::ng-deep .mat-form-field-infix {
+        height: 29px !important;
+    }
+}
+
+:host:hover,
+:host:focus-within {
+    border: 1px solid #62b4ff !important;
+}
+
+:host ::ng-deep input {
+    border: none !important;
+    padding-right: 0 !important;
+}
+
+.tool-bar-pane {
+    width: 30px;
+    height: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input:disabled {
+    background-color: #eeeeee;
+    cursor: not-allowed;
+}
+
+.disabled-color {
+    background: #eceeee !important;
+    cursor: not-allowed;
+}
+
+.disabled-cursor {
+    cursor: not-allowed !important;
+}
+
+.partial-disabled {
+    background-color: #f9f9f9 !important;
+}
+
+.calendar-icon {
+    width: 1.5em;
+    cursor: pointer;
+}
+
+.mat-datepicker {
+    height: 30px;
+}
+
+:host ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline,
+::ng-deep .mat-form-field-label-wrapper {
+    display: none !important;
+}
+
+:host ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-subscript-wrapper {
+    display: none !important;
+}
+
+:host ::ng-deep input.mat-input-element {
+    height: 16px;
+    padding: 6px;
+    width: 97%;
+    margin-top: 0px !important;
+}
+
+:host ::ng-deep .mat-form-field-infix {
+    border-top: none;
+    width: 80px !important;
+}
+
+:host ::ng-deep input[disabled], input[disabled]:hover {
+    border: none !important;
+}
+
+:host ::ng-deep .mat-form-field-flex {
+    width: 101%;
+}

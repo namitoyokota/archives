@@ -1,0 +1,10 @@
+<button [disabled]="isLoading || disabled" (click)="sendInvitationEmail()" class="hxgn-btn-secondary">
+    <div class="pane">
+        <mat-spinner *ngIf="isLoading" [diameter]="20"></mat-spinner>
+
+        <span *ngIf="!isLoading">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.sendInvitation" [ignoreSkeleton]="true">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+    </div>
+</button>

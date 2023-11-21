@@ -1,0 +1,38 @@
+<ng-container *ngIf="(alarms$ | async) as alarms">
+    <hxgn-commonlocalization-translate-v1 *ngIf="isReady" [token]="token" skeletonWidth="50px" [customInterpolation]="true">
+      <ng-template let-token="token">
+  
+        <!-- alarm names -->
+        <ng-container *ngIf="token === 'alarm'">
+          <span *ngFor="let alarm of alarms; index as i">
+            <span class="link" (click)="selectAsync(alarm.id, $event)">{{alarm.title}}</span>
+            <span *ngIf="alarms?.length > 1 && (i+1) !== alarms?.length">,&nbsp;</span>
+          </span>
+        </ng-container>
+  
+        <!-- tenant name -->
+        <span *ngIf="token === 'tenant'">{{tenant?.name}}</span>
+  
+        <!-- extra count -->
+        <span *ngIf="token === 'count'">{{((alarmIds$ | async)?.length - 2)}}</span>
+
+        <!-- device names -->
+        <ng-container *ngIf="token === 'device'">
+            <span *ngFor="let device of devices; index as i">
+                <span class="link" (click)="selectAsync(device.id, $event)">{{device.title}}</span>
+                <span *ngIf="devices?.length > 1 && (i+1) !== devices?.length">,&nbsp;</span>
+            </span>
+        </ng-container>
+
+        <!-- asset Names -->
+        <ng-container *ngIf="token === 'asset'">
+            <span *ngFor="let asset of assets; index as i">
+                <span class="link" (click)="selectAsync(asset.id, $event)">{{asset.title}}</span>
+                <span *ngIf="assets?.length > 1 && (i+1) !== assets?.length">,&nbsp;</span>
+            </span>
+        </ng-container>
+  
+      </ng-template>
+    </hxgn-commonlocalization-translate-v1>
+  </ng-container>
+  

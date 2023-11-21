@@ -1,0 +1,33 @@
+<div class="map-config-page" *ngIf="mapDataLoaded">
+    <div class="admin-comp-selector" *ngIf="adminComps.length > 1">
+        <div class="admin-comp-button" #menuTrigger="matMenuTrigger" 
+            [matMenuTriggerFor]="adminCompList">
+            <hxgn-commonlocalization-translate-v1 [token]="selectedAdminComp.adminCompData.nameToken">
+            </hxgn-commonlocalization-translate-v1>
+            <div class="dropdown-arrow"> </div>
+        </div>
+        <mat-menu #adminCompList="matMenu" style="width:320px" xPosition="after">
+            <ng-template matMenuContent>
+                <div class="admin-comp-list" >
+                    <div class="admin-comp-card" *ngFor="let adminComp of adminComps">
+                        <hxgn-commonmap-admin-comp-card 
+                            [adminComp]="adminComp"
+                            [selected]="selectedAdminComp?.adminCompData.nameToken === adminComp?.adminCompData.nameToken"
+                            (cardClicked)="setAdminComp(adminComp)">
+                        </hxgn-commonmap-admin-comp-card>
+                    </div>
+                </div>
+            </ng-template>
+        </mat-menu>
+    </div>
+
+    <div class="admin-comp" *ngIf="selectedAdminComp?.adminCompData.nameToken === tokens.standardMapComponentName">
+        <hxgn-commonmap-configuration #commonMapAdminComp></hxgn-commonmap-configuration>
+    </div>
+    <div class="admin-comp" id="adminComp" *ngIf="selectedAdminComp?.adminCompData.nameToken !== tokens.standardMapComponentName">
+
+    </div>
+</div>
+<hxgn-commonmap-admin-processing-pane *ngIf="!mapDataLoaded" 
+    [token]="tokens.adminCompLoading">
+</hxgn-commonmap-admin-processing-pane>

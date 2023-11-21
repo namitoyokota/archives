@@ -1,0 +1,44 @@
+.buttons-row {
+    height: 50px;
+    display: grid;
+    grid-auto-flow: column;
+    column-gap: 10px;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.dialog-title {
+    height: 45px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 22px;
+    font-weight: 700;
+
+    img {
+        cursor: pointer;
+    }
+}
+
+.step {
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    column-gap: 15px;
+
+    .step-number {
+        height: 32px;
+        width: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #64c1fb;
+        border-radius: 50%;
+        color: #fff;
+        font-size: 22px;
+        font-weight: 700;
+        line-height: 28px;
+    }
+
+    .step-title {
+        font-size: 21px;
+    }
+}

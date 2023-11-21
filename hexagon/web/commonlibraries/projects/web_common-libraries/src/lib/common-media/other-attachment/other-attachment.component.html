@@ -1,0 +1,14 @@
+<ng-container *ngFor="let media of mediaList; trackBy: trackByFn">
+    <div *ngIf="media.uri" class="item">
+        <img class="icon" src="{{commonMediaSrv.getAttachmentImageSrc(media.contentType)}}" />
+        <div class="name"
+            [class.underline]="media.contentType === 'application/octet-stream' || media.contentType === 'model/gltf-binary'"
+            (click)="openModelViewer(media)">{{media.name}}</div>
+        <a [attr.href]="media.uri" download target="_blank"><img
+                src="assets/common-libraries/images/download-grey.png" /></a>
+    </div>
+    <div *ngIf="!media.uri" class="item loading">
+        <img class="icon" src="{{commonMediaSrv.getAttachmentImageSrc(media.contentType)}}" />
+        <div>{{media.name}}</div>
+    </div>
+</ng-container>

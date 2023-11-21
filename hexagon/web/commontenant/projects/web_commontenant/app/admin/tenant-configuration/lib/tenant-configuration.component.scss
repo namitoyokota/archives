@@ -1,0 +1,59 @@
+:host {
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    margin: 20px;
+    box-sizing: border-box;
+    position: relative;
+    display: grid;
+
+    .hidden {
+        display: none !important;
+    }
+}
+
+.title {
+    font-size: 20px;
+}
+
+.config-pane {
+    display: grid;
+    grid-template-rows: 1fr min-content;
+    box-sizing: border-box;
+    overflow: hidden;
+
+    hxgn-commontenant-tenant-config {
+        border: 1px solid #a0a0a0;
+        overflow-y: auto;
+    }
+
+    .btn-pane {
+        display: grid;
+        grid-template-columns: 1fr min-content;
+        border: 1px solid #a0a0a0;
+        border-top: none;
+        padding: 15px;
+    
+        .btns-right {
+            display: grid;
+            grid-auto-flow: column;
+            column-gap: 10px;
+        }
+    }
+}
+
+.loading-pane {
+    background-color: rgba(255, 255, 255, 0.6);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    position: absolute;
+}
+
+.btns-left {
+    display: grid;
+    grid-template-columns: min-content auto;
+    column-gap: 10px;
+}

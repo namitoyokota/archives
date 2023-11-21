@@ -1,0 +1,16 @@
+<hxgn-shapes-editor *ngIf="!isLoading" [shape]="shape" [isDirty]="false" (shapeUpdated)="shapeUpdated($event)"></hxgn-shapes-editor>
+
+<hxgn-shapes-map-preview [shape]="shape" [tenant]="activeTenant"
+  (shapeUpdated)="shapeUpdated($event)" (mapIsReady)="mapIsReady()">
+</hxgn-shapes-map-preview>
+
+<div class="btn-pane">
+  <button (click)="detectChanges()" mat-dialog-close class="hxgn-btn-secondary">
+    <hxgn-commonlocalization-translate-v1 [token]="tokens.cancel" [ignoreSkeleton]="true">
+    </hxgn-commonlocalization-translate-v1>
+  </button>
+  <button (click)="detectChanges()" [disabled]="!shape.isValid() || !isDirty()" [mat-dialog-close]="shape" class="hxgn-btn-primary">
+    <hxgn-commonlocalization-translate-v1 [token]="tokens.save" [ignoreSkeleton]="true">
+    </hxgn-commonlocalization-translate-v1>
+  </button>
+</div>

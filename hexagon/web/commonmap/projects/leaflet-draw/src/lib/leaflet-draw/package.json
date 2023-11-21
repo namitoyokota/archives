@@ -1,0 +1,30 @@
+{
+    "name": "@galileo/leaflet-draw",
+    "version": "1.1.31",
+    "description": "Custom leaflet-draw functionality and appearance",
+    "main": "leaflet.draw.js",
+    "style": "leaflet.draw.css",
+    "repository": {
+        "type": "git",
+        "url": ""
+    },
+    "keywords": [
+        "maps",
+        "leaflet",
+        "client",
+        "vector",
+        "drawing",
+        "draw"
+    ],
+    "contributors": [
+        {
+            "name": "Jon West",
+            "email": "ddproxy@gmail.com"
+        },
+        {
+            "name": "Jacob Toye"
+        }
+    ],
+    "license": "MIT",
+    "readmeFilename": "README.md"
+}

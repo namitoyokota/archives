@@ -1,0 +1,15 @@
+<!-- Change the opacity of the selected color -->
+<div class="opacity-pane">
+    <mat-slider [value]="opacity" min="0" max="100" (input)="setOpacity($event)" [(ngModel)]="opacity"></mat-slider>
+    <div class="opacity-display">
+        <span>{{opacity | number:'1.0-0' }}%</span>
+    </div>
+</div>
+
+<!-- Well known colors to select from -->
+<div class="color-grid">
+    <div *ngFor="let color of colorOptions" (click)="selectColor(color)" class="color" [class.active]="activeColor === color">
+        <hxgn-common-color-item-v1 [color]="color" [colorType]="colorType"></hxgn-common-color-item-v1>
+    </div>
+</div>
+

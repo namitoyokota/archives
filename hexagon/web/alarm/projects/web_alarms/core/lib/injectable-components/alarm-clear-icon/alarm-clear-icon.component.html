@@ -1,0 +1,11 @@
+<div class="icon" [class.icon-unmanaged]="!selected && hasClearableAlarms"
+    [class.icon-unmanaged-selected]="selected && hasClearableAlarms"
+    [class.icon-managed]="!selected && !hasClearableAlarms"
+    [class.icon-managed-selected]="selected && !hasClearableAlarms" (click)="$event.stopPropagation();"
+    #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="showDeviceInfo ? deviceMenu : alarmsMenu"></div>
+<mat-menu #alarmsMenu="matMenu">
+    <hxgn-alarms-menu [alarmIds]="alarmIds"></hxgn-alarms-menu>
+</mat-menu>
+<mat-menu #deviceMenu="matMenu">
+    <hxgn-alarms-devices-menu [alarmIds]="alarmIds"></hxgn-alarms-devices-menu>
+</mat-menu>

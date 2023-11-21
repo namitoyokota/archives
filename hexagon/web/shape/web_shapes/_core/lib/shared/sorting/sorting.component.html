@@ -1,0 +1,36 @@
+<hxgn-common-expansion-panel panelState="expanded">
+  <hxgn-common-expansion-panel-title>
+      <img src="assets/shapes/images/sort-menu.svg" />
+      <span>
+          <hxgn-commonlocalization-translate-v1 skeletonWidth="75" [token]="tokens.sorting">
+          </hxgn-commonlocalization-translate-v1>
+      </span>
+  </hxgn-common-expansion-panel-title>
+  <hxgn-common-expansion-panel-content>
+      <div class="sort-pane">
+          <hxgn-common-dropdown-v2 [value]="sortBy" (valueChange)="setSortOption($event)">
+
+              <!-- <hxgn-common-dropdown-item-v2 [value]="listSortOptions.timeAsc">
+                  <hxgn-commonlocalization-translate-v1 skeletonWidth="75px" [token]="tokens.timeAsc">
+                  </hxgn-commonlocalization-translate-v1>
+              </hxgn-common-dropdown-item-v2>
+
+              <hxgn-common-dropdown-item-v2 [value]="listSortOptions.timeDesc">
+                  <hxgn-commonlocalization-translate-v1 skeletonWidth="75px" [token]="tokens.timeDesc">
+                  </hxgn-commonlocalization-translate-v1>
+              </hxgn-common-dropdown-item-v2> -->
+
+              <hxgn-common-dropdown-item-v2 [value]="listSortOptions.nameAsc">
+                  <hxgn-commonlocalization-translate-v1 skeletonWidth="75px" [token]="tokens.nameAsc">
+                  </hxgn-commonlocalization-translate-v1>
+              </hxgn-common-dropdown-item-v2>
+
+              <hxgn-common-dropdown-item-v2 [value]="listSortOptions.nameDesc">
+                  <hxgn-commonlocalization-translate-v1 skeletonWidth="75px" [token]="tokens.nameDesc">
+                  </hxgn-commonlocalization-translate-v1>
+              </hxgn-common-dropdown-item-v2>
+
+          </hxgn-common-dropdown-v2>
+      </div>
+  </hxgn-common-expansion-panel-content>
+</hxgn-common-expansion-panel>

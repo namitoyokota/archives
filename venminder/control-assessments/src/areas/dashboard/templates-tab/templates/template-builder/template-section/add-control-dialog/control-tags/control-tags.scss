@@ -1,0 +1,38 @@
+﻿@import "shared-from-dcdev/core-styles/stylesheets/_variables.scss";
+
+control-tags {
+  .tag-list {
+    background-color: #fff;
+    border: 1px solid $N40;
+    border-radius: 3px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: 10px;
+    row-gap: 5px;
+    padding: 10px 13px;
+
+    .tag {
+      height: 25px;
+      display: grid;
+      grid-template-columns: auto min-content;
+      align-items: center;
+      column-gap: 10px;
+      background-color: $N30;
+      border-radius: 5px;
+      padding: 3px 10px;
+
+      .tag-text {
+        white-space: nowrap;
+      }
+
+      .remove-icon {
+        font-weight: 500;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

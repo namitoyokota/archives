@@ -1,0 +1,60 @@
+:host {
+    display:flex;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+hxgn-commontenant-wizard-step-layout-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+    padding: 15px 0;
+    box-sizing: border-box;
+}
+
+
+hxgn-commontenant-wizard-step-layout-description {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 0 15px 0 0;
+
+    hxgn-commontenant-info-popover {
+        position: absolute;
+        bottom: 0;
+        left: calc(50% - 11px);
+    }
+}
+
+.option-pane {
+    background-color: #E7E7E7;
+    border-radius: 6px;;
+    padding: 15px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+
+    mat-checkbox {
+        font-weight: 700;
+        font-size: 16px;
+    }
+
+    .description {
+        font-weight: 500;
+        font-size: 16px;
+        margin-left: 28px;
+        margin-top: 4px;
+    }
+}
+
+.note {
+    color: #A1A1A1;
+    font-size: 14px;
+    font-weight:  500;
+    margin: 10px 10px 20px;
+    display: block;
+}

@@ -1,0 +1,140 @@
+<ng-container *ngIf="shape else no_shape">
+
+  <div class="title-pane">
+    <div class="title">
+      <hxgn-commonlocalization-translate-v1 skeletonWidth="160px" [token]="tokens.smartShapeDetails">
+      </hxgn-commonlocalization-translate-v1>
+    </div>
+
+    <div class="action-pane">
+      <div>
+        <span class="properties">
+          <hxgn-commonlocalization-translate-v1 skeletonWidth="80px" [token]="tokens.properties">
+          </hxgn-commonlocalization-translate-v1>
+        </span>
+      </div>
+
+      <button *ngIf="isDirty" class="hxgn-btn-secondary" (click)="reset()">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.discardChanges">
+        </hxgn-commonlocalization-translate-v1>
+      </button>
+    </div>
+
+  </div>
+
+  <div class="editor-pane">
+
+    <!-- Name -->
+    <div class="item">
+      <span class="field-name">
+        <span class="required">*</span>
+        <hxgn-commonlocalization-translate-v1 skeletonWidth="32px" [token]="tokens.name">
+        </hxgn-commonlocalization-translate-v1>
+      </span>
+
+      <hxgn-common-input-v2 [disabled]="readOnly" [isValid]="validate(shape.name)">
+        <input [(ngModel)]="shape.name" (input)="shapeChanged()" maxlength="50" type="text" />
+      </hxgn-common-input-v2>
+    </div>
+
+    <!-- Type -->
+    <div class="item">
+      <span class="field-name">
+        <span class="required">*</span>
+        <hxgn-commonlocalization-translate-v1 skeletonWidth="25px" [token]="tokens.type">
+        </hxgn-commonlocalization-translate-v1>
+      </span>
+
+      <hxgn-common-input-v2 [disabled]="readOnly" [isValid]="validate(shape.filteringType)">
+        <input [(ngModel)]="shape.filteringType" (input)="shapeChanged()" maxlength="50" type="text" />
+      </hxgn-common-input-v2>
+    </div>
+
+    <!-- Primary Contact -->
+    <div class="item">
+      <span class="field-name">
+        <span class="required">*</span>
+        <hxgn-commonlocalization-translate-v1 skeletonWidth="25px" [token]="tokens.primaryContact">
+        </hxgn-commonlocalization-translate-v1>
+      </span>
+
+      <hxgn-commonidentity-user-select-dropdown-v1 [class.disabled]="readOnly" [defaultUser]="primaryContactUser"
+        (selectedUser)="setPrimaryContact($event)">
+      </hxgn-commonidentity-user-select-dropdown-v1>
+    </div>
+
+    <hxgn-common-expansion-panel panelState="expanded">
+      <hxgn-common-expansion-panel-header>
+        <span>
+          <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]="tokens.additionalDetails">
+          </hxgn-commonlocalization-translate-v1>
+        </span>
+      </hxgn-common-expansion-panel-header>
+      <hxgn-common-expansion-panel-content>
+        <!-- Description -->
+        <div class="item">
+          <span class="field-name">
+            <hxgn-commonlocalization-translate-v1 skeletonWidth="60px" [token]="tokens.description">
+            </hxgn-commonlocalization-translate-v1>
+          </span>
+          <textarea class="description" [disabled]="readOnly" [(ngModel)]="shape.description" maxlength="1000"
+            (input)="shapeChanged()"></textarea>
+        </div>
+
+        <!-- Keywords -->
+        <div class="item">
+          <span class="field-name">
+            <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]="tokens.keywords">
+            </hxgn-commonlocalization-translate-v1>
+          </span>
+
+          <tag-input theme="minimal" [class.disabled]="readOnly" [(ngModel)]="shape.keywords" [addOnBlur]="true"
+            [modelAsStrings]="true" [separatorKeyCodes]="keycodes" (onAdd)="addKeywords($event.value)"
+            (onRemove)="removeKeyword($event)" [placeholder]="tTokens.enterKeywords"
+            [secondaryPlaceholder]="tTokens.enterKeywords">
+          </tag-input>
+        </div>
+
+        <!-- Links -->
+        <div class="item" *featureFlag="FeatureFlags.hyperlinks">
+          <span class="field-name">
+            <hxgn-commonlocalization-translate-v1 skeletonWidth="60px" [token]="tokens.links">
+            </hxgn-commonlocalization-translate-v1>
+          </span>
+
+          <hxgn-common-create-hyperlinks [hyperlinks]="shape.hyperlinks" [disabled]="readOnly"
+            (listChanged)="hyperLinksChanged($event)">
+          </hxgn-common-create-hyperlinks>
+
+        </div>
+
+      </hxgn-common-expansion-panel-content>
+    </hxgn-common-expansion-panel>
+
+    <!-- Graphical settings -->
+
+    <span class="sub-title">
+      <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]="tokens.shapeStyling">
+      </hxgn-commonlocalization-translate-v1>
+    </span>
+
+    <hxgn-shapes-graphics-editor [graphics]="shape?.graphicsSettings" [readOnly]="readOnly" (graphicsUpdated)="graphicsChanged($event)">
+    </hxgn-shapes-graphics-editor>
+  </div>
+
+</ng-container>
+
+<!-- UI for when no shape is active -->
+<ng-template #no_shape>
+  <div class="no-selection">
+    <img src="assets/shapes/images/no-items-are-selected.png" />
+    <span class="title">
+      <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]="tokens.noItemsSelected">
+      </hxgn-commonlocalization-translate-v1>
+    </span>
+    <span class="sub-title">
+      <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]="tokens.noItemsSelectedMsg">
+      </hxgn-commonlocalization-translate-v1>
+    </span>
+  </div>
+</ng-template>

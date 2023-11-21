@@ -1,0 +1,49 @@
+$common-border: 1px solid #a0a0a0;
+
+:host {
+    position: relative;
+    width: 90px;
+    height: 95px;
+    display: grid;
+    grid-template-rows: auto min-content;
+    border: $common-border;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.delete-btn {
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    width: 20px;
+    height: 20px;
+    background-image: url("assets/commonkeywords-core/images/x-regular.svg");
+}
+
+.icon-pane {
+    padding: 4px;
+    box-sizing: border-box;
+
+    .icon-background {
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        box-sizing: border-box;
+    }
+}
+
+.title-pane {
+    padding: 5px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #666;
+    font-size: 13px;
+    text-align: center;
+    text-transform: capitalize;
+    overflow: hidden;
+}

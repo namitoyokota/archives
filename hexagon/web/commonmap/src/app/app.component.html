@@ -1,0 +1,93 @@
+<!-- <div id="admin-portal"></div> -->
+
+<div class="test-bed">
+    <hxgn-common-tabs theme="light">
+        <mat-tab-group [(selectedIndex)]="selectedTabIndex" (selectedIndexChange)="tabChanged()" disableRipple="true">
+            <mat-tab label="Main"> </mat-tab>
+            <mat-tab label="Admin"></mat-tab>
+            <mat-tab label="Linked Views"></mat-tab>
+            <mat-tab label="Waze"></mat-tab>
+            <mat-tab label="Location Picker"></mat-tab>
+        </mat-tab-group>
+    </hxgn-common-tabs>
+    <div class="component-area">
+        <div class="main-content" *ngIf="selectedTabIndex === 0">
+            <div class="controls" [class.disabled]="!dataReady">
+                <div class="vector-style-controls">
+                    <div class="item">
+                        <span class="field-name">Line Type</span>
+                        <hxgn-common-line-type-v1 [activeLineType]="graphics?.lineType"
+                            (lineTypeChange)="setLineType($event)">
+                        </hxgn-common-line-type-v1>
+                    </div>
+
+                    <!-- Line weight selection -->
+                    <div class="item">
+                        <span class="field-name">Line Weight </span>
+                        <hxgn-common-line-weight-v1 [activeLineWeight]="graphics?.lineWeight"
+                            (lineWeightChange)="setLineWeight($event)">
+                        </hxgn-common-line-weight-v1>
+                    </div>
+
+                    <!-- Line Color -->
+                    <div class="item">
+                        <span class="field-name">Line Color</span>
+                        <hxgn-common-color-selector-v1 [activeColor]="graphics?.lineColor"
+                            (colorChange)="setLineColor($event)" [colorType]="colorType.line">
+                        </hxgn-common-color-selector-v1>
+                    </div>
+
+                    <!-- Fill Color -->
+                    <div class="item">
+                        <span class="field-name">Fill Color</span>
+                        <hxgn-common-color-selector-v1 [activeColor]="graphics?.fillColor"
+                            (colorChange)="setFillColor($event)" [colorType]="colorType.fill">
+                        </hxgn-common-color-selector-v1>
+                    </div>
+                </div>
+                <div class="cmd-buttons">
+                    <div class="cmd-button" [class.disabled]="geomsAdded" (click)="addGeom()">Add Geometry</div>
+                    <div class="cmd-button" [class.disabled]="!geomsAdded" (click)="removeGeom()">Remove Geometry</div>
+                    <div class="cmd-button" [class.disabled]="geomsAdded" (click)="addGeoms()">Add All Geometry</div>
+                    <div class="cmd-button" [class.disabled]="!geomsAdded" (click)="removeGeoms()">Remove All Geometries
+                    </div>
+                </div>
+            </div>
+            <div class="mapview">
+                <hxgn-commonmap-mapview-wrapper *ngIf="showMap" [settings]="mapViewSettings1">
+                </hxgn-commonmap-mapview-wrapper>
+            </div>
+            <div class="mapview-settings">
+                <hxgn-commonmap-mapview-settings-wrapper [settings]="mapViewSettings1" (changed)="settingsUpdated()">
+                </hxgn-commonmap-mapview-settings-wrapper>
+            </div>
+        </div>
+        <div class="admin-content" *ngIf="selectedTabIndex === 1">
+            <hxgn-commonmap-map-configuration-wrapper [selectedTabIndex]="selectedTabIndex">
+            </hxgn-commonmap-map-configuration-wrapper>
+        </div>
+        <div class="linked-views" *ngIf="selectedTabIndex === 2">
+            <div>
+                <hxgn-list-wrapper [listType]="'Shapes'"></hxgn-list-wrapper>
+            </div>
+            <div style="border-right: #666666 solid 1px">
+                <hxgn-commonmap-mapview-wrapper *ngIf="showMap" [settings]="mapViewSettings1">
+                </hxgn-commonmap-mapview-wrapper>
+            </div>
+            <div>
+                <hxgn-commonmap-mapview-wrapper *ngIf="showMap" [settings]="mapViewSettings2">
+                </hxgn-commonmap-mapview-wrapper>
+            </div>
+        </div>
+        <div *ngIf="selectedTabIndex === 4" style="width: 500px; height: 300px; margin: 30px;">
+            <!-- <hxgn-commonmap-location-select-v1 [location]="location" (locationChanged)="updateLocation($event)" (loadingChanged)="echo($event)">
+            </hxgn-commonmap-location-select-v1> -->
+            <hxgn-commonmap-pin-marker-v1></hxgn-commonmap-pin-marker-v1>
+        </div>
+    </div>
+</div>
+
+<!-- <div style="height: 100vh; width: 100vw;">
+    <hxgn-commonmap-mapview-wrapper [settings]="mapViewSettings">
+    </hxgn-commonmap-mapview-wrapper>
+</div> -->

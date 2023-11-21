@@ -1,0 +1,44 @@
+.list-item {
+    width: 100%;
+    min-height: 36px;
+    grid-template-columns: 40px auto;
+    align-items: center;
+    display: grid;
+    text-align: left;
+    cursor: pointer;
+    padding-right: 6px;
+    box-sizing: border-box;
+}
+
+.text {
+    font-weight: bold;
+    font-size: 15px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #666666;
+}
+
+.check {
+    width: 22px;
+    justify-self: center;
+}
+
+.dot {
+    background-color: #335CA5;
+    width: 8px;
+    height: 8px;
+    border-radius: 50px;
+    justify-self: center;
+}
+
+.column-2 {
+    grid-column: 2;
+}
+
+.selected {
+    background: #D7D7D7 0% 0% no-repeat padding-box;
+    border-radius: 4px;
+}
+
+.disabled {
+    cursor: not-allowed;
+}

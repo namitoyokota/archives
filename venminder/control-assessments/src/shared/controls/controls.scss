@@ -1,0 +1,54 @@
+﻿@import "shared-from-dcdev/core-styles/stylesheets/_variables.scss";
+
+.shared-control-container {
+  border: thin solid lightGray;
+  border-top: none;
+  background-color: white;
+
+  &.show-bar {
+    display: grid;
+    grid-template-rows: min-content auto;
+    border-top: thin solid lightGray;
+  }
+
+  .gray-bar {
+    min-height: 40px;
+    padding: 10px 20px;
+    border-bottom: thin solid lightGray;
+    background-color: #eaebed;
+  }
+
+  .control-pane {
+    display: grid;
+    grid-template-columns: auto min-content;
+
+    .control {
+      .name {
+        font-weight: 800;
+      }
+    }
+
+    .expand-pane {
+      display: flex;
+      justify-content: center;
+      border-left: thin solid lightGray;
+      vertical-align: top;
+
+      .expand-button {
+        width: 41px;
+        border: none;
+        padding: 15px;
+        background-color: #fafbfc;
+
+        &:hover {
+          cursor: pointer;
+          background-color: $N30;
+        }
+      }
+    }
+  }
+
+  .danger {
+    color: $brand-danger;
+  }
+}

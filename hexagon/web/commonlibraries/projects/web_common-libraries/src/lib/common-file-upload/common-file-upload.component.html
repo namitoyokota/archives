@@ -1,0 +1,42 @@
+<form [formGroup]="form">
+    <div class="form-group" [class.display-file]="displayFile">
+
+        <!-- File input -->
+        <input type="file" [multiple]="uploadMultiple" [attr.accept]="acceptedExtensions" (change)="onFileChange($event)" #fileInput>
+
+        <!-- Display uploaded file -->
+        <div *ngIf="displayFile" class="file-name-pane">
+            <ng-container *ngIf="filename">
+                <div class="file-name">{{filename}}</div>
+                <img (click)="clear($event)" src="assets/common-libraries/images/x_dialog.png">
+            </ng-container>
+            <ng-container *ngIf="!filename">
+                <div class="no-files-msg">
+                    <hxgn-commonlocalization-translate-v1 skeletonWidth="30px" [token]="tokens.noFileAttached">
+                    </hxgn-commonlocalization-translate-v1>
+                </div>
+            </ng-container>
+        </div>
+
+        <!-- Drag and drop pane -->
+        <div *ngIf="dragAndDrop" class="drop-pane" [class.highlight]= "dragOver"
+            (dragenter)="dragOver = true" (dragover)="dragOver = true" (dragleave)="dragOver = false" (drop)="dropFile($event)" >
+            <div class="content">
+                <img *ngIf="displayIcon" class="drop-icon" src="assets/common-libraries/images/drag-drop-indicator.svg" />
+                <span>{{dragAndDropText}}</span>
+                <ng-container *ngIf="displayButton">
+                    <span>
+                        <hxgn-commonlocalization-translate-v1 skeletonWidth="30px" [token]="tokens.or">
+                        </hxgn-commonlocalization-translate-v1>
+                    </span>
+                    <button class="hxgn-btn-primary" (click)="fileInput.click()">{{btnText}}</button>
+                </ng-container>
+            </div>
+        </div>
+
+        <!-- Error message -->
+        <div *ngIf="errorMsg" class="error-pane">
+            {{errorMsg}}
+        </div>
+    </div>  
+</form>

@@ -1,0 +1,19 @@
+﻿@import '../../../core-styles/stylesheets/_variables.scss';
+
+body {
+    .footergray {
+        background-color: #696969 !important;
+    }
+
+    ul.footer-links li a:hover {
+        color: $brand-primary;
+    }
+
+    ul.footer-links li:hover {
+        color: $brand-primary;
+    }
+
+    ul.footer-links li {
+        color: #cccccc;
+    }
+}

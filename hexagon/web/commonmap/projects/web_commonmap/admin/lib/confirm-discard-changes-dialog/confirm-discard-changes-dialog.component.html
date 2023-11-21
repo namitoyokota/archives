@@ -1,0 +1,37 @@
+<h1 mat-dialog-title>
+    <hxgn-commonlocalization-translate-v1 [token]="tokens.youHaveUnsavedChanges">
+    </hxgn-commonlocalization-translate-v1>
+</h1>
+<div mat-dialog-content>
+    <p *ngIf="type==='layer'">
+        <hxgn-commonlocalization-translate-v1 *ngIf="!isSaveDisabled()" [token]="tokens.thereAreUnsavedChangesToYourLayer">
+        </hxgn-commonlocalization-translate-v1>
+        <hxgn-commonlocalization-translate-v1 *ngIf="isSaveDisabled()" [token]="tokens.unsavedChangesInInvalidLayer">
+        </hxgn-commonlocalization-translate-v1>
+    </p>
+    <p *ngIf="type==='preset'">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.thereAreUnsavedChangesToYourPreset">
+        </hxgn-commonlocalization-translate-v1>
+    </p>
+    <hxgn-commonlocalization-translate-v1 *ngIf="!isSaveDisabled()" [token]="tokens.doYouWantToSave">
+    </hxgn-commonlocalization-translate-v1>
+    <hxgn-commonlocalization-translate-v1 *ngIf="isSaveDisabled()" [token]="tokens.doYouWantToDiscard">
+    </hxgn-commonlocalization-translate-v1>
+</div>
+<div mat-dialog-actions>
+    <button (click)="cancel()" class="hxgn-btn-secondary" style="margin-right: 10px">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.cancelBtnLabel">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+    <button (click)="discard()" class="hxgn-btn-secondary" style="margin-right: 10px">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.discardButtonLabel">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+    <button [disabled]="isSaveDisabled()" (click)="save()" class="hxgn-btn-primary">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.saveButtonLabel">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+</div>
+<hxgn-commonmap-admin-processing-pane *ngIf="isProcessing" 
+    [token]="processingToken">
+</hxgn-commonmap-admin-processing-pane>

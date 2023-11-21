@@ -1,0 +1,34 @@
+hxgn-common-expansion-panel ::ng-deep .header {
+    background-color: #fff !important;
+    border:none !important;
+    font-size: 13px;
+}
+
+hxgn-common-expansion-panel-header {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+}
+
+hxgn-common-expansion-panel-content {
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+hxgn-common-expansion-panel-content ::ng-deep hxgn-common-chip {
+    margin-bottom: 8px;
+    max-width: 244px;
+}
+
+.btn--edit {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+hxgn-common-expansion-panel-content ::ng-deep hxgn-common-chip ::ng-deep .content {
+    flex-wrap: wrap;
+    padding: 5px 0;
+    box-sizing: border-box;
+    line-height: 1.5;
+}

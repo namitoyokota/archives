@@ -1,0 +1,70 @@
+<ng-container *ngIf="data?.length; else empty">
+    <table mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.name" skeletonWidth="35px">
+                </hxgn-commonlocalization-translate-v1>
+            </th>
+            <td mat-cell *matCellDef="let actionItem">
+                <div class="name-container">
+                    <div class="image-container">
+                        <img src="{{actionItem.iconURL}}" class="image" />
+                    </div>
+                    <div class="text-container">
+                        <span class="name">
+                            <hxgn-commonlocalization-translate-v1 [token]="tokens[actionItem.name]" skeletonWidth="50px">
+                            </hxgn-commonlocalization-translate-v1>
+                        </span><br />
+                        <span class="link" (click)="goToAction(actionItem)">{{actionItem.linkText}}</span>
+                    </div>
+                </div>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="expiration">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.expirationDate" skeletonWidth="90px">
+                </hxgn-commonlocalization-translate-v1>
+            </th>
+            <td mat-cell *matCellDef="let actionItem">
+                <div class="expiration-container">
+                    <img src="assets/expiration-icon.svg" height="16" width="16" />
+                    <span class="expiration">{{actionItem.expiration | expiration | async}}</span>
+                </div>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="priority">
+            <th mat-header-cell *matHeaderCellDef>
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.priority" skeletonWidth="40px">
+                </hxgn-commonlocalization-translate-v1>
+            </th>
+            <td mat-cell *matCellDef="let actionItem">
+                <div class="priority priority-{{actionItem.priority}}">
+                    <span>
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens[actionItem.priority]" skeletonWidth="40px">
+                        </hxgn-commonlocalization-translate-v1>
+                    </span>
+                </div>
+            </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</ng-container>
+<ng-template #empty>
+    <div class="empty-grid">
+        <div class="empty-image-container">
+            <img src="assets/action-items.svg" class="empty-image" height="194" width="340" />
+        </div>
+        <div class="empty-text-container">
+            <div class="empty-text-header">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.actionItems" skeletonWidth="170px">
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+            <div class="empty-text-subheader">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.newActionItems" skeletonWidth="395px">
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+        </div>
+    </div>
+</ng-template>

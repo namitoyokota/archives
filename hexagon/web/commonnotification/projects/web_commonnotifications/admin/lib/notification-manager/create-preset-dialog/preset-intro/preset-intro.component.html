@@ -1,0 +1,17 @@
+<img src="assets/commonnotifications-core/images/create-preset-intro.svg" height="220" width="394" />
+<div class="checkbox-container">
+    <mat-checkbox [(ngModel)]="dontShowPresetIntro" [checked]="dontShowPresetIntro">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.dontShowAgain" skeletonWidth="150px">
+        </hxgn-commonlocalization-translate-v1>
+    </mat-checkbox>
+</div>
+<div class="buttons-row">
+    <button class="hxgn-btn-secondary" (click)="cancel.emit()">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.cancel" [ignoreSkeleton]="true">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+    <button class="hxgn-btn-primary" (click)="goToNext()">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.next" [ignoreSkeleton]="true">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+</div>

@@ -1,0 +1,22 @@
+:host {
+    position: relative;
+    display: flex;
+}
+
+.content-pane {
+    display: flex;
+    flex-direction: column;
+    max-width: 882px;
+    max-height: 527px;
+    width: calc(100vw - 150px);
+    height: calc(100vh - 150px);
+}
+
+.button-pane {
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+        margin-left: 10px;
+    }
+}

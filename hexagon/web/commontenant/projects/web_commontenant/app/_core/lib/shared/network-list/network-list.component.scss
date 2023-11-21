@@ -1,0 +1,53 @@
+.network-container {
+    height: 100%;
+    width: 100%;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+
+    .checkbox-container {
+        height: 100%;
+        width: 100%;
+        overflow: auto;
+        border: 1px solid #a8a8a8;
+        box-sizing: border-box;
+        
+        .networks {
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+        }
+
+        .no-networks {
+            height: 100%;
+            display: grid;
+            align-content: center;
+            justify-content: center;
+        }
+    }
+
+    .add-bar {
+        display: grid;
+        grid-template-columns: 1fr 130px;
+        grid-gap: 10px;
+        margin-top: 15px;
+
+        &.valid {
+            margin-top: 7px;
+        }
+    }
+}
+
+.warning {
+    color: #f29e25;
+    padding-top: 6px;
+}
+
+.loading-pane {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}

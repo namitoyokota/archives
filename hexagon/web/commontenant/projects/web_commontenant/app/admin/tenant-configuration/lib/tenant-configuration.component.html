@@ -1,0 +1,35 @@
+<div class="loading-pane" *ngIf="isLoading">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div class="config-pane" *ngIf="initComplete">
+    <hxgn-commontenant-tenant-config *ngIf="(tenant$ | async) as tenant" [tenant]="tenant"
+        [industryGroups]="industryGroups$ | async" [displayTabs]="[tab.organizationInfo, tab.featureFlags, tab.recoveryManager, tab.viewChangelog]"
+        (tenantUpdated)="updateTenant($event)" (flagChange)="flagsChange($event)"
+        (openChangelogDialog)="openChangelogDialog()" [disableChangelog]="disableChangelog"
+        (iconChange)="setNewIcon($event)" (tabChange)="tabChange($event)" (saveChange)="saveChanges($event)" >
+    </hxgn-commontenant-tenant-config>
+
+    <div class="btn-pane" *ngIf="selectedTab !== tab.recoveryManager">
+        <div class="btns-left">
+            <button class="hxgn-btn-secondary" (click)="openActivityNotificationsDialog()">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.manageActivityEmails" [ignoreSkeleton]="true">
+                </hxgn-commonlocalization-translate-v1>
+            </button>
+            
+            <!-- Enable/Disable user inactivity check -->
+            <hxgn-commonidentity-away-mode-settings-v1 *featureFlag="ffAwayMode" [tenantId]="(tenant$ | async)?.id">
+            </hxgn-commonidentity-away-mode-settings-v1>
+        </div>
+        <div class="btns-right">
+            <button class="hxgn-btn-secondary" (click)="discardChanges()" [disabled]="!unsavedChanges">
+                <hxgn-commonlocalization-translate-v1 [token]='tokens.discardChanges' [ignoreSkeleton]="true">
+                </hxgn-commonlocalization-translate-v1>
+            </button>
+            <button class="hxgn-btn-primary" (click)="saveChangesAsync()" [disabled]="isDisabled">
+                <hxgn-commonlocalization-translate-v1 [token]='tokens.save' [ignoreSkeleton]="true">
+                </hxgn-commonlocalization-translate-v1>
+            </button>
+        </div>
+    </div>
+</div>

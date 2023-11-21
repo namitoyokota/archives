@@ -1,0 +1,6 @@
+﻿<template>
+    <vm-button if.bind="canPerformAction" tertiary click.call="handleAction()">
+        ${linkText}
+    </vm-button>
+    <span else aubs-tooltip="text.bind: tooltip; position.bind: 'bottom'; disabled.bind: !tooltip;">${linkText}</span>
+</template>

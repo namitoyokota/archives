@@ -1,0 +1,135 @@
+<div class="layer-properties">
+    <div class="layer-property" *ngIf="showConnectionProps && showLayerOptions">
+        <div class="label">
+            <hxgn-commonlocalization-translate-v1 
+                [token]="tokens.layerNameLabel"
+                skeletonWidth="100px">
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+        <hxgn-common-input-v2 [isValid]="!nameErrorMsg ? null : false"
+            style="width:100%">
+            <input type="text" autofocus (input)="nameChanged($event)"
+                placeholder="{{ transStrings[namePlaceholderToken] }}"
+                [value]="mapLayer.name"
+                (change)="setName($event)"/>
+        </hxgn-common-input-v2>
+        <span class="error-msg" *ngIf="nameErrorMsg">
+            <hxgn-commonlocalization-translate-v1 
+                [token]="nameErrorMsg"
+                [skeletonWidth]="'60px'">
+            </hxgn-commonlocalization-translate-v1>     
+        </span>
+    </div>
+
+    <div class="layer-property" *ngIf="showConnectionProps">
+        <div class="label">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.layerFormatLabel" skeletonWidth="60px">
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+        <hxgn-common-dropdown-v2 *ngIf="isNew" #layerFormat [value]="layerFormats[mapLayer.format]"
+            (selectionChange)="setLayerFormat($event)">
+            <hxgn-common-dropdown-item-v2 *ngFor="let key of layerFormatKeys; let i = index"
+                [value]="layerFormats[key]">
+                    {{transStrings[layerFormats[key].nameToken]}}
+            </hxgn-common-dropdown-item-v2>
+        </hxgn-common-dropdown-v2>
+        <input *ngIf="!isNew" [disabled]="true" type="text"
+            onkeydown="return false" value="{{ transStrings[layerFormats[mapLayer.format].nameToken] }}" />
+    </div>
+    <div *ngIf="mapLayer.format === LayerFormat.WMS" class="layer-options">
+        <hxgn-commonmap-admin-layer-properties-wms #layerPropsComp
+            [mapLayer]="mapLayer"
+            [isNew]="isNew"
+            [showConnectionProps]="showConnectionProps"
+            [showLayerOptions]="showLayerOptions"
+            (propertyChanged)="layerPropertyChanged($event)"
+            (connectionPropsValid)="setConnectionPropsValid($event)"
+            (isValid)="setIsValid($event)"
+            (layerLoaded)="fireLayerLoaded($event)">
+        </hxgn-commonmap-admin-layer-properties-wms>
+    </div>
+    <div *ngIf="mapLayer.format === LayerFormat.WFS" class="layer-options">
+        <hxgn-commonmap-admin-layer-properties-wfs #layerPropsComp
+            [mapLayer]="mapLayer"
+            [isNew]="isNew"
+            [showConnectionProps]="showConnectionProps"
+            [showLayerOptions]="showLayerOptions"
+            (propertyChanged)="layerPropertyChanged($event)"
+            (connectionPropsValid)="setConnectionPropsValid($event)"
+            (isValid)="setIsValid($event)"
+            (layerLoaded)="fireLayerLoaded($event)">
+        </hxgn-commonmap-admin-layer-properties-wfs>
+    </div>
+    <div *ngIf="mapLayer.format === LayerFormat.WMTS" class="layer-options">
+        <hxgn-commonmap-admin-layer-properties-wmts #layerPropsComp
+            [mapLayer]="mapLayer"
+            [isNew]="isNew"
+            [showConnectionProps]="showConnectionProps"
+            [showLayerOptions]="showLayerOptions"
+            (propertyChanged)="layerPropertyChanged($event)"
+            (connectionPropsValid)="setConnectionPropsValid($event)"
+            (isValid)="setIsValid($event)"
+            (layerLoaded)="fireLayerLoaded($event)">
+        </hxgn-commonmap-admin-layer-properties-wmts>
+    </div>
+    <div *ngIf="mapLayer.format === LayerFormat.Tile" class="layer-options">
+        <hxgn-commonmap-admin-layer-properties-tile #layerPropsComp 
+            [mapLayer]="mapLayer"
+            [isNew]="isNew"
+            [showConnectionProps]="showConnectionProps"
+            [showLayerOptions]="showLayerOptions"
+            (propertyChanged)="layerPropertyChanged($event)"
+            (connectionPropsValid)="setConnectionPropsValid($event)"
+            (isValid)="setIsValid($event)"
+            (layerLoaded)="fireLayerLoaded($event)">
+        </hxgn-commonmap-admin-layer-properties-tile>
+    </div>
+    <div *ngIf="mapLayer.format === LayerFormat.GeoJSON" class="layer-options">
+        <hxgn-commonmap-admin-layer-properties-geojson #layerPropsComp
+            [mapLayer]="mapLayer"
+            [isNew]="isNew"
+            [showConnectionProps]="showConnectionProps"
+            [showLayerOptions]="showLayerOptions"
+            (propertyChanged)="layerPropertyChanged($event)"
+            (connectionPropsValid)="setConnectionPropsValid($event)"
+            (isValid)="setIsValid($event)"
+            (layerLoaded)="fireLayerLoaded($event)">
+        </hxgn-commonmap-admin-layer-properties-geojson>
+    </div>
+    <div *ngIf="mapLayer.format === LayerFormat.HxCPWMS" class="layer-options">
+        <hxgn-commonmap-admin-layer-properties-hxcpwms #layerPropsComp
+            [mapLayer]="mapLayer"
+            [isNew]="isNew"
+            [showConnectionProps]="showConnectionProps"
+            [showLayerOptions]="showLayerOptions"
+            (propertyChanged)="layerPropertyChanged($event)"
+            (connectionPropsValid)="setConnectionPropsValid($event)"
+            (isValid)="setIsValid($event)"
+            (layerLoaded)="fireLayerLoaded($event)">
+        </hxgn-commonmap-admin-layer-properties-hxcpwms>
+    </div>
+    <div *ngIf="mapLayer.format === LayerFormat.HxCPWMTS" class="layer-options">
+        <hxgn-commonmap-admin-layer-properties-hxcpwmts #layerPropsComp
+            [mapLayer]="mapLayer"
+            [isNew]="isNew"
+            [showConnectionProps]="showConnectionProps"
+            [showLayerOptions]="showLayerOptions"
+            (propertyChanged)="layerPropertyChanged($event)"
+            (connectionPropsValid)="setConnectionPropsValid($event)"
+            (isValid)="setIsValid($event)"
+            (layerLoaded)="fireLayerLoaded($event)">
+        </hxgn-commonmap-admin-layer-properties-hxcpwmts>
+    </div>
+    <div *ngIf="mapLayer.format === LayerFormat.HxDRWMS" class="layer-options">
+        <hxgn-commonmap-admin-layer-properties-hxdrwms #layerPropsComp
+            [mapLayer]="mapLayer"
+            [isNew]="isNew"
+            [showConnectionProps]="showConnectionProps"
+            [showLayerOptions]="showLayerOptions"
+            (propertyChanged)="layerPropertyChanged($event)"
+            (connectionPropsValid)="setConnectionPropsValid($event)"
+            (isValid)="setIsValid($event)"
+            (layerLoaded)="fireLayerLoaded($event)">
+        </hxgn-commonmap-admin-layer-properties-hxdrwms>
+    </div>
+</div>

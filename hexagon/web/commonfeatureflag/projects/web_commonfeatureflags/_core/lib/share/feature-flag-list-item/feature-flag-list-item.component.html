@@ -1,0 +1,63 @@
+<ng-container *ngIf="provisionerMode; else lockedIcon">
+    <ng-container *ngIf="isUnlocked && isLockable; else other">
+        <div class="unlock-button" (click)="changeToLocked()">
+            <img class="icon" src="assets/commonfeatureflags-core/global-feature-flags-unlocked-button.svg" />
+        </div>
+    </ng-container>
+    <ng-template #other>
+        <ng-container *ngIf="isUnlocked && !isLockable">
+            <div class="hardlock-button" [title]="scope === Scope.manifest ? tTokens.softwareUpdateTooltip : tTokens.scopeToolTip + scope + tTokens.scopeToolTipLevel">
+                <img class="icon" src="assets/commonfeatureflags-core/global-feature-flags-unlocked-button.svg" />
+            </div>
+        </ng-container>
+        <ng-container *ngIf="!isUnlocked && isLockable">
+            <div class="lock-button" (click)="changeToUnlocked()">
+                <img class="icon" src="assets/commonfeatureflags-core/global-feature-flags-locked-button.svg" />
+            </div>
+        </ng-container>
+        <ng-container *ngIf="!isUnlocked && !isLockable">
+            <div class="hardlock-button" [title]="scope === Scope.manifest ? tTokens.softwareUpdateTooltip : tTokens.scopeToolTip + scope + tTokens.scopeToolTipLevel">
+                <img class="icon" src="assets/commonfeatureflags-core/global-feature-flags-locked-button.svg" />
+            </div>
+        </ng-container>
+    </ng-template>
+</ng-container>
+<ng-template #lockedIcon>
+    <div class="locked-pane">
+        <ng-container *ngIf="!isUnlocked">
+            <img src="assets/commonfeatureflags-core/feature-flag-locked-icon.svg" class="icon" />
+        </ng-container>
+    </div>
+</ng-template>
+
+<div class="content" [class.strike]="isDisabled"
+    [attr.title]="!isEditable ? (scope === Scope.manifest ? tTokens.softwareUpdateTooltip : tTokens.scopeToolTip + scope + tTokens.scopeToolTipLevel) : null"
+>
+    <mat-slide-toggle (change)="changeEnabled($event)" [checked]="isActive"
+        [disabled]="(!isUnlocked && !provisionerMode) || (provisionerMode && !isEditable)"></mat-slide-toggle>
+    <div class="title-pane" [class.hide-text]="provisionerMode && !isEditable">
+        <div class="flag-title">
+            <span>
+                <hxgn-commonlocalization-translate-v1 [token]="featureFlag.friendlyName" skeletonWidth="200px">
+                </hxgn-commonlocalization-translate-v1>
+            </span>
+            <ng-container *ngIf="isTouched"> * </ng-container>
+        </div>
+        <div class="date">
+            {{featureFlag.lastModifiedTime | date}}
+        </div>
+    </div>
+    
+    <span class="description-pane">
+        <div class="flag-description" [class.hide-text]="provisionerMode && !isEditable">
+            <hxgn-commonlocalization-translate-v1 [token]="featureFlag.descriptionToken" skeletonWidth="35px">
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+        <div>
+            <ng-container *ngIf="isOverride && !isDisabled">
+                <img src="assets/commonfeatureflags-core/remove-override.png" class="remove-icon" (click)="disableOverride()"
+                    [title]="tTokens.overrideToolTip" />
+            </ng-container>
+        </div>
+    </span>
+</div>

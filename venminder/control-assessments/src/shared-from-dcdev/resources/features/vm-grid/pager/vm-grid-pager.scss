@@ -1,0 +1,81 @@
+﻿$border-color: #C1C7D0;
+$button-hover-color: #EFF2F7;
+$button-active-color: #EFF2F7;
+$button-icon-color: #737F92;
+$button-hover-icon-color: #172B4A;
+$button-disabled-bg: #FAFBFC;
+$white-bg: #FFF;
+
+.vm-grid-pager-container {
+    display: flex;
+    
+    .pager-button-container {
+        display: flex;
+        align-items: center;
+        margin-right: 10px;
+    }
+    .pager-button {
+        border: 1px solid $border-color;
+        border-left: 0px;
+        cursor: pointer;
+        font-size: 12px;
+        height: 25px;
+        line-height: 22px;
+        padding: 0px 8px;
+        text-align: center;
+
+        i {
+            color: $button-icon-color;
+            font-size: .9em;
+        }
+
+        &:hover {
+            background-color: $button-hover-color;
+        }
+
+        &:hover i {
+            color: $button-hover-icon-color;
+        }
+
+        &.first {
+            border: 1px solid $border-color;
+            border-radius: 5px 0 0 5px;
+        }
+
+        &.last {
+            border-radius: 0 5px 5px 0;
+        }
+
+        &.disabled {
+            background-color: $button-disabled-bg;
+            cursor: default;
+
+            i {
+                opacity: .4;
+            }
+
+            &:hover i {
+                opacity: .25;
+            }
+        }
+
+        &.currentpage-text {
+            color: darken($button-icon-color, 5%);
+            cursor: default;
+            font-size: 1em;
+
+            &:hover {
+                background-color: $white-bg;
+            }
+        }
+    }
+    
+    .vm-grid-results-text {
+        span {
+            font-weight: 600;
+        }
+
+        height: 45px;
+        line-height: 45px;
+    }
+}

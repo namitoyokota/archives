@@ -1,0 +1,32 @@
+<template>
+    <require from="./vm-grid-pager.scss"></require>
+
+    <div class="vm-grid-pager-container">
+        <div class="pager-button-container" show.bind="gridData.pagination.totalRows > gridData.pagination.pageSize">
+            <div class="pager-button first ${firstPageDisable}"
+                 click.trigger="firstPage()">
+                <i class="fas fa-chevron-double-left"></i>
+            </div>
+            <div class="pager-button ${prevPageDisable}"
+                 click.trigger="prevPage()">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+
+            <div class="pager-button currentpage-text">${ gridData.pagination.currentPage } of ${ gridData.pagination.totalPages }</div>
+
+            <div class="pager-button ${nextPageDisable}"
+                 click.trigger="nextPage()">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="pager-button last ${lastPageDisable}"
+                 click.trigger="lastPage()">
+                <i class="fas fa-chevron-double-right"></i>
+            </div>
+        </div>
+
+        <div class="vm-grid-results-text" show.bind="gridData.rows">
+            Displaying <span>${ gridData.pagination.displayStart }</span> - <span>${ gridData.pagination.displayEnd }</span> of 
+            <span>${ gridData.pagination.totalRows }</span> <span if.bind="config.PagerLabel">${ config.PagerLabel }</span>
+        </div>
+    </div>
+</template>

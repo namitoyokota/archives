@@ -1,0 +1,393 @@
+﻿[
+	{
+		"format": "WMS",
+		"url": "http%3A%2F%2Fwww.valtus.com%2Fstreaming%2Fwms",
+		"rotation": 0,
+		"origin": null,
+		"imageName": "",
+		"constrainedTo90": true,
+		"maintainAspect": true,
+		"anchors": [],
+		"options": [
+			{
+				"name": "version",
+				"value": "1.1.1",
+				"type": "string"
+			},
+			{
+				"name": "userid",
+				"value": "skipl",
+				"type": "string"
+			},
+			{
+				"name": "passwd",
+				"value": "levert13",
+				"type": "string"
+			},
+			{
+				"name": "format",
+				"value": "image/png",
+				"type": "string"
+			}
+		],
+		"wmsLayers": [
+			"HxIP"
+		],
+		"id": "093c4ce0-aea9-471d-9fdf-ae888127fcdb",
+		"name": "Hexagon Imagery",
+		"type": "BaseMap",
+		"capabilityModuleRef": ""
+	},
+	{
+		"format": "Tile",
+		"url": "https%3A%2F%2Fatlas.microsoft.com%2Ftraffic%2Fflow%2Ftile%2Fpng",
+		"rotation": 0,
+		"origin": null,
+		"imageName": "",
+		"constrainedTo90": true,
+		"maintainAspect": true,
+		"anchors": [],
+		"options": [
+            {
+                "name": "attribution",
+                "value": "%C2%A9%202019%20Microsoft%2C%20%C2%A9%201992%20-%202019%20TomTom",
+                "type": "string"
+            },
+            {
+                "name": "tileSize",
+                "value": "256",
+                "type": "number"
+            },
+            {
+                "name": "subscription-key",
+                "value": "YuN4IoevEVaGytLWZqfQ7vqQUxPCmdYFHCs_HrC1Mso",
+                "type": "urlParam"
+            },
+            {
+                "name": "api-version",
+                "value": "1.0",
+                "type": "urlParam"
+            },
+            {
+                "name": "style",
+                "value": "relative",
+                "type": "urlParam"
+            },
+            {
+                "name": "x",
+                "value": "%7Bx%7D",
+                "type": "urlParam"
+            },
+            {
+                "name": "y",
+                "value": "%7By%7D",
+                "type": "urlParam"
+            },
+            {
+                "name": "zoom",
+                "value": "%7Bz%7D",
+                "type": "urlParam"
+            }
+        ],
+		"wmsLayers": [],
+		"id": "0ce112b3-b765-497d-a7b6-f7f6991aecdc",
+		"name": "Azure Traffic",
+		"type": "DataLayer",
+		"capabilityModuleRef": ""
+	},
+	{
+		"format": "Tile",
+		"url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+		"rotation": 0,
+		"origin": null,
+		"imageName": "string",
+		"constrainedTo90": true,
+		"maintainAspect": true,
+		"anchors": [],
+		"options": [],
+		"wmsLayers": [],
+		"id": "24b5d10e-41ef-4fa7-a767-67de6415c4f2",
+		"name": "ESRI Satellite",
+		"type": "BaseMap",
+		"capabilityModuleRef": null
+	},
+	{
+		"format": "Tile",
+		"url": "null",
+		"rotation": 0,
+		"origin": null,
+		"imageName": "",
+		"constrainedTo90": true,
+		"maintainAspect": true,
+		"anchors": [],
+		"options": [
+			{
+				"name": "mapLayerDataNameToken",
+				"value": "incident.capability.name",
+				"type": "string"
+			},
+			{
+				"name": "mapLayerDataId",
+				"value": "Incidents",
+				"type": "string"
+			}
+		],
+		"wmsLayers": [],
+		"id": "3e86823f-52fe-4882-8f31-6c8194101ee4",
+		"name": "Incidents",
+		"type": "Capability",
+		"capabilityModuleRef": "@hxgn/incidents"
+	},
+	{
+		"format": "Tile",
+		"url": "https%3A%2F%2Fatlas.microsoft.com%2Fmap%2Ftile%2Fpng",
+		"rotation": 0,
+		"origin": null,
+		"imageName": "",
+		"constrainedTo90": true,
+		"maintainAspect": true,
+		"anchors": [],
+		"options": [
+            {
+                "name": "attribution",
+                "value": "%C2%A9%202019%20Microsoft%2C%20%C2%A9%201992%20-%202019%20TomTom",
+                "type": "string"
+            },
+            {
+                "name": "zoomOffset",
+                "value": "-1",
+                "type": "number"
+            },
+            {
+                "name": "crossOrigin",
+                "value": "true",
+                "type": "boolean"
+            },
+            {
+                "name": "tileSize",
+                "value": "512",
+                "type": "number"
+            },
+            {
+                "name": "subscription-key",
+                "value": "jVdgq6cYPlUOUIXbYWwZckGCCagxEBCToJTguphXDeg",
+                "type": "urlParam"
+            },
+            {
+                "name": "api-version",
+                "value": "1",
+                "type": "urlParam"
+            },
+            {
+                "name": "layer",
+                "value": "basic",
+                "type": "urlParam"
+            },
+            {
+                "name": "style",
+                "value": "main",
+                "type": "urlParam"
+            },
+            {
+                "name": "tileSize",
+                "value": "512",
+                "type": "urlParam"
+            },
+            {
+                "name": "TileFormat",
+                "value": "pbf",
+                "type": "urlParam"
+            },
+            {
+                "name": "x",
+                "value": "%7Bx%7D",
+                "type": "urlParam"
+            },
+            {
+                "name": "y",
+                "value": "%7By%7D",
+                "type": "urlParam"
+            },
+            {
+                "name": "zoom",
+                "value": "%7Bz%7D",
+                "type": "urlParam"
+            }
+        ],
+		"wmsLayers": [],
+		"id": "4f359208-0546-4269-81f8-2d92bbf56c57",
+		"name": "Azure Roads",
+		"type": "BaseMap",
+		"capabilityModuleRef": ""
+	},
+	{
+		"format": "Tile",
+		"url": "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+		"rotation": 0,
+		"origin": null,
+		"imageName": "",
+		"constrainedTo90": true,
+		"maintainAspect": true,
+		"anchors": [],
+		"options": [],
+		"wmsLayers": [],
+		"id": "6bdea583-d567-4a74-85be-053f9775ee71",
+		"name": "Open Streets",
+		"type": "BaseMap",
+		"capabilityModuleRef": null
+	},
+	{
+		"format": "WMS",
+		"url": "http%3A%2F%2Fmesonet.agron.iastate.edu%2Fcgi-bin%2Fwms%2Fnexrad%2Fn0r.cgi",
+		"rotation": 0,
+		"origin": null,
+		"imageName": "",
+		"constrainedTo90": true,
+		"maintainAspect": true,
+		"anchors": [],
+		"options": [
+			{
+				"name": "attribution",
+				"value": "Weather%20provided%20by%20NOAA",
+				"type": "string"
+			},
+			{
+				"name": "tms",
+				"value": "true",
+				"type": "boolean"
+			}
+		],
+		"wmsLayers": [
+			"nexrad-n0r-900913"
+		],
+		"id": "8b9aa547-aa3c-442d-93d6-614899cdc4cb",
+		"name": "Weather",
+		"type": "DataLayer",
+		"capabilityModuleRef": ""
+	},
+	{
+		"format": "Tile",
+		"url": "https%3A%2F%2Fatlas.microsoft.com%2Ftraffic%2Fincident%2Ftile%2Fpng",
+		"rotation": 0,
+		"origin": null,
+		"imageName": "",
+		"constrainedTo90": true,
+		"maintainAspect": true,
+		"anchors": [],
+		"options": [
+            {
+                "name": "attribution",
+                "value": "%C2%A9%202019%20Microsoft%2C%20%C2%A9%201992%20-%202019%20TomTom",
+                "type": "string"
+            },
+            {
+                "name": "subscription-key",
+                "value": "YuN4IoevEVaGytLWZqfQ7vqQUxPCmdYFHCs_HrC1Mso",
+                "type": "urlParam"
+            },
+            {
+                "name": "api-version",
+                "value": "1.0",
+                "type": "urlParam"
+            },
+            {
+                "name": "style",
+                "value": "s1",
+                "type": "urlParam"
+            },
+            {
+                "name": "x",
+                "value": "%7Bx%7D",
+                "type": "urlParam"
+            },
+            {
+                "name": "y",
+                "value": "%7By%7D",
+                "type": "urlParam"
+            },
+            {
+                "name": "zoom",
+                "value": "%7Bz%7D",
+                "type": "urlParam"
+            }
+		],
+		"wmsLayers": [],
+		"id": "96e16cb0-cd32-40bb-8842-d5d1f95aba11",
+		"name": "Azure Traffic Incidents",
+		"type": "DataLayer",
+		"capabilityModuleRef": ""
+	},
+	{
+		"format": "Tile",
+		"url": "https%3A%2F%2F%7Bs%7D.tiles.openrailwaymap.org%2Fstandard%2F%7Bz%7D%2F%7Bx%7D%2F%7By%7D.png",
+		"rotation": 0,
+		"origin": null,
+		"imageName": "string",
+		"constrainedTo90": true,
+		"maintainAspect": true,
+		"anchors": [],
+		"options": [],
+		"wmsLayers": [],
+		"id": "c54123c9-5342-44b7-aba6-3f5d524caf69",
+		"name": "Railways",
+		"type": "DataLayer",
+		"capabilityModuleRef": null
+	},
+	{
+		"format": "Tile",
+		"url": "https%3A%2F%2Fatlas.microsoft.com%2Ftraffic%2Fflow%2Ftile%2Fpng",
+		"rotation": 0,
+		"origin": null,
+		"imageName": "",
+		"constrainedTo90": true,
+		"maintainAspect": true,
+		"anchors": [],
+		"options": [
+            {
+                "name": "attribution",
+                "value": "%C2%A9%202019%20Microsoft%2C%20%C2%A9%201992%20-%202019%20TomTom",
+                "type": "string"
+            },
+            {
+                "name": "tileSize",
+                "value": "256",
+                "type": "number"
+            },
+            {
+                "name": "subscription-key",
+                "value": "YuN4IoevEVaGytLWZqfQ7vqQUxPCmdYFHCs_HrC1Mso",
+                "type": "urlParam"
+            },
+            {
+                "name": "api-version",
+                "value": "1.0",
+                "type": "urlParam"
+            },
+            {
+                "name": "style",
+                "value": "relative-delay",
+                "type": "urlParam"
+            },
+            {
+                "name": "x",
+                "value": "%7Bx%7D",
+                "type": "urlParam"
+            },
+            {
+                "name": "y",
+                "value": "%7By%7D",
+                "type": "urlParam"
+            },
+            {
+                "name": "zoom",
+                "value": "%7Bz%7D",
+                "type": "urlParam"
+            }
+		],
+		"wmsLayers": [],
+		"id": "f80158da-871a-4615-affe-1046de035a5b",
+		"name": "Azure Traffic - Backups Only",
+		"type": "DataLayer",
+		"capabilityModuleRef": ""
+	}
+]

@@ -1,0 +1,49 @@
+﻿<template>
+  <require from="./vm-data-filter.component.scss"></require>
+
+  <div class="vm-data-filter-container actionable-item">
+    <div class="vm-data-filter-body">
+      <div repeat.for="group of dataFilterGroups"
+           if.bind="group.visible">
+        <div click.delegate="toggleGroup(group)">
+          <div class="vm-data-filter-group-title">
+            <span>${group.groupLabel}</span>
+            <span if.bind="group.selectedCount" class="vm-data-filter-group-count">${group.selectedCount}</span>
+          </div>
+          <div>
+            <i class="fas fa-chevron-right ${group.isExpanded?'data-filter-group-expanded':''}"></i>
+          </div>
+        </div>
+        <div class="vm-data-filter-group-container"
+             id="vm-data-filter-group${group.groupName}">
+          <div id="vm-data-filter-group-child${group.groupName}">
+            <div class="vm-data-filter-group-items">
+              <div repeat.for="groupItem of group.groupItems">
+                <vm-checkbox name="${groupItem.parentGroupName}-${$index}"
+                             checked.two-way="groupItem.isChecked"
+                             change.call="updateMoreFilterGroups($event, element)"
+                             is-disabled.bind="!groupItem.isSearchable">
+                  ${ groupItem.groupItemLabel }
+                </vm-checkbox>
+              </div>
+            </div>
+            <div class="vm-data-filter-group-clear">
+              <vm-button class="vm-breadcrumb-button"
+                         tertiary
+                         click.call="clearGroup(group)">
+                <span class="actionable-item">Clear</span>
+              </vm-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="vm-data-filter-footer">
+      <vm-button class="vm-breadcrumb-button"
+                 tertiary
+                 click.call="clearAll()">
+        <span class="actionable-item">Clear All</span>
+      </vm-button>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,45 @@
+:host {
+    display:flex;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+hxgn-commontenant-wizard-step-layout-content {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.step-pane {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.step-connection {
+    background-image: url('assets/commontenant-core/step-connection.png');
+    background-repeat: no-repeat;
+    height:18px;
+    width:53px;
+    margin-top: 45px;
+}
+
+.msg {
+    font-size: 20px;
+    padding: 5px;
+    margin-top: 15px;
+
+    &.continue {
+        font-style: italic;
+    }
+}
+
+hxgn-commontenant-info-popover  {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+}

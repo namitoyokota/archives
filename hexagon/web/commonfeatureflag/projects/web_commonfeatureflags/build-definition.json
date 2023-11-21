@@ -1,0 +1,10 @@
+{
+    "featureModules": [
+        {
+            "entryPointId": "@galileo/web_commonfeatureflags/_core",
+            "chunkId": "@hxgn/commonfeatureflags",
+            "module": "CommonfeatureflagsCoreModule"
+        }
+    ],
+    "adminFeatureRouting": []
+}

@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
+
+.loading-container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e1e1e1;
+
+    .loading-content {
+        width: 604px;
+        height: 698px;
+        background-image: url("^assets/branding/Connect-LiveShare_Splash.svg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: flex-end;
+
+        .loading-content-container {
+            padding-bottom: 110px;
+            padding-right: 50px;
+            padding-left: 327px;
+
+            .loading-copyright {
+                margin-bottom: 17px;
+                font-size: 10px;
+                line-height: 12px;
+            }
+
+            .loading-initialization {
+                font-size: 14px;
+            }
+
+            .loading-legal {
+                font-size: 10px;
+                line-height: 12px;
+                width: 75%;
+            }
+
+            .loading-progress-bar-container {
+                margin-bottom: 6px;
+                margin-top: 5px;
+                padding: 2px;
+                border: solid 1px #808184;
+                border-radius: 10px;
+            }
+
+            .loading-text {
+                font-family: "Open Sans", sans-serif;
+                color: #333;
+            }
+        }
+    }
+
+    .loading-content-admin {
+        background-image: url("^assets/branding/Connect-Administrator_Splash.svg") !important;
+    }
+}
+
+mat-progress-bar {
+    height: 10px;
+    border-radius: 10px;
+
+    ::ng-deep .mat-progress-bar-fill::after {
+        background-color: #00953a !important;
+        border-radius: 10px;
+    }
+
+    ::ng-deep .mat-progress-bar-buffer {
+        background-color: #fff !important;
+    }
+}

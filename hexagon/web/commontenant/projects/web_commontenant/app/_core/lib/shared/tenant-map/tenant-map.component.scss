@@ -1,0 +1,64 @@
+:host {
+    position:relative;
+    width:100%;
+    height:100%;
+}
+.tenant-map {
+    display: grid;
+    grid-template-columns: 300px auto;
+    grid-column-gap: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+.map-data {
+    display: grid;
+    grid-template-rows: 50% 50%;
+    align-items: center;
+    /* autoprefixer: off */
+    justify-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: #ebeced;
+    border-right: 1px solid #a8a8a8;
+    padding: 20px;
+    box-sizing: border-box;
+
+}    
+.map-data-icon {
+    align-self:end;
+}
+
+.map-data-instructions {
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
+    color: #adafb2;
+    text-align:center;
+    align-self:start;
+}
+
+.map {
+    position:relative;
+    display:flex;
+    width: 100%;
+    height:100%;
+    border-left: 1px solid #a8a8a8;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    
+    hxgn-commonmap-map-v1 {
+        position:relative;
+        width: 100%;
+        height:100%;
+        z-index: 1;
+    }
+
+    hxgn-commontenant-tenant-icon {
+        position: absolute;
+        z-index: 2;
+        pointer-events: none;
+        border: 2px solid #a8a8a8;
+    }
+}

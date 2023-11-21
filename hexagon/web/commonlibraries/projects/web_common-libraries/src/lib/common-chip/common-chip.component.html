@@ -1,0 +1,13 @@
+<div class="chip" [style.background-color]="backgroundColor"
+    [style.color]="color">
+    <div *ngIf="endCapEnabled" class="end-cap"
+        [style.background-color]="endCapColor"></div>
+    <div class="content"
+        [class.no-end-cap]="!endCapEnabled">
+        <ng-content></ng-content>
+    </div>
+    <div *ngIf="removable" class="removable-btn">
+        <div class="line"></div>
+        <div (click)="removed.emit()" class="remove-icon"></div>
+    </div>
+</div>

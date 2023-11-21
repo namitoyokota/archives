@@ -1,0 +1,28 @@
+{
+    "featureModules": [
+        {
+            "entryPointId": "@galileo/web_commonkeywords/_core",
+            "chunkId": "@hxgn/commonkeywords",
+            "module": "CommonkeywordsCoreModule"
+        },
+        {
+            "entryPointId": "@galileo/web_commonkeywords/admin",
+            "chunkId": "@hxgn/commonkeywords/admin",
+            "module": "IconManagementModule"
+        }
+    ],
+    "adminFeatureRouting": [
+        {
+            "path": "keywords/iconManager",
+            "data": {
+                "adminComponent": "@hxgn/commonkeywords/admin/iconmanager/v1",
+                "adminId": "@hxgn/commonkeywords/admin",
+                "adminTitle": "commonKeyword-iconManagement.component.iconManager",
+                "claim": "uiIconManagerAccess",
+                "capabilityId": "@hxgn/commonkeywords"
+            },
+            "canActivate": ["ClaimGuard$v1", "OnboardingGuard$v1"],
+            "canDeactivate": ["DirtyGuard$v1"]
+        }
+    ]
+}

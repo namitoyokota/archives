@@ -1,0 +1,83 @@
+﻿@import "shared-from-dcdev/core-styles/stylesheets/_variables.scss";
+
+template-section {
+  display: grid;
+  grid-template-rows: min-content;
+  row-gap: 20px;
+  background-color: $white;
+  border: thin solid lightGray;
+  border-radius: 10px;
+  padding: 20px;
+
+  .section-header {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 20px;
+
+    .header-left {
+      display: flex;
+      flex-direction: column;
+      row-gap: 10px;
+
+      .error-msg-pane {
+        padding: 0 15px;
+      }
+    }
+
+    .header-right {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  .section-body {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+
+    .control-list {
+      display: grid;
+      grid-template-columns: auto min-content;
+
+      .control-panel {
+        display: table-cell;
+        border: thin solid lightGray;
+        border-right: none;
+        border-radius: 5px 0 0 5px;
+      }
+
+      .drag-button, // TODO: Used for when new drag drop icon is added
+            .delete-button {
+        width: 41px;
+        display: flex;
+        align-items: top;
+        justify-content: center;
+        background-color: #eff2f7;
+        border: thin solid lightGray;
+        border-radius: 0 5px 5px 0;
+        vertical-align: top;
+        padding: 15px;
+
+        &:hover {
+          cursor: pointer;
+          background-color: $N30;
+        }
+      }
+    }
+
+    .button-pane {
+      display: flex;
+      justify-content: left;
+      column-gap: 10px;
+    }
+  }
+
+  .fa.fa-grip:before {
+    content: "\f142 \202F \f142 \202F \f142";
+  }
+
+  .danger {
+    color: $brand-danger;
+  }
+}

@@ -1,0 +1,48 @@
+<hxgn-common-dropdown-v2 [value]="selectedLevel"
+    (valueChange)="setSelectedLevel($event)">
+    <hxgn-common-dropdown-trigger-v2  style="display: inline-block;">
+        <div class="restriction-level">
+            <div class="restriction-badge"
+                [class.restriction--low]="selectedLevel === RestrictionLevels.low"
+                [class.restriction--medium]="selectedLevel === RestrictionLevels.medium"
+                [class.restriction--high]="selectedLevel === RestrictionLevels.high"></div>
+            <ng-container [ngSwitch]="selectedLevel">
+                <span *ngSwitchCase="RestrictionLevels.low">
+                    <hxgn-commonlocalization-translate-v1 [token]='tokens.shareAll'></hxgn-commonlocalization-translate-v1>
+                </span>
+                <span *ngSwitchCase="RestrictionLevels.medium">
+                    <hxgn-commonlocalization-translate-v1 [token]='tokens.basic'></hxgn-commonlocalization-translate-v1>
+                </span>
+                <span *ngSwitchCase="RestrictionLevels.high">
+                    <hxgn-commonlocalization-translate-v1 [token]='tokens.advanced'></hxgn-commonlocalization-translate-v1>
+                </span>
+            </ng-container>
+        </div>
+    </hxgn-common-dropdown-trigger-v2>
+    <hxgn-common-dropdown-item-v2 [value]="RestrictionLevels.low">
+        <div class="restriction-level">
+            <div class="restriction-badge restriction--low"></div>
+            <span>
+                <hxgn-commonlocalization-translate-v1 [token]='tokens.shareAll'></hxgn-commonlocalization-translate-v1>
+            </span>
+        </div>
+    </hxgn-common-dropdown-item-v2>
+
+    <hxgn-common-dropdown-item-v2 [value]="RestrictionLevels.medium">
+        <div class="restriction-level">
+            <div class="restriction-badge restriction--medium"></div>
+            <span>
+                <hxgn-commonlocalization-translate-v1 [token]='tokens.basic'></hxgn-commonlocalization-translate-v1>
+            </span>
+        </div>
+    </hxgn-common-dropdown-item-v2>
+
+    <hxgn-common-dropdown-item-v2 [value]="RestrictionLevels.high">
+        <div class="restriction-level">
+            <div class="restriction-badge restriction--high"></div>
+            <span>
+                <hxgn-commonlocalization-translate-v1 [token]='tokens.advanced'></hxgn-commonlocalization-translate-v1>
+            </span>
+        </div>
+    </hxgn-common-dropdown-item-v2>
+</hxgn-common-dropdown-v2>

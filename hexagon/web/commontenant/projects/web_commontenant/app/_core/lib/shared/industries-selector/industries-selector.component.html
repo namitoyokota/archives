@@ -1,0 +1,22 @@
+<div *ngFor="let sector of industries | keyvalue" class="sector">
+    <div class="sector-name">
+        <span ellipsisTooltip>
+            <hxgn-commonlocalization-translate-v1 [token]='sector.key'>
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+    </div>
+
+    <div class="industry" *ngFor="let industry of sector.value; trackBy: trackByFn">
+        <mat-checkbox [checked]="selectedIndustryIds.includes(industry.id)" (change)="selected.emit(industry.id)">
+            <div class="checkbox-content">
+                <div class="icon">
+                    <img [src]="industry.iconUrl" />
+                </div>
+                <span ellipsisTooltip>
+                    <hxgn-commonlocalization-translate-v1 [token]="industry.nameToken">
+                    </hxgn-commonlocalization-translate-v1>
+                </span>
+            </div>
+        </mat-checkbox>
+    </div>
+</div>

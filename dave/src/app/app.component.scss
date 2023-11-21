@@ -1,0 +1,75 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.action-pane {
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-pane {
+  .search-form {
+    width: 100%;
+  }
+}
+
+.months-pane,
+.filter-pane {
+  display: flex;
+  column-gap: 10px;
+  row-gap: 10px;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.expense-table {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+
+  .expense {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    column-gap: 10px;
+
+    .expense-date,
+    .expense-category,
+    .expense-company,
+    .expense-description {
+      justify-self: start;
+    }
+
+    .expense-cost {
+      justify-self: end;
+    }
+
+    &.heading {
+      font-weight: 800;
+    }
+  }
+
+  .category-total {
+    display: grid;
+    grid-template-columns: auto repeat(2, min-content);
+    column-gap: 10px;
+
+    .budget-value {
+      color: red;
+    }
+  }
+
+  .total-expense {
+    display: flex;
+    justify-content: space-between;
+
+    .total-title {
+      font-weight: 600;
+    }
+  }
+
+  hr {
+    width: 100%;
+  }
+}

@@ -1,0 +1,24 @@
+<span class="header">
+    <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]='tokens.name'>
+    </hxgn-commonlocalization-translate-v1>
+</span>
+
+<hxgn-common-input-v2 [isValid]="isInvalid()">
+    <input type="text" [(ngModel)]="editRule.friendlyName" [placeholder]="tTokens.entryName"
+        (input)="ruleChange.emit(editRule)" />
+</hxgn-common-input-v2>
+
+<span class="header">
+    <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]='tokens.keywords'>
+    </hxgn-commonlocalization-translate-v1>
+</span>
+<tag-input theme="minimal"
+    [ngModel]="editRule.keywords"
+    [placeholder]="''"
+    [secondaryPlaceholder]="tTokens.enterKeywords"
+    [addOnBlur]="true"
+    [separatorKeyCodes]="keycodes"
+    [modelAsStrings]="true"
+    (onRemove)="removeKeyword($event)"
+    (onAdd)="addKeyword($event.value)">
+</tag-input>

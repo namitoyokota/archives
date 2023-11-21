@@ -1,0 +1,12 @@
+﻿.datepicker-control-component {
+  .datepicker-control-pane {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    padding: 20px;
+  }
+
+  .is-disabled {
+    pointer-events: none;
+  }
+}

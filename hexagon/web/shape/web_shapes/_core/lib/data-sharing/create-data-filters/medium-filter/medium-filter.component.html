@@ -1,0 +1,60 @@
+<!-- Note -->
+<div class="note-pane">
+    <label>
+        <hxgn-commonlocalization-translate-v1 [token]='tokens.note'>
+        </hxgn-commonlocalization-translate-v1>
+    </label>
+    <span>
+        <hxgn-commonlocalization-translate-v1 [token]='tokens.uncheckingASubsectionMsg'>
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+</div>
+
+<!-- Details -->
+<label>
+    <hxgn-commonlocalization-translate-v1 [token]='tokens.details'>
+    </hxgn-commonlocalization-translate-v1>
+</label>
+<div class="item-pane">
+    <!-- Redact Filtering Type -->
+    <mat-checkbox [class.override]="isOverridden(RestrictIds.filteringType)"
+        [checked]="!isRedacted(RestrictIds.filteringType)"
+        (change)="toggleRedaction($event, RestrictIds.filteringType)"
+    >
+        <hxgn-commonlocalization-translate-v1 [token]='tokens.type'>
+        </hxgn-commonlocalization-translate-v1>
+    </mat-checkbox>
+
+    <!-- Redact Description -->
+    <mat-checkbox [class.override]="isOverridden(RestrictIds.description)"
+        [checked]="!isRedacted(RestrictIds.description)"
+        (change)="toggleRedaction($event, RestrictIds.description)"
+    >
+        <hxgn-commonlocalization-translate-v1 [token]='tokens.description'>
+        </hxgn-commonlocalization-translate-v1>
+    </mat-checkbox>
+
+    <!-- Redact Keywords-->
+    <mat-checkbox [class.override]="isOverridden(RestrictIds.keywords)"
+        [checked]="!isRedacted(RestrictIds.keywords)"
+        (change)="toggleRedaction($event, RestrictIds.keywords)"
+    >
+        <hxgn-commonlocalization-translate-v1 [token]='tokens.keywords'>
+        </hxgn-commonlocalization-translate-v1>
+    </mat-checkbox>
+</div>
+
+<!-- Redact Primary Contact -->
+<label>
+    <hxgn-commonlocalization-translate-v1 [token]='tokens.contactInformation'>
+    </hxgn-commonlocalization-translate-v1>
+</label>
+<div class="item-pane contact-pane">
+    <mat-checkbox [class.override]="isOverridden(RestrictIds.primaryContact)"
+        [checked]="!isRedacted(RestrictIds.primaryContact)"
+        (change)="toggleRedaction($event, RestrictIds.primaryContact)"
+    >
+        <hxgn-commonlocalization-translate-v1 [token]='tokens.primaryContact'>
+        </hxgn-commonlocalization-translate-v1>
+    </mat-checkbox>
+</div>

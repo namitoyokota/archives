@@ -1,0 +1,18 @@
+:host {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #eceeee;
+    border: 1px solid #bfbfbf;
+    border-radius: 50%;
+    box-sizing: border-box;
+    font-size: 15px;
+    line-height: 17px;
+}
+
+:host(.dark) {
+    background-color: #a8a8a8;
+    border: none;
+    color: #ffffff;
+    font-weight: 500;
+}

@@ -1,0 +1,229 @@
+<div class="dialog-title">
+    <hxgn-commonlocalization-translate-v1 [token]="tokens.manageGlobalActivityEmails">
+    </hxgn-commonlocalization-translate-v1>
+    <img (click)="close()" src="assets/commontenant-core/x_dialog.png" height="18" width="18" />
+</div>
+<div class="loading-container" *ngIf="isLoading; else loadingComplete">
+    <mat-spinner></mat-spinner>
+</div>
+<ng-template #loadingComplete>
+    <div class="content">
+        <ng-container *ngIf="activePage === 1; else pageTwo">
+            <div class="step">
+                <div class="step-number">
+                    <span>1</span>
+                </div>
+                <div class="step-content">
+                    <div class="step-title">
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.emailNotificationSettings">
+                        </hxgn-commonlocalization-translate-v1>
+                    </div>
+                    <div class="step-description">
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.emailNotificationSettingsDescription">
+                        </hxgn-commonlocalization-translate-v1>
+                    </div>
+                    <div class="label">
+                        <span>
+                            <hxgn-commonlocalization-translate-v1 [token]="tokens.hexagonProvisionerEmail">
+                            </hxgn-commonlocalization-translate-v1>
+                        </span>
+                    </div>
+                    <hxgn-common-input-v2 class="email-input" [isValid]="isEmailValid(systemConfig.operationalEmail)">
+                        <input type="text" [(ngModel)]="systemConfig.operationalEmail" />
+                    </hxgn-common-input-v2>
+                    <div class="label no-margin">
+                        <span>
+                            <hxgn-commonlocalization-translate-v1 [token]="tokens.annualDataThreshold">
+                            </hxgn-commonlocalization-translate-v1>
+                        </span>
+                        <img class="info-icon" cdkOverlayOrigin #origin="cdkOverlayOrigin" (click)="popover.open()" src="assets/commontenant-core/info-icon.svg" width="18" height="18" />
+                        <hxgn-common-popover #popover [origin]="origin" [menuMode]="true" width="263px">
+                            <div class="info-icon-content">
+                                <hxgn-commonlocalization-translate-v1 [token]="tokens.annualDataThresholdDescription">
+                                </hxgn-commonlocalization-translate-v1>
+                            </div>
+                        </hxgn-common-popover>
+                    </div>
+                    <div class="annual-data-threshold-container">
+                        <img src="assets/commontenant-core/email-icon.svg" width="23" height="17" />
+                        <div class="annual-data-threshold">
+                            <div class="slider-container">
+                                <mat-slider [(ngModel)]="thresholds[0]" min="0" max="100" step="1" thumbLabel
+                                    [displayWith]="formatThreshold">
+                                </mat-slider>
+                                <div class="slider-labels">
+                                    <span>0%</span>
+                                    <span>50%</span>
+                                    <span>100%</span>
+                                </div>
+                            </div>
+                            <hxgn-common-input-v2 class="threshold-input">
+                                <input [(ngModel)]="thresholds[0]" type="number"
+                                    (input)="validateThresholdInput($event)" />
+                            </hxgn-common-input-v2>
+                            <span class="percent">%</span>
+                        </div>
+                        <div class="threshold-divider"></div>
+                        <div class="annual-data-threshold">
+                            <div class="slider-container">
+                                <mat-slider [(ngModel)]="thresholds[1]" min="0" max="100" step="1" thumbLabel
+                                    [displayWith]="formatThreshold">
+                                </mat-slider>
+                                <div class="slider-labels">
+                                    <span>0%</span>
+                                    <span>50%</span>
+                                    <span>100%</span>
+                                </div>
+                            </div>
+                            <hxgn-common-input-v2 class="threshold-input">
+                                <input [(ngModel)]="thresholds[1]" type="number"
+                                    (input)="validateThresholdInput($event)" />
+                            </hxgn-common-input-v2>
+                            <span class="percent">%</span>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <mat-slide-toggle class="sales-contact-toggle"
+                        [(ngModel)]="systemConfig.defaultSalesContact.isAnnualThresholdEnabled">
+                        <div class="toggle-label">
+                            <hxgn-commonlocalization-translate-v1 [token]="tokens.addSalesContact">
+                            </hxgn-commonlocalization-translate-v1>
+                        </div>
+                    </mat-slide-toggle>
+                    <ng-container *ngIf="systemConfig.defaultSalesContact.isAnnualThresholdEnabled">
+                        <div class="label">
+                            <span>
+                                <hxgn-commonlocalization-translate-v1 [token]="tokens.hexagonSalesEmail">
+                                </hxgn-commonlocalization-translate-v1>
+                            </span>
+                        </div>
+                        <hxgn-common-input-v2 class="email-input" [isValid]="isEmailValid(systemConfig.defaultSalesContact.contactEmail)">
+                            <input type="text" [(ngModel)]="systemConfig.defaultSalesContact.contactEmail" />
+                        </hxgn-common-input-v2>
+                    </ng-container>
+                </div>
+            </div>
+        </ng-container>
+        <ng-template #pageTwo>
+            <div class="step">
+                <div class="step-number">
+                    <span>2</span>
+                </div>
+                <div class="step-content">
+                    <div class="step-title">
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.dataTrendsWarning">
+                        </hxgn-commonlocalization-translate-v1>
+                    </div>
+                    <div class="step-description">
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.dataTrendsWarningDescription">
+                        </hxgn-commonlocalization-translate-v1>
+                    </div>
+                    <div class="timeframe-max-emails-container">
+                        <div class="timeframe-container">
+                            <div class="label">
+                                <hxgn-commonlocalization-translate-v1 [token]="tokens.timeframe">
+                                </hxgn-commonlocalization-translate-v1>
+                            </div>
+                            <div class="timeframe-buttons">
+                                <button class="hxgn-btn-secondary"
+                                    [class.hxgn-btn-selected]="timeframe.value === systemConfig.burstWindowSizeInHours"
+                                    *ngFor="let timeframe of timeframes"
+                                    (click)="systemConfig.burstWindowSizeInHours = timeframe.value">
+                                    <hxgn-commonlocalization-translate-v1 [token]="timeframe.key">
+                                    </hxgn-commonlocalization-translate-v1>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="vertical-divider"></div>
+                        <div class="max-emails-container">
+                            <div class="label">
+                                <hxgn-commonlocalization-translate-v1 [token]="tokens.maximumEmailPerDay">
+                                </hxgn-commonlocalization-translate-v1>
+                            </div>
+                            <hxgn-common-input-v2 class="max-emails-input">
+                                <input type="number" [(ngModel)]="maxEmailsPerDay" min="0" max="24"
+                                    (input)="validateEmailInput($event)" />
+                            </hxgn-common-input-v2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">
+                    <span>3</span>
+                </div>
+                <div class="step-content">
+                    <div class="step-title">
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.spikePercentage">
+                        </hxgn-commonlocalization-translate-v1>
+                    </div>
+                    <div class="step-description">
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.spikePercentageDescription">
+                        </hxgn-commonlocalization-translate-v1>
+                    </div>
+                    <div class="spike-btns-container">
+                        <button class="hxgn-btn-secondary spike-btn"
+                            [class.hxgn-btn-selected]="systemConfig.burstMinimumThreshold === spikePercentage.value"
+                            *ngFor="let spikePercentage of spikePercentages"
+                            (click)="systemConfig.burstMinimumThreshold = spikePercentage.value">
+                            <span>{{ spikePercentage.key }}</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">
+                    <span>4</span>
+                </div>
+                <div class="step-content">
+                    <div class="step-title">
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.hexagonProvisionerNotificationSettings">
+                        </hxgn-commonlocalization-translate-v1>
+                    </div>
+                    <div class="step-description">
+                        <hxgn-commonlocalization-translate-v1
+                            [token]="tokens.hexagonProvisionerNotificationSettingsDescription">
+                        </hxgn-commonlocalization-translate-v1>
+                    </div>
+                    <div class="toggles-container">
+                        <mat-slide-toggle [(ngModel)]="systemConfig.notifyOperationalContactsForAnnualNotifications">
+                            <span class="toggle-label">
+                                <hxgn-commonlocalization-translate-v1 [token]="tokens.annualDataThreshold">
+                                </hxgn-commonlocalization-translate-v1>
+                            </span>
+                        </mat-slide-toggle>
+                        <mat-slide-toggle [(ngModel)]="systemConfig.notifyOperationalContactsForBurstNotifications">
+                            <span class="toggle-label">
+                                <hxgn-commonlocalization-translate-v1 [token]="tokens.dataTrendsWarning">
+                                </hxgn-commonlocalization-translate-v1>
+                            </span>
+                        </mat-slide-toggle>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </div>
+</ng-template>
+<div class="buttons-row">
+    <button class="hxgn-btn-secondary" (click)="close()">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.cancel" [ignoreSkeleton]="true">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+    <ng-container *ngIf="activePage === 1; else pageTwoButtons">
+        <button class="hxgn-btn-primary" (click)="nextPage()"
+            [disabled]="!isEmailValid(systemConfig.operationalEmail) || (systemConfig.defaultSalesContact.isAnnualThresholdEnabled && !isEmailValid(systemConfig.defaultSalesContact.contactEmail))">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.next" [ignoreSkeleton]="true">
+            </hxgn-commonlocalization-translate-v1>
+        </button>
+    </ng-container>
+    <ng-template #pageTwoButtons>
+        <button class="hxgn-btn-secondary" (click)="previousPage()">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.back" [ignoreSkeleton]="true">
+            </hxgn-commonlocalization-translate-v1>
+        </button>
+        <button class="hxgn-btn-primary" (click)="saveChangesAsync()">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.saveChanges" [ignoreSkeleton]="true">
+            </hxgn-commonlocalization-translate-v1>
+        </button>
+    </ng-template>
+</div>

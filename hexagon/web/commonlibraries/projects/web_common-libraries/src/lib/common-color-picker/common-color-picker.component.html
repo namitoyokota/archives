@@ -1,0 +1,27 @@
+<div *ngIf="showOpacity" class="opacity-container" (click)="$event.stopPropagation()">
+    <div class="opacity-control">
+        <mat-slider [value]="opacity" min="0" max="100" (input)="setOpacity($event)" [(ngModel)]="opacity"></mat-slider>
+        <div class="opacity-display">
+            <span>{{opacity | number:'1.0-0' }}%</span>
+        </div>
+    </div>
+</div>
+<div
+    [cpToggle]="true" [(colorPicker)]="defaultColor"
+    (colorPickerChange)="colorChanged()"
+    cpAlphaChannel="disabled"
+    cpDialogDisplay="inline"
+    [cpDisableInput]="false"
+    [cpPresetColors]="presetColors">
+</div>
+<div *ngIf="showHexColor" class="hex-color" (click)="$event.stopPropagation()">
+    <div class="inline-label" >
+        <hxgn-commonlocalization-translate-v1 
+            [token]="tokens.hexColorLabel"
+            [skeletonWidth]="'75px'">
+        </hxgn-commonlocalization-translate-v1>
+    </div>
+    <hxgn-common-input-v2 style="width:75px">
+        <input type="text" [(ngModel)]="hexColor" (input)="hexColorChanged()" (change)="setHexColor()" />
+    </hxgn-common-input-v2>
+</div>

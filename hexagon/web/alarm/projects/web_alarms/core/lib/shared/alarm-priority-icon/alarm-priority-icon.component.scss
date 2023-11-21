@@ -1,0 +1,39 @@
+
+:host {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background: url("assets/alarms-core/images/priority-none-icon.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+
+    &.priority-0-icon {
+        background: url("assets/alarms-core/images/priority-critical-icon.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    
+    &.priority-1-icon {
+        background: url("assets/alarms-core/images/priority-high-icon.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    
+    &.priority-2-icon {
+        background: url("assets/alarms-core/images/priority-medium-icon.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    
+    &.priority-3-icon {
+        background: url("assets/alarms-core/images/priority-low-icon.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    &.priority-none-icon {
+        background: url("assets/alarms-core/images/priority-none-icon.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+}

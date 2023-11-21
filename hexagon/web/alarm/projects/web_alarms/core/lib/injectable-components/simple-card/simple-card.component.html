@@ -1,0 +1,11 @@
+<ng-container *ngIf="(alarm$ | async) as alarm">
+    <div class="icon-pane">
+        <hxgn-alarms-icon [alarm]="alarm"></hxgn-alarms-icon>
+    </div>
+    <div class="title-pane">
+        {{alarm?.title}}
+    </div>
+    <div *ngIf="!alarm.isRedacted(restrictIds.location)">
+        {{alarm?.location?.formattedAddress}}
+    </div>
+</ng-container>

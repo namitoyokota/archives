@@ -1,0 +1,53 @@
+@use "../../../styles/variables" as v;
+
+vm-dialog-duotone {
+    .vm-dialog-duotone--header {
+        height: 140px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+        > vm-button {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            button {
+                color: v.$N50;
+            }
+        }
+    }
+    .vm-dialog-duotone__success {
+        background-color: v.$success-bg;
+        color: v.$success-text;
+    }
+    .vm-dialog-duotone__info {
+        background-color: v.$info-bg;
+        color: v.$navy;
+    }
+    .vm-dialog-duotone__warning {
+        background-color: v.$warning-bg;
+        color: v.$warning-text;
+    }
+    .vm-dialog-duotone__danger {
+        background-color: v.$danger-bg;
+        color: v.$danger;
+    }
+    .vm-dialog-duotone--title {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        flex-direction: column;
+    }
+    .vm-dialog-duotone--title .vm-dialog-duotone--icon {
+        font-size: 2em;
+        margin: 16px;
+    }
+    .vm-dialog .vm-dialog--body {
+        padding-bottom: 0;
+    }
+    .vm-dialog .vm-dialog--footer {
+        border-top: 0;
+        justify-content: center;
+    }
+}

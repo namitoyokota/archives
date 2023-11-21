@@ -1,0 +1,31 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "module": "es2020",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "target": "es5",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "paths": {
+      "@galileo/web_common-http": [
+        "dist/web_common-http"
+      ],
+      "@galileo/common-http/*": [
+        "dist/web_common-http/*"
+      ],
+      "@galileo/platform_common-http": [
+        "../../platform/build/module"
+      ]
+    }
+  }
+}

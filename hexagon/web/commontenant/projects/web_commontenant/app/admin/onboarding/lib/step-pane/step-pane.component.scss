@@ -1,0 +1,57 @@
+@import '../common-variables.scss';
+
+:host {
+    border: $common-border;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-rows: 37px auto;
+    overflow: hidden;
+}
+
+.title {
+    background-color: $section-color;
+    border-bottom: $common-border;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.step-pane {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.step {
+    height: 48px;
+    width: 100%;
+    border-bottom: $common-border;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    cursor: pointer;
+
+    &.selected {
+        background-color: #cadff2;
+    }
+
+    .icon {
+        height: 32px;
+        width: 32px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        margin-right: 10px;
+    }
+
+    img {
+        margin-left: 10px;
+    }
+}
+
+.locked {
+    opacity: 0.3;
+    pointer-events: none;
+}

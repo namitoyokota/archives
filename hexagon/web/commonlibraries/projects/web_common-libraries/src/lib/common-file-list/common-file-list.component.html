@@ -1,0 +1,19 @@
+<div class="file-list" [class.emptyBox]="!files.length && !uploadingFilename">
+    <ng-container *ngIf="files.length || uploadingFilename; else noFiles">
+        <div *ngFor="let file of files; let i = index" class="file">
+            <span class="filename">{{file.name}}</span>
+            <img (click)="removeFromList(i)" class="delete-btn" src="assets/common-libraries/images/x_dialog.png" />
+        </div>
+        <div *ngIf="uploadingFilename" class="file-uploading">
+            <mat-spinner diameter="18"></mat-spinner>
+            <span>{{uploadingFilename}}</span>
+        </div>
+    </ng-container>
+    <ng-template #noFiles>
+        <div class="no-files">
+            <img src="assets/common-libraries/images/no-files-attached-icon.svg" />
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.noFilesAttached" skeletonWidth="100px">
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+    </ng-template>
+</div>

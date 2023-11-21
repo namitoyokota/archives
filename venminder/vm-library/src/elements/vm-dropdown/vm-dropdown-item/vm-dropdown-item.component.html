@@ -1,0 +1,13 @@
+<template>
+    <require from="./vm-dropdown-item.component.css"></require>
+
+    <button
+        class="vm-dropdown-item ${isSelected ? 'vm-dropdown-item__selected' : ''} ${multiselect ? 'vm-dropdown-item__multiselect' : ''}"
+        disabled.bind="isDisabled"
+        type="button"
+        click.delegate="itemSelected()"
+    >
+        <vm-checkbox if.bind="multiselect" checked.bind="isSelected"></vm-checkbox>
+        <slot></slot>
+    </button>
+</template>

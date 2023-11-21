@@ -1,0 +1,14 @@
+<template>
+    <require from="./vm-tabs.component.css"></require>
+
+    <a repeat.for="tab of tabs" class="vm-tabs--item ${tab.isActive ? 'vm-tabs--item__active' : ''}" href.bind="tab.href">
+        <span>${tab.title}</span>
+        <vm-badge
+            if.bind="tab.settings.badge && (tab.settings.badge.hideWhenZero ? tab.settings.badge.count !== 0 : true)"
+            type.one-time="tab.settings.badge.type"
+        >
+            ${tab.settings.badge.count}
+        </vm-badge>
+        <i if.bind="tab.settings.icon.show" class.bind="tab.settings.icon.class" title.bind="tab.settings.icon.title"></i>
+    </a>
+</template>

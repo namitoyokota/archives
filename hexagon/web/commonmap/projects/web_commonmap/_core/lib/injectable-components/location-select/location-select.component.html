@@ -1,0 +1,47 @@
+<div class="form">
+    <!-- Location -->
+    <div class="form-container span-2">
+        <div class="label">
+            <hxgn-commonlocalization-translate-v1 skeletonWidth="75px" [token]='tokens.location'>
+                <span class="required-star"> *</span>
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+        <hxgn-commonmap-address-search
+            [location]="location"
+            (locationChanged)="updateLocation($event)" >
+        </hxgn-commonmap-address-search>
+    </div>
+
+    <!-- Cross Street 1 -->
+    <div class="form-container">
+        <div class="label">
+            <hxgn-commonlocalization-translate-v1 skeletonWidth="75px" [token]='tokens.crossStreet1'>
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+        <hxgn-common-input-v2>
+            <input type="text" [(ngModel)]="location.crossStreet1" (ngModelChange)="emitUpdate()" />
+        </hxgn-common-input-v2>
+    </div>
+
+    <!-- Cross Street 2 -->
+    <div class="form-container">
+        <div class="label">
+            <hxgn-commonlocalization-translate-v1 skeletonWidth="75px" [token]='tokens.crossStreet2'>
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+        <hxgn-common-input-v2>
+            <input type="text" [(ngModel)]="location.crossStreet2" (ngModelChange)="emitUpdate()" />
+        </hxgn-common-input-v2>
+    </div>
+</div>
+
+<div class="map">
+    <hxgn-commonmap-map-v1
+        *ngIf="mapCreateMessage"
+        [mapCreateMessage]="mapCreateMessage">
+    </hxgn-commonmap-map-v1>
+</div>
+
+<div *ngIf="isLoading" class="loading">
+    <mat-spinner></mat-spinner>
+</div>

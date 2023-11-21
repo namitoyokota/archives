@@ -1,0 +1,59 @@
+<hxgn-main-menu [user]="user" [isAdminMenu]="true" (logOut)="logOut()">
+
+    <!-- User profile button -->
+    <hxgn-common-open-user-profile (click)="navToUserProfile()">
+    </hxgn-common-open-user-profile>
+
+    <!-- Home button -->
+    <hxgn-main-menu-section [hideSectionHeader]="true">
+        <hxgn-main-menu-item
+            *ngIf="user | claimGuard$v1: layoutManagerCapabilityId:layoutManagerClaims.adminAccess"
+            imageSrc="assets/icons/home-icon.svg" routerLink="/admin">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.home" [ignoreSkeleton]="true">
+            </hxgn-commonlocalization-translate-v1>
+        </hxgn-main-menu-item>
+    </hxgn-main-menu-section>
+
+    <!-- Sections -->
+    <hxgn-main-menu-section *ngFor="let section of menuSections"
+        [hidden]="!menuItemsBySection?.get(section.section)?.length">
+        <span>
+            <hxgn-commonlocalization-translate-v1 [token]="section.token" [ignoreSkeleton]="true">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+
+        <hxgn-main-menu-item *ngFor="let item of menuItemsBySection?.get(section.section); trackBy: trackByFn"
+            [imageSrc]="item.menuIconUrl" [routerLink]="item.path" [isProvisioner]="item.provisioner">
+            <hxgn-commonlocalization-translate-v1 [token]="item.nameToken" [ignoreSkeleton]="true">
+            </hxgn-commonlocalization-translate-v1>
+
+            <!-- Sub menu items -->
+            <hxgn-main-menu-item *ngFor="let sItem of menuItemsByParent?.get(item.parentId); trackBy: trackByFn"
+                [imageSrc]="sItem.menuIconUrl" [routerLink]="sItem.path" [isProvisioner]="sItem.provisioner">
+                <hxgn-commonlocalization-translate-v1 [token]="sItem.nameToken" [ignoreSkeleton]="true">
+                </hxgn-commonlocalization-translate-v1>
+
+            </hxgn-main-menu-item>
+        </hxgn-main-menu-item>
+
+    </hxgn-main-menu-section>
+
+
+    <!-- Resources section -->
+    <hxgn-main-menu-section>
+        <span>
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.resources" [ignoreSkeleton]="true">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+
+        <hxgn-main-menu-item imageSrc="assets/icons/about-icon.svg" (click)="openAboutDialog()">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.about" [ignoreSkeleton]="true">
+            </hxgn-commonlocalization-translate-v1>
+        </hxgn-main-menu-item>
+
+        <hxgn-main-menu-item imageSrc="assets/icons/help-icon.svg" (click)="openHelp()">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.help" [ignoreSkeleton]="true">
+            </hxgn-commonlocalization-translate-v1>
+        </hxgn-main-menu-item>
+    </hxgn-main-menu-section>
+</hxgn-main-menu>

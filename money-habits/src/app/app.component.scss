@@ -1,0 +1,19 @@
+:host {
+    max-width: 850px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    row-gap: 20px;
+    padding: 20px 0;
+}
+
+.groups {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.transaction {
+    display: flex;
+    justify-content: space-between;
+}

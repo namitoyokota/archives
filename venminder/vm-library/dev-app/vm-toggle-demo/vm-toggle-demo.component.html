@@ -1,0 +1,17 @@
+<template>
+    <require from="./vm-toggle-demo.component.css"></require>
+
+    <div class="vm-toggle-demo">
+        <label class="vm-toggle-demo--label">Default</label>
+        <vm-toggle></vm-toggle>
+        <vm-toggle value.one-time="true"></vm-toggle>
+        <vm-toggle is-disabled.one-time="true"></vm-toggle>
+        <vm-toggle is-disabled.one-time="true" value.one-time="true"></vm-toggle>
+
+        <label class="vm-toggle-demo--label">Small</label>
+        <vm-toggle is-small.one-time="true"></vm-toggle>
+        <vm-toggle is-small.one-time="true" value.one-time="true"></vm-toggle>
+        <vm-toggle is-disabled.one-time="true" is-small.one-time="true"></vm-toggle>
+        <vm-toggle is-disabled.one-time="true" is-small.one-time="true" value.one-time="true"></vm-toggle>
+    </div>
+</template>

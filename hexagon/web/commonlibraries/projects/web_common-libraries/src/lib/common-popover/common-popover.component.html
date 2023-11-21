@@ -1,0 +1,34 @@
+<ng-template cdkConnectedOverlay #overlay
+    [cdkConnectedOverlayBackdropClass]="backdropClassName"
+    [cdkConnectedOverlayHasBackdrop]="true"
+    [cdkConnectedOverlayOpen]="isOpen$ | async"
+    [cdkConnectedOverlayOrigin]="origin"
+    [cdkConnectedOverlayPositions]="connectionPositionPairs"
+    (backdropClick)="close(true)"
+    (positionChange)="handlePosition($event)">
+
+    <div #overlayContainer class="overlay-container"
+        [ngClass]="activeClass"
+        [class.menu-mode]="menuMode"
+        (click)="handlePopoverClick()">
+
+        <div *ngIf="!menuMode" class="extension"></div>
+        <div class="overlay-content" [style.height]="height" [style.width]="width"
+            [style.max-height]="maxHeight" [style.max-width]="maxWidth">
+            <ng-content></ng-content>
+            <div *ngIf="showDismiss || showCheckbox" class="bottom-row">
+                <div class="checkbox-container">
+                    <mat-checkbox *ngIf="showCheckbox" [(ngModel)]="dontShowAgain">
+                        <hxgn-commonlocalization-translate-v1 class="checkbox-label" [token]="tokens.dontShowThisAgain"
+                            skeletonWidth="145px">
+                        </hxgn-commonlocalization-translate-v1>
+                    </mat-checkbox>
+                </div>
+                <button *ngIf="showDismiss" class="hxgn-btn-secondary" (click)="close()">
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.dismiss" [ignoreSkeleton]="true">
+                    </hxgn-commonlocalization-translate-v1>
+                </button>
+            </div>
+        </div>
+    </div>
+</ng-template>

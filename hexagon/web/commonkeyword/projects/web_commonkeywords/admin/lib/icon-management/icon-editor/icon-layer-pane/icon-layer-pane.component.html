@@ -1,0 +1,28 @@
+<div class="header-pane">
+    <span>
+        <hxgn-commonlocalization-translate-v1 skeletonWidth="150px" [token]="tokens.iconLayers">
+            ({{iconLayers.length}})
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+</div>
+<div class="layer-pane" cdkDropList cdkScrollable [cdkDropListData]="iconStack"
+    (cdkDropListDropped)="reorderIcons($event)">
+    <div class="layer" cdkDrag *ngFor="let icon of iconStack; let i = index; trackBy: trackByFn"
+        [class.selected]="isSelected(i)" (click)="selectLayer(i)">
+
+        <div class="drag-icon" cdkDragHandle (mousedown)="movingIndex = i"></div>
+
+        <div class="icon-pane" [class.error]="!icon?.url">
+            <div *ngIf="icon?.url;" class="icon" [style.background-image]="'url(' + UrlHelper.mapMediaUrl(icon?.url) + ')'"></div>
+        </div>
+        <div class="truncate">
+            <hxgn-commonlocalization-translate-v1 *ngIf="icon?.nameToken" skeletonWidth="50px" [token]="icon?.nameToken">
+            </hxgn-commonlocalization-translate-v1>
+
+            <hxgn-commonlocalization-translate-v1 *ngIf="!icon?.nameToken" skeletonWidth="50px" [token]="tokens.iconRemoved">
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+        <div class="delete-layer" (click)="deleteLayer(i, $event)"></div>
+    </div>
+</div>
+<div class="empty" *ngIf="!iconLayers.length"></div>

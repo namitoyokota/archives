@@ -1,0 +1,34 @@
+<span class="title">
+    <span>
+        <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]='tokens.onboarding'></hxgn-commonlocalization-translate-v1>
+    </span>
+</span>
+<span class="title">
+    {{headerString}}
+</span>
+
+<hxgn-commontenant-step-pane [steps]="onboardingStore.steps$ | async" [selectedStepId]="(onboardingStore.activeStep$ | async)?.componentType"
+    [completedStepIds]="getCurrentTenant()?.onboardingConfiguredSteps" (stepChange)="setStepPortal($event)">
+</hxgn-commontenant-step-pane>
+
+<!-- Portal host container -->
+<div id="portal-pane"></div>
+
+<div class="btn-pane">
+
+    <button class="hxgn-btn-secondary" *ngIf="(onboardingStore.isActiveStepFirstStep$() | async) !== true" (click)="back()">
+        <hxgn-commonlocalization-translate-v1 [token]='tokens.back' [ignoreSkeleton]="true">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+
+    <button class="hxgn-btn-primary" [disabled]="(onBoardingCommSrv.saveEnabled$ | async) !== true"
+        (click)="onBoardingCommSrv.startSave()">
+        <hxgn-commonlocalization-translate-v1 [token]='tokens.saveAndContinue' [ignoreSkeleton]="true">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+
+</div>
+
+<div *ngIf="onboardingStore.isLoading$ | async" class="loading-pane">
+    <mat-spinner></mat-spinner>
+</div>

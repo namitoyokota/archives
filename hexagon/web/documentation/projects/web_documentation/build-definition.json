@@ -1,0 +1,29 @@
+{
+    "featureModules": [
+        {
+            "entryPointId": "@galileo/web_documentation/_core",
+            "chunkId": "@hxgn/documentation",
+            "module": "DocumentationCoreModule"
+        },
+        {
+            "entryPointId": "@galileo/web_documentation/admin",
+            "chunkId": "@hxgn/documentation/admin",
+            "module": "ApiDocumentationModule"
+        }
+
+    ],
+    "adminFeatureRouting": [
+        {
+            "path": "apiDocumentation",
+            "data": {
+                "adminComponent": "@hxgn/documentation/admin/apidocumentation/v1",
+                "adminId": "@hxgn/documentation/admin",
+                "adminTitle": "documentation-admin.component.apiDocumentation",
+                "claim": "uiApiDocumentationAccess",
+                "capabilityId": "@hxgn/documentation"
+            },
+            "canActivate": ["ClaimGuard$v1"],
+            "canDeactivate": []
+        }
+    ]
+}

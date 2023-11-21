@@ -1,0 +1,12 @@
+<div class="content-pane">
+    <hxgn-commontenant-data-sharing-notice></hxgn-commontenant-data-sharing-notice>
+
+    <div class="button-pane">
+        <button (click)="close(false)" class="hxgn-btn-secondary">
+            <hxgn-commonlocalization-translate-v1 [token]='tokens.cancel'></hxgn-commonlocalization-translate-v1>
+        </button>
+        <button (click)="close(true)" class="hxgn-btn-primary">
+            <hxgn-commonlocalization-translate-v1 [token]='tokens.accept'></hxgn-commonlocalization-translate-v1>
+        </button>
+    </div>
+</div>

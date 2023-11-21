@@ -1,0 +1,39 @@
+<div class="selected-capability-apply-all">
+    <hxgn-common-dropdown-v2 [disabled]="!capabilityApplyAllMap.get(selectedCapability?.id)?.checked"
+        [value]="capabilityApplyAllMap.get(selectedCapability?.id)?.rulesetName">
+        <hxgn-common-dropdown-item-v2 *ngFor="let ruleSet of ruleSets" [value]="ruleSet.name"
+            (click)="selectionChangedApplyAll(ruleSet)">
+            {{ruleSet.name}}
+        </hxgn-common-dropdown-item-v2>
+    </hxgn-common-dropdown-v2>
+    <mat-checkbox [checked]="capabilityApplyAllMap.get(selectedCapability?.id)?.checked"
+        (change)="setCapabilityApplyAll($event)">
+        <span class="selected-capability-apply-all-label">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.applyToAll" skeletonWidth="135px">
+            </hxgn-commonlocalization-translate-v1>
+            <hxgn-commonlocalization-translate-v1 [token]="selectedCapability?.nameToken" skeletonWidth="40px">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+    </mat-checkbox>
+</div>
+<div class="selected-capability-industry-list">
+    <div class="industry-container" *ngFor="let industryId of tenant?.industryIds">
+        <div class="industry">
+            <div class="industry-icon-pane">
+                <div class="industry-icon" [style.background-image]="'url(' + getIndustry(industryId).iconUrl + ')'">
+                </div>
+            </div>
+            <div class="industry-title">
+                <hxgn-commonlocalization-translate-v1 [token]='getIndustry(industryId).nameToken' skeletonWidth="45px">
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+        </div>
+        <hxgn-common-dropdown-v2 *ngIf="!capabilityApplyAllMap.get(selectedCapability?.id)?.checked"
+            [disabled]="!ruleSets.length" [value]="getSelectedRulesetName(industryId)">
+            <hxgn-common-dropdown-item-v2 *ngFor="let ruleSet of ruleSets" [value]="ruleSet.name"
+                (click)="selectionChanged(ruleSet, industryId)">
+                {{ruleSet.name}}
+            </hxgn-common-dropdown-item-v2>
+        </hxgn-common-dropdown-v2>
+    </div>
+</div>

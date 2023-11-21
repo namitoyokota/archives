@@ -1,0 +1,19 @@
+<div class="cluster-marker" [class.hidden]="showDetails" 
+    [class.focused]="isFocused" 
+    (mouseenter)="mouseEnter()" 
+    (mouseleave)="mouseLeave()">
+    <div class="cluster-count-container">
+        <div class="cluster-count"
+            [class.mid-font]="childCount > 99"
+            [class.small-font]="childCount > 999">
+            <span>{{childCount}}</span>
+        </div>
+    </div>
+    <hxgn-alarms-priority-icon 
+        [priority]="highestPriority">
+    </hxgn-alarms-priority-icon>
+</div>
+<div class="tool-tip" *ngIf="showToolTip" [@fadeout]>
+    <hxgn-commonlocalization-translate-v1 [token]="tokens.alarms" skeletonWidth="100px">
+    </hxgn-commonlocalization-translate-v1>
+</div>

@@ -1,0 +1,201 @@
+<template>
+  <require from="./flex.css"></require>
+  <require from="../layout.css"></require>
+
+  <div class="demo-pane">
+    <div if.bind="thumbnailMode" class="thumbnail-pane-flex">
+      <div
+        class="thumbnail-box-flex border border-primary background-secondary"
+      ></div>
+      <div
+        class="thumbnail-box-flex border border-primary background-success"
+      ></div>
+      <div
+        class="thumbnail-box-flex border border-primary background-danger"
+      ></div>
+    </div>
+
+    <h3>Flex Directions</h3>
+
+    <div class="example-pane background-warning">
+      <div class="header-pane">
+        <span class="text-danger">flex-direction: row; (default)</span>
+      </div>
+
+      <div class="flex-container">
+        <div class="box border border-primary background-secondary"></div>
+
+        <div class="box border border-primary background-secondary"></div>
+
+        <div class="box border border-primary background-secondary"></div>
+      </div>
+    </div>
+
+    <div class="example-pane background-warning">
+      <div class="header-pane">
+        <span class="text-danger">flex-direction: column;</span>
+      </div>
+
+      <div class="flex-container background-danger column">
+        <div class="box border border-primary background-secondary"></div>
+
+        <div class="box border border-primary background-secondary"></div>
+
+        <div class="box border border-primary background-secondary"></div>
+      </div>
+    </div>
+
+    <hr />
+    <h3>Wraps</h3>
+
+    <div class="example-pane background-warning">
+      <div class="header-pane">
+        <span class="text-danger">flex-wrap: nowrap; (default)</span>
+      </div>
+
+      <div class="flex-container background-danger">
+        <div
+          class="box big-box border border-primary background-secondary"
+        ></div>
+        <div
+          class="box big-box border border-primary background-secondary"
+        ></div>
+        <div
+          class="box big-box border border-primary background-secondary"
+        ></div>
+        <div
+          class="box big-box border border-primary background-secondary"
+        ></div>
+        <div
+          class="box big-box border border-primary background-secondary"
+        ></div>
+        <div
+          class="box big-box border border-primary background-secondary"
+        ></div>
+        <div
+          class="box big-box border border-primary background-secondary"
+        ></div>
+      </div>
+    </div>
+
+    <div class="example-pane background-warning">
+      <div class="header-pane">
+        <span class="text-danger">flex-wrap: wrap;</span>
+      </div>
+
+      <div class="flex-container background-danger wrap">
+        <div
+          class="box big-box border border-primary background-secondary"
+        ></div>
+        <div
+          class="box big-box border border-primary background-secondary"
+        ></div>
+        <div
+          class="box big-box border border-primary background-secondary"
+        ></div>
+        <div
+          class="box big-box border border-primary background-secondary"
+        ></div>
+        <div
+          class="box big-box border border-primary background-secondary"
+        ></div>
+        <div
+          class="box big-box border border-primary background-secondary"
+        ></div>
+        <div
+          class="box big-box border border-primary background-secondary"
+        ></div>
+      </div>
+    </div>
+
+    <hr />
+    <h3>Gaps</h3>
+
+    <div class="example-pane background-warning">
+      <div class="header-pane">
+        <span class="text-danger">column-gap: 10px;</span>
+      </div>
+
+      <div class="flex-container background-danger column-gap">
+        <div class="box border border-primary background-secondary"></div>
+
+        <div class="box border border-primary background-secondary"></div>
+
+        <div class="box border border-primary background-secondary"></div>
+      </div>
+    </div>
+
+    <div class="example-pane background-warning">
+      <div class="header-pane">
+        <span class="text-danger">row-gap: 10px;</span>
+      </div>
+
+      <div class="flex-container background-danger column row-gap">
+        <div class="box border border-primary background-secondary"></div>
+
+        <div class="box border border-primary background-secondary"></div>
+
+        <div class="box border border-primary background-secondary"></div>
+      </div>
+    </div>
+
+    <hr />
+    <h3>Justify Content</h3>
+
+    <div class="example-pane background-warning">
+      <div class="header-pane">
+        <span class="text-danger">justify-content: center;</span>
+      </div>
+
+      <div class="flex-container background-danger justify-center">
+        <div
+          class="box small-box border border-primary background-secondary"
+        ></div>
+      </div>
+    </div>
+
+    <div class="example-pane background-warning">
+      <div class="header-pane">
+        <span class="text-danger">justify-content: space-between;</span>
+      </div>
+
+      <div class="flex-container background-danger column-gap space-between">
+        <div
+          class="box small-box border border-primary background-secondary"
+        ></div>
+
+        <div
+          class="box small-box border border-primary background-secondary"
+        ></div>
+      </div>
+    </div>
+
+    <hr />
+    <h3>Align Items</h3>
+
+    <div class="example-pane background-warning">
+      <div class="header-pane">
+        <span class="text-danger">align-items: center;</span>
+        <span>height: 200px;</span>
+      </div>
+
+      <div class="flex-container background-danger set-height align-center">
+        <div class="box border border-primary background-secondary"></div>
+      </div>
+    </div>
+
+    <div class="example-pane background-warning">
+      <div class="header-pane">
+        <span class="text-danger">align-items: stretch;</span>
+        <span>height: 200px;</span>
+      </div>
+
+      <div
+        class="flex-container background-danger set-height column-gap align-stretch"
+      >
+        <div class="box border border-primary background-secondary"></div>
+        <div class="box border border-primary background-secondary"></div>
+      </div>
+    </div>
+  </div>
+</template>

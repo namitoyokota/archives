@@ -1,0 +1,116 @@
+@import "../../../assets/common-libraries/themes/themes-colors.scss";
+
+:host ::ng-deep .mat-select {
+  background-color: $white;
+}
+
+:host ::ng-deep .mat-select-disabled {
+  background-color: $hxgn-tab-grey;
+}
+
+:host ::ng-deep .mat-select-disabled .mat-select-trigger {
+  opacity: 0.3;
+}
+
+:host ::ng-deep .mat-select {
+  border: 1px solid $hxgn-line-grey;
+  height: 34px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+:host ::ng-deep .mat-select.button-only {
+  height: auto;
+}
+
+:host ::ng-deep .mat-select:not(.mat-select-disabled):hover {
+  border-color: $hxgn-highlight-blue;
+}
+
+:host ::ng-deep .mat-select.button-only {
+  border: 0;
+  width: 0 !important;
+}
+
+:host ::ng-deep .mat-select.custom-button {
+  width: 90px;
+  height: 56px;
+}
+
+:host ::ng-deep .mat-select.toggled-on {
+  border-color: $hxgn-border-blue;
+  background-color: $hxgn-row-blue;
+}
+
+:host ::ng-deep .mat-select-arrow-wrapper {
+  background-color: $hxgn-control-grey !important;
+  border-left: 1px solid $hxgn-line-grey;
+}
+
+:host ::ng-deep .mat-select-disabled .mat-select-arrow-wrapper,
+:host ::ng-deep .button-only .mat-select-arrow-wrapper {
+  border-left: 0;
+}
+
+:host ::ng-deep .button-only .mat-select-arrow-wrapper {
+  background-color: transparent !important;
+}
+
+:host ::ng-deep .mat-option .mat-checkbox,
+:host ::ng-deep .mat-option .mat-checkbox-layout {
+  width: 100%;
+}
+
+:host ::ng-deep .mat-option .mat-checkbox,
+:host ::ng-deep .mat-option .mat-checkbox .mat-checkbox-layout {
+  display: inline-block
+}
+
+:host ::ng-deep .mat-select-placeholder,
+:host ::ng-deep .mat-select-value-text {
+  margin-left: 10px;
+}
+
+:host ::ng-deep label {
+  font-weight: normal;
+}
+
+:host ::ng-deep .mat-select-arrow-wrapper {
+  background: url('/assets/common-libraries/images/dropdown-arrow.png') 50% no-repeat;
+  padding-left: 10px;
+}
+
+:host ::ng-deep .mat-select-arrow-wrapper .mat-select-arrow {
+  color: transparent !important;
+}
+
+:host ::ng-deep .mat-select-value {
+  padding-top: 7px;
+}
+
+:host ::ng-deep .mat-select-trigger {
+  height: 100%;
+}
+
+:host ::ng-deep .mat-select-trigger .mat-button {
+  background-color: transparent;
+  line-height: inherit;
+}
+
+::ng-deep .horizontal-list .mat-select-content {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.mat-option {
+  background-color: $white;
+}
+
+.mat-option.mat-selected:not(.mat-option-multiple) {
+  background-color: $hxgn-row-blue;
+}
+
+.mat-option.mat-selected:not(.mat-option-disabled) {
+  color: $black;
+}

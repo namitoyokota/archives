@@ -1,0 +1,69 @@
+<hxgn-common-card [wasExpanded]="wasExpanded && !isExpanded" [isSelected]="isSelected"
+    [expansionState]="getExpansionState()" [headerTitle]="headerTitle"
+    [isEditable]="showClearAlarmButton && showActionPanel && currentTenantId === alarm.tenantId"
+    (expansionStateChange)="toggleExpansionPanel($event)" [expandedPane]="expanded">
+    <!-- Alarm title -->
+    <hxgn-common-card-title>
+        <div class="title-pane">
+            <span class="title" ellipsisTooltip>{{alarm?.title}}</span>
+            <span class="time-since">&nbsp;- {{alarm.reportedTime | commonTimeSince: refreshToggle | async}}</span>
+        </div>
+    </hxgn-common-card-title>
+
+    <hxgn-common-card-icon>
+        <div class="priority-pane" [class.has-header-text]="headerTitle">
+            <div *ngIf="alarm?.tombstoned" class="closed-bar"></div>
+            <hxgn-alarms-priority [priority]="alarm.priority"></hxgn-alarms-priority>
+        </div>
+        <hxgn-alarms-icon [alarm]="alarm"></hxgn-alarms-icon>
+    </hxgn-common-card-icon>
+
+    <!-- Info pane -->
+    <hxgn-common-card-info-content>
+        <div class="info-pane">
+            <span class="redaction" *ngIf="alarm?.isRedacted(restrictIds.location); else location">
+                <img src="assets/alarms-core/images/lock-icon-lg.png" height="13" width="11" />
+                <span class="bold">
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.location">
+                    </hxgn-commonlocalization-translate-v1>
+                </span>
+            </span>
+            <ng-template #location>
+                <span class="location" *ngIf="alarm?.location?.formattedAddress as location">{{location}}</span>
+            </ng-template>
+        </div>
+        <!-- Tenant name and icon -->
+        <hxgn-commontenant-name *ngIf="showTenantInfo" [tenantId]="alarm?.tenantId"></hxgn-commontenant-name>
+
+    </hxgn-common-card-info-content>
+
+    <!-- Action pane -->
+    <!-- Protected by a the feature flag for channels -->
+    <hxgn-common-card-action-pane>
+        <div *ngIf="(showClearAlarmButton || showCreateChannelBtn); else buttonOnly" class="action-button"
+            [class.selected]="isSelected" cdkOverlayOrigin #origin="cdkOverlayOrigin" (click)="popover.open($event)">
+            <hxgn-common-popover #popover [origin]="origin" [menuMode]="true" [position]="popoverPosition">
+
+                <!-- Create channel btn -->
+                <hxgn-common-menu-item [token]="tokens.createChannel" [disabled]="(canCreateChannel$ | async) === false"
+                imgSrc="assets/alarms-core/images/create-channel-icon.svg" (click)="startChannel()">
+                </hxgn-common-menu-item>
+
+                <!-- Clear alarm btn -->
+                <hxgn-common-menu-item *ngIf="showClearAlarmButton || (canBulkDelete$ | async)" [token]="tokens.closeAlarm"
+                imgSrc="assets/alarms-core/images/Clear-Alarms-Menu-Item.svg" (click)="clearAsync($event)">
+                </hxgn-common-menu-item>
+
+            </hxgn-common-popover>
+        </div>
+        <ng-template #buttonOnly>
+            <div *ngIf="showClearAlarmButton" class="cancel-btn" (click)="clearAsync($event)"></div>
+        </ng-template>
+    </hxgn-common-card-action-pane>
+</hxgn-common-card>
+
+<ng-template #expanded>
+    <hxgn-alarms-detail-pane [alarm]="alarm" [enableRemarks]="enableRemarks" [enableMedia]="enableMedia"
+        [enableKeywords]="enableKeywords" [contextId]="contextId">
+    </hxgn-alarms-detail-pane>
+</ng-template>

@@ -1,0 +1,59 @@
+<div *ngIf="showConnectionProps">
+    <div class="layer-property">
+        <hxgn-commonmap-admin-url-control
+            [url]="mapLayer.url"
+            (isValid)="urlIsValid($event)"
+            (urlChanged)="setURL($event)">
+        </hxgn-commonmap-admin-url-control>
+    </div>
+    <div class="layer-property ">
+        <hxgn-commonmap-admin-local-access-only
+            [mapLayer]="mapLayer"
+            [isNew]="isNew"
+            (changed)="localAccessOnlyChanged($event)">
+        </hxgn-commonmap-admin-local-access-only>
+    </div>
+</div>
+<div *ngIf="showLayerOptions" >
+    <div *ngIf="!isNew" class="section-header">
+        <hxgn-commonlocalization-translate-v1 
+            [token]="tokens.sectionHeaderLayerOptions"
+            [skeletonWidth]="'60px'">
+        </hxgn-commonlocalization-translate-v1>
+    </div>
+    <div class="layer-property">
+        <div class="layer-option-name ellipsis">
+            <hxgn-commonlocalization-translate-v1
+                [token]="tokens.optionAttribution"
+                [skeletonWidth]="'60px'">
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+        <div class="layer-option-value">
+            <hxgn-common-input-v2 style="width:100%">
+                <input type="text" (change)="setAttribution($event)"
+                [placeholder]="transStrings[tokens.optionAttributionPlaceholder]"
+                [value]="attribution" />
+            </hxgn-common-input-v2>
+        </div>
+    </div>
+    <div class="layer-property extra-pad">
+        <hxgn-commonmap-admin-linear-area-styles
+            [vectorStyleProps]="vectorStyleProps"
+            (propertyChanged)="setVectorStyleProps($event)">
+        </hxgn-commonmap-admin-linear-area-styles>
+    </div>
+    <div class="layer-property">
+        <hxgn-commonmap-admin-point-styles
+            [vectorStyleProps]="vectorStyleProps"
+            (propertyChanged)="setVectorStyleProps($event)">
+        </hxgn-commonmap-admin-point-styles>
+    </div>
+    <div class="layer-property">
+        <hxgn-commonmap-admin-auto-refresh
+            [autoRefresh]="autoRefresh"
+            [autoRefreshInterval]="autoRefreshInterval"
+            (autoRefreshChanged)="setAutoRefresh($event)"
+            (autoRefreshIntervalChanged)="setAutoRefresh($event)">
+        </hxgn-commonmap-admin-auto-refresh>
+    </div>
+</div>    

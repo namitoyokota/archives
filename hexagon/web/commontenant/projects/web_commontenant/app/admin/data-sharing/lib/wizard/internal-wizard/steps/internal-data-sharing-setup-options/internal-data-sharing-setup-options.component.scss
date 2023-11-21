@@ -1,0 +1,73 @@
+:host {
+    display:flex;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+hxgn-commontenant-wizard-step-layout-content {
+    display: grid;
+    grid-template-rows: 80px min-content;
+    row-gap: 15px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.description {
+    font-size: 20px;
+}
+
+.option {
+    background-color: #F7F7F7;
+    border-radius: 8px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 21px 70px auto;
+    grid-gap: 20px;
+    margin-bottom: 15px;
+    border: 1px solid #F7F7F7;
+    cursor: pointer;
+
+    &.selected {
+        border: 1px solid #335CA5;
+    }
+
+    mat-radio-button {
+        align-self: center;
+    }
+
+    .icon {
+        width: 70px;
+        height: 70px;
+    }
+
+    .title-pane {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .title {
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+    .note {
+        color: #A1A1A1;
+        font-size: 16px;
+        font-weight: 500;
+    }
+}
+
+.warning {
+    margin-top: -10px;
+    display: flex;
+    padding: 0 29px;
+    margin-bottom: 10px;
+    font-weight: 500;
+    color: #FF8500;
+}

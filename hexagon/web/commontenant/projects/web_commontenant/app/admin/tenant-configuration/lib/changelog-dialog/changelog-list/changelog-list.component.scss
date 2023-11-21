@@ -1,0 +1,9 @@
+:host {
+    hxgn-commonidentity-changelog-card-v1 {
+        height: auto;
+
+        ::ng-deep .main-pane {
+            grid-template-columns: 25px 1fr .6fr min-content
+        } 
+    }
+}

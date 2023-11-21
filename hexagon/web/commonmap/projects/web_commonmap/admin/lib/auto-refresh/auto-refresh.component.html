@@ -1,0 +1,25 @@
+<div class="auto-refresh">
+    <div class="small-checkbox-font">
+        <mat-checkbox [checked]="autoRefresh" disableRipple="true"
+            (change)="setAutoRefresh($event)">
+            <hxgn-commonlocalization-translate-v1
+                [token]="tokens.autoRefreshToggleLabel"
+                [skeletonWidth]="'60px'">
+            </hxgn-commonlocalization-translate-v1>
+        </mat-checkbox>
+    </div>
+    <div class="auto-refresh-slider-group" [class.hide]="!autoRefresh">
+        <div>
+            <hxgn-commonlocalization-translate-v1
+                [token]="tokens.autoRefreshIntervalLabel">
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+        <span>{{autoRefreshIntervalLabel}}</span>
+        <mat-slider class="auto-refresh-slider" 
+            [min]="1"
+            [max]="30"
+            [value]="autoRefreshInterval"
+            (change)="setAutoRefreshInterval($event)">
+        </mat-slider>
+    </div>
+</div>

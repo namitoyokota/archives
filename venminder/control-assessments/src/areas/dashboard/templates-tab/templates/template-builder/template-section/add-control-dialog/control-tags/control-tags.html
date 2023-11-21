@@ -1,0 +1,23 @@
+﻿<template>
+  <require from="./control-tags.scss"></require>
+  <require from="./autocomplete/autocomplete"></require>
+
+  <label for="tags">Tags</label>
+  <div class="tag-list">
+    <!-- List of Existing Tags -->
+    <div class="tag" repeat.for="tag of tagList">
+      <span class="tag-text">${tag}</span>
+      <i class="fa fa-times remove-icon" click.delegate="removeTag(tag)"></i>
+    </div>
+
+    <!-- Input Field for New Tag -->
+    <autocomplete
+      class="new-input"
+      service.bind="tagSuggestionService"
+      placeholder="Add a new tag"
+      value.bind="currentTag"
+      keyup.trigger="handleKeypress($event)"
+    >
+    </autocomplete>
+  </div>
+</template>

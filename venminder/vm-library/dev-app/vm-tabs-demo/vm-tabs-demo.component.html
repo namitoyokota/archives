@@ -1,0 +1,21 @@
+<template>
+    <vm-alert class="m-b" type.one-time="vmAlertTypes.Info">
+        NOTE: This demo is for demonstration only, meaning tab functionality is limited here. Please just use this for testing appearance
+        and test functionality within the main repo instead.
+    </vm-alert>
+
+    <div class="form-group">
+        <label>Primary Tabs</label>
+        <vm-tabs primary></vm-tabs>
+    </div>
+    <div class="form-group">
+        <label>Secondary Tabs</label>
+        <vm-tabs secondary></vm-tabs>
+    </div>
+    <div class="form-group">
+        <label>Vertical Tabs</label>
+        <vm-tabs vertical></vm-tabs>
+    </div>
+
+    <router-view></router-view>
+</template>

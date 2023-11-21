@@ -1,0 +1,81 @@
+:host {
+    position: relative;
+    display: grid;
+    grid-template-rows: auto min-content;
+    row-gap: 15px;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.button-pane {
+    display: flex;
+    justify-content: flex-end;
+    
+    .force-button {
+        align-self: center;
+        margin-right: 20px;
+    }
+
+    button {
+        margin-left: 10px;
+    }
+}
+
+// Css for loading pane
+.loading-pane {
+    width: 100%;
+    height: 100%;
+
+    .item {
+        border: 1px solid #ccc;
+        padding: 5px;
+        display: grid;
+        padding: 10px;
+        grid-template-columns: 60px auto;
+        grid-template-rows: 25px 20px;
+        row-gap: 5px;
+        column-gap: 5px;
+
+        .first {
+            height: 30px;
+            grid-row: 1 / span 2;
+        }
+
+        .last {
+            max-width: 120px;
+        }
+    }
+
+    .loading {
+        background: linear-gradient(270deg, #a9a9a9, #dedede);
+        background-size: 400% 400%;
+        animation: AnimationName 2s ease infinite;
+
+        @keyframes AnimationName {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+    }
+}
+
+.spinner {
+    position: absolute;
+    background-color: hsla(0,0%,100%,.8);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadein .5s;
+}

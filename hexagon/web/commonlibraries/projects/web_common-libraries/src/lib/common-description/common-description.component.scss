@@ -1,0 +1,12 @@
+:host {
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    column-gap: 15px;
+    align-items: center;
+    background-color: #e5e5e5;
+    color: #6e6e6f;
+    font-size: 15px;
+    line-height: 19px;
+    padding: 10px;
+    word-break: break-word;
+}

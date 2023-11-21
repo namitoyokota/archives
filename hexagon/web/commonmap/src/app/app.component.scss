@@ -1,0 +1,177 @@
+:host {
+	//line-height: 1;
+	padding: 0;
+	margin: 0;
+	/*font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif !important;
+    font-size: 14px;*/
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+}
+
+.test-bed {
+	display: grid;
+    width: 100vw;
+    height: 100vh;
+	grid-template-columns: 1fr;
+	grid-template-rows: 43px auto;
+	overflow: hidden;
+}
+
+.component-area {
+	position: relative;
+	width: 100%;
+	height: calc(100vh - 43px);
+}
+
+.header {
+	position: absolute;
+	top: 0;
+	width: calc(100vw - 10px);
+	height: 30px;
+	background-color: #62BED2;
+	left: 0;
+	color: white;
+	display: flex;
+	align-items: center;
+	padding: 5px;
+
+	span {
+		margin-left: 10px;
+		margin-right: 5px;
+	}
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 330px auto 400px;
+    grid-template-rows: auto;
+    padding: 5px;
+    height: calc(100% - 10px);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.main-content.hidden {
+	display: none;
+}
+.controls {
+    opacity: 1;
+    pointer-events: all;
+    position:relative;
+    height: 100%;
+    width: 330px;
+    display:flex;
+    flex-direction: column;
+    overflow:auto;
+}
+.controls.disabled {
+    opacity: .3;
+    pointer-events: none;
+}
+.vector-style-controls {
+    padding: 10px;
+
+    .item {
+        width: 250px;
+        margin-bottom: 10px;
+    }
+
+    .field-name {
+        display: flex;
+    }
+}
+
+.cmd-buttons {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 150px 150px;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    margin-left: 10px;
+
+    .cmd-button {
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+        height: 30px;
+        width: 150px;
+        border: 1px solid black;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .cmd-button.disabled {
+        opacity: .5;
+        pointer-events: none;
+    }
+}
+.mapview {
+    position: relative;
+    width: auto;
+    height: 100%;
+}
+.mapview-settings {
+    position:relative;
+    width: 400px;
+    border:1px solid #6e6e6e;
+}
+
+.admin-content {
+	display: flex;
+	padding: 5px;
+    width: 100vw;
+    height: calc(100vh - 43px);
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+.admin-content.hidden {
+	display:none;
+}
+
+.linked-views {
+	display: grid;
+	grid-template-columns: .85fr 1.5fr 1.5fr;
+	grid-template-rows: auto;
+	padding: 5px;
+	height: calc(100% - 10px);
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.linked-views.hidden {
+	display:none;
+}
+
+.control-tab {
+	grid-column: 1 / 4;
+}
+
+.waze-content {
+	display: grid;
+	grid-template-columns: 1fr 1.85fr .85fr;
+	grid-template-rows: auto;
+	padding: 5px;
+	height: calc(100% - 10px);
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.waze-content.hidden {
+	display:none;
+}
+
+hxgn-commonmap-map-configuration-wrapper {
+	width: 100%;
+	height: 100%;
+}
+
+#admin-portal {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+

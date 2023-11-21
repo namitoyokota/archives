@@ -1,0 +1,25 @@
+<span class="header">
+    <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]='tokens.featureFlagChange'>
+    </hxgn-commonlocalization-translate-v1>
+</span>
+<span class="msg">
+    <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]='tokens.featureFlagChangeMsg'>
+    </hxgn-commonlocalization-translate-v1>
+</span>
+<div class="refresh-pane">
+    <span>
+        <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]='tokens.refreshIn'>
+        </hxgn-commonlocalization-translate-v1> &nbsp;
+    </span>
+    <hxgn-commonfeatureflags-count-down (done)="close(true)" time=60></hxgn-commonfeatureflags-count-down>
+</div>
+<div class="btn-pane">
+    <button (click)="close(false)" class="hxgn-btn-secondary">
+        <hxgn-commonlocalization-translate-v1 [token]='tokens.wait' [ignoreSkeleton]="true">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+    <button (click)="close(true)" class="hxgn-btn-primary">
+        <hxgn-commonlocalization-translate-v1 [token]='tokens.refreshNow' [ignoreSkeleton]="true">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+</div>

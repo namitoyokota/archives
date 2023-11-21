@@ -1,0 +1,48 @@
+<div class="header-pane">
+    <div>
+        <span class="title"> 
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.notifications" skeletonWidth="64px"></hxgn-commonlocalization-translate-v1>
+            ({{totalCount}})
+        </span>
+    </div>
+    <div class="settings-btn" [class.selected]="showSettingsPane" (click)="showSettingsPane = !showSettingsPane">
+        <img *ngIf="!showSettingsPane" src="assets/commonnotifications-core/images/settings-icon.svg" />
+        <img *ngIf="showSettingsPane" src="assets/commonnotifications-core/images/settings-icon-selected.svg" />
+    </div>
+    <div>
+        <img class="close-btn" [class.selected]="showSettingsPane" (click)="close()" src="assets/commonnotifications-core/images/x_dialog.png" />
+    </div>
+</div>
+
+<div *ngIf="showSettingsPane" class="settings-pane">
+    <hxgn-commonnotifications-settings-pane (reorder)="reorder($event)" (toggleSound)="settings.enableSound = $event"
+        [order]="groupOrder" [enableSound]="settings.enableSound"
+        [filterOptions]="filterOptionList"></hxgn-commonnotifications-settings-pane>
+</div>
+
+<!-- Pane used to sort and filter notifications -->
+<hxgn-commonnotifications-sort-pane [notificationCount]="filterCount" [filterOptions]="filterOptionList"
+    (filterChange)="setFilter($event)" (sortChange)="setSort($event)"></hxgn-commonnotifications-sort-pane>
+
+<div class="list-pane" *ngIf="loadingComplete">
+    <hxgn-common-expansion-panel *ngFor="let id of capabilityIds" (stateChange)="setIsExpanded(id, $event)" [panelState]="groups.get(id)?.length ? 'expanded' : 'collapsed'">
+        <hxgn-common-expansion-panel-title>
+            <div class="title">
+                <hxgn-commonlocalization-translate-v1 [token]="optionsIdMapping.get(id).nameToken" skeletonWidth="50px"></hxgn-commonlocalization-translate-v1>
+                ({{groups.get(id)?.length ? groups.get(id)?.length : 0}})
+            </div>
+        </hxgn-common-expansion-panel-title>
+        <hxgn-common-expansion-panel-header>
+            <div *ngIf="groups.get(id)?.length" (click)="clearAll(id)"
+                class="clear-all-btn">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.clearAll" skeletonWidth="50px"></hxgn-commonlocalization-translate-v1>
+            </div>
+        </hxgn-common-expansion-panel-header>
+        <hxgn-common-expansion-panel-content>
+            <ng-container *ngIf="sectionState.get(id) === 'expanded' || !sectionState.get(id)">
+                <hxgn-commonnotifications-item *ngFor="let appNotification of groups.get(id);trackBy:trackByFn " [contextId]="contextId"
+                    [appNotifications]="[appNotification]" [isToast]="false" (clear)="clearNotification($event)"></hxgn-commonnotifications-item>
+            </ng-container>
+        </hxgn-common-expansion-panel-content>
+    </hxgn-common-expansion-panel>
+</div>

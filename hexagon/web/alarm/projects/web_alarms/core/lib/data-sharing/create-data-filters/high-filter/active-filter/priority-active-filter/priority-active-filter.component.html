@@ -1,0 +1,22 @@
+<hxgn-alarms-active-filter (delete)="deleteFilter()" (toggle)="toggleFilter()" [buttonType]="buttonType"
+    [toggleEnabled]="toggleEnabled">
+    <hxgn-common-expansion-panel-title>
+        <hxgn-commonlocalization-translate-v1 skeletonWidth="75px" [token]='tokens.dontShare'>
+        </hxgn-commonlocalization-translate-v1>
+        <span class="bold" style="margin-left:5px">
+            <hxgn-commonlocalization-translate-v1 skeletonWidth="75px" [token]='tokens.priority'>
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+    </hxgn-common-expansion-panel-title>
+    <hxgn-common-chip endCapColor="#C1272D">
+        <span class="bold">
+            <hxgn-commonlocalization-translate-v1 skeletonWidth="75px" [token]='tokens.priority'>
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+        <span>
+            <hxgn-commonlocalization-translate-v1 skeletonWidth="75px" [token]='getOperationToken()'>
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+        <span>{{operation?.content.rightHandConfigurationOperand}}</span>
+    </hxgn-common-chip>
+</hxgn-alarms-active-filter>

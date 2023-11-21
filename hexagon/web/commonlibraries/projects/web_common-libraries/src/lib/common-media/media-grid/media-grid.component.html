@@ -1,0 +1,115 @@
+<!-- One item -->
+<ng-container *ngIf="videoPhotoMedia.length === 1">
+    <div class="grid-one">
+        <hxgn-common-media-grid-cell>
+            <hxgn-common-media-video-clip-attachment-item [media]="videoPhotoMedia[0]" [fetcher]="fetcher"
+                *ngIf="checkMedia(videoPhotoMedia[0], mediaType.videoClips)">
+            </hxgn-common-media-video-clip-attachment-item>
+
+            <hxgn-common-media-image-attachment-item [media]="videoPhotoMedia[0]"
+                *ngIf="checkMedia(videoPhotoMedia[0], mediaType.images)">
+            </hxgn-common-media-image-attachment-item>
+        </hxgn-common-media-grid-cell>
+    </div>
+</ng-container>
+
+<!-- Two items or 4 -->
+<ng-container
+    *ngIf="videoPhotoMedia.length === 2 || videoPhotoMedia.length === 4 || (ShowGridTwo && videoPhotoMedia.length >= 2) ">
+    <div class="grid-two">
+        <hxgn-common-media-grid-cell *ngFor="let media of videoPhotoMedia">
+            <hxgn-common-media-video-clip-attachment-item [media]="media" [fetcher]="fetcher"
+                *ngIf="checkMedia(media, mediaType.videoClips)">
+            </hxgn-common-media-video-clip-attachment-item>
+
+            <hxgn-common-media-image-attachment-item [media]="media" *ngIf="checkMedia(media, mediaType.images)">
+            </hxgn-common-media-image-attachment-item>
+        </hxgn-common-media-grid-cell>
+    </div>
+</ng-container>
+
+<!-- Three items: TODO: Need to update to match UX design -->
+<ng-container *ngIf="videoPhotoMedia.length === 3 && !ShowGridTwo">
+    <div class="grid-three">
+        <hxgn-common-media-grid-cell *ngFor="let media of videoPhotoMedia">
+            <hxgn-common-media-video-clip-attachment-item [media]="media" [fetcher]="fetcher"
+                *ngIf="checkMedia(media, mediaType.videoClips)">
+            </hxgn-common-media-video-clip-attachment-item>
+
+            <hxgn-common-media-image-attachment-item [media]="media" *ngIf="checkMedia(media, mediaType.images)">
+            </hxgn-common-media-image-attachment-item>
+        </hxgn-common-media-grid-cell>
+    </div>
+</ng-container>
+
+<!-- Five plus items -->
+<ng-container *ngIf="videoPhotoMedia.length >= 5 && !ShowGridTwo">
+    <div class="grid-five">
+        <div class="grid-two">
+            <hxgn-common-media-grid-cell *ngFor="let media of videoPhotoMedia.slice(0,2)">
+                <hxgn-common-media-video-clip-attachment-item [media]="media" [fetcher]="fetcher"
+                    *ngIf="checkMedia(media, mediaType.videoClips)">
+                </hxgn-common-media-video-clip-attachment-item>
+
+                <hxgn-common-media-image-attachment-item [media]="media" *ngIf="checkMedia(media, mediaType.images)">
+                </hxgn-common-media-image-attachment-item>
+            </hxgn-common-media-grid-cell>
+
+
+        </div>
+        <div class="grid-three-row">
+            <hxgn-common-media-grid-cell *ngFor="let media of videoPhotoMedia.slice(2,videoPhotoMedia.length)">
+                <hxgn-common-media-video-clip-attachment-item [media]="media" [fetcher]="fetcher"
+                    *ngIf="checkMedia(media, mediaType.videoClips)">
+                </hxgn-common-media-video-clip-attachment-item>
+
+                <hxgn-common-media-image-attachment-item [media]="media" *ngIf="checkMedia(media, mediaType.images)">
+                </hxgn-common-media-image-attachment-item>
+            </hxgn-common-media-grid-cell>
+        </div>
+    </div>
+</ng-container>
+
+<!-- Show other media -->
+<div class="other-media" [class.single]="ShowGridTwo">
+    <div class="media-item" *ngFor="let media of otherMedia">
+
+        <!-- Module viewer UI -->
+        <div *ngIf="media.uri && showModelViewer(media.contentType)" class="other-item">
+            <img class="icon" src="{{commonMediaSrv.getAttachmentImageSrc(media.contentType)}}" />
+            <a class="module-viewer">
+                <div (click)="openModelViewer(media)">{{media.name}}</div>
+            </a>
+            <a [attr.href]="media.uri" download><img src="assets/common-libraries/images/download-grey.png" /></a>
+        </div>
+
+        <!-- All other media UI -->
+        <a *ngIf="media.uri && !showModelViewer(media.contentType)" class="other-item" [attr.href]="media.uri" download>
+            <img class="icon" src="{{commonMediaSrv.getAttachmentImageSrc(media.contentType)}}" />
+            <div>{{media.name}}</div>
+            <img src="assets/common-libraries/images/download-grey.png" />
+        </a>
+
+        <div *ngIf="!media.uri" class="item loading">
+            <img class="icon" src="{{commonMediaSrv.getAttachmentImageSrc(media.contentType)}}" />
+            <div>{{media.name}}</div>
+        </div>
+    </div>
+</div>
+
+<!-- Show more/ less button -->
+<div (click)="toggleShowAll()" class="toggle-show">
+    <ng-container *ngIf="hiddenItems">
+        <span>+ {{hiddenItems}} </span>
+        <span>
+            <hxgn-commonlocalization-translate-v1 skeletonWidth="75px" [token]="tokens.attachments">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+    </ng-container>
+    <ng-container *ngIf="showAll">
+        <span>
+            <hxgn-commonlocalization-translate-v1 skeletonWidth="60px" [token]="tokens.showLess">
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+    </ng-container>
+</div>

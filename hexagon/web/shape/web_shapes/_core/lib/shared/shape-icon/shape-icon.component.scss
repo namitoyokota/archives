@@ -1,0 +1,22 @@
+:host {
+  width: 20px;
+  height: 20px;
+  border: 2px solid;
+  box-sizing: border-box;
+
+  &.solid {
+    border-top: 2px solid;
+  }
+
+  &.dash {
+    border: 2px dashed;
+  }
+
+  &.dot {
+    border-style: dotted;
+    border-width: 2px;
+  }
+}
+
+
+

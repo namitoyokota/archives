@@ -1,0 +1,51 @@
+:host {
+    display: block;
+    background-color: #fff;
+}
+
+.pane {
+    overflow: hidden;
+    // outline: 1px solid #B6B6B6;
+    position: relative;
+}
+
+.img {
+    background-repeat: no-repeat;
+    position: absolute;
+
+    &.flip-h {
+        transform: scaleX(-1);
+    }
+
+    &.flip-v {
+        transform: scaleY(-1);
+    }
+
+    &.flip-h-v {
+        transform: scaleX(-1) scaleY(-1);
+    }
+
+    &.fallback {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+
+    &.error {
+      background-size:contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      box-sizing: border-box;
+      border: 2px solid #f1c73c;
+      background-color:rgba(241,199,60, 0.45);
+    }
+}
+
+.error {
+    background-color: #ccc;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}

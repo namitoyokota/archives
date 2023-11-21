@@ -1,0 +1,10 @@
+<#@ include file="..\..\..\..\..\CreateTypeScript.ttinclude" #>
+<#@ template debug="true" hostSpecific="true" language="C#" #>
+<#@ output extension="ts" #>
+
+import { TemplateTheme } from "../themes/theme";
+import { AssessmentScore } from "./assessment-score";
+import { AssessmentSection } from "./assessment-section";
+import { Statuses } from "./statuses";
+
+<#= GetClass<ControlAssessments.Business.Models.DTO.Assessment.AssessmentData>(generateCreateFunction:true) #>

@@ -1,0 +1,23 @@
+.perform-assessment {
+  .action-pane {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+
+    .select-template-pane {
+      display: grid;
+      grid-template-rows: min-content auto;
+      row-gap: 5px;
+
+      .select-title {
+        font-weight: 800;
+      }
+
+      .select-pane {
+        display: grid;
+        grid-template-columns: auto min-content;
+        column-gap: 10px;
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+<hxgn-commontenant-wizard-step-layout [stepTitle]="tTokens.receiveData" [actionPaneRef]="actionPaneRef"
+    [descriptionHeaderPaneRef]="descriptionHeaderPaneRef">
+
+    <hxgn-commontenant-wizard-step-layout-description>
+        <hxgn-commontenant-step-description [stepTitle]="tTokens.chooseReceivingNetwork"
+            [description]="tTokens.chooseReceivingNetworkMessage" imageUrl="assets/commontenant-core/receive-data.svg">
+        </hxgn-commontenant-step-description>
+
+        <hxgn-commontenant-info-popover [msg]="tTokens.infoButtonMessage">
+        </hxgn-commontenant-info-popover>
+    </hxgn-commontenant-wizard-step-layout-description>
+    <hxgn-commontenant-wizard-step-layout-content>
+        <span class="msg">
+            <hxgn-commonlocalization-translate-v1 [token]='tokens.optInShare'>
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+
+        <mat-radio-group [(ngModel)]="receiveData" (change)="setReceiveData($event.value)">
+            <mat-radio-button [value]="true">
+                <hxgn-commonlocalization-translate-v1 [token]='tokens.yesReceiveData'>
+                </hxgn-commonlocalization-translate-v1>
+            </mat-radio-button>
+            <mat-radio-button [value]="false">
+                <hxgn-commonlocalization-translate-v1 [token]='tokens.dontReceiveData'>
+                </hxgn-commonlocalization-translate-v1>
+            </mat-radio-button>
+        </mat-radio-group>
+
+        <span class="note">
+            <hxgn-commonlocalization-translate-v1 [token]='tokens.dataReceiveNote'>
+            </hxgn-commonlocalization-translate-v1>
+        </span>
+
+    </hxgn-commontenant-wizard-step-layout-content>
+</hxgn-commontenant-wizard-step-layout>

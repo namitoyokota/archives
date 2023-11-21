@@ -1,0 +1,29 @@
+.icon-pane {
+    display: flex;
+
+    .icon-plus {
+        border: 1px solid #C1C1C1;
+        border-radius: 50%;
+        height: 22px;
+        margin-left: -8px;
+        color: #fff;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        font-size: 12px;
+        background-color:#666667;
+        width: 22px;
+        border-radius: 13px;
+    }
+
+    hxgn-commontenant-tenant-icon:not(:first-child), .icon-plus {
+        margin-left: -8px;
+    }
+}
+
+
+.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

@@ -1,0 +1,5 @@
+﻿<iframe [style.display]="error ? 'none' : 'inherit'" class="help-iframe" [src]="url | safeUrl"></iframe>
+<div *ngIf="error" class="warning-box">
+    <hxgn-commonlocalization-translate-v1 class="warning-text" [token]="tokens.helpPageError" skeletonWidth="60px">
+    </hxgn-commonlocalization-translate-v1>
+</div>

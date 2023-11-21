@@ -1,0 +1,28 @@
+@use "../../styles/variables" as v;
+
+vm-breadcrumbs {
+    display: flex;
+    column-gap: 13px;
+    align-items: center;
+    font-size: 16px;
+    line-height: 24px;
+
+    .vm-breadcrumbs--breadcrumb {
+        color: v.$brand-primary !important;
+        font-weight: 700;
+        outline: none;
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
+            text-decoration: underline;
+        }
+    }
+
+    .vm-breadcrumbs--breadcrumb-divider {
+        height: 16px;
+        width: 1px;
+        background-color: v.$N50;
+        transform: rotate(22deg);
+    }
+}

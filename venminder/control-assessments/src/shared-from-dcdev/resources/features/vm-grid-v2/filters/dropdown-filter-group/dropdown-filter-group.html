@@ -1,0 +1,22 @@
+<template>
+  <require from="./dropdown-filter-group.scss"></require>
+  <div if.bind="filterGroups" class="dropdown-filters">
+    <vm-dropdown  repeat.for="group of filterGroups"
+                  display-text.to-view="group.groupName">
+        <div class="dropdown-filters__controls">
+          <input class="vm-input" type="text" placeholder="Search" input.delegate="search(group)" value.bind="group.searchTerm" />
+          <vm-button secondary small click.delegate="selectAll(group)">Select All</vm-button>
+          <vm-button secondary small click.delegate="selectNone(group)">Deselect All</vm-button>
+        </div>
+        <vm-dropdown-item repeat.for="item of group.showFilters"
+                          value.to-view="item"
+                          on-selection.call="selectFilter($event)"
+                          is-selected.bind="checkSelected(item) & signal:'filter-update'"
+                          multiselect="true"
+                          >
+            ${item.name}
+        </vm-dropdown-item>
+        <div if.bind="!group.showFilters.length && group.dirty" class="no-results">No results.</div>
+    </vm-dropdown>
+  </div>
+</template>

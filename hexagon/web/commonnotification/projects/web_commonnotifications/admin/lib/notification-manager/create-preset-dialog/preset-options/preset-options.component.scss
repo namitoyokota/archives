@@ -1,0 +1,57 @@
+:host {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr min-content;
+}
+
+.preset-options {
+    display: grid;
+    grid-template-columns: repeat(3, 235px);
+    column-gap: 20px;
+
+    .preset-option {
+        display: grid;
+        grid-template-rows: 235px auto;
+        row-gap: 20px;
+
+        .preset-option-description {
+            color: #999999;
+            font-size: 16px;
+            line-height: 23px;
+            text-align: center;
+        }
+
+        .preset-option-selector {
+            height: 100%;
+            width: 100%;
+            display: grid;
+            grid-template-rows: auto min-content;
+            justify-content: center;
+            background-color: #f8f8f8;
+            border: solid 1px #c5c6c9;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+
+            .header {
+                padding: 10px;
+            }
+
+            img {
+                align-self: center;
+                justify-self: center;
+            }
+
+            &:hover {
+                background-color: #eceeee;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.step-description {
+    height: 40px;
+    color: #999999;
+    font-size: 16px;
+}

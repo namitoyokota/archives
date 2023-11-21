@@ -1,0 +1,14 @@
+.vm-popup {
+    overflow: hidden;
+    position: absolute;
+    visibility: hidden;
+    top: 0px;
+    z-index: 31000;
+
+    .vm-popup-body {
+        padding: 15px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        height: 405px;
+    }
+}

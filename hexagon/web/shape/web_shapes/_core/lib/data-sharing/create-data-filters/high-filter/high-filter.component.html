@@ -1,0 +1,125 @@
+<div class="add-pane">
+    <!-- Direction Text -->
+    <span class="direction-text">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.highFilterHelpMsg">
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+
+    <!-- Share Type -->
+    <span class="share-type">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.dontShare">
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+
+    <!-- Share Type Pane -->
+    <div class="share-type-pane">
+        <!-- Property Selection -->
+        <hxgn-common-dropdown-v2 [(value)]="selectRestrictId" (selectionChange)="setSelectedRestrictId($event)">
+            <!-- Name -->
+            <hxgn-common-dropdown-item-v2 [value]="RestrictIds.name">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.name">
+                </hxgn-commonlocalization-translate-v1>
+            </hxgn-common-dropdown-item-v2>
+
+            <!-- Description -->
+            <hxgn-common-dropdown-item-v2 [value]="RestrictIds.description">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.description">
+                </hxgn-commonlocalization-translate-v1>
+            </hxgn-common-dropdown-item-v2>
+
+            <!-- Keywords -->
+            <hxgn-common-dropdown-item-v2 [value]="RestrictIds.keywords">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.keywords">
+                </hxgn-commonlocalization-translate-v1>
+            </hxgn-common-dropdown-item-v2>
+        </hxgn-common-dropdown-v2>
+
+        <!-- Operation Selection -->
+        <hxgn-common-dropdown-v2 [(value)]="selectedPropertyProcessor.selectedOperation">
+            <hxgn-common-dropdown-item-v2 *ngFor="let operation of selectedPropertyProcessor.operationList()" 
+                [value]="operation"
+            >
+                <hxgn-commonlocalization-translate-v1 [token]='getOperationToken(operation)'>
+                </hxgn-commonlocalization-translate-v1>
+            </hxgn-common-dropdown-item-v2>
+        </hxgn-common-dropdown-v2>
+    </div>
+
+    <!-- Input Pane -->
+    <div class="input-pane">
+        <ng-container [ngSwitch]="selectRestrictId">
+            <!-- Name -->
+            <hxgn-common-input-v2 *ngSwitchCase="RestrictIds.name" style="width: 100%;"
+                [isValid]="(!isDirty) ? undefined : nameOperationProcessor.validate()"
+            >
+                <input type="text"
+                    [(ngModel)]="nameOperationProcessor.addFilterValue"
+                    [placeholder]="tTokens.typeInNameValue"
+                    (keydown.enter)="addFilter()"
+                />
+            </hxgn-common-input-v2>
+
+            <!-- Description -->
+            <hxgn-common-input-v2 *ngSwitchCase="RestrictIds.description" style="width: 100%;"
+                [isValid]="(!isDirty) ? undefined : descriptionOperationProcessor.validate()"
+            >
+                <input type="text"
+                    [(ngModel)]="descriptionOperationProcessor.addFilterValue"
+                    [placeholder]="tTokens.typeInDescriptionValue"
+                    (keydown.enter)="addFilter()"
+                />
+            </hxgn-common-input-v2>
+
+            <!-- Keyword -->
+            <hxgn-common-input-v2 *ngSwitchCase="RestrictIds.keywords" style="width: 100%;"
+                [isValid]="(!isDirty) ? undefined : keywordOperationProcessor.validate()"
+            >
+                <input type="text"
+                    [(ngModel)]="keywordOperationProcessor.addFilterValue"
+                    [placeholder]="tTokens.typeInKeywordValue"
+                    (keydown.enter)="addFilter()"
+                />
+            </hxgn-common-input-v2>
+        </ng-container>
+    </div>
+
+    <!-- Add Filter Button -->
+    <div class="btn-pane">
+        <button class="hxgn-btn-secondary" (click)="addFilter()">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.addFilter">
+            </hxgn-commonlocalization-translate-v1>
+        </button>
+    </div>
+</div>
+
+<!-- Active Filter Pane -->
+<div class="filter-pane">
+    <h2>
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.activeFilters">
+        </hxgn-commonlocalization-translate-v1>
+    </h2>
+
+    <!-- Editable Filter Criterias -->
+    <div *ngFor="let restriction of getEditableFilterCriteria(); trackBy: trackByFunction">
+        <hxgn-shapes-string-active-filter
+            [operation]="restriction"
+            [propertyNameToken]="getLocalizationToken(restriction?.content.restrictId)"
+            (contentChange)="updateFilter($event, restriction.content.restrictId)"
+            (delete)="removeFilter($event)"
+            (toggle)="toggleNoopFilter($event)" >
+        </hxgn-shapes-string-active-filter>
+    </div>
+
+    <!-- Readonly Filter Criterias -->
+    <div *ngFor="let restriction of getReadOnlyFilterCriteria(); trackBy: trackByFunction">
+        <hxgn-shapes-string-active-filter
+            [operation]="restriction"
+            [propertyNameToken]="getLocalizationToken(restriction?.content.restrictId)"
+            [buttonType]="ActiveFilterButtonType.toggle"
+            [toggleEnabled]="isGlobalDisabled(restriction)"
+            (contentChange)="updateFilter($event, restriction.content.restrictId)"
+            (delete)="removeFilter($event)"
+            (toggle)="toggleNoopFilter($event)" >
+        </hxgn-shapes-string-active-filter>
+    </div>
+</div>

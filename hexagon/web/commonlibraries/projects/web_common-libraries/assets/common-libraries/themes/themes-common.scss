@@ -1,0 +1,177 @@
+/**/
+/* Common Colors */
+/**/
+@import 'themes-colors';
+
+/* Form Fields */
+.mat-form-field-appearance-outline .mat-form-field-outline-start:not(:focus),
+.mat-form-field-appearance-outline .mat-form-field-outline-end:not(:focus) {
+  border-color: $hxgn-line-grey;
+}
+
+.mat-form-field-appearance-outline:hover .mat-form-field-outline-start,
+.mat-form-field-appearance-outline:hover .mat-form-field-outline-end {
+  border-color: $hxgn-highlight-blue;
+}
+
+.mat-form-field-appearance-outline.toggled-on .mat-form-field-outline-start,
+.mat-form-field-appearance-outline.toggled-on .mat-form-field-outline-end {
+  border-color: $hxgn-border-blue;
+}
+
+.toggled-on .mat-form-field-outline {
+  background-color: $hxgn-row-blue;
+}
+
+/* Slide Toggle */
+.mat-disabled .mat-slide-toggle-label .mat-slide-toggle-bar {
+  background-color: $hxgn-line-grey;
+}
+
+.mat-disabled .mat-slide-toggle-thumb-container .mat-slide-toggle-thumb {
+  background-color: $hxgn-placeholder-grey;
+}
+
+.mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+  background-color: $hxgn-secondary-green !important;
+}
+
+.mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+  background-color: $white !important;
+}
+
+/* Slider */
+.mat-slider-thumb-container .mat-slider-thumb {
+  background-color: $white !important;
+  border: 1px solid #afafaf;
+}
+
+/* Main Menu */
+.btn.app-logout {
+  background-color: $hxgn-icon-grey;
+  color:$white
+}
+
+/**/
+/* Common Styles */
+/**/
+body,
+.mat-select-value {
+  font-size: 14px;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.full-size {
+  width: 100%;
+  height: 100%;
+}
+
+/* Buttons */
+.button-row button {
+  margin-right: 10px;
+}
+
+a,
+button {
+  cursor: pointer;
+}
+
+/* Form Fields */
+.mat-form-field-flex,
+.mat-form-field-infix {
+  height: 34px;
+  padding: 0 !important;
+}
+
+.full-width.mat-form-field,
+.full-width .mat-form-field {
+  width: 100%;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline-start,
+.mat-form-field-appearance-outline .mat-form-field-outline-end {
+  border-radius: 0 !important;
+}
+
+/* Slide Toggle */
+.mat-slide-toggle-bar {
+  width: 43px !important;
+}
+
+.mat-slide-toggle-bar .mat-slide-toggle-thumb-container {
+  top:2px;
+  left:2px;
+}
+
+.mat-slide-toggle-label .mat-slide-toggle-bar {
+  height: 24px;
+  border-radius: 12px;
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb-container {
+  transform: translate3d(19px, 0, 0) !important;
+}
+
+/* Slider */
+.mat-slider.mat-slider-horizontal .mat-slider-track-wrapper {
+  height: 8px;
+  border-radius: 3px;
+}
+
+.mat-slider.mat-slider-horizontal .mat-slider-track-background,
+.mat-slider.mat-slider-horizontal .mat-slider-track-fill {
+  height: 100%;
+}
+
+.mat-slider-thumb-container .mat-slider-thumb {
+  height: 18px;
+  width: 18px;
+  bottom: -12px;
+  right: -12px;
+  transform: none;
+}
+
+/* Angular Material Calendar */
+
+.mat-form-field-appearance-outline .mat-form-field-flex {
+  height: 38px;
+}
+
+.hxgn-date-picker {
+  margin-left: 10px !important;
+  width: 90% !important;
+  height: 22px;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+  bottom: 0 !important;
+  background-color: rgba(0, 0, 0, .42);
+}
+
+.mat-datepicker-toggle,
+.mat-datepicker-content .mat-calendar-next-button,
+.mat-datepicker-content .mat-calendar-previous-button {
+  color: #335ca5 !important;
+}
+
+.mat-datepicker-content {
+  background-color: #fff !important;
+}
+
+.mat-calendar-arrow {
+  border-top-color: #335ca5 !important;
+}
+
+/* Mat Expansion Panel */
+
+.mat-expansion-panel {
+    border-bottom: 1px solid #c3c4c7;
+    box-shadow: none !important;
+}

@@ -1,0 +1,55 @@
+@use "../../styles/variables" as v;
+@use "../../styles/vm-date-picker-mixins" as m;
+
+$line-height: 38px;
+
+.vm-date-picker {
+  display: inline-flex;
+  border-radius: 5px;
+  border: 1px solid v.$light-gray;
+  font-size: m.$date-picker-font-size;
+  padding-left: 10px;
+
+  button {
+    @include m.datePickerDefaultButton;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  &__cal {
+    border-left: 1px solid v.$light-gray;
+
+    button {
+      border: 1px transparent !important;
+      border-radius: 0 5px 5px 0 !important;
+    }
+  }
+
+  &__clear {
+    line-height: $line-height;
+    width: 30px;
+
+    button {
+      color: v.$N50;
+    }
+  }
+
+  &__text {
+    line-height: $line-height;
+    width: 90px;
+
+    button {
+      padding: 0;
+    }
+
+    &.date-range {
+      width: 190px;
+    }
+  }
+
+  .placeholder {
+    color: v.$N50;
+  }
+}

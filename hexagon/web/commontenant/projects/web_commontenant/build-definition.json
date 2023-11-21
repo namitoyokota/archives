@@ -1,0 +1,104 @@
+{
+    "featureModules": [
+        {
+            "entryPointId": "@galileo/web_commontenant/app/admin/data-sharing",
+            "chunkId": "@hxgn/commontenant/admin/datasharing",
+            "module": "CommontenantDataSharing$v2Module"
+        },
+        {
+            "entryPointId": "@galileo/web_commontenant/app/admin/activity-monitoring",
+            "chunkId": "@hxgn/commontenant/admin/activitymonitoring",
+            "module": "CommontenantActivityMonitoringModule"
+        },
+        {
+            "entryPointId": "@galileo/web_commontenant/app/admin/tenant-configuration",
+            "chunkId": "@hxgn/commontenant/admin/tenantconfiguration",
+            "module": "CommontenantConfigurationModule"
+        },
+        {
+            "entryPointId": "@galileo/web_commontenant/app/admin/tenant-management",
+            "chunkId": "@hxgn/commontenant/admin/tenantmanagement",
+            "module": "CommontenantManagementModule"
+        },
+        {
+            "entryPointId": "@galileo/web_commontenant/app/admin/onboarding",
+            "chunkId": "@hxgn/commontenant/admin/onboarding",
+            "module": "OnboardingModule"
+        }
+        
+    ],
+    "adminFeatureRouting": [
+        {
+            "path": "tenant/dataSharing",
+            "data": {
+                "adminComponent": "@hxgn/commontenant/admin/datasharing/v1",
+                "adminId": "@hxgn/commontenant/admin/datasharing",
+                "adminTitle": "commonTenant-dataSharing.component.dataSharing",
+                "claim": "uiDataSharingAccess",
+                "capabilityId": "@hxgn/commontenant"
+            },
+            "canActivate": ["ClaimGuard$v1", "OnboardingGuard$v1"],
+            "canDeactivate": []
+        },
+        {
+            "path": "activityMonitor",
+            "data": {
+                "adminComponent": "@hxgn/commontenant/admin/activitymonitoring/v1",
+                "adminId": "@hxgn/commontenant/admin/activitymonitoring",
+                "adminTitle": "commonTenant-activityMonitor.component.activityMonitor",
+                "claim": "uiActivityMonitoringAccess",
+                "capabilityId": "@hxgn/commontenant"
+            },
+            "canActivate": ["ClaimGuard$v1", "OnboardingGuard$v1"],
+            "canDeactivate": []
+        },
+        {
+            "path": "activityMonitor/:id",
+            "data": {
+                "adminComponent": "@hxgn/commontenant/admin/activitymonitoring/v1",
+                "adminId": "@hxgn/commontenant/admin/activitymonitoring",
+                "adminTitle": "commonTenant-activityMonitor.component.activityMonitor",
+                "claim": "uiActivityMonitoringAccess",
+                "capabilityId": "@hxgn/commontenant"
+            },
+            "canActivate": ["ClaimGuard$v1", "OnboardingGuard$v1"],
+            "canDeactivate": []
+        },
+        {
+            "path": "organizationSetup",
+            "data": {
+                "adminComponent": "@hxgn/commontenant/admin/tenantconfiguration/v1",
+                "adminId": "@hxgn/commontenant/admin/tenantconfiguration",
+                "adminTitle": "commonwebroot-admin.component.organizationSetup",
+                "claim": "uiTenantConfigurationAccess",
+                "capabilityId": "@hxgn/commontenant"
+            },
+            "canActivate": ["ClaimGuard$v1", "OnboardingGuard$v1"],
+            "canDeactivate": ["DirtyGuard$v1"]
+        },
+        {
+            "path": "onboarding",
+            "data": {
+                "adminComponent": "@hxgn/commontenant/admin/onboarding/v1",
+                "adminId": "@hxgn/commontenant/admin/onboarding",
+                "adminTitle": "commonwebroot-admin.component.onboarding",
+                "claim": "uiTenantOnboardingAccess",
+                "capabilityId": "@hxgn/commontenant"
+            },
+            "canActivate": ["ClaimGuard$v1"],
+            "canDeactivate": []
+        },
+        {
+            "path": "organizationManager",
+            "data": {
+                "adminComponent": "@hxgn/commontenant/admin/tenantmanagement/v1",
+                "adminId": "@hxgn/commontenant/admin/tenantmanagement",
+                "adminTitle": "commonTenant-orgManager.component.organizationManager",
+                "claim": "uiTenantManagementAccess",
+                "capabilityId": "@hxgn/commontenant"
+            },
+            "canActivate": ["ClaimGuard$v1", "OnboardingGuard$v1"],
+            "canDeactivate": ["DirtyGuard$v1"]
+        }
+    ]
+}

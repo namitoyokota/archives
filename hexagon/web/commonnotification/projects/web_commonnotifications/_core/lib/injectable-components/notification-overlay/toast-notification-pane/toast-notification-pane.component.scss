@@ -1,0 +1,29 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    
+}
+
+.see-all-pane {
+    width: 100%;
+    max-width: 385px;
+    height: 44px;
+    color: #fff;
+    background-color: rgba(0,0,0,0.6);
+    margin-top: 15px;
+    font-size: 18px;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: repeat(2, min-content);
+    column-gap: 5px;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto;
+    white-space: nowrap;
+}
+
+.is-hidden {
+    display: none;
+}

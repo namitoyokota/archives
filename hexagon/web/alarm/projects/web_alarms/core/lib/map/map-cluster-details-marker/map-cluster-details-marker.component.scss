@@ -1,0 +1,145 @@
+:host {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}
+.map-marker {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    position: relative;
+    width: 46px;
+    height: 36px;
+    margin-left: -24px;
+}
+
+.map-marker.focused {
+    transform: scale(1.2);
+}
+
+.map-marker.tombstoned {
+    margin-top: -16px;
+}
+
+.map-marker-details-container {
+    display:grid;
+    grid-template-columns: 20px auto;
+    grid-template-rows: 36px;
+    text-align: left;
+    width:275px;
+    box-sizing: border-box;
+    border: 1px solid #bcbdb4;
+    background-color: #fff;
+    border-radius: 10px;
+    margin-left: 15px;
+}
+
+.map-marker-details-container.tombstoned {
+    grid-template-rows: 16px 26px;
+    background-color: #ededed;
+    cursor: default;
+}
+
+.tombstoned-pane {
+    display: flex;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    width: calc(100% - 30px);
+    grid-column: 1 / span 3;
+    background-image: url('assets/alarms-core/images/marker-tombstoned-hatch.png');
+    background-repeat: repeat-x;
+    background-position: center;
+
+    .tombstoned-text {
+        background-color: #ededed;
+        padding: 0 5px;
+        align-self: center;
+        display: flex;
+        height: 13px;
+        margin-top: -1px;
+    }
+}
+
+.map-marker-details-container:hover:not(.tombstoned) {
+    background-color: #BED6EE;
+    border: 1px solid #808080;
+}
+
+.map-marker-details {
+    display:grid;
+    width:100%;
+    box-sizing: border-box;
+    grid-template-rows: 50% 50%;
+    padding: 0 5px 0 5px;
+}
+.first-line {
+    display:grid;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: auto 40px;
+
+    .title {
+        font-size: 12px;
+        font-weight: bold;
+        align-self: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .cancel-btn {
+        display: flex;
+        justify-self: center;
+        align-items: center;
+        width:22px;
+        height: 18px;
+        background-image: url(assets/alarms-core/images/Clear-Alarms.svg);
+        background-size: contain;
+        background-position: center;
+        cursor: pointer;
+    }
+
+    .cancel-btn:hover {
+        background-image: url(assets/alarms-core/images/Clear-Alarms-Hover.svg)
+    }
+    
+}
+
+.first-line.tombstoned {
+    font-size: 13px;
+}
+
+
+.second-line {
+    display:flex;
+    overflow: hidden;
+    height: 18px;
+    align-self: center;
+    font-size:12px;
+}
+
+.second-line.tombstoned {
+    ::ng-deep info-pane {
+        font-size: 13px! important;
+    }
+}
+
+.bold {
+    font-weight: bold;
+}
+
+hxgn-alarms-icon {
+    justify-self: center;
+}
+
+.location {
+    padding-right:3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+

@@ -1,0 +1,30 @@
+<div class="dialog-container" [class.dialog-container-admin]="isAdmin">
+    <div class="content-container">
+        <div class="about-text">
+            <p>
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.aboutCopyright">
+                </hxgn-commonlocalization-translate-v1>
+            </p>
+            <p class="mb-0">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.aboutText">
+                </hxgn-commonlocalization-translate-v1>
+            </p>
+        </div>
+        <div class="logo-btn-row">
+            <img src="assets/Hexagon-Logo.svg" alt="Hexagon Logo" height="46" width="150" />
+            <button mat-raised-button class="about-button" (click)="close()">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.close" ignoreSkeleton="true">
+                </hxgn-commonlocalization-translate-v1>
+            </button>
+        </div>
+        <div class="oss-notice-row">
+            <a [href]="url" target="_blank">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.ossNotice" skeletonWidth="185px">
+                </hxgn-commonlocalization-translate-v1>
+            </a>
+        </div>
+        <div *ngIf="!!productVersion" class="version-number-row">
+            <p class="mb-0">{{productVersion}}</p>
+        </div>
+    </div>
+</div>

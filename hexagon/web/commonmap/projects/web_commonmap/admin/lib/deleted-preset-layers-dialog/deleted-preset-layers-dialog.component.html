@@ -1,0 +1,20 @@
+<h1 mat-dialog-title>
+    <hxgn-commonlocalization-translate-v1 [token]="tokens.presetLayersDeletedTitle">
+    </hxgn-commonlocalization-translate-v1>
+</h1>
+<div mat-dialog-content>
+    <div class="msg">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.presetLayersDeletedInfo">
+        </hxgn-commonlocalization-translate-v1>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button (click)="cancel()" class="hxgn-btn-secondary" style="margin-right: 10px">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.cancelBtnLabel">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+    <button (click)="verify()" class="hxgn-btn-primary">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.verifyButtonLabel">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+</div>

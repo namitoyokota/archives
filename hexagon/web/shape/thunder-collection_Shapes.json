@@ -1,0 +1,68 @@
+{
+  "client": "Thunder Client",
+  "collectionName": "Shapes",
+  "dateExported": "2022-02-18T16:23:05.523Z",
+  "version": "1.1",
+  "folders": [],
+  "requests": [
+    {
+      "containerId": "",
+      "sortNum": 10000,
+      "headers": [
+        {
+          "name": "Accept",
+          "value": "*/*"
+        },
+        {
+          "name": "User-Agent",
+          "value": "Thunder Client (https://www.thunderclient.com)"
+        }
+      ],
+      "colId": "31cca2b6-32af-4273-8953-2d74b6d0575a",
+      "name": "Get all",
+      "url": "{{baseURL}}/api/shapes/v1/allSystem",
+      "method": "GET",
+      "modified": "2022-02-17T20:21:30.775Z",
+      "created": "2022-02-17T20:20:16.035Z",
+      "_id": "0921d2b4-a4cb-43d4-bcc9-bd21af3bd567",
+      "params": [],
+      "auth": {
+        "type": "bearer",
+        "bearer": "{{accessToken}}"
+      },
+      "tests": []
+    },
+    {
+      "containerId": "",
+      "sortNum": 20000,
+      "headers": [
+        {
+          "name": "Accept",
+          "value": "*/*"
+        },
+        {
+          "name": "User-Agent",
+          "value": "Thunder Client (https://www.thunderclient.com)"
+        }
+      ],
+      "colId": "31cca2b6-32af-4273-8953-2d74b6d0575a",
+      "name": "Create Shape",
+      "url": "{{baseURL}}/api/shapes/v1/system",
+      "method": "POST",
+      "modified": "2022-02-18T16:21:11.104Z",
+      "created": "2022-02-17T20:22:01.253Z",
+      "_id": "9dce0ba7-2be5-4a73-a69c-785dd60b44e4",
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"id\": \"5e86eacc-98f8-4242-9efb-c65491bc2038\",\n  \"name\": \"TESTA\",\n  \"description\": \"A test of creating a shape\",\n  \"type\": \"Polygon\",\n  \"radius\": 0,\n  \"coordinates\": [\n    {\n      \"mainShape\": [\n        [\n              85.078125,\n              53.48804553605622\n            ],\n            [\n              74.091796875,\n              47.517200697839414\n            ],\n            [\n              90.966796875,\n              38.20365531807149\n            ],\n            [\n              112.67578124999999,\n              46.49839225859763\n            ],\n            [\n              101.162109375,\n              61.938950426660604\n            ],\n            [\n              85.078125,\n              53.48804553605622\n            ]\n      ]\n    }\n  ],\n  \"graphicsSettings\": {\n    \"fillColor\": \"000000\",\n    \"fillPattern\": \"string\",\n    \"fillType\": \"string\",\n    \"fillOpacity\": 1,\n    \"lineColor\": \"000000\",\n    \"lineType\": \"string\",\n    \"lineWeight\": 1,\n    \"lineOpacity\": 0\n  },\n  \"groupIds\": [],\n  \"keywords\": []\n}",
+        "form": []
+      },
+      "auth": {
+        "type": "bearer",
+        "bearer": "{{accessToken}}"
+      },
+      "tests": []
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+<template>
+    <require from="../../resources/trap-keys-dialog"></require>
+
+    <button class="sr-only tabstop top" data-id="vm-dialog" tabnav.bind="tabNavigate">skip to modal</button>
+    <div class="vm-dialog ${largeClass}">
+        <div class="vm-dialog--header">
+            <span class="vm-dialog--title">${dialogTitle}</span>
+            <vm-button icon click.call="cancel()">
+                <i aria-hidden="true" class="fas fa-times"></i>
+                <span class="sr-only">close</span>
+            </vm-button>
+        </div>
+
+        <div class="vm-dialog--body">
+            <slot></slot>
+        </div>
+
+        <div class="vm-dialog--footer">
+            <vm-button if.bind="cancelShown" secondary click.call="cancel()">
+                <span>${cancelLabel}</span>
+            </vm-button>
+            <vm-button if.bind="okShown" primary click.call="okClick()" is-disabled.to-view="okDisabled">
+                <span>${okLabel}</span>
+            </vm-button>
+        </div>
+    </div>
+    <button class="sr-only tabstop bottom" data-id="vm-dialog" tabnav.bind="tabNavigate">skip to modal</button>
+</template>

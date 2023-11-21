@@ -1,0 +1,79 @@
+﻿<template>
+  <require from="./template-section.scss"></require>
+  <require from="./section-control/section-control"></require>
+  <require from="./section-subheader/section-subheader"></require>
+
+  <!-- Header -->
+  <div class="section-header">
+    <!-- Section Title -->
+    <div class="header-left">
+      <input
+        class="vm-input"
+        placeholder="Enter a section title"
+        value.bind="model.title"
+        focusout.delegate="changeTitle()"
+      />
+
+      <div class="error-msg-pane" repeat.for="errorInfo of titleErrors">
+        <span class="danger"> ${errorInfo} </span>
+      </div>
+    </div>
+
+    <!-- Section Rating and Delete Button -->
+    <div class="header-right">
+      <vm-checkbox
+        name.bind="'section-rating-' + model.id"
+        checked.two-way="model.hasSectionRating"
+        change.call="sectionRatingSelected()"
+      >
+        Section Rating
+      </vm-checkbox>
+      <vm-button icon medium click.delegate="deleteSection()">
+        <i class="fa fa-trash"></i>
+      </vm-button>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div class="section-body">
+    <!-- Controls -->
+    <div class="control-list" repeat.for="item of model.controlsAndSubheaders">
+      <!-- Control Panel -->
+      <div class="control-panel" if.bind="item.model">
+        <!-- Subheader Control -->
+        <section-subheader
+          if.bind="item.type === 'section-subheader'"
+          model.bind="item.model"
+        ></section-subheader>
+
+        <!-- All Other Control -->
+        <section-control
+          if.bind="item.type === 'section-control'"
+          model.bind="item.model"
+        ></section-control>
+      </div>
+
+      <!-- Delete Button -->
+      <div class="delete-button" click.delegate="deleteSectionItem(item)">
+        <i class="fa fa-trash fa-lg"></i>
+      </div>
+
+      <!-- TODO: Drag Drop icon -->
+      <!-- <div class="drag-button" click.delegate="deleteSectionItem(item)">
+          <i class="fa fa-grid fa-lg"></i>
+        </div> -->
+    </div>
+
+    <!-- Button Pane -->
+    <div class="button-pane">
+      <vm-button secondary click.delegate="addSubheader()">
+        <i class="fa fa-plus"></i>
+        <span>Sub-Heading</span>
+      </vm-button>
+      <vm-button secondary click.delegate="addControl()">
+        <i class="fa fa-plus"></i>
+        <span>Controls</span>
+      </vm-button>
+    </div>
+  </div>
+</template>

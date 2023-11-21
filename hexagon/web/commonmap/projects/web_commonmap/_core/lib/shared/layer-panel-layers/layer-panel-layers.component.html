@@ -1,0 +1,28 @@
+﻿<div class="layer-panel-layers" [class.top-right]="position === LayerPanelControlPositions.TopRight"
+    [class.top-left]="position === LayerPanelControlPositions.TopLeft">
+    <div class="panel-header">
+        <div class="title">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.layerPanelHeader" [skeletonWidth]="'60px'">
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+        <div *ngIf="isPresetOverridden" (click)="fireResetToDefault()" class="reset-to-default">
+            <hxgn-commonlocalization-translate-v1 [token]="tokens.layerPanelPresetOverriddenLabel" skeletonWidth="60px">
+            </hxgn-commonlocalization-translate-v1>
+        </div>
+    </div>
+    <div class="search-box">
+        <hxgn-common-input-v2 style="width:100%" [isSearchBox]="true" [showClearBtn]="checkSearchString()"
+            (clearText)="clearText()">
+            <input class="search-input" type="text" [(ngModel)]="searchString"
+                placeholder="{{ transStrings[tokens.searchPlaceholder] }}" />
+        </hxgn-common-input-v2>
+    </div>
+
+    <div class="layer-panel-config">
+        <hxgn-commonmap-layer-panel-config [mapPreset]="mapPreset" [layerCollections]="layerCollections"
+            [searchString]="searchString" [allowLayerReorder]="allowLayerReorder" [allowEditZoomControl]="false"
+            (layerPropertyChanged)="fireLayerPropertyChanged($event)" (layersReordered)="fireLayersReordered($event)"
+            (baseMapChanged)="fireBaseMapChanged($event)">
+        </hxgn-commonmap-layer-panel-config>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<template>
+  <require from="./custom-filter-group.scss"></require>
+
+  <div class="custom-filter-group-container" if.bind="filterGroups">
+    <div repeat.for="group of filterGroups" if.bind="group.visible" class="filter-group-item">
+      <div class="filter-group-content" click.trigger="togglePanel(group, $event)" data-group-button="${ group.groupName }">
+        <div data-group-button="${ group.groupName }">${ group.groupName }</div>
+        <div><i if.bind="group.active" class="fas fa-filter filter-group-ref" data-group-button="${ group.groupName }"></i></div>
+        <div><i class="fas fa-caret-down" data-group-button="${ group.groupName }"></i></div>
+      </div>
+
+      <div if.bind="group.open" class="custom-filter-container" data-group-panel="${ group.groupName }">
+        <div class="filter-set-container">
+          <a class="" click.trigger="selectAll(group)">Select All</a>
+        </div>
+        <div class="custom-filter-items-container" style.bind="filterContainerHeightStyle">
+          <div repeat.for="filter of group.filters" class="checkbox checkbox-primary filter-checkbox">
+            <input id="checkbox-${group.groupName}-${filter.name}" type="checkbox" checked.bind="filter.active" change.trigger="updateGroupState(group)" />
+            <label for="checkbox-${group.groupName}-${filter.name}" innerhtml.bind="filter.name | sanitizeHTML"></label>
+          </div>
+        </div>
+        <div class="filter-set-container">
+          <a click.trigger="deselectAll(group)">Clear</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

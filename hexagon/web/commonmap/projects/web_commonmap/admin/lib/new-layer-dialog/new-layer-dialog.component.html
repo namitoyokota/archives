@@ -1,0 +1,173 @@
+<div class="title">
+    <span class="title">
+        <hxgn-commonlocalization-translate-v1 *ngIf="page === 1" [token]="tokens.addMapLayer">
+        </hxgn-commonlocalization-translate-v1>
+        <hxgn-commonlocalization-translate-v1 *ngIf="page === 2" [token]="tokens.chooseLayerOptionsTitle">
+        </hxgn-commonlocalization-translate-v1>
+    </span>
+    <div (click)="close()" class="close-btn"></div>
+</div>
+<div class="content">
+    <div class="left-side">
+        <div class="step" *ngIf="page === 1">
+            <div class="step-count">
+                <div>1</div>
+            </div>
+            <span class="step-title">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.addingLayerTypeStep">
+                </hxgn-commonlocalization-translate-v1>
+            </span>
+            <div class="step-content">
+                <div class="label">
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.addingLayerTypeLabel">
+                    </hxgn-commonlocalization-translate-v1>
+                </div>
+                <div>
+                    <hxgn-common-dropdown-v2 #mapLayerDropdown
+                        placeholder="{{transStrings[tokens.addingLayerTypePlaceholder]}}"
+                        [value]="MapLayerType.BaseMap"
+                        (selectionChange)="setMapLayerType($event)">
+                        <hxgn-common-dropdown-item-v2 [value]="MapLayerType.BaseMap">
+                            <hxgn-commonlocalization-translate-v1 [token]="tokens.addingLayerTypeBaseMapLabel">
+                            </hxgn-commonlocalization-translate-v1>
+                        </hxgn-common-dropdown-item-v2>
+                        <hxgn-common-dropdown-item-v2 [value]="MapLayerType.Overlay">
+                            <hxgn-commonlocalization-translate-v1 [token]="tokens.addingLayerTypeOverlayLabel">
+                            </hxgn-commonlocalization-translate-v1>
+                        </hxgn-common-dropdown-item-v2>
+                    </hxgn-common-dropdown-v2>
+                </div>
+                <div class="layer-explanation">
+                    <div class="layer-type">
+                        <span class="layer-type-text">
+                            <span class="layer-type-bullet"></span>
+                            <span>
+                                <hxgn-commonlocalization-translate-v1 [token]="tokens.addingLayerTypeDataLabel">
+                                </hxgn-commonlocalization-translate-v1>
+                            </span>
+                        </span>
+                        <span class="layer-type-text">
+                            <span class="layer-type-bullet"></span>
+                            <span>
+                                <hxgn-commonlocalization-translate-v1 [token]="tokens.addingLayerTypeOverlayLabel">
+                                </hxgn-commonlocalization-translate-v1>
+                            </span>
+                        </span>
+                        <span class="layer-type-text">
+                            <span class="layer-type-bullet"></span>
+                            <span>
+                                <hxgn-commonlocalization-translate-v1 [token]="tokens.addingLayerTypeBaseMapLabel">
+                                </hxgn-commonlocalization-translate-v1>
+                            </span>
+                        </span>
+                    </div>
+                    <div class="layer-explanation-icon">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="step" *ngIf="page === 1">
+            <div class="step-count">
+                <div>2</div>
+            </div>
+            <span class="step-title">
+                <hxgn-commonlocalization-translate-v1 [token]="nameToken">
+                </hxgn-commonlocalization-translate-v1>
+            </span>
+            <div class="step-content">
+                <div class="label">
+                    <span>
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.layerNameLabel">
+                        </hxgn-commonlocalization-translate-v1>
+                    </span>
+                </div>
+                <hxgn-common-input-v2 [isValid]="!nameErrorMsg ? null : false" style="width:100%">
+                    <input class="input-name"
+                        autofocus (input)="nameChanged($event)" [(ngModel)]="mapLayer.name" (change)="setName($event)" 
+                        placeholder="{{ transStrings[namePlaceholderToken] }}" type="text" />
+                </hxgn-common-input-v2>
+                <span class="error-msg" *ngIf="nameErrorMsg">
+                    <hxgn-commonlocalization-translate-v1 
+                        [token]="nameErrorMsg"
+                        [skeletonWidth]="'60px'">
+                    </hxgn-commonlocalization-translate-v1>     
+                </span>
+            </div>
+        </div>
+        <div class="step" *ngIf="page === 2" style="height:calc(100% - 10px)">
+            <div class="step-count">
+                <div>3</div>
+            </div>
+            <span class="step-title">
+                <hxgn-commonlocalization-translate-v1 [token]="settingsToken">
+                </hxgn-commonlocalization-translate-v1>
+            </span>
+            <div class="step-content">
+                <hxgn-commonmap-admin-layer-properties #layerPropsLeft1
+                    [mapLayer]="mapLayer" 
+                    [isNew]="true"
+                    [showLayerOptions]="false"
+                    (propertyChanged)="propertyChanged($event)"
+                    (connectionPropsValid)="setConnectionPropsValid($event)">
+                </hxgn-commonmap-admin-layer-properties>
+            </div>
+        </div>
+    </div>
+    <div class="right-side">
+        <div class="step" *ngIf="page === 1" style="height:calc(100% - 10px)">
+            <div class="step-count">
+                <div>3</div>
+            </div>
+            <span class="step-title">
+                <hxgn-commonlocalization-translate-v1 [token]="settingsToken">
+                </hxgn-commonlocalization-translate-v1>
+            </span>
+            <div class="step-content">
+                <hxgn-commonmap-admin-layer-properties #layerPropsRight1
+                    [mapLayer]="mapLayer" 
+                    [isNew]="true"
+                    [showLayerOptions]="false"
+                    (connectionPropsValid)="setConnectionPropsValid($event)"
+                    (isValid)="setIsValid($event)">
+                </hxgn-commonmap-admin-layer-properties>
+            </div>
+        </div>
+        <div class="step" *ngIf="page === 2" style="height:calc(100% - 10px)">
+            <div class="step-count">
+                <div>4</div>
+            </div>
+            <span class="step-title">
+                <hxgn-commonlocalization-translate-v1 [token]="optionsToken">
+                </hxgn-commonlocalization-translate-v1>
+            </span>
+            <div class="step-content">
+                <hxgn-commonmap-admin-layer-properties #layerPropsRight2 
+                    [mapLayer]="mapLayer" 
+                    [isNew]="true"
+                    [showConnectionProps]="false"
+                    (isValid)="setIsValid($event)">
+                </hxgn-commonmap-admin-layer-properties>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="actions">
+    <button (click)="close()" class="hxgn-btn-secondary" style="margin-right: 10px;">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.cancelBtnLabel">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+    <button *ngIf="page === 1" [disabled]="!nameValid || !connPropsValid" (click)="next()" class="hxgn-btn-primary">
+        <hxgn-commonlocalization-translate-v1
+            [token]="tokens.nextBtnLabel">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+    <button *ngIf="page === 2" [disabled]="!connPropsValid || !propsValid" (click)="save()" class="hxgn-btn-primary">
+        <hxgn-commonlocalization-translate-v1
+            [token]="saveBtnToken">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+</div>
+<hxgn-commonmap-admin-processing-pane *ngIf="isProcessing" 
+    [token]="processingToken">
+</hxgn-commonmap-admin-processing-pane>
+

@@ -1,0 +1,144 @@
+:host {
+    height: calc(100% - 40px);
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) min-content;
+    row-gap: 15px;
+
+    .bottom-content {
+        display: grid;
+        grid-template-columns: repeat(2, min-content);
+        column-gap: 15px;
+        justify-content: flex-end;
+    }
+
+    .top-content {
+        display: grid;
+        grid-template-columns: minmax(250px, 1fr) 3fr;
+        column-gap: 10px;
+    }
+}
+
+.onboarding-status {
+    margin-left: 5px;
+    font-size: 13px;
+}
+
+.menu-button {
+    display: grid;
+    padding: 0 10px;
+    height: 43px;
+    border-bottom: 1px solid #a8a8a8;
+    grid-template-columns: 29px auto;
+    column-gap: 10px;
+    font-size: 16px;
+    align-items: center;
+
+    img {
+        justify-self: center;
+    }
+    
+    .global-features-icon {
+        margin-left: 5px;
+    }
+}
+
+.menu-button:hover {
+    cursor: pointer;
+    background-color: #eceeee;
+}
+
+.header {
+    height: 37px;
+    border-bottom: 1px solid #a8a8a8;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    font-size: 18px;
+    background-color: #ebebeb;
+
+    .icon {
+        margin-right: 5px;
+    }
+}
+
+.icon {
+    height: 19px;
+    width: 19px;
+    padding: 4px;
+    border: 1px solid #c0c0c0;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #fff;
+
+    img {
+        width: auto;
+        height: auto;
+        max-height: 18px;
+    }
+}
+
+.search-box {
+    padding: 10px;
+    border-bottom: 1px solid #a8a8a8;
+}
+
+.selected-tenant-container {
+    .header {
+        border-left: 8px solid #666;
+    }
+}
+
+.selected-tenant-container,
+.tenants-pane {
+    border: 1px solid #a8a8a8;
+    height: 100%;
+    overflow: hidden;
+}
+
+.selected-tenant-container {
+    display: grid;
+    grid-template-rows: min-content 1fr;
+}
+
+.selected-tenant-info {
+    overflow: auto;
+    display: grid;
+}
+
+.tenants-container {
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    .selected {
+        background-color: #cadff2 !important;
+
+        .action-icon {
+            background-image: url("assets/commontenant-core/action_menu_row_selected.png");
+        }
+    }
+}
+
+.tenants-pane {
+    display: grid;
+    grid-template-rows: min-content min-content min-content auto;
+}
+
+.loading-pane {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.onboarding-complete {
+    border-left-color: #5ca0f2 !important;
+}

@@ -1,0 +1,17 @@
+﻿<template>
+    <require from="./ellipsis-context-menu.css"></require>
+
+    <!-- Ellipsis Button -->
+    <vm-button icon small click.call="toggleMenu()">
+        <i class="fa-regular fa-ellipsis-vertical"></i>
+    </vm-button>
+
+    <!-- Options -->
+    <div if.bind="showMenu" class="option-list" blur.delegate="hideMenu()">
+        <div class="option-item" repeat.for="option of options" click.delegate="selectOption(option.id)">
+            <i if.bind="option.iconName" class="fa-solid" class.one-time="option.iconName"></i>
+
+            <span>${option.text}</span>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,22 @@
+<ng-content select="input"></ng-content>
+<div *ngIf="showClearBtn || (isSearchBox && !showClearBtn) || isValid !== undefined || showLockBtn || showReadOnlyIcon"
+  class="tool-bar-pane" [class.lock-button]="showLockBtn" [class.read-only-icon]="showReadOnlyIcon">
+  <img *ngIf="showClearBtn" class="clear-button" (click)="clearText.emit()"
+    src="data:image/svg+xml;base64, PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNS44MjgiIGhlaWdodD0iMTUuODI4IiB2aWV3Qm94PSIwIDAgMTUuODI4IDE1LjgyOCI+PGRlZnM+PHN0eWxlPi5he2ZpbGw6bm9uZTtzdHJva2U6I2FmYWZhZjtzdHJva2UtbGluZWNhcDpyb3VuZDtzdHJva2UtbWl0ZXJsaW1pdDoxMDtzdHJva2Utd2lkdGg6MnB4O308L3N0eWxlPjwvZGVmcz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxLjQxNCAxLjQxNCkiPjxsaW5lIGNsYXNzPSJhIiB4Mj0iMTMiIHkyPSIxMyIvPjxsaW5lIGNsYXNzPSJhIiB4MT0iMTMiIHkyPSIxMyIvPjwvZz48L3N2Zz4="
+    height="18" width="18" />
+  <img *ngIf="isSearchBox && !showClearBtn"
+    src="data:image/svg+xml;base64, PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOC43MTEiIGhlaWdodD0iMTguNzExIiB2aWV3Qm94PSIwIDAgMTguNzExIDE4LjcxMSI+PGRlZnM+PHN0eWxlPi5he2ZpbGw6I2FmYWZhZjt9PC9zdHlsZT48L2RlZnM+PHBhdGggY2xhc3M9ImEiIGQ9Ik0zNzQuNjQ5LDI4Ni42NjRsLTMuMzYzLTMuMzYzYTEuMzE1LDEuMzE1LDAsMCwwLTEuNTUzLS4yMTlsLS42NDktLjY0OWE3LjE1Nyw3LjE1NywwLDEsMC0xLjE3NiwxLjE3N2wuNjQ5LjY0OGExLjMxNCwxLjMxNCwwLDAsMCwuMjE5LDEuNTUzbDMuMzYzLDMuMzYzYTEuMzMsMS4zMywwLDAsMCwxLjg4MiwwbC42MjgtLjYyN0ExLjMzMywxLjMzMywwLDAsMCwzNzQuNjQ5LDI4Ni42NjRabS0xNy04LjY2MWE1LjgyOCw1LjgyOCwwLDEsMSw1LjgyOCw1LjgyOEE1LjgyNyw1LjgyNywwLDAsMSwzNTcuNjUsMjc4WiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTM1Ni4zMjcgLTI3MC44NTMpIi8+PC9zdmc+"
+    height="18" width="18" (click)="searchClicked.emit()" />
+  <img *ngIf="isValid === false" src="assets/common-libraries/images/warning-icon.svg" height="18" width="20" />
+  <img *ngIf="isValid === true" src="assets/common-libraries/images/input-validation.svg" height="18" width="18" />
+  <div *ngIf="showLockBtn" class="lock-button" title="{{lockBtnTooltip}}" [class.locked]='locked'
+    [class.unlocked]='!locked'>
+    <img *ngIf="locked" (click)="toggleLocked.emit()" src="assets/common-libraries/images/lock-white-icon.svg"
+      height="18" width="16" />
+    <img *ngIf="!locked" (click)="toggleLocked.emit()" src="assets/common-libraries/images/unlock-icon.svg" height="18"
+      width="22" />
+  </div>
+  <div *ngIf="showReadOnlyIcon" class="read-only-icon">
+    <img *ngIf="locked" src="assets/common-libraries/images/lock-disabled-white-icon.png" height="19" width="18" />
+  </div>
+</div>

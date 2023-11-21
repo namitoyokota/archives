@@ -1,0 +1,37 @@
+$common-border: 1px solid #a0a0a0;
+
+.add-new {
+    min-height: 40px;
+    background-color: #eceeee;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    img,
+    div {
+        margin-left: 10px;
+    }
+}
+
+.new-group-pane {
+    display: grid;
+    grid-template-columns: auto min-content;
+    column-gap: 10px;
+    align-items: center;
+    padding: 8px;
+    border-bottom: $common-border;
+
+    hxgn-common-input-v2 {
+        outline: 3px solid #62b2ff;
+        border: none;
+        background-color: #fff;
+    }
+
+    img {
+        cursor: pointer;
+    }
+
+    input {
+        text-transform: capitalize;
+    }
+}

@@ -1,0 +1,123 @@
+<div class="content-container" [class.no-panes]="!showPanes">
+    <div class="user-info-pane">
+        <div class="user-info-container">
+            <hxgn-commonidentity-user-icon-v2 [userId]="user?.id" [useBorder]="true" size="70px" fontSize="30px">
+            </hxgn-commonidentity-user-icon-v2>
+            <div class="user-info">
+                <div class="user-info-text">
+                    <span *ngIf="user?.givenName" class="user-name">{{user.givenName + ' ' + user?.familyName}}
+                        |&nbsp;</span>
+                    <hxgn-commontenant-name *ngIf="user?.activeTenant" [tenantId]="user.activeTenant" [showIcon]="true">
+                    </hxgn-commontenant-name>
+                </div>
+                <span class="account-user-name">{{user?.accountUserName}}</span>
+            </div>
+        </div>
+        <div class="tenant-overview-container" *ngIf="(user | claimGuard$v1: identityCapabilityId:identityClaims.userManagerAccess) &&
+                    (user | claimGuard$v1: commonTenantCapabilityId:commonTenantsClaims.dataSharingAccess)">
+            <div class="title">
+                <hxgn-commontenant-name *ngIf="user?.activeTenant" [tenantId]="user.activeTenant" [showIcon]="false">
+                </hxgn-commontenant-name>
+                <span>
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.overview" skeletonWidth="70px">
+                    </hxgn-commonlocalization-translate-v1>
+                </span>
+            </div>
+            <div class="tenant-overview">
+                <div class="tenant-info-container"
+                    *ngIf="user | claimGuard$v1: identityCapabilityId:identityClaims.userManagerAccess">
+                    <img src="assets/active-users.svg" height="70" width="70" />
+                    <div class="tenant-info">
+                        <span class="tenant-info-title">
+                            <hxgn-commonlocalization-translate-v1 [token]="tokens.activeUsers" skeletonWidth="100px">
+                            </hxgn-commonlocalization-translate-v1>
+                        </span>
+                        <div class="tenant-info-number">
+                            {{activeUsersCount}}
+                        </div>
+                    </div>
+                </div>
+                <div class="tenant-info-container"
+                    *ngIf="user | claimGuard$v1: commonTenantCapabilityId:commonTenantsClaims.dataSharingAccess">
+                    <img src="assets/collaborating-organizations.svg" height="70" width="70" />
+                    <div class="tenant-info">
+                        <span class="tenant-info-title">
+                            <hxgn-commonlocalization-translate-v1 [token]="tokens.collaboratingOrganizations"
+                                skeletonWidth="230px">
+                            </hxgn-commonlocalization-translate-v1>
+                        </span>
+                        <div class="tenant-info-number">
+                            {{collaboratingOrganizationsCount}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="quick-links">
+            <div class="title">
+                <span>
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.quickLinks" skeletonWidth="85px">
+                    </hxgn-commonlocalization-translate-v1>
+                </span>
+            </div>
+            <div class="quick-links-container">
+
+                <div *ngFor="let item of menuItems" class="quick-link" [class.quick-link-provisioner]="item.provisioner" (click)="goTo(item.path)">
+                    <div *ngIf="item.provisioner" class="provisioner-icon-container">
+                        <img class="provisioner-icon" src="assets/provisioner-icon.svg" width="18" height="18" />
+                    </div>
+                    <div class="quick-link-container">
+                        <img class="quick-link-img" [attr.src]="item.quickLinkIconUrl" height="48" />
+                        <div class="quick-link-text">
+                            <span>
+                                <hxgn-commonlocalization-translate-v1 [token]="item.nameToken"
+                                    skeletonWidth="110px">
+                                </hxgn-commonlocalization-translate-v1>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="tabs-pane" *ngIf="showPanes">
+        <hxgn-common-tabs class="tabs" theme="light">
+            <mat-tab-group #tabGroup [disableRipple]="true" animationDuration="0ms" [disablePagination]="true"
+                [(selectedIndex)]="selectedTabIndex">
+                <mat-tab *ngIf="user | claimGuard$v1: licensingCapabilityId:licensingClaims.licensingDashboardAccess">
+                    <ng-template mat-tab-label>
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.overview">
+                        </hxgn-commonlocalization-translate-v1>
+                    </ng-template>
+                    <ng-template matTabContent>
+                        <hxgn-commonlicensing-dashboard-v1 [highCount]="highCount" [mediumCount]="mediumCount"
+                            [lowCount]="lowCount" (itemClicked)="handleDashboardClick($event)">
+                        </hxgn-commonlicensing-dashboard-v1>
+                    </ng-template>
+                </mat-tab>
+                <mat-tab *ngIf="(user | claimGuard$v1: identityCapabilityId:identityClaims.accessManagerAccess) && (user | claimGuard$v1: identityCapabilityId:identityClaims.userManagerAccess)">
+                    <ng-template mat-tab-label>
+                        <div class="priority-indicator" *ngIf="actionItems?.length" [class.high]="highCount > 0"
+                            [class.medium]="highCount === 0 && mediumCount > 0"
+                            [class.low]="highCount === 0 && mediumCount === 0 && lowCount > 0">
+                        </div>
+                        <hxgn-commonlocalization-translate-v1 [token]="tokens.actionItems">
+                            ({{actionItems.length}})
+                        </hxgn-commonlocalization-translate-v1>
+                    </ng-template>
+                    <ng-template matTabContent>
+                        <div class="loading-container" *ngIf="loading">
+                            <mat-spinner></mat-spinner>
+                        </div>
+                        <div class="table-container"
+                            *ngIf="!loading">
+                            <hxgn-root-action-items-table [data]="actionItems">
+                            </hxgn-root-action-items-table>
+                        </div>
+                    </ng-template>
+                </mat-tab>
+            </mat-tab-group>
+        </hxgn-common-tabs>
+    </div>
+</div>

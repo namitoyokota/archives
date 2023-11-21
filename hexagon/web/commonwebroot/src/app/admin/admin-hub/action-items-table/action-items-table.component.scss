@@ -1,0 +1,159 @@
+:host {
+    height: 100%;
+    display: block;
+    border: solid 1px #a7a7a7;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.empty-grid {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f2f2f2;
+
+    .empty-image-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
+
+        .empty-image {
+            margin-bottom: 20px;
+        }
+    }
+
+    .empty-text-container {
+        text-align: center;
+        color: #5e5e5e;
+        margin-bottom: 50px;
+
+        .empty-text-header {
+            font-size: 30px;
+            font-weight: 500;
+            line-height: 39px;
+        }
+
+        .empty-text-subheader {
+            font-size: 24px;
+            line-height: 39px;
+            font-style: italic;
+        }
+    }
+}
+
+.expiration-container {
+    display: grid;
+    grid-template-columns: min-content auto;
+    column-gap: 10px;
+    align-items: center;
+    color: #7f7f7f;
+    font-size: 16px;
+}
+
+.mat-table {
+    width: 100%;
+
+    .mat-column-expiration {
+        min-width: 200px;
+    }
+
+    .mat-column-name {
+        min-width: 350px;
+    }
+
+    .mat-column-priority {
+        min-width: 150px;
+    }
+
+    .mat-header-row {
+        height: 40px;
+
+        .mat-header-cell {
+            color: #262626;
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        th.mat-header-cell:first-of-type {
+            padding-left: 20px;
+        }
+
+        th.mat-header-cell:not(:first-of-type) {
+            padding-left: 10px;
+        }
+
+        th.mat-header-cell:not(:last-of-type) {
+            border-right: solid 2px #9d9d9d;
+        }
+    }
+
+    tr.mat-row {
+        background-color: #fff;
+
+        td.mat-cell {
+            border-bottom: solid 1px #acaeb1;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        td.mat-cell:first-of-type {
+            padding-left: 20px;
+        }
+
+        td.mat-cell:not(:first-of-type) {
+            padding-left: 10px;
+        }
+    }
+}
+
+.name-container {
+    display: grid;
+    grid-template-columns: min-content auto;
+    column-gap: 20px;
+    align-items: center;
+
+    .image {
+        height: 22px;
+        width: auto;
+    }
+
+    .text-container {
+        font-size: 16px;
+        line-height: 19px;
+
+        .link {
+            color: #355ca4;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .name {
+            font-weight: 500;
+        }
+    }
+}
+
+.priority {
+    width: 150px;
+    height: 30px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    color: #fff;
+}
+
+.priority-high {
+    background-color: #fb8f3e;
+}
+
+.priority-medium {
+    background-color: #5588f2;
+}
+
+.priority-low {
+    background-color: #4dcaab;
+}

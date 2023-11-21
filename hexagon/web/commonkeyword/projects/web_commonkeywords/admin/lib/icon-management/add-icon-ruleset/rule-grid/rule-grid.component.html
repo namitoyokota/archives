@@ -1,0 +1,39 @@
+<table mat-table [dataSource]="rules$" [trackBy]="trackByFunc">
+    <!-- Icon column -->
+    <ng-container matColumnDef="icons">
+        <th mat-header-cell *matHeaderCellDef>
+            <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]='tokens.icon'>
+            </hxgn-commonlocalization-translate-v1>
+        </th>
+        <td mat-cell *matCellDef="let rule" class="col-icon">
+            <hxgn-commonkeywords-rule-grid-icon [resourceId]="rule.resourceId" [ruleName]="rule.friendlyName">
+            </hxgn-commonkeywords-rule-grid-icon>
+        </td>
+    </ng-container>
+
+    <!-- Details column -->
+    <ng-container matColumnDef="details">
+        <th mat-header-cell *matHeaderCellDef>
+            <hxgn-commonlocalization-translate-v1 skeletonWidth="50px" [token]='tokens.details'>
+            </hxgn-commonlocalization-translate-v1>
+        </th>
+        <td mat-cell *matCellDef="let rule">
+            <hxgn-commonkeywords-rule-details [rule]="rule" (ruleChange)="ruleUpdated($event)">
+            </hxgn-commonkeywords-rule-details>
+        </td>
+    </ng-container>
+
+    <!-- Related entries column -->
+    <ng-container matColumnDef="relatedEntries">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let rule" class="col-related-entries">
+            <div class="related-entries-pane">
+                <hxgn-commonkeywords-rule-menu (delete)="deleteRule(rule)" (clone)="cloneRule.emit(rule)">
+                </hxgn-commonkeywords-rule-menu>
+            </div>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

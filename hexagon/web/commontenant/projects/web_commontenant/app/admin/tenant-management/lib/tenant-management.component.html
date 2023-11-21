@@ -1,0 +1,67 @@
+<div class="top-content">
+    <div class="tenants-pane">
+        <div class="header">
+            <span>
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.organizations" skeletonWidth="110px">
+                    ({{(organizations$ | async)?.length}})
+                </hxgn-commonlocalization-translate-v1>
+            </span>
+        </div>
+        <div class="search-box">
+            <hxgn-common-input-v2 [isSearchBox]="true" [showClearBtn]="(searchString$ | async)" (clearText)="clearText()">
+                <input #search (input)="setSearchString($event)" [placeholder]="tTokens.searchOrganizations"
+                    type="text" />
+            </hxgn-common-input-v2>
+        </div>
+        <div>
+            <div class="menu-button" (click)="openGlobalFeaturesDialog()">
+                <img src="assets/commontenant-core/global-feature-flags-icon.svg" class="global-features-icon" />
+                <span>
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.setGlobalFeatures" skeletonWidth="120px">
+                    </hxgn-commonlocalization-translate-v1>
+                </span>
+            </div>
+            <div class="menu-button" (click)="addTenantAsync()">
+                <img src="assets/commontenant-core/add-icon.png" height="25" width="25" />
+                <span>
+                    <hxgn-commonlocalization-translate-v1 [token]="tokens.addOrganization" skeletonWidth="120px">
+                    </hxgn-commonlocalization-translate-v1>
+                </span>
+            </div>
+        </div>
+        <div class="tenants-container">
+            <hxgn-commontenant-organization-list [organizations]="organizations$ | async" [selectedOrganization]="selectedTenant$ | async"
+                [searchString$]="searchString$" [showOnboarding]="true" [showDelete]="true" (selection)="setSelectedTenant($event)">
+            </hxgn-commontenant-organization-list>
+        </div>
+    </div>
+    <div class="selected-tenant-container">
+        <ng-container *ngIf="(selectedTenant$ | async); let tenant;">
+            <div class="header" [class.onboarding-complete]="onboardingMap.get(tenant.id)">
+                <hxgn-commontenant-tenant-icon class="icon" size="30px" [tenant]="tenant">
+                </hxgn-commontenant-tenant-icon>
+                <span>{{tenant?.name}}</span>
+            </div>
+            <div class="selected-tenant-info">
+                <hxgn-commontenant-edit-tenant [tenant]="tenant" [languageTokens]="languageTokens"
+                    [industryGroups]="industryGroups$ | async" [unsavedChanges]="unsavedChanges"
+                    (tenantUpdated)="updateTenant($event)" (iconChange)="setNewIcon($event)"
+                    (refresh)="saveChangesAsync()" (licensingUpdated)="handleLicenseUpdate($event)">
+                </hxgn-commontenant-edit-tenant>
+            </div>
+        </ng-container>
+    </div>
+</div>
+<div class="bottom-content">
+    <button class="hxgn-btn-secondary" (click)="discardChanges()" [disabled]="!unsavedChanges">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.discardChanges" [ignoreSkeleton]="true">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+    <button class="hxgn-btn-primary" (click)="saveChangesAsync()" [disabled]="isDisabled">
+        <hxgn-commonlocalization-translate-v1 [token]="tokens.saveChanges" [ignoreSkeleton]="true">
+        </hxgn-commonlocalization-translate-v1>
+    </button>
+</div>
+<div class="loading-pane" *ngIf="isLoading">
+    <mat-spinner></mat-spinner>
+</div>

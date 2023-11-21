@@ -1,0 +1,22 @@
+<div #listPane class="list" 
+    [class.scroll-up-list]="scrollUp"
+    infiniteScroll 
+    [infiniteScrollDistance]="2" 
+    [infiniteScrollThrottle]="150" 
+    [infiniteScrollDisabled]="loadingItems || disableLoad"
+    [scrollWindow]="false"
+    (scrolled)="onScrollDown()"
+    (scrolledUp)="onScrollUp()">
+    <!-- Loading panel: Is shown when more items are being loaded -->
+    <div *ngIf="loadingItems && !disableLoad && scrollUp" class="loading-pane">
+        <mat-spinner></mat-spinner>
+    </div>
+
+    <!-- Where list items will be injected -->
+    <ng-content></ng-content>
+
+    <!-- Loading panel: Is shown when more items are being loaded -->
+    <div *ngIf="loadingItems && !disableLoad && !scrollUp" class="loading-pane">
+        <mat-spinner></mat-spinner>
+    </div>
+</div>

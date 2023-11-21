@@ -1,0 +1,24 @@
+@import "shared-from-dcdev/core-styles/stylesheets/_variables.scss";
+
+#ca-templates-tab {
+  background-color: #fff;
+
+  .tab-pane {
+    // Override vm-library default
+    vm-tabs {
+      background-color: $N10;
+
+      .vm-tabs--item__active {
+        background-color: #fff;
+      }
+    }
+  }
+
+  .content-pane {
+    border: 1px solid $N40;
+    border-top: none;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 20px;
+  }
+}

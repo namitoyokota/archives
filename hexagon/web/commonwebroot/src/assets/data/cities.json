@@ -1,0 +1,1003 @@
+{ "type": "FeatureCollection",
+"features": [
+{
+"type": "Feature",
+"id":"city_1",
+"geometry":{"type":"Point","coordinates":[-81.521499,41.0804]},
+"geometry_name":"geometry",
+"properties":{"uid":1,"CITY":"Akron","STATE":"OH","TOT_HU":96372,"TOT_POP":223019}
+}
+,
+{
+"type": "Feature",
+"id":"city_2",
+"geometry":{"type":"Point","coordinates":[-106.624636,35.117218]},
+"geometry_name":"geometry",
+"properties":{"uid":2,"CITY":"Albuquerque","STATE":"NM","TOT_HU":166870,"TOT_POP":384736}
+}
+,
+{
+"type": "Feature",
+"id":"city_3",
+"geometry":{"type":"Point","coordinates":[-101.818682,35.20255]},
+"geometry_name":"geometry",
+"properties":{"uid":3,"CITY":"Amarillo","STATE":"TX","TOT_HU":68592,"TOT_POP":157615}
+}
+,
+{
+"type": "Feature",
+"id":"city_4",
+"geometry":{"type":"Point","coordinates":[-117.872331,33.8389]},
+"geometry_name":"geometry",
+"properties":{"uid":4,"CITY":"Anaheim","STATE":"CA","TOT_HU":93177,"TOT_POP":266406}
+}
+,
+{
+"type": "Feature",
+"id":"city_5",
+"geometry":{"type":"Point","coordinates":[-149.186416,61.178368]},
+"geometry_name":"geometry",
+"properties":{"uid":5,"CITY":"Anchorage","STATE":"AK","TOT_HU":94153,"TOT_POP":226338}
+}
+,
+{
+"type": "Feature",
+"id":"city_6",
+"geometry":{"type":"Point","coordinates":[-97.12751,32.694501]},
+"geometry_name":"geometry",
+"properties":{"uid":6,"CITY":"Arlington","STATE":"TX","TOT_HU":112767,"TOT_POP":261721}
+}
+,
+{
+"type": "Feature",
+"id":"city_7",
+"geometry":{"type":"Point","coordinates":[-77.101909,38.878726]},
+"geometry_name":"geometry",
+"properties":{"uid":7,"CITY":"Arlington","STATE":"VA","TOT_HU":84847,"TOT_POP":170936}
+}
+,
+{
+"type": "Feature",
+"id":"city_8",
+"geometry":{"type":"Point","coordinates":[-84.422592,33.7629]},
+"geometry_name":"geometry",
+"properties":{"uid":8,"CITY":"Atlanta","STATE":"GA","TOT_HU":182754,"TOT_POP":394017}
+}
+,
+{
+"type": "Feature",
+"id":"city_9",
+"geometry":{"type":"Point","coordinates":[-104.729772,39.712267]},
+"geometry_name":"geometry",
+"properties":{"uid":9,"CITY":"Aurora","STATE":"CO","TOT_HU":99890,"TOT_POP":222103}
+}
+,
+{
+"type": "Feature",
+"id":"city_10",
+"geometry":{"type":"Point","coordinates":[-97.750522,30.30588]},
+"geometry_name":"geometry",
+"properties":{"uid":10,"CITY":"Austin","STATE":"TX","TOT_HU":217054,"TOT_POP":465622}
+}
+,
+{
+"type": "Feature",
+"id":"city_11",
+"geometry":{"type":"Point","coordinates":[-119.004553,35.3577]},
+"geometry_name":"geometry",
+"properties":{"uid":11,"CITY":"Bakersfield","STATE":"CA","TOT_HU":66175,"TOT_POP":174820}
+}
+,
+{
+"type": "Feature",
+"id":"city_12",
+"geometry":{"type":"Point","coordinates":[-76.610616,39.3008]},
+"geometry_name":"geometry",
+"properties":{"uid":12,"CITY":"Baltimore","STATE":"MD","TOT_HU":303706,"TOT_POP":736014}
+}
+,
+{
+"type": "Feature",
+"id":"city_13",
+"geometry":{"type":"Point","coordinates":[-91.126043,30.448967]},
+"geometry_name":"geometry",
+"properties":{"uid":13,"CITY":"Baton Rouge","STATE":"LA","TOT_HU":97115,"TOT_POP":219531}
+}
+,
+{
+"type": "Feature",
+"id":"city_14",
+"geometry":{"type":"Point","coordinates":[-86.799223,33.527746]},
+"geometry_name":"geometry",
+"properties":{"uid":14,"CITY":"Birmingham","STATE":"AL","TOT_HU":117691,"TOT_POP":265968}
+}
+,
+{
+"type": "Feature",
+"id":"city_15",
+"geometry":{"type":"Point","coordinates":[-71.017892,42.336029]},
+"geometry_name":"geometry",
+"properties":{"uid":15,"CITY":"Boston","STATE":"MA","TOT_HU":250863,"TOT_POP":574283}
+}
+,
+{
+"type": "Feature",
+"id":"city_16",
+"geometry":{"type":"Point","coordinates":[-73.196209,41.186316]},
+"geometry_name":"geometry",
+"properties":{"uid":16,"CITY":"Bridgeport","STATE":"CT","TOT_HU":57224,"TOT_POP":141686}
+}
+,
+{
+"type": "Feature",
+"id":"city_17",
+"geometry":{"type":"Point","coordinates":[-78.859684,42.8898]},
+"geometry_name":"geometry",
+"properties":{"uid":17,"CITY":"Buffalo","STATE":"NY","TOT_HU":151971,"TOT_POP":328123}
+}
+,
+{
+"type": "Feature",
+"id":"city_18",
+"geometry":{"type":"Point","coordinates":[-80.834514,35.19755]},
+"geometry_name":"geometry",
+"properties":{"uid":18,"CITY":"Charlotte","STATE":"NC","TOT_HU":170430,"TOT_POP":395934}
+}
+,
+{
+"type": "Feature",
+"id":"city_19",
+"geometry":{"type":"Point","coordinates":[-85.256956,35.066209]},
+"geometry_name":"geometry",
+"properties":{"uid":19,"CITY":"Chattanooga","STATE":"TN","TOT_HU":69601,"TOT_POP":152466}
+}
+,
+{
+"type": "Feature",
+"id":"city_20",
+"geometry":{"type":"Point","coordinates":[-76.308771,36.678812]},
+"geometry_name":"geometry",
+"properties":{"uid":20,"CITY":"Chesapeake","STATE":"VA","TOT_HU":55742,"TOT_POP":151976}
+}
+,
+{
+"type": "Feature",
+"id":"city_21",
+"geometry":{"type":"Point","coordinates":[-87.684965,41.83705]},
+"geometry_name":"geometry",
+"properties":{"uid":21,"CITY":"Chicago","STATE":"IL","TOT_HU":1133039,"TOT_POP":2783726}
+}
+,
+{
+"type": "Feature",
+"id":"city_22",
+"geometry":{"type":"Point","coordinates":[-84.505957,39.139801]},
+"geometry_name":"geometry",
+"properties":{"uid":22,"CITY":"Cincinnati","STATE":"OH","TOT_HU":169088,"TOT_POP":364040}
+}
+,
+{
+"type": "Feature",
+"id":"city_23",
+"geometry":{"type":"Point","coordinates":[-81.678511,41.4797]},
+"geometry_name":"geometry",
+"properties":{"uid":23,"CITY":"Cleveland","STATE":"OH","TOT_HU":224311,"TOT_POP":505616}
+}
+,
+{
+"type": "Feature",
+"id":"city_24",
+"geometry":{"type":"Point","coordinates":[-104.759899,38.8632]},
+"geometry_name":"geometry",
+"properties":{"uid":24,"CITY":"Colorado Springs","STATE":"CO","TOT_HU":124442,"TOT_POP":281140}
+}
+,
+{
+"type": "Feature",
+"id":"city_25",
+"geometry":{"type":"Point","coordinates":[-82.987381,39.988933]},
+"geometry_name":"geometry",
+"properties":{"uid":25,"CITY":"Columbus","STATE":"OH","TOT_HU":278084,"TOT_POP":632910}
+}
+,
+{
+"type": "Feature",
+"id":"city_26",
+"geometry":{"type":"Point","coordinates":[-84.874972,32.51071]},
+"geometry_name":"geometry",
+"properties":{"uid":26,"CITY":"Columbus","STATE":"GA","TOT_HU":70902,"TOT_POP":179278}
+}
+,
+{
+"type": "Feature",
+"id":"city_27",
+"geometry":{"type":"Point","coordinates":[-97.292827,27.705728]},
+"geometry_name":"geometry",
+"properties":{"uid":27,"CITY":"Corpus Christi","STATE":"TX","TOT_HU":100205,"TOT_POP":257453}
+}
+,
+{
+"type": "Feature",
+"id":"city_28",
+"geometry":{"type":"Point","coordinates":[-96.765249,32.794151]},
+"geometry_name":"geometry",
+"properties":{"uid":28,"CITY":"Dallas","STATE":"TX","TOT_HU":465600,"TOT_POP":1006877}
+}
+,
+{
+"type": "Feature",
+"id":"city_29",
+"geometry":{"type":"Point","coordinates":[-84.197357,39.779067]},
+"geometry_name":"geometry",
+"properties":{"uid":29,"CITY":"Dayton","STATE":"OH","TOT_HU":80370,"TOT_POP":182044}
+}
+,
+{
+"type": "Feature",
+"id":"city_30",
+"geometry":{"type":"Point","coordinates":[-104.872655,39.768035]},
+"geometry_name":"geometry",
+"properties":{"uid":30,"CITY":"Denver","STATE":"CO","TOT_HU":239636,"TOT_POP":467610}
+}
+,
+{
+"type": "Feature",
+"id":"city_31",
+"geometry":{"type":"Point","coordinates":[-93.617405,41.576738]},
+"geometry_name":"geometry",
+"properties":{"uid":31,"CITY":"Des Moines","STATE":"IA","TOT_HU":83289,"TOT_POP":193187}
+}
+,
+{
+"type": "Feature",
+"id":"city_32",
+"geometry":{"type":"Point","coordinates":[-83.102198,42.3831]},
+"geometry_name":"geometry",
+"properties":{"uid":32,"CITY":"Detroit","STATE":"MI","TOT_HU":410027,"TOT_POP":1027974}
+}
+,
+{
+"type": "Feature",
+"id":"city_33",
+"geometry":{"type":"Point","coordinates":[-106.437549,31.84925]},
+"geometry_name":"geometry",
+"properties":{"uid":33,"CITY":"El Paso","STATE":"TX","TOT_HU":168625,"TOT_POP":515342}
+}
+,
+{
+"type": "Feature",
+"id":"city_34",
+"geometry":{"type":"Point","coordinates":[-80.139499,26.14255]},
+"geometry_name":"geometry",
+"properties":{"uid":34,"CITY":"Fort Lauderdale","STATE":"FL","TOT_HU":81268,"TOT_POP":149377}
+}
+,
+{
+"type": "Feature",
+"id":"city_35",
+"geometry":{"type":"Point","coordinates":[-85.139024,41.07375]},
+"geometry_name":"geometry",
+"properties":{"uid":35,"CITY":"Fort Wayne","STATE":"IN","TOT_HU":77166,"TOT_POP":173072}
+}
+,
+{
+"type": "Feature",
+"id":"city_36",
+"geometry":{"type":"Point","coordinates":[-97.336249,32.753901]},
+"geometry_name":"geometry",
+"properties":{"uid":36,"CITY":"Fort Worth","STATE":"TX","TOT_HU":194429,"TOT_POP":447619}
+}
+,
+{
+"type": "Feature",
+"id":"city_37",
+"geometry":{"type":"Point","coordinates":[-121.997122,37.528506]},
+"geometry_name":"geometry",
+"properties":{"uid":37,"CITY":"Fremont","STATE":"CA","TOT_HU":62400,"TOT_POP":173339}
+}
+,
+{
+"type": "Feature",
+"id":"city_38",
+"geometry":{"type":"Point","coordinates":[-119.792874,36.7806]},
+"geometry_name":"geometry",
+"properties":{"uid":38,"CITY":"Fresno","STATE":"CA","TOT_HU":129404,"TOT_POP":354202}
+}
+,
+{
+"type": "Feature",
+"id":"city_39",
+"geometry":{"type":"Point","coordinates":[-117.959375,33.77875]},
+"geometry_name":"geometry",
+"properties":{"uid":39,"CITY":"Garden Grove","STATE":"CA","TOT_HU":45984,"TOT_POP":143050}
+}
+,
+{
+"type": "Feature",
+"id":"city_40",
+"geometry":{"type":"Point","coordinates":[-96.6293,32.9108]},
+"geometry_name":"geometry",
+"properties":{"uid":40,"CITY":"Garland","STATE":"TX","TOT_HU":69595,"TOT_POP":180650}
+}
+,
+{
+"type": "Feature",
+"id":"city_41",
+"geometry":{"type":"Point","coordinates":[-118.253257,34.17672]},
+"geometry_name":"geometry",
+"properties":{"uid":41,"CITY":"Glendale","STATE":"CA","TOT_HU":72114,"TOT_POP":180038}
+}
+,
+{
+"type": "Feature",
+"id":"city_42",
+"geometry":{"type":"Point","coordinates":[-112.20159,33.584128]},
+"geometry_name":"geometry",
+"properties":{"uid":42,"CITY":"Glendale","STATE":"AZ","TOT_HU":61218,"TOT_POP":148134}
+}
+,
+{
+"type": "Feature",
+"id":"city_43",
+"geometry":{"type":"Point","coordinates":[-85.655727,42.96125]},
+"geometry_name":"geometry",
+"properties":{"uid":43,"CITY":"Grand Rapids","STATE":"MI","TOT_HU":73716,"TOT_POP":189126}
+}
+,
+{
+"type": "Feature",
+"id":"city_44",
+"geometry":{"type":"Point","coordinates":[-79.826888,36.0789]},
+"geometry_name":"geometry",
+"properties":{"uid":44,"CITY":"Greensboro","STATE":"NC","TOT_HU":80411,"TOT_POP":183521}
+}
+,
+{
+"type": "Feature",
+"id":"city_45",
+"geometry":{"type":"Point","coordinates":[-80.296772,25.86175]},
+"geometry_name":"geometry",
+"properties":{"uid":45,"CITY":"Hialeah","STATE":"FL","TOT_HU":62187,"TOT_POP":188004}
+}
+,
+{
+"type": "Feature",
+"id":"city_46",
+"geometry":{"type":"Point","coordinates":[-157.804233,21.31725]},
+"geometry_name":"geometry",
+"properties":{"uid":46,"CITY":"Honolulu","STATE":"HI","TOT_HU":145796,"TOT_POP":365272}
+}
+,
+{
+"type": "Feature",
+"id":"city_47",
+"geometry":{"type":"Point","coordinates":[-95.386728,29.7687]},
+"geometry_name":"geometry",
+"properties":{"uid":47,"CITY":"Houston","STATE":"TX","TOT_HU":726435,"TOT_POP":1630553}
+}
+,
+{
+"type": "Feature",
+"id":"city_48",
+"geometry":{"type":"Point","coordinates":[-118.008115,33.691755]},
+"geometry_name":"geometry",
+"properties":{"uid":48,"CITY":"Huntington Beach","STATE":"CA","TOT_HU":72736,"TOT_POP":181519}
+}
+,
+{
+"type": "Feature",
+"id":"city_49",
+"geometry":{"type":"Point","coordinates":[-86.627723,34.707048]},
+"geometry_name":"geometry",
+"properties":{"uid":49,"CITY":"Huntsville","STATE":"AL","TOT_HU":67827,"TOT_POP":159789}
+}
+,
+{
+"type": "Feature",
+"id":"city_50",
+"geometry":{"type":"Point","coordinates":[-86.145999,39.7777]},
+"geometry_name":"geometry",
+"properties":{"uid":50,"CITY":"Indianapolis","STATE":"IN","TOT_HU":324530,"TOT_POP":741952}
+}
+,
+{
+"type": "Feature",
+"id":"city_51",
+"geometry":{"type":"Point","coordinates":[-96.969338,32.857685]},
+"geometry_name":"geometry",
+"properties":{"uid":51,"CITY":"Irving","STATE":"TX","TOT_HU":71059,"TOT_POP":155037}
+}
+,
+{
+"type": "Feature",
+"id":"city_52",
+"geometry":{"type":"Point","coordinates":[-90.207591,32.3205]},
+"geometry_name":"geometry",
+"properties":{"uid":52,"CITY":"Jackson","STATE":"MS","TOT_HU":79374,"TOT_POP":196637}
+}
+,
+{
+"type": "Feature",
+"id":"city_53",
+"geometry":{"type":"Point","coordinates":[-81.648509,30.33415]},
+"geometry_name":"geometry",
+"properties":{"uid":53,"CITY":"Jacksonville","STATE":"FL","TOT_HU":284673,"TOT_POP":672971}
+}
+,
+{
+"type": "Feature",
+"id":"city_54",
+"geometry":{"type":"Point","coordinates":[-74.064962,40.7113]},
+"geometry_name":"geometry",
+"properties":{"uid":54,"CITY":"Jersey City","STATE":"NJ","TOT_HU":90723,"TOT_POP":228537}
+}
+,
+{
+"type": "Feature",
+"id":"city_55",
+"geometry":{"type":"Point","coordinates":[-94.552009,39.122312]},
+"geometry_name":"geometry",
+"properties":{"uid":55,"CITY":"Kansas City","STATE":"MO","TOT_HU":201789,"TOT_POP":435146}
+}
+,
+{
+"type": "Feature",
+"id":"city_56",
+"geometry":{"type":"Point","coordinates":[-94.727037,39.1184]},
+"geometry_name":"geometry",
+"properties":{"uid":56,"CITY":"Kansas City","STATE":"KS","TOT_HU":64457,"TOT_POP":149767}
+}
+,
+{
+"type": "Feature",
+"id":"city_57",
+"geometry":{"type":"Point","coordinates":[-83.946288,35.97455]},
+"geometry_name":"geometry",
+"properties":{"uid":57,"CITY":"Knoxville","STATE":"TN","TOT_HU":76453,"TOT_POP":165121}
+}
+,
+{
+"type": "Feature",
+"id":"city_58",
+"geometry":{"type":"Point","coordinates":[-115.222799,36.20575]},
+"geometry_name":"geometry",
+"properties":{"uid":58,"CITY":"Las Vegas","STATE":"NV","TOT_HU":109670,"TOT_POP":258295}
+}
+,
+{
+"type": "Feature",
+"id":"city_59",
+"geometry":{"type":"Point","coordinates":[-84.45946,38.042746]},
+"geometry_name":"geometry",
+"properties":{"uid":59,"CITY":"Lexington","STATE":"KY","TOT_HU":97742,"TOT_POP":225366}
+}
+,
+{
+"type": "Feature",
+"id":"city_60",
+"geometry":{"type":"Point","coordinates":[-96.688171,40.8164]},
+"geometry_name":"geometry",
+"properties":{"uid":60,"CITY":"Lincoln","STATE":"NE","TOT_HU":79079,"TOT_POP":191972}
+}
+,
+{
+"type": "Feature",
+"id":"city_61",
+"geometry":{"type":"Point","coordinates":[-92.354076,34.7224]},
+"geometry_name":"geometry",
+"properties":{"uid":61,"CITY":"Little Rock","STATE":"AR","TOT_HU":80995,"TOT_POP":175795}
+}
+,
+{
+"type": "Feature",
+"id":"city_62",
+"geometry":{"type":"Point","coordinates":[-118.159824,33.7889]},
+"geometry_name":"geometry",
+"properties":{"uid":62,"CITY":"Long Beach","STATE":"CA","TOT_HU":170388,"TOT_POP":429433}
+}
+,
+{
+"type": "Feature",
+"id":"city_63",
+"geometry":{"type":"Point","coordinates":[-118.411201,34.112101]},
+"geometry_name":"geometry",
+"properties":{"uid":63,"CITY":"Los Angeles","STATE":"CA","TOT_HU":1299963,"TOT_POP":3485398}
+}
+,
+{
+"type": "Feature",
+"id":"city_64",
+"geometry":{"type":"Point","coordinates":[-85.741156,38.22475]},
+"geometry_name":"geometry",
+"properties":{"uid":64,"CITY":"Louisville","STATE":"KY","TOT_HU":124018,"TOT_POP":269063}
+}
+,
+{
+"type": "Feature",
+"id":"city_65",
+"geometry":{"type":"Point","coordinates":[-101.875374,33.57585]},
+"geometry_name":"geometry",
+"properties":{"uid":65,"CITY":"Lubbock","STATE":"TX","TOT_HU":77852,"TOT_POP":186206}
+}
+,
+{
+"type": "Feature",
+"id":"city_66",
+"geometry":{"type":"Point","coordinates":[-89.387519,43.0798]},
+"geometry_name":"geometry",
+"properties":{"uid":66,"CITY":"Madison","STATE":"WI","TOT_HU":80047,"TOT_POP":191262}
+}
+,
+{
+"type": "Feature",
+"id":"city_67",
+"geometry":{"type":"Point","coordinates":[-90.006991,35.1056]},
+"geometry_name":"geometry",
+"properties":{"uid":67,"CITY":"Memphis","STATE":"TN","TOT_HU":248573,"TOT_POP":610337}
+}
+,
+{
+"type": "Feature",
+"id":"city_68",
+"geometry":{"type":"Point","coordinates":[-111.740337,33.417736]},
+"geometry_name":"geometry",
+"properties":{"uid":68,"CITY":"Mesa","STATE":"AZ","TOT_HU":140468,"TOT_POP":288091}
+}
+,
+{
+"type": "Feature",
+"id":"city_69",
+"geometry":{"type":"Point","coordinates":[-90.177396,29.997601]},
+"geometry_name":"geometry",
+"properties":{"uid":69,"CITY":"Metairie","STATE":"LA","TOT_HU":67021,"TOT_POP":149428}
+}
+,
+{
+"type": "Feature",
+"id":"city_70",
+"geometry":{"type":"Point","coordinates":[-80.210845,25.775667]},
+"geometry_name":"geometry",
+"properties":{"uid":70,"CITY":"Miami","STATE":"FL","TOT_HU":144550,"TOT_POP":358548}
+}
+,
+{
+"type": "Feature",
+"id":"city_71",
+"geometry":{"type":"Point","coordinates":[-87.966623,43.06335]},
+"geometry_name":"geometry",
+"properties":{"uid":71,"CITY":"Milwaukee","STATE":"WI","TOT_HU":254204,"TOT_POP":628088}
+}
+,
+{
+"type": "Feature",
+"id":"city_72",
+"geometry":{"type":"Point","coordinates":[-93.266849,44.96185]},
+"geometry_name":"geometry",
+"properties":{"uid":72,"CITY":"Minneapolis","STATE":"MN","TOT_HU":172666,"TOT_POP":368383}
+}
+,
+{
+"type": "Feature",
+"id":"city_73",
+"geometry":{"type":"Point","coordinates":[-88.088959,30.67745]},
+"geometry_name":"geometry",
+"properties":{"uid":73,"CITY":"Mobile","STATE":"AL","TOT_HU":82817,"TOT_POP":196278}
+}
+,
+{
+"type": "Feature",
+"id":"city_74",
+"geometry":{"type":"Point","coordinates":[-120.993923,37.659799]},
+"geometry_name":"geometry",
+"properties":{"uid":74,"CITY":"Modesto","STATE":"CA","TOT_HU":60878,"TOT_POP":164730}
+}
+,
+{
+"type": "Feature",
+"id":"city_75",
+"geometry":{"type":"Point","coordinates":[-86.284287,32.3544]},
+"geometry_name":"geometry",
+"properties":{"uid":75,"CITY":"Montgomery","STATE":"AL","TOT_HU":76636,"TOT_POP":187106}
+}
+,
+{
+"type": "Feature",
+"id":"city_76",
+"geometry":{"type":"Point","coordinates":[-86.784829,36.17155]},
+"geometry_name":"geometry",
+"properties":{"uid":76,"CITY":"Nashville-Davidson","STATE":"TN","TOT_HU":219528,"TOT_POP":488374}
+}
+,
+{
+"type": "Feature",
+"id":"city_77",
+"geometry":{"type":"Point","coordinates":[-89.931355,30.065846]},
+"geometry_name":"geometry",
+"properties":{"uid":77,"CITY":"New Orleans","STATE":"LA","TOT_HU":225573,"TOT_POP":496938}
+}
+,
+{
+"type": "Feature",
+"id":"city_78",
+"geometry":{"type":"Point","coordinates":[-73.943849,40.6698]},
+"geometry_name":"geometry",
+"properties":{"uid":78,"CITY":"New York","STATE":"NY","TOT_HU":2992169,"TOT_POP":7322564}
+}
+,
+{
+"type": "Feature",
+"id":"city_79",
+"geometry":{"type":"Point","coordinates":[-74.173245,40.7241]},
+"geometry_name":"geometry",
+"properties":{"uid":79,"CITY":"Newark","STATE":"NJ","TOT_HU":102473,"TOT_POP":275221}
+}
+,
+{
+"type": "Feature",
+"id":"city_80",
+"geometry":{"type":"Point","coordinates":[-76.51416,37.07585]},
+"geometry_name":"geometry",
+"properties":{"uid":80,"CITY":"Newport News","STATE":"VA","TOT_HU":69728,"TOT_POP":170045}
+}
+,
+{
+"type": "Feature",
+"id":"city_81",
+"geometry":{"type":"Point","coordinates":[-76.244943,36.9232]},
+"geometry_name":"geometry",
+"properties":{"uid":81,"CITY":"Norfolk","STATE":"VA","TOT_HU":98762,"TOT_POP":261229}
+}
+,
+{
+"type": "Feature",
+"id":"city_82",
+"geometry":{"type":"Point","coordinates":[-122.27,37.8]},
+"geometry_name":"geometry",
+"properties":{"uid":82,"CITY":"Oakland","STATE":"CA","TOT_HU":154737,"TOT_POP":372242}
+}
+,
+{
+"type": "Feature",
+"id":"city_83",
+"geometry":{"type":"Point","coordinates":[-97.513491,35.46705]},
+"geometry_name":"geometry",
+"properties":{"uid":83,"CITY":"Oklahoma City","STATE":"OK","TOT_HU":212367,"TOT_POP":444719}
+}
+,
+{
+"type": "Feature",
+"id":"city_84",
+"geometry":{"type":"Point","coordinates":[-96.011745,41.2639]},
+"geometry_name":"geometry",
+"properties":{"uid":84,"CITY":"Omaha","STATE":"NE","TOT_HU":143612,"TOT_POP":335795}
+}
+,
+{
+"type": "Feature",
+"id":"city_85",
+"geometry":{"type":"Point","coordinates":[-81.374248,28.504748]},
+"geometry_name":"geometry",
+"properties":{"uid":85,"CITY":"Orlando","STATE":"FL","TOT_HU":73425,"TOT_POP":164693}
+}
+,
+{
+"type": "Feature",
+"id":"city_86",
+"geometry":{"type":"Point","coordinates":[-119.213695,34.197426]},
+"geometry_name":"geometry",
+"properties":{"uid":86,"CITY":"Oxnard","STATE":"CA","TOT_HU":41247,"TOT_POP":142216}
+}
+,
+{
+"type": "Feature",
+"id":"city_87",
+"geometry":{"type":"Point","coordinates":[-75.134678,40.006817]},
+"geometry_name":"geometry",
+"properties":{"uid":87,"CITY":"Philadelphia","STATE":"PA","TOT_HU":674899,"TOT_POP":1585577}
+}
+,
+{
+"type": "Feature",
+"id":"city_88",
+"geometry":{"type":"Point","coordinates":[-112.071399,33.54255]},
+"geometry_name":"geometry",
+"properties":{"uid":88,"CITY":"Phoenix","STATE":"AZ","TOT_HU":422036,"TOT_POP":983403}
+}
+,
+{
+"type": "Feature",
+"id":"city_89",
+"geometry":{"type":"Point","coordinates":[-79.976702,40.439207]},
+"geometry_name":"geometry",
+"properties":{"uid":89,"CITY":"Pittsburgh","STATE":"PA","TOT_HU":170159,"TOT_POP":369879}
+}
+,
+{
+"type": "Feature",
+"id":"city_90",
+"geometry":{"type":"Point","coordinates":[-122.656496,45.53825]},
+"geometry_name":"geometry",
+"properties":{"uid":90,"CITY":"Portland","STATE":"OR","TOT_HU":198368,"TOT_POP":437319}
+}
+,
+{
+"type": "Feature",
+"id":"city_91",
+"geometry":{"type":"Point","coordinates":[-71.419732,41.82195]},
+"geometry_name":"geometry",
+"properties":{"uid":91,"CITY":"Providence","STATE":"RI","TOT_HU":66794,"TOT_POP":160728}
+}
+,
+{
+"type": "Feature",
+"id":"city_92",
+"geometry":{"type":"Point","coordinates":[-78.658753,35.82195]},
+"geometry_name":"geometry",
+"properties":{"uid":92,"CITY":"Raleigh","STATE":"NC","TOT_HU":92643,"TOT_POP":207951}
+}
+,
+{
+"type": "Feature",
+"id":"city_93",
+"geometry":{"type":"Point","coordinates":[-77.474584,37.53105]},
+"geometry_name":"geometry",
+"properties":{"uid":93,"CITY":"Richmond","STATE":"VA","TOT_HU":94141,"TOT_POP":203056}
+}
+,
+{
+"type": "Feature",
+"id":"city_94",
+"geometry":{"type":"Point","coordinates":[-117.397363,33.940437]},
+"geometry_name":"geometry",
+"properties":{"uid":94,"CITY":"Riverside","STATE":"CA","TOT_HU":80240,"TOT_POP":226505}
+}
+,
+{
+"type": "Feature",
+"id":"city_95",
+"geometry":{"type":"Point","coordinates":[-77.615838,43.168651]},
+"geometry_name":"geometry",
+"properties":{"uid":95,"CITY":"Rochester","STATE":"NY","TOT_HU":101154,"TOT_POP":231636}
+}
+,
+{
+"type": "Feature",
+"id":"city_96",
+"geometry":{"type":"Point","coordinates":[-121.46736,38.56685]},
+"geometry_name":"geometry",
+"properties":{"uid":96,"CITY":"Sacramento","STATE":"CA","TOT_HU":153362,"TOT_POP":369365}
+}
+,
+{
+"type": "Feature",
+"id":"city_97",
+"geometry":{"type":"Point","coordinates":[-111.929921,40.777267]},
+"geometry_name":"geometry",
+"properties":{"uid":97,"CITY":"Salt Lake City","STATE":"UT","TOT_HU":73762,"TOT_POP":159936}
+}
+,
+{
+"type": "Feature",
+"id":"city_98",
+"geometry":{"type":"Point","coordinates":[-98.505355,29.45765]},
+"geometry_name":"geometry",
+"properties":{"uid":98,"CITY":"San Antonio","STATE":"TX","TOT_HU":365414,"TOT_POP":935933}
+}
+,
+{
+"type": "Feature",
+"id":"city_99",
+"geometry":{"type":"Point","coordinates":[-117.292299,34.13975]},
+"geometry_name":"geometry",
+"properties":{"uid":99,"CITY":"San Bernardino","STATE":"CA","TOT_HU":58804,"TOT_POP":164164}
+}
+,
+{
+"type": "Feature",
+"id":"city_100",
+"geometry":{"type":"Point","coordinates":[-117.13577,32.81495]},
+"geometry_name":"geometry",
+"properties":{"uid":100,"CITY":"San Diego","STATE":"CA","TOT_HU":431722,"TOT_POP":1110549}
+}
+,
+{
+"type": "Feature",
+"id":"city_101",
+"geometry":{"type":"Point","coordinates":[-122.495856,37.77904]},
+"geometry_name":"geometry",
+"properties":{"uid":101,"CITY":"San Francisco","STATE":"CA","TOT_HU":328471,"TOT_POP":723959}
+}
+,
+{
+"type": "Feature",
+"id":"city_102",
+"geometry":{"type":"Point","coordinates":[-121.849783,37.304]},
+"geometry_name":"geometry",
+"properties":{"uid":102,"CITY":"San Jose","STATE":"CA","TOT_HU":259365,"TOT_POP":782248}
+}
+,
+{
+"type": "Feature",
+"id":"city_103",
+"geometry":{"type":"Point","coordinates":[-117.882114,33.7364]},
+"geometry_name":"geometry",
+"properties":{"uid":103,"CITY":"Santa Ana","STATE":"CA","TOT_HU":74973,"TOT_POP":293742}
+}
+,
+{
+"type": "Feature",
+"id":"city_104",
+"geometry":{"type":"Point","coordinates":[-122.350326,47.6218]},
+"geometry_name":"geometry",
+"properties":{"uid":104,"CITY":"Seattle","STATE":"WA","TOT_HU":249032,"TOT_POP":516259}
+}
+,
+{
+"type": "Feature",
+"id":"city_105",
+"geometry":{"type":"Point","coordinates":[-93.797808,32.47155]},
+"geometry_name":"geometry",
+"properties":{"uid":105,"CITY":"Shreveport","STATE":"LA","TOT_HU":87473,"TOT_POP":198525}
+}
+,
+{
+"type": "Feature",
+"id":"city_106",
+"geometry":{"type":"Point","coordinates":[-117.414024,47.6723]},
+"geometry_name":"geometry",
+"properties":{"uid":106,"CITY":"Spokane","STATE":"WA","TOT_HU":79875,"TOT_POP":177196}
+}
+,
+{
+"type": "Feature",
+"id":"city_107",
+"geometry":{"type":"Point","coordinates":[-72.539045,42.115033]},
+"geometry_name":"geometry",
+"properties":{"uid":107,"CITY":"Springfield","STATE":"MA","TOT_HU":61320,"TOT_POP":156983}
+}
+,
+{
+"type": "Feature",
+"id":"city_108",
+"geometry":{"type":"Point","coordinates":[-90.244299,38.63605]},
+"geometry_name":"geometry",
+"properties":{"uid":108,"CITY":"St. Louis","STATE":"MO","TOT_HU":194919,"TOT_POP":396685}
+}
+,
+{
+"type": "Feature",
+"id":"city_109",
+"geometry":{"type":"Point","coordinates":[-93.103686,44.947744]},
+"geometry_name":"geometry",
+"properties":{"uid":109,"CITY":"St. Paul","STATE":"MN","TOT_HU":117583,"TOT_POP":272235}
+}
+,
+{
+"type": "Feature",
+"id":"city_110",
+"geometry":{"type":"Point","coordinates":[-82.642121,27.758]},
+"geometry_name":"geometry",
+"properties":{"uid":110,"CITY":"St. Petersburg","STATE":"FL","TOT_HU":125452,"TOT_POP":238629}
+}
+,
+{
+"type": "Feature",
+"id":"city_111",
+"geometry":{"type":"Point","coordinates":[-121.306741,37.96985]},
+"geometry_name":"geometry",
+"properties":{"uid":111,"CITY":"Stockton","STATE":"CA","TOT_HU":72525,"TOT_POP":210943}
+}
+,
+{
+"type": "Feature",
+"id":"city_112",
+"geometry":{"type":"Point","coordinates":[-76.144067,43.041059]},
+"geometry_name":"geometry",
+"properties":{"uid":112,"CITY":"Syracuse","STATE":"NY","TOT_HU":71502,"TOT_POP":163860}
+}
+,
+{
+"type": "Feature",
+"id":"city_113",
+"geometry":{"type":"Point","coordinates":[-122.459766,47.252]},
+"geometry_name":"geometry",
+"properties":{"uid":113,"CITY":"Tacoma","STATE":"WA","TOT_HU":75147,"TOT_POP":176664}
+}
+,
+{
+"type": "Feature",
+"id":"city_114",
+"geometry":{"type":"Point","coordinates":[-82.48212,27.959]},
+"geometry_name":"geometry",
+"properties":{"uid":114,"CITY":"Tampa","STATE":"FL","TOT_HU":129681,"TOT_POP":280015}
+}
+,
+{
+"type": "Feature",
+"id":"city_115",
+"geometry":{"type":"Point","coordinates":[-111.930639,33.38835]},
+"geometry_name":"geometry",
+"properties":{"uid":115,"CITY":"Tempe","STATE":"AZ","TOT_HU":61452,"TOT_POP":141865}
+}
+,
+{
+"type": "Feature",
+"id":"city_116",
+"geometry":{"type":"Point","coordinates":[-83.581649,41.66395]},
+"geometry_name":"geometry",
+"properties":{"uid":116,"CITY":"Toledo","STATE":"OH","TOT_HU":142125,"TOT_POP":332943}
+}
+,
+{
+"type": "Feature",
+"id":"city_117",
+"geometry":{"type":"Point","coordinates":[-110.891717,32.195816]},
+"geometry_name":"geometry",
+"properties":{"uid":117,"CITY":"Tucson","STATE":"AZ","TOT_HU":183338,"TOT_POP":405390}
+}
+,
+{
+"type": "Feature",
+"id":"city_118",
+"geometry":{"type":"Point","coordinates":[-95.916407,36.12775]},
+"geometry_name":"geometry",
+"properties":{"uid":118,"CITY":"Tulsa","STATE":"OK","TOT_HU":176211,"TOT_POP":367302}
+}
+,
+{
+"type": "Feature",
+"id":"city_119",
+"geometry":{"type":"Point","coordinates":[-76.043668,36.739356]},
+"geometry_name":"geometry",
+"properties":{"uid":119,"CITY":"Virginia Beach","STATE":"VA","TOT_HU":147037,"TOT_POP":393069}
+}
+,
+{
+"type": "Feature",
+"id":"city_120",
+"geometry":{"type":"Point","coordinates":[-83.028197,42.493]},
+"geometry_name":"geometry",
+"properties":{"uid":120,"CITY":"Warren","STATE":"MI","TOT_HU":56189,"TOT_POP":144864}
+}
+,
+{
+"type": "Feature",
+"id":"city_121",
+"geometry":{"type":"Point","coordinates":[-77.016167,38.90505]},
+"geometry_name":"geometry",
+"properties":{"uid":121,"CITY":"Washington","STATE":"DC","TOT_HU":278489,"TOT_POP":606900}
+}
+,
+{
+"type": "Feature",
+"id":"city_122",
+"geometry":{"type":"Point","coordinates":[-97.342674,37.68735]},
+"geometry_name":"geometry",
+"properties":{"uid":122,"CITY":"Wichita","STATE":"KS","TOT_HU":135069,"TOT_POP":304011}
+}
+,
+{
+"type": "Feature",
+"id":"city_123",
+"geometry":{"type":"Point","coordinates":[-80.26291,36.1021]},
+"geometry_name":"geometry",
+"properties":{"uid":123,"CITY":"Winston-Salem","STATE":"NC","TOT_HU":65631,"TOT_POP":143485}
+}
+,
+{
+"type": "Feature",
+"id":"city_124",
+"geometry":{"type":"Point","coordinates":[-71.80892,42.269633]},
+"geometry_name":"geometry",
+"properties":{"uid":124,"CITY":"Worcester","STATE":"MA","TOT_HU":69336,"TOT_POP":169759}
+}
+,
+{
+"type": "Feature",
+"id":"city_125",
+"geometry":{"type":"Point","coordinates":[-73.867514,40.947033]},
+"geometry_name":"geometry",
+"properties":{"uid":125,"CITY":"Yonkers","STATE":"NY","TOT_HU":75562,"TOT_POP":188082}
+}
+]
+}

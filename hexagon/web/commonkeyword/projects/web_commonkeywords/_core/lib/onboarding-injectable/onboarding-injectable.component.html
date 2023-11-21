@@ -1,0 +1,48 @@
+<ng-container *ngIf="capabilityList$ | async; let capabilityList">
+    <div class="capability-list-container">
+        <div class="capability-list-icon">
+            <img src="assets/commonkeywords-core/images/icon-management-onboarding.svg" height="222" width="247" />
+        </div>
+        <div class="capability-list-intro">
+            <div class="capability-list-intro-header">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.iconManagement" skeletonWidth="130px">
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+            <div class="capability-list-intro-text">
+                <hxgn-commonlocalization-translate-v1 [token]="tokens.onboardingIntro" skeletonWidth="260px">
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+        </div>
+        <div class="capability-list">
+            <div class="capability" [class.selected]="capability.id === selectedCapability.getValue()?.id"
+                *ngFor="let capability of capabilityList; trackBy: trackByCapabilityId"
+                (click)="setSelectedCapability(capability)">
+                <div class="capability-icon-container">
+                    <div class="capability-icon" [style.background-image]="'url(' + getCapabilityBackgroundImage(capability) + ')'">
+                    </div>
+                </div>
+                <span>
+                    <hxgn-commonlocalization-translate-v1 [token]="capability.nameToken" skeletonWidth="35px">
+                    </hxgn-commonlocalization-translate-v1>
+                </span>
+                <img *ngIf="capabilityCompletion.get(capability.id)"
+                    src="assets/commonkeywords-core/images/onboarding-complete-icon.svg" height="20" width="20" />
+            </div>
+        </div>
+    </div>
+    <div class="selected-capability-container">
+        <ng-container *ngIf="selectedCapability">
+            <div class="selected-capability-title">
+                <hxgn-commonlocalization-translate-v1 [token]="selectedCapability.getValue()?.nameToken" skeletonWidth="35px">
+                </hxgn-commonlocalization-translate-v1>
+            </div>
+            <hxgn-commonkeywords-rule-set-selection
+                [capability$]="selectedCapability$"
+                [industryList]="industryList"
+                [tenant]="tenant"
+                [selectedRuleSets]="selectedRuleSets"
+                (selectedRuleSetsChange)="updateSelectedRulesets($event)">
+            </hxgn-commonkeywords-rule-set-selection>
+        </ng-container>
+    </div>
+</ng-container>

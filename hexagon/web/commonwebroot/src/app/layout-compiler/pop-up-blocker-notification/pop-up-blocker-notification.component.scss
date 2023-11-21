@@ -1,0 +1,19 @@
+:host {
+    display: grid;
+    grid-template-columns: 40px 350px;
+    border-radius: 3px;
+    border: 1px solid #c3c4c7;
+    box-shadow: 3px 3px 16px -6px rgba(0,0,0,0.75);
+}
+
+.icon {
+    background-color: #f1c73c;
+    background-image: url('^assets/icons/warning-icon.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.msg {
+    background-color:#fcf0d1;
+    padding: 0 10px;
+}

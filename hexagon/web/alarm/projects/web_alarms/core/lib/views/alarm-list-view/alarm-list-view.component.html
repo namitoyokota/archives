@@ -1,0 +1,56 @@
+<div *ngIf="!settings?.enablePortalFormatting" class="header-pane">
+    <span>{{settings.headerTitle}}</span>
+    <span class="count" [attr.id]="settings?.customHeaderId"></span>
+
+    <div *ngIf='(paneState$ | async); else notSelected' (click)="closePane()" class="option-pane-btn selected"></div>
+
+    <ng-template #notSelected>
+        <div (click)="openPane()" class="option-pane-btn"></div>
+    </ng-template>
+</div>
+
+<hxgn-common-filter-pane [activeFilter]="activeFilter$ | async" [filterSyncEnabled]="filterSyncEnabled"
+    [searchText]="tTokens.alarmSearchText" [showMapSync]="(linkedViews$ | async)?.length"
+    (search)="searchAlarms($event)" (enableFilterSync)="enableFilterSync($event)" (filterCleared)="clearFilters()">
+    <hxgn-commontenant-selection *ngIf="shareTenantIds.length" (selectionChange)="setSelectedTenants($event)"
+        [tenantIds]="shareTenantIds"></hxgn-commontenant-selection>
+</hxgn-common-filter-pane>
+
+<div class="list-pane">
+    <cdk-virtual-scroll-viewport variableHeightVirtualScrollStrategy [itemHeights]='itemHeights$ | async'>
+        <ng-container *cdkVirtualFor="let alarm of filteredAlarms$ | async; trackBy: trackByFn;templateCacheSize: 0; let i = index">
+            <hxgn-alarms-card [class.tenant-info-height]="showTenantInfo"
+                [alarm]="alarm"
+                [contextId]="settings.contextId"
+                [showTenantInfo]="showTenantInfo"
+                [isExpanded]="expandedCardId === alarm.id"
+                [enableCardExpansion]="settings.enableCardExpansion"
+                [enableRemarks]="settings.enableRemarks"
+                [enableMedia]="settings.enableMedia"
+                [enableKeywords]="settings.enableKeywords"
+                [showClearAlarmButton]="!alarm.isManaged && alarm.tenantId === tenantId"
+                [showActionPanel]="true"
+                [wasExpanded]="lastExpandedCardId === alarm.id"
+                [isSelected]="(selectedAlarmIds$ | async)?.includes(alarm.id)"
+                [currentTenantId]="tenantId"
+                (click)="setSelections(alarm.id, $event)"
+                (sizeChange)="setSize($event)" 
+                (expandedDestroy)="detailsDestroy()"
+                (expansionChange)="setExpansionCardState($event, alarm.id, i)">
+            </hxgn-alarms-card>
+        </ng-container>
+
+    </cdk-virtual-scroll-viewport>
+</div>
+
+<!-- Option pane -->
+<div [@expansionState] *ngIf='(paneState$ | async)' class="option-pane">
+
+    <hxgn-alarms-option-pane [activeFilter]="activeFilter$ | async" [enabledMapSyncing]="filterSyncEnabled"
+        [showMapSync]="(linkedViews$ | async)?.length" [sortBy]="activeSort$ | async"
+        [showResetToDefault]="hasFilterChanged() || hasSortChanged()" (filterChange)="setActiveFilter($event)"
+        (mapSync)="enableFilterSync($event)" (sortByChange)="setSort($event)"
+        (resetToDefault)="resetFiltersSettingsAsync()">
+    </hxgn-alarms-option-pane>
+
+</div>

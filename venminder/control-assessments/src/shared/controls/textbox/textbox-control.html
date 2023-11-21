@@ -1,0 +1,41 @@
+﻿<template>
+  <require from="../controls.scss"></require>
+  <require from="./textbox-control.scss"></require>
+
+  <div
+    class="shared-control-container textbox-control-component"
+    class.bind="isFirst ? 'show-bar' : ''"
+  >
+    <!-- Gray Bar -->
+    <div if.bind="isFirst" class="gray-bar"></div>
+
+    <!-- Control -->
+    <div class="control-pane">
+      <div class="control textbox-control-pane">
+        <!-- Title -->
+        <span>${model.name}</span>
+
+        <!-- Textarea -->
+        <textarea
+          id="questionText${model.controlName}"
+          class="vm-input"
+          value.bind="selectedAnswer"
+          disabled.bind="!model.isEditable"
+        ></textarea>
+
+        <!-- Error Message -->
+        <span if.bind="model.errorMsg" class="danger">${model.errorMsg}</span>
+      </div>
+
+      <!-- Arrow Button -->
+      <div
+        if.bind="model.isEditable && !model.isSingleControlEdit"
+        class="expand-pane"
+      >
+        <button class="expand-button" click.delegate="caretButtonClicked()">
+          <i class="fa fa-angle-right fa-lg"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</template>

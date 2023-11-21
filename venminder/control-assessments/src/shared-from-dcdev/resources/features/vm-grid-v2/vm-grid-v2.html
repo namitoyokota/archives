@@ -1,0 +1,93 @@
+﻿<template>
+  <require from="./vm-grid-v2.scss"></require>
+  <require from="./pager/vm-grid-pager"></require>
+  <require from="./filters/custom-filter-group/custom-filter-group"></require>
+  <require from="./filters/filter-pillbox/filter-pillbox"></require>
+  <require from="./vm-row.component"></require>
+
+    <div class="grid-controls">
+        <div>
+            <compose if.bind="!!config.CustomFilters && config.CustomFilters.FilterComponent"
+            view-model.bind="config.CustomFilters.FilterComponent" model.bind="getFilterModel()"></compose>
+            <custom-filter-group if.bind="!!config.CustomFilters && !config.CustomFilters.FilterComponent" grid-data.bind="gridData" custom-filters.bind="config.CustomFilters"></custom-filter-group>
+            <button
+                if.bind="!!config.DatePickerConfig"
+                class="btn btn-default btn-sm btn-options"
+                type="button"
+                click.delegate="openDateFilter($event)"
+            >
+            <i class="fa fa-calendar"></i>
+      </button>
+            <compose if.bind="!!config.SearchComponent" view-model.bind="config.SearchComponent" model.bind="getFilterModel()"></compose>
+        </div>
+        <div class="vm-grid-button-container">
+            <div class="dropdown">
+                <button if.bind="showGridButtonOptions" class="btn btn-default btn-sm btn-options" type="button" data-toggle="dropdown" aria-expanded="false">
+                    <i class="far fa-ellipsis-v"></i>
+                </button>
+
+        <ul class="dropdown-menu dropdown-menu-no-margin btn-option-container">
+          <li repeat.for="button of buttonOptions || []">
+            <a click.delegate="button.Click()" href="javascript:void(0)">
+              <span if.bind="button.FaClass"><i class="${button.FaClass}"></i></span>${button.Text}
+            </a>
+          </li>
+        </ul>
+      </div>
+      <button
+        if.bind="showGridDownloadButton"
+        class="btn btn-default btn-sm btn-options"
+        type="button"
+        click.delegate="downloadCSV()"
+      >
+        <i class="fas fa-download"></i>
+      </button>
+      <button
+        if.bind="config.AllowColumnConfiguration"
+        class="btn btn-default btn-sm btn-options"
+        type="button"
+        click.delegate="openColumnsConfiguration($event)"
+      >
+        <i class="fak fa-custom-column-icon"></i>
+      </button>
+    </div>
+  </div>
+
+    <filter-pillbox if.bind="showPillbox" grid-data.bind="gridData" config.bind="config"></filter-pillbox>
+
+    <div ref="gridContainer" class="grid-container ${scrollableClassList}" style.bind="gridStyle">
+        <div ref="gridBody" class="grid-body" style.bind="getGridColumnStyles">
+            <vm-row>
+                <div class="grid-header ${ getHeaderClasses(column, $first, $last) }" repeat.for="column of gridData.columns">
+                    <div click.trigger="changeOrder(column)">
+                        <div id="${getUniqueHeaderCellID(column.ColumnName)}"
+                             aubs-tooltip="text.bind: column.ColumnHeaderText; position.bind: 'bottom'; disabled.bind: !column.ShowToolTip;">
+                            ${column.ColumnHeaderText}
+                        </div>
+                        <div>
+                            <i show.bind="!column.SortDirection" class="fad fa-sort __not-sorted"></i>
+                            <i show.bind="column.AllowSorting && column.SortDirection === 'asc'" class="fad fa-sort-up"></i>
+                            <i show.bind="column.AllowSorting && column.SortDirection === 'desc'" class="fad fa-sort-down"></i>
+                        </div>
+                    </div>
+                </div>
+            </vm-row>
+            <vm-row repeat.for="row of gridData.rows">
+                <div repeat.for="column of gridData.columns" class="grid-cell ${ getCellClasses(column, $first, $last, $parent.$index) }">
+                    <compose if.bind="!!column.ViewModel" view-model.bind="column.ViewModel" model.bind="column.BindingContext(row, column, contextMenu)"></compose>
+                    <div else
+                         id="${getUniqueRowCellID($parent.$index, column.ColumnName)}"
+                         aubs-tooltip="text.bind: formatTooltip(row, column); position.bind: 'bottom'; disabled.bind: !row[column.ColumnTooltipProp];"
+                         class.bind="column.TextAlign" 
+                         click.trigger="performAction($event, row, column)" 
+                         innerhtml.bind="column.Format(row,column.ColumnName,column.ColumnValueConverter) | sanitizeHTML"></div>
+                </div>
+            </vm-row>
+            <div class="grid-no-results" if.bind="!gridData.rows.length">
+              ${config.NoResultsMessage}
+            </div>
+        </div>
+    </div>
+
+  <vm-grid-pager grid-data.bind="gridData" if.bind="showPager"></vm-grid-pager>
+</template>

@@ -1,0 +1,53 @@
+$gap: 15px;
+
+:host {
+    height: 100%;
+    width: 100%;
+}
+
+.container {
+    height: 100%;
+    display: grid;
+    grid-template-rows: min-content auto;
+    row-gap: $gap;
+    overflow: hidden;
+}
+
+.display-columns {
+    grid-template-rows: none;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: $gap;
+}
+
+.add-container {
+    display: grid;
+    grid-template-rows: repeat(2, min-content);
+    row-gap: $gap;
+}
+
+.new-item {
+    display: flex;
+    gap: $gap;
+
+    &.vertical-items {
+        flex-direction: column;
+    }
+}
+
+.add-btn {
+    justify-self: flex-end;
+}
+
+.empty-list {
+    height: 100%;
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    background-color: #F8F8F8;
+    border: 1px solid #ACADB0;
+    box-sizing: border-box;
+}
+
+input {
+    width: 100%;
+}
