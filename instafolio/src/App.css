@@ -1,0 +1,23 @@
+/** @format */
+
+.page-wrap {
+  max-width: 450px;
+  margin: 0 auto;
+  padding: 10px 30px;
+  border-radius: 5px;
+  color: #1f1f1f;
+  text-align: center;
+}
+
+.profile {
+  padding-top: 175px;
+}
+
+.profile-pic {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 150px;
+  border: 5px solid white;
+  border-radius: 50%;
+}

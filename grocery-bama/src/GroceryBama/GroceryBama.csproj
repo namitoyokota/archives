@@ -1,0 +1,375 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{08461F91-0687-4651-ACA9-9410CDB6B664}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>GroceryBama</RootNamespace>
+    <AssemblyName>GroceryBama</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.ConfigurationManager, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Configuration.ConfigurationManager.4.6.0\lib\net461\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.AccessControl, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.AccessControl.4.6.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Permissions, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Permissions.4.6.0\lib\net461\System.Security.Permissions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Principal.Windows.4.6.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="addItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addItem.Designer.cs">
+      <DependentUpon>addItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADDRESS.cs" />
+    <Compile Include="AssignmentDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AssignmentDetails.Designer.cs">
+      <DependentUpon>AssignmentDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BUYER.cs" />
+    <Compile Include="BuyerAccountInformation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BuyerAccountInformation.Designer.cs">
+      <DependentUpon>BuyerAccountInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BuyerFunctionality.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BuyerFunctionality.Designer.cs">
+      <DependentUpon>BuyerFunctionality.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Checkout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Checkout.Designer.cs">
+      <DependentUpon>Checkout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DELIVERED_BY.cs" />
+    <Compile Include="Deliverer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Deliverer.Designer.cs">
+      <DependentUpon>Deliverer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DelivererAccountInformation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DelivererAccountInformation.Designer.cs">
+      <DependentUpon>DelivererAccountInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DelivererAssignments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DelivererAssignments.Designer.cs">
+      <DependentUpon>DelivererAssignments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DelivererFunctionality.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DelivererFunctionality.Designer.cs">
+      <DependentUpon>DelivererFunctionality.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FindItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FindItem.Designer.cs">
+      <DependentUpon>FindItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Globals.cs" />
+    <Compile Include="GROCERYSTORE.cs" />
+    <Compile Include="ITEM.cs" />
+    <Compile Include="ListItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListItems.Designer.cs">
+      <DependentUpon>ListItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListMyItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListMyItems.Designer.cs">
+      <DependentUpon>ListMyItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Manager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Manager.Designer.cs">
+      <DependentUpon>Manager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerAccountInformation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManagerAccountInformation.Designer.cs">
+      <DependentUpon>ManagerAccountInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerFunctionality.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManagerFunctionality.Designer.cs">
+      <DependentUpon>ManagerFunctionality.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MANAGES.cs" />
+    <Compile Include="NewPayment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewPayment.Designer.cs">
+      <DependentUpon>NewPayment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ORDERED_BY.cs" />
+    <Compile Include="ORDERFROM.cs" />
+    <Compile Include="OrderHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrderHistory.Designer.cs">
+      <DependentUpon>OrderHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ORDERR.cs" />
+    <Compile Include="PAYMENT.cs" />
+    <Compile Include="PaymentMethods.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PaymentMethods.Designer.cs">
+      <DependentUpon>PaymentMethods.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Receipt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Receipt.Designer.cs">
+      <DependentUpon>Receipt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Register.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Register.Designer.cs">
+      <DependentUpon>Register.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RegisterBuyer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegisterBuyer.Designer.cs">
+      <DependentUpon>RegisterBuyer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SELECTITEM.cs" />
+    <Compile Include="SOLDAT.cs" />
+    <Compile Include="StoreHomepage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StoreHomepage.Designer.cs">
+      <DependentUpon>StoreHomepage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="List.Designer.cs">
+      <DependentUpon>List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SYSTEMINFORMATION.cs" />
+    <Compile Include="USER.cs" />
+    <Compile Include="ViewCart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewCart.Designer.cs">
+      <DependentUpon>ViewCart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewInventory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewInventory.Designer.cs">
+      <DependentUpon>ViewInventory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewOutstanding.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewOutstanding.Designer.cs">
+      <DependentUpon>ViewOutstanding.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="addItem.resx">
+      <DependentUpon>addItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AssignmentDetails.resx">
+      <DependentUpon>AssignmentDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BuyerAccountInformation.resx">
+      <DependentUpon>BuyerAccountInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BuyerFunctionality.resx">
+      <DependentUpon>BuyerFunctionality.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Checkout.resx">
+      <DependentUpon>Checkout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Deliverer.resx">
+      <DependentUpon>Deliverer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DelivererAccountInformation.resx">
+      <DependentUpon>DelivererAccountInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DelivererAssignments.resx">
+      <DependentUpon>DelivererAssignments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DelivererFunctionality.resx">
+      <DependentUpon>DelivererFunctionality.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FindItem.resx">
+      <DependentUpon>FindItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListItems.resx">
+      <DependentUpon>ListItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListMyItems.resx">
+      <DependentUpon>ListMyItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Manager.resx">
+      <DependentUpon>Manager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagerAccountInformation.resx">
+      <DependentUpon>ManagerAccountInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagerFunctionality.resx">
+      <DependentUpon>ManagerFunctionality.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewPayment.resx">
+      <DependentUpon>NewPayment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderHistory.resx">
+      <DependentUpon>OrderHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaymentMethods.resx">
+      <DependentUpon>PaymentMethods.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Receipt.resx">
+      <DependentUpon>Receipt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Register.resx">
+      <DependentUpon>Register.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegisterBuyer.resx">
+      <DependentUpon>RegisterBuyer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StoreHomepage.resx">
+      <DependentUpon>StoreHomepage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="List.resx">
+      <DependentUpon>List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewCart.resx">
+      <DependentUpon>ViewCart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewInventory.resx">
+      <DependentUpon>ViewInventory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewOutstanding.resx">
+      <DependentUpon>ViewOutstanding.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.3.0\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.3.0\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" />
+</Project>

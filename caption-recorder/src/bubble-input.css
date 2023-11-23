@@ -1,0 +1,19 @@
+.bubble.input {
+	opacity: 1;
+	border: none;
+	outline: none;
+}
+
+.bubble.input.submitted {
+	transition: none;
+}
+
+.bubble.input.empty {
+	opacity: 0;
+}
+
+.bubble.input > div {
+	background-color: #eee;
+	font-size: 32px;
+	min-width: 30px;
+}

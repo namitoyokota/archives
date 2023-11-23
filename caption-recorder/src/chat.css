@@ -1,0 +1,7 @@
+.chat {
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	font-size: 32px;
+	margin-bottom: 30px;
+}

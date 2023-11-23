@@ -1,0 +1,21 @@
+/** @format */
+
+.main {
+  margin: 3em;
+}
+
+.container {
+  position: absolute;
+  left: 100px;
+}
+
+.bar {
+  width: 15px;
+  display: inline-block;
+  margin: 0 1px;
+}
+
+.visualizer {
+  margin-top: 80px;
+  min-height: 400px;
+}

@@ -1,0 +1,49 @@
+<div class="header">
+  <img src="assets/DeGods.webp" />
+  <button class="button is-black">Select Wallet</button>
+</div>
+
+<div class="banner">
+  <img src="assets/DUSTIES-LOGO-VECTOR.svg" />
+</div>
+
+<div class="btn-pane">
+  <div class="switcher">
+    <button class="button"
+      [class.is-link]="selectedButton === ButtonOption.raffles"
+      (click)="selectRaffles()">
+      Raffles
+    </button>
+    <button class="button"
+      [class.is-link]="selectedButton === ButtonOption.auctions" 
+      (click)="selectAuctions()">
+      Auctions
+    </button>
+  </div>
+</div>
+
+<div class="list">
+  <div class="card" *ngFor="let collection of collectionList">
+    <div class="card-image">
+      <figure class="image">
+        <img [src]="collection.imgSrc">
+      </figure>
+    </div>
+    <div class="card-content">
+      <div class="media">
+        <div class="media-left">
+          <figure class="image is-48x48">
+            <img src="https://store.degods.com/_next/image?url=https%3A%2F%2Fzaysanraptors.io%2Fimg%2Fassets%2Fzaptors.gif&w=1920&q=75">
+          </figure>
+        </div>
+        <div class="media-content">
+          <p class="title is-4">{{collection.title}}</p>
+          <p class="subtitle is-6">{{collection.price}} ETH</p>
+        </div>
+      </div>
+      <div class="content">
+        <div>{{collection.endDate| date : 'yyyy-MM-dd'}}</div>
+      </div>
+    </div>
+  </div>
+</div>

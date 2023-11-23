@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/instafolio/static/css/main.6828dd39.chunk.css",
+    "main.js": "/instafolio/static/js/main.69bc4645.chunk.js",
+    "main.js.map": "/instafolio/static/js/main.69bc4645.chunk.js.map",
+    "runtime~main.js": "/instafolio/static/js/runtime~main.f6cf6a23.js",
+    "runtime~main.js.map": "/instafolio/static/js/runtime~main.f6cf6a23.js.map",
+    "static/js/2.9ef57dbc.chunk.js": "/instafolio/static/js/2.9ef57dbc.chunk.js",
+    "static/js/2.9ef57dbc.chunk.js.map": "/instafolio/static/js/2.9ef57dbc.chunk.js.map",
+    "index.html": "/instafolio/index.html",
+    "precache-manifest.b3232a2061da2ea7e190f26729fa3051.js": "/instafolio/precache-manifest.b3232a2061da2ea7e190f26729fa3051.js",
+    "service-worker.js": "/instafolio/service-worker.js",
+    "static/css/main.6828dd39.chunk.css.map": "/instafolio/static/css/main.6828dd39.chunk.css.map"
+  }
+}
