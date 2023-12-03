@@ -1,0 +1,46 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+
+    .content {
+        width: 100%;
+        max-width: 750px;
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+        padding: 10px;
+    }
+
+    .large-emotion,
+    .medium-emotion,
+    .small-emotion {
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+        padding: 10px 5px;
+
+        .empathy {
+            font-weight: 600;
+        }
+
+        .question {
+            font-style: italic;
+        }
+
+        .blur {
+            transition: 0.5s ease-in-out;
+            filter: blur(2px);
+        }
+    }
+}
+
+h2,
+ul {
+    margin: 0;
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+}

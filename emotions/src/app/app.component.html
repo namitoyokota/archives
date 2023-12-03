@@ -1,0 +1,120 @@
+<div class="wrapper" (click)="scrollToElement($event)">
+    <div class="content">
+        <h2>What are you feeling right now?</h2>
+
+        <!-- Happy -->
+        <ny-expand title="Happy 😁" [show]="false" (showChange)="toggleTab('happy')">
+            <div class="large-emotion">
+                <span class="empathy">Glad you're feeling happy❗</span>
+                <ul [class.blur]="lastOpened !== 'happy'">
+                    <li>favored by luck or fortune</li>
+                    <li>notably fitting, effective, or well adapted</li>
+                    <li>enjoying or characterized by well-being and contentment</li>
+                </ul>
+                <span class="question">Do you resonate with any of the happy feelings below?</span>
+
+                <!-- Powerful -->
+                <ny-expand title="Powerful" [show]="false" (showChange)="toggleTab('powerful')">
+                    <div class="medium-emotion">
+                        <span class="empathy">You are very powerful 💪</span>
+                        <ul [class.blur]="lastOpened !== 'powerful'">
+                            <li>having great power, prestige, or influence</li>
+                            <li>leading to many or important deductions</li>
+                        </ul>
+                        <span class="question">How are you feeling powerful?</span>
+
+                        <!-- Courageous -->
+                        <ny-expand title="Courageous" [show]="false" (showChange)="toggleTab('courageous')">
+                            <div class="small-emotion">
+                                <span class="empathy">You are so courageous 🐆</span>
+                                <ul [class.blur]="lastOpened !== 'courageous'">
+                                    <li>having or characterized by courage, brave</li>
+                                </ul>
+                            </div>
+                        </ny-expand>
+
+                        <!-- Creative -->
+                        <ny-expand title="Creative" [show]="false" (showChange)="toggleTab('creative')">
+                            <div class="small-emotion">
+                                <span class="empathy">You are so creative 🖊️</span>
+                                <ul [class.blur]="lastOpened !== 'creative'">
+                                    <li>marked by the ability or power to create</li>
+                                    <li>having the quality of something created rather than imitated</li>
+                                    <li>managed so as to get around legal or conventional limits</li>
+                                </ul>
+                            </div>
+                        </ny-expand>
+                    </div>
+                </ny-expand>
+
+                <!-- Amused -->
+                <ny-expand title="Amused" [show]="false" (showChange)="toggleTab('amused')">
+                    <div class="medium-emotion">
+                        <span class="empathy">Good to hear you are amused! 😆</span>
+                        <ul [class.blur]="lastOpened !== 'amused'">
+                            <li>pleasantly entertained or diverted (as by something funny)</li>
+                            <li>feeling or showing amusement</li>
+                        </ul>
+                        <span class="question">How specifically are you feeling amused?</span>
+
+                        <!-- Humorous -->
+                        <ny-expand title="Humorous" [show]="false" (showChange)="toggleTab('humorous')">
+                            <div class="small-emotion">
+                                <span class="empathy">Awesome that you are feeling humorous! 🤣</span>
+                                <ul [class.blur]="lastOpened !== 'humorous'">
+                                    <li>
+                                        full of or characterized by that quality which appeals to a sense of the ludicrous or absurdly
+                                        incongruous
+                                    </li>
+                                    <li>
+                                        possessing, indicating, or expressive of an ability to be funny or to be amused by things that are
+                                        funny
+                                    </li>
+                                </ul>
+                            </div>
+                        </ny-expand>
+
+                        <!-- Playful -->
+                        <ny-expand title="Playful" [show]="false" (showChange)="toggleTab('playful')">
+                            <div class="small-emotion">
+                                <span class="empathy">Great that you are feeling playful! 👟</span>
+                                <ul [class.blur]="lastOpened !== 'playful'">
+                                    <li>full of play</li>
+                                    <li>frolicsome, sportive</li>
+                                </ul>
+                            </div>
+                        </ny-expand>
+                    </div>
+                </ny-expand>
+
+                <!-- Confident -->
+                <ny-expand title="Confident" [show]="false" (showChange)="toggleTab('confident')">
+                    <div class="medium-emotion">
+                        <ny-expand title="Respected" [show]="false" (showChange)="toggleTab('respected')">
+                            <div class="small-emotion"></div>
+                        </ny-expand>
+                        <ny-expand title="Honored" [show]="false" (showChange)="toggleTab('honored')">
+                            <div class="small-emotion"></div>
+                        </ny-expand>
+                    </div>
+                </ny-expand>
+
+                <!-- Content -->
+                <ny-expand title="Content" [show]="false" (showChange)="toggleTab('content')">
+                    <div class="medium-emotion">
+                        <ny-expand title="Relieved" [show]="false" (showChange)="toggleTab('relieved')">
+                            <div class="small-emotion"></div>
+                        </ny-expand>
+                        <ny-expand title="Satisfied" [show]="false" (showChange)="toggleTab('satisfied')">
+                            <div class="small-emotion"></div>
+                        </ny-expand>
+                    </div>
+                </ny-expand>
+            </div>
+        </ny-expand>
+
+        <a href="https://summitcrossing.org/wp-content/uploads/2022/06/Emotions-Wheel.pdf" target="_blank">
+            Summit Crossing's Emotion Wheel
+        </a>
+    </div>
+</div>
